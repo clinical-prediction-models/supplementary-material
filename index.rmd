@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+github-repo: clinical-prediction-models/supplementary-material
 ---
 
 ```{r setup, include=FALSE}
@@ -13,4 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Preface {-}
 
-Short introduction here. 
+***Work in progress***
+
+This bookdown-based website containing the supplementary materials from 'Clinical Prediction Models: A Practical Approach to Development, Validation, and Updating', by E. W. Steyerberg (2009).
+

@@ -1,0 +1,14 @@
+# Assumptions in Regression Models: Additivity and Linearity {#ch:assumptions}
+
+```{r setup-ch12, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 12 additional material upcoming.

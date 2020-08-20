@@ -1,0 +1,14 @@
+# Modern Estimation Methods {#ch:estimation}
+
+```{r setup-ch13, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 13 additional material upcoming.

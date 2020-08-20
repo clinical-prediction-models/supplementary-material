@@ -1,0 +1,14 @@
+# Updating for Multiple Settings {#ch:updating-multiple}
+
+```{r setup-ch21, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 21 additional material upcoming.

@@ -1,0 +1,14 @@
+# Validation of Prediction Models {#ch:validation}
+
+```{r setup-ch17, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 17 additional material upcoming.

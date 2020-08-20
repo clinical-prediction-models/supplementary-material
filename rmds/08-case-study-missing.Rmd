@@ -1,0 +1,14 @@
+# Case Study on Dealing with Missing Values {#ch:missing-case}
+
+```{r setup-ch8, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 8 additional material upcoming.

@@ -1,0 +1,14 @@
+# Evaluation of Clinical Usefulness {#ch:usefulness}
+
+```{r setup-ch16, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 16 additional material upcoming.

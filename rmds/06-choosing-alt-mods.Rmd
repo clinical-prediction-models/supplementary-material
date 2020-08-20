@@ -4,8 +4,6 @@
 
 
 ```{r setup-ch6, include=FALSE}
-proj_dir <- here::here()
-
 knitr::opts_knit$set(
   echo = TRUE,
   root.dir = here::here()

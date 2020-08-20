@@ -1,0 +1,14 @@
+# Coding of Categorical and Continuous Predictors {#ch:coding}
+
+```{r setup-ch9, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 9 additional material upcoming.

@@ -1,0 +1,14 @@
+# Selection of Main Effects {#ch:selection}
+
+```{r setup-ch11, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 11 additional material upcoming.

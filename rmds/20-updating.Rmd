@@ -1,0 +1,14 @@
+# Updating for a New Setting {#ch:updating}
+
+```{r setup-ch20, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 20 additional material upcoming.

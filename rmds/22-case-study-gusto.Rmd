@@ -1,0 +1,16 @@
+# (PART) Part IIII: Applications {-}
+
+# Case Study on a Prediction of 30-Day Mortality {#ch:case-study-gusto}
+
+```{r setup-ch22, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 22 additional material upcoming.

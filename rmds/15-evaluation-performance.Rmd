@@ -1,0 +1,14 @@
+# Evaluation of Performance {#ch:evaluation}
+
+```{r setup-ch15, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 15 additional material upcoming.

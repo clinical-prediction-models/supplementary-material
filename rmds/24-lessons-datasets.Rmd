@@ -1,0 +1,14 @@
+# Overall Lessons and Data Sets {#ch:lessons-datasets}
+
+```{r setup-ch24, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 24 additional material upcoming.

@@ -1,0 +1,14 @@
+# Presentation Formats {#ch:presentation}
+
+```{r setup-ch18, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 18 additional material upcoming.

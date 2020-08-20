@@ -1,0 +1,16 @@
+# (PART) Part III: Generalizability of Prediction Models {-}
+
+# Patterns of External Validity {#ch:external-validity}
+
+```{r setup-ch19, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 19 additional material upcoming.
