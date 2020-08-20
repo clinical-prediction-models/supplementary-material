@@ -1,0 +1,14 @@
+# Statistical Models for Prediction {#ch:statmods}
+
+```{r setup-ch4, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 4 has no additional material.

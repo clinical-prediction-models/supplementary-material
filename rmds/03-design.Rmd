@@ -1,0 +1,14 @@
+# Study Design for Prediction Modeling {#ch:design}
+
+```{r setup-ch3, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 3 has no additional material.

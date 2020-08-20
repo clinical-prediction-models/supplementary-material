@@ -1,0 +1,16 @@
+# (PART) Part I: Prediction models in medicine {-}
+
+# Applications of Prediction Models {#ch:applications}
+
+```{r setup-ch2, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+See [here](http://www.clinicalpredictionmodels.org/doku.php?id=additional:chapter02) for additional material.

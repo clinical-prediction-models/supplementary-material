@@ -1,0 +1,141 @@
+"","class","surgery","agecat","age","mort","w"
+"1","CVD     ","Abdominal aortic aneurysms","65-69  ",67.5,1,1073
+"2","CVD     ","Abdominal aortic aneurysms","65-69  ",67.5,0,37253
+"3","CVD     ","Abdominal aortic aneurysms","70-74  ",72.5,1,920
+"4","CVD     ","Abdominal aortic aneurysms","70-74  ",72.5,0,24631
+"5","CVD     ","Abdominal aortic aneurysms","75-80  ",77.2,1,903
+"6","CVD     ","Abdominal aortic aneurysms","75-80  ",77.2,0,16131
+"7","CVD     ","Abdominal aortic aneurysms","80-85  ",82,1,245
+"8","CVD     ","Abdominal aortic aneurysms","80-85  ",82,0,3162
+"9","CVD     ","Abdominal aortic aneurysms","85-99  ",90,1,101
+"10","CVD     ","Abdominal aortic aneurysms","85-99  ",90,0,751
+"11","CVD     ","Aortic valve","65-69  ",67.5,1,1528
+"12","CVD     ","Aortic valve","65-69  ",67.5,0,29657
+"13","CVD     ","Aortic valve","70-74  ",72.5,1,1310
+"14","CVD     ","Aortic valve","70-74  ",72.5,0,19481
+"15","CVD     ","Aortic valve","75-80  ",77.2,1,1081
+"16","CVD     ","Aortic valve","75-80  ",77.2,0,12779
+"17","CVD     ","Aortic valve","80-85  ",82,1,261
+"18","CVD     ","Aortic valve","80-85  ",82,0,2511
+"19","CVD     ","Aortic valve","85-99  ",90,1,71
+"20","CVD     ","Aortic valve","85-99  ",90,0,622
+"21","CVD     ","CABG","65-69  ",67.5,1,3695
+"22","CVD     ","CABG","65-69  ",67.5,0,128258
+"23","CVD     ","CABG","70-74  ",72.5,1,3343
+"24","CVD     ","CABG","70-74  ",72.5,0,84626
+"25","CVD     ","CABG","75-80  ",77.2,1,2991
+"26","CVD     ","CABG","75-80  ",77.2,0,55655
+"27","CVD     ","CABG","80-85  ",82,1,786
+"28","CVD     ","CABG","80-85  ",82,0,10943
+"29","CVD     ","CABG","85-99  ",90,1,252
+"30","CVD     ","CABG","85-99  ",90,0,2680
+"31","Cancer  ","Colectomy","65-69  ",67.5,1,1078
+"32","Cancer  ","Colectomy","65-69  ",67.5,0,58838
+"33","Cancer  ","Colectomy","70-74  ",72.5,1,959
+"34","Cancer  ","Colectomy","70-74  ",72.5,0,38986
+"35","Cancer  ","Colectomy","75-80  ",77.2,1,852
+"36","Cancer  ","Colectomy","75-80  ",77.2,0,25777
+"37","Cancer  ","Colectomy","80-85  ",82,1,245
+"38","Cancer  ","Colectomy","80-85  ",82,0,5081
+"39","Cancer  ","Colectomy","85-99  ",90,1,96
+"40","Cancer  ","Colectomy","85-99  ",90,0,1236
+"41","Cancer  ","Cystectomy","65-69  ",67.5,1,152
+"42","Cancer  ","Cystectomy","65-69  ",67.5,0,6476
+"43","Cancer  ","Cystectomy","70-74  ",72.5,1,164
+"44","Cancer  ","Cystectomy","70-74  ",72.5,0,4256
+"45","Cancer  ","Cystectomy","75-80  ",77.2,1,162
+"46","Cancer  ","Cystectomy","75-80  ",77.2,0,2784
+"47","Cancer  ","Cystectomy","80-85  ",82,1,44
+"48","Cancer  ","Cystectomy","80-85  ",82,0,545
+"49","Cancer  ","Cystectomy","85-99  ",90,1,14
+"50","Cancer  ","Cystectomy","85-99  ",90,0,134
+"51","CVD     ","Endarterectomy","65-69  ",67.5,1,1385
+"52","CVD     ","Endarterectomy","65-69  ",67.5,0,137115
+"53","CVD     ","Endarterectomy","70-74  ",72.5,1,1016
+"54","CVD     ","Endarterectomy","70-74  ",72.5,0,91317
+"55","CVD     ","Endarterectomy","75-80  ",77.2,1,862
+"56","CVD     ","Endarterectomy","75-80  ",77.2,0,60694
+"57","CVD     ","Endarterectomy","80-85  ",82,1,209
+"58","CVD     ","Endarterectomy","80-85  ",82,0,12102
+"59","CVD     ","Endarterectomy","85-99  ",90,1,71
+"60","CVD     ","Endarterectomy","85-99  ",90,0,3007
+"61","Cancer  ","Esophagectomy","65-69  ",67.5,1,196
+"62","Cancer  ","Esophagectomy","65-69  ",67.5,0,1640
+"63","Cancer  ","Esophagectomy","70-74  ",72.5,1,163
+"64","Cancer  ","Esophagectomy","70-74  ",72.5,0,1061
+"65","Cancer  ","Esophagectomy","75-80  ",77.2,1,139
+"66","Cancer  ","Esophagectomy","75-80  ",77.2,0,677
+"67","Cancer  ","Esophagectomy","80-85  ",82,1,31
+"68","Cancer  ","Esophagectomy","80-85  ",82,0,132
+"69","Cancer  ","Esophagectomy","85-99  ",90,1,10
+"70","Cancer  ","Esophagectomy","85-99  ",90,0,31
+"71","Cancer  ","Gastrectomy","65-69  ",67.5,1,437
+"72","Cancer  ","Gastrectomy","65-69  ",67.5,0,6609
+"73","Cancer  ","Gastrectomy","70-74  ",72.5,1,333
+"74","Cancer  ","Gastrectomy","70-74  ",72.5,0,4364
+"75","Cancer  ","Gastrectomy","75-80  ",77.2,1,279
+"76","Cancer  ","Gastrectomy","75-80  ",77.2,0,2853
+"77","Cancer  ","Gastrectomy","80-85  ",82,1,65
+"78","Cancer  ","Gastrectomy","80-85  ",82,0,562
+"79","Cancer  ","Gastrectomy","85-99  ",90,1,26
+"80","Cancer  ","Gastrectomy","85-99  ",90,0,131
+"81","CVD     ","Lower-extremity bypass","65-69  ",67.5,1,1400
+"82","CVD     ","Lower-extremity bypass","65-69  ",67.5,0,68609
+"83","CVD     ","Lower-extremity bypass","70-74  ",72.5,1,1213
+"84","CVD     ","Lower-extremity bypass","70-74  ",72.5,0,45459
+"85","CVD     ","Lower-extremity bypass","75-80  ",77.2,1,1058
+"86","CVD     ","Lower-extremity bypass","75-80  ",77.2,0,30057
+"87","CVD     ","Lower-extremity bypass","80-85  ",82,1,280
+"88","CVD     ","Lower-extremity bypass","80-85  ",82,0,5943
+"89","CVD     ","Lower-extremity bypass","85-99  ",90,1,109
+"90","CVD     ","Lower-extremity bypass","85-99  ",90,0,1447
+"91","CVD     ","Mitral valve","65-69  ",67.5,1,893
+"92","CVD     ","Mitral valve","65-69  ",67.5,0,11343
+"93","CVD     ","Mitral valve","70-74  ",72.5,1,783
+"94","CVD     ","Mitral valve","70-74  ",72.5,0,7374
+"95","CVD     ","Mitral valve","75-80  ",77.2,1,669
+"96","CVD     ","Mitral valve","75-80  ",77.2,0,4769
+"97","CVD     ","Mitral valve","80-85  ",82,1,171
+"98","CVD     ","Mitral valve","80-85  ",82,0,917
+"99","CVD     ","Mitral valve","85-99  ",90,1,57
+"100","CVD     ","Mitral valve","85-99  ",90,0,215
+"101","Cancer  ","Nephrectomy","65-69  ",67.5,1,193
+"102","Cancer  ","Nephrectomy","65-69  ",67.5,0,15902
+"103","Cancer  ","Nephrectomy","70-74  ",72.5,1,182
+"104","Cancer  ","Nephrectomy","70-74  ",72.5,0,10548
+"105","Cancer  ","Nephrectomy","75-80  ",77.2,1,207
+"106","Cancer  ","Nephrectomy","75-80  ",77.2,0,6946
+"107","Cancer  ","Nephrectomy","80-85  ",82,1,43
+"108","Cancer  ","Nephrectomy","80-85  ",82,0,1388
+"109","Cancer  ","Nephrectomy","85-99  ",90,1,18
+"110","Cancer  ","Nephrectomy","85-99  ",90,0,339
+"111","Cancer  ","Pancreatic resection","65-69  ",67.5,1,166
+"112","Cancer  ","Pancreatic resection","65-69  ",67.5,0,2178
+"113","Cancer  ","Pancreatic resection","70-74  ",72.5,1,127
+"114","Cancer  ","Pancreatic resection","70-74  ",72.5,0,1436
+"115","Cancer  ","Pancreatic resection","75-80  ",77.2,1,124
+"116","Cancer  ","Pancreatic resection","75-80  ",77.2,0,918
+"117","Cancer  ","Pancreatic resection","80-85  ",82,1,29
+"118","Cancer  ","Pancreatic resection","80-85  ",82,0,179
+"119","Cancer  ","Pancreatic resection","85-99  ",90,1,7
+"120","Cancer  ","Pancreatic resection","85-99  ",90,0,46
+"121","Cancer  ","Pneumonectomy","65-69  ",67.5,1,364
+"122","Cancer  ","Pneumonectomy","65-69  ",67.5,0,2721
+"123","Cancer  ","Pneumonectomy","70-74  ",72.5,1,276
+"124","Cancer  ","Pneumonectomy","70-74  ",72.5,0,1781
+"125","Cancer  ","Pneumonectomy","75-80  ",77.2,1,219
+"126","Cancer  ","Pneumonectomy","75-80  ",77.2,0,1152
+"127","Cancer  ","Pneumonectomy","80-85  ",82,1,59
+"128","Cancer  ","Pneumonectomy","80-85  ",82,0,215
+"129","Cancer  ","Pneumonectomy","85-99  ",90,1,31
+"130","Cancer  ","Pneumonectomy","85-99  ",90,0,38
+"131","Cancer  ","Pulmonary lobectomy","65-69  ",67.5,1,822
+"132","Cancer  ","Pulmonary lobectomy","65-69  ",67.5,0,22006
+"133","Cancer  ","Pulmonary lobectomy","70-74  ",72.5,1,730
+"134","Cancer  ","Pulmonary lobectomy","70-74  ",72.5,0,14488
+"135","Cancer  ","Pulmonary lobectomy","75-80  ",77.2,1,619
+"136","Cancer  ","Pulmonary lobectomy","75-80  ",77.2,0,9527
+"137","Cancer  ","Pulmonary lobectomy","80-85  ",82,1,142
+"138","Cancer  ","Pulmonary lobectomy","80-85  ",82,0,1887
+"139","Cancer  ","Pulmonary lobectomy","85-99  ",90,1,46
+"140","Cancer  ","Pulmonary lobectomy","85-99  ",90,0,462

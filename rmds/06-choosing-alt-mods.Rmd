@@ -1,0 +1,209 @@
+# Choosing Between Alternative Models {#ch:altmods}
+
+## Non-linearity illustrations
+
+
+```{r setup-ch6, include=FALSE}
+proj_dir <- here::here()
+
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+
+library(rms)
+library(foreign)
+library(lspline)
+library(lattice)
+library(latticeExtra)
+
+mycolors <- c(
+  "black" = 1,
+  "Red" = "#ED0000",
+  "CongressBlue" = "#00468B",
+  "Apple" = "#42B540",
+  "BondiBlue" = "#0099B4",
+  "TrendyPink" = "#925E9F",
+  "Carmine" = "#AD002A",
+  "CodGray" = "#1B1919",
+  "MonaLisa" = "#FDAF91",
+  "Edward" = "#ADB6B6"
+)
+```
+
+### Prepare GUSTO data
+Some logistic regression fits with linear, square, rcs, linear spline terms
+
+```{r}
+# Import gusto; publicly available
+gusto <- read.csv("data/gusto_age.csv")[-1]
+Fmort <- as.data.frame(read.csv("data/Fmort.csv"))[-1]
+Fmort$age10 	<- Fmort$age/10
+Fmort$age102 	<- Fmort$age10^2
+getwd()
+```
+
+
+```{r echo=F}
+dd <- datadist(gusto)
+options(datadist="dd")
+
+## Age linear; add square; rcs
+agegusto.linear <- lrm(DAY30~AGE,	data=gusto, x=T,y=T)
+agegusto.square <- lrm(DAY30~pol(AGE,2),	data=gusto, x=T,y=T)
+agegusto.rcs    <- lrm(DAY30~rcs(AGE,5),	data=gusto, x=T,y=T)
+
+## linear spline, age 50 (equals value 5.0 for decades)
+library(lspline)
+agegusto.linearspline    <- lrm(DAY30~lspline(AGE,5.0),	data=gusto, x=T,y=T)
+
+## dichotomize
+agegusto.cat65    <- lrm(DAY30~ifelse(AGE<6.5,0,1),	data=gusto, x=T,y=T)
+```
+
+### anova results for the different fits
+We note minor differences between the continuous fits, and a clear loss of information for the dichtomization at age 65 years
+```{r echo=T}
+anova(agegusto.linear)
+anova(agegusto.square)
+anova(agegusto.rcs)
+anova(agegusto.linearspline)
+anova(agegusto.cat65)
+```
+
+### Plotting of age effects
+Plot age effect first at lp scale (logodds), then at probability scale
+
+Age effect at logodds scale;  Age effect at probability scale
+```{r echo=F}
+## Prepare plots, age 20 to 95 years
+newdata.age =data.frame("AGE"=seq(2,9.5, by=0.01))
+pred.agegusto.linear  <- predict(agegusto.linear, newdata.age)
+pred.agegusto.square  <- predict(agegusto.square,newdata.age)
+pred.agegusto.rcs     <- predict(agegusto.rcs,newdata.age)
+pred.agegusto.linearspline <- predict(agegusto.linearspline,newdata.age)
+pred.agegusto.cat65   <- predict(agegusto.cat65,newdata.age)
+
+# Start plotting
+par(mfrow=c(1,2))
+plot(x=10*newdata.age[,1], y=pred.agegusto.linear, xlim=c(20,92), ylim=c(-6,0), las=1, xaxt="n",
+     xlab='Age in years', ylab='logit of 30-day mortality', cex.lab=1.2, type="l", lwd=2)
+axis(1, at=c(30, 50, 65, 80))
+lines(x=10*newdata.age[,1], y=pred.agegusto.square, lty=2, lwd=2, col=mycolors[2])
+lines(x=10*newdata.age[,1], y=pred.agegusto.rcs, lty=3, lwd=2, col=mycolors[3])
+lines(x=10*newdata.age[,1], y=pred.agegusto.linearspline, lty=4,lwd=2, col=mycolors[4])
+lines(x=10*newdata.age[,1], y=pred.agegusto.cat65, lty=5,lwd=2, col=mycolors[5])
+
+legend("topleft", legend=c("linear","square","rcs","lspline","dichotomize"),
+       lty=1:5, lwd=2, cex=1, bty='n',col=mycolors[1:5])
+
+scat1d(x=10*gusto$AGE, side=1, frac=.03, col="darkblue")
+title("Logit scale")
+
+## Probability scale
+newdata.age =data.frame("AGE"=seq(2,9.5, by=0.01))
+pred.agegusto.linear  <- plogis(predict(agegusto.linear, newdata.age))
+pred.agegusto.square  <- plogis(predict(agegusto.square,newdata.age))
+pred.agegusto.rcs     <- plogis(predict(agegusto.rcs,newdata.age))
+pred.agegusto.linearspline <- plogis(predict(agegusto.linearspline,newdata.age))
+pred.agegusto.cat65   <- plogis(predict(agegusto.cat65,newdata.age))
+
+plot(x=10*newdata.age[,1], y=pred.agegusto.linear, xlim=c(20,92), ylim=c(0,.5), las=1, xaxt="n",
+     xlab='Age in years', ylab='probability of 30-day mortality', cex.lab=1.2, type="l", lwd=2)
+axis(1, at=c(30, 50, 65, 80))
+lines(x=10*newdata.age[,1], y=pred.agegusto.square, lty=2, lwd=2, col=mycolors[2])
+lines(x=10*newdata.age[,1], y=pred.agegusto.rcs, lty=3, lwd=2, col=mycolors[3])
+lines(x=10*newdata.age[,1], y=pred.agegusto.linearspline, lty=4, lwd=2, col=mycolors[4])
+lines(x=10*newdata.age[,1], y=pred.agegusto.cat65, lty=5, lwd=2, col=mycolors[5])
+scat1d(x=10*gusto$AGE, side=1, frac=.03, col="darkblue")
+title("Probability scale")
+```
+
+
+Fig 6.1
+
+### Start surgical mortality by age in Medicare
+
+Age effect at logodds scale
+```{r Medicare_data, echo=F, warning=F}
+dd <- datadist(Fmort)
+options(datadist="dd")
+
+# Age continuous
+fitage		<- lrm(mort ~ surgery + age10, weights=w, maxit=500, eps=.025, data=Fmort)
+fitagei	<- update(fitage,  ~ . + surgery * age10)
+fitage2	<- update(fitage,  ~ . + age102)
+fitagei2	<- update(fitage,  ~ . + age102 + surgery * age10)
+fitplot	<- lrm(mort ~ surgery * age, weights=w, data=Fmort, x=T, y=T)
+fitplot2	<- lrm(mort ~ surgery + age, weights=w, data=Fmort, x=T, y=T)
+```
+
+### anova results for the fit of age, with interaction by type of surgery
+
+Type of surgery is clearly most relevant (chi2 >13500) in all fits. Age is als relevant (chi2>3000), and a square term is not needed (chi2 = 2); the interaction adds a little bit (chi2 95). With these large numbers (1.1M patients), most effects have p<.0001.
+
+We will evaluate the differences between fits with or without interaction term graphically further down
+
+```{r echo=T}
+# Look for model improvements 
+anova(fitplot2)  # linear age effect, no interaction with surgery
+anova(fitage2)   # age square added
+anova(fitplot)   # interaction added to linear age effect
+```
+
+### Plotting of predicted age effects, with interaction by type of surgery; add 95% CI
+
+Plot age effects at logodds scale with 95% CI
+
+```{r echo=F}
+plot(Predict(fitplot, age=65:100, surgery=NA), ylab="Mortality", 
+     par.settings = list(superpose.line = list(col = mycolors[c(2:10, 2:6)])))
+```
+
+### Plotting of age effects with original data points
+
+Fit with interaction (solid lines) and no interaction (dashed lines)
+
+```{r echo=F}
+# Points
+Fsum <- aggregate(data=Fmort, w ~ age + surgery, sum) #total N
+Fdead <- aggregate(data=Fmort, w ~ age + surgery, min) # N dead
+Fsum$mort <- Fdead[,3] / Fsum[,3] # mortality per group
+Fsum$dead <- Fdead[,3]
+Fsum$lmort <- log(Fsum$mort / (1-Fsum$mort))
+
+# Interaction fit
+fit.mat <- Predict(fitplot, age=65:100, surgery=levels(Fmort$surgery))
+# Main effect fit
+fit.mat2 <- Predict(fitplot2, age=65:100, surgery=levels(Fmort$surgery))
+
+# Do some advanced lattice plotting
+foo_key <- list(corner=c(1,1), x=80, y=-1,
+  text=list(lab=c("Observed","Age interaction", "Common age effect")),
+                     points=list(pch=c(16,NA, NA), cex=c(2, NA, NA), col=c("red", "red", "black")), 
+                     lines=list(type = c("p", "l", "l"), pch=16, lty=c(0,1,2), lwd=3, col=c("red", "red", "black")))
+                
+
+plot1<-xyplot(lmort ~ age | surgery, groups = surgery, Fsum,ylim=c(-4.7,-0.8),
+              ylab="logit(mortality)", xlab="Age (years)", xlim=c(64,92), 
+              par.settings = list(superpose.symbol = list(pch = 16, cex = 1, col = mycolors[c(2:10, 2:6)]),
+                                  par.ylab.text = list(cex=1.2), par.xlab.text = list(cex=1.2)))
+
+plot2<-xyplot(yhat ~ age | surgery, groups = surgery, fit.mat, type='l',
+              ylab="logit(mortality)", xlab="Age (years)", xlim=c(64,92), 
+              par.settings = list(superpose.line = list(lwd=3, col = mycolors[c(2:10, 2:6)]),
+                                  par.ylab.text = list(cex=1.2), par.xlab.text = list(cex=1.2)))
+
+plot3<-xyplot(yhat ~ age | surgery, groups = surgery, fit.mat2, type='l',
+              ylab="logit(mortality)", xlab="Age (years)", xlim=c(64,92), 
+              par.settings = list(superpose.line = list(lwd=2, lty=2, col = 'black'),
+                                  par.ylab.text = list(cex=1.2), par.xlab.text = list(cex=1.2)))
+
+# all three overlayed
+plot1+plot2+plot3
+```
+

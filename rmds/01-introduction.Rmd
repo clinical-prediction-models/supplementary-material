@@ -1,0 +1,14 @@
+# Introduction {#ch:introduction}
+
+```{r setup-ch1, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 1 has no additional material.

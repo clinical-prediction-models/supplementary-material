@@ -1,0 +1,16 @@
+---
+title: "Clinical prediction models"
+author: "Ewout Steyerberg"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Preface {-}
+
+Short introduction here. 

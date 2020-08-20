@@ -1,0 +1,12 @@
+book_filename: "clin-pred-mods-bookdown.Rmd"
+delete_merged_file: true
+output_dir: "docs"
+rmd_files: [
+  "index.rmd",
+  "rmds/01-introduction.Rmd",
+  "rmds/02-applications-pred-mods.Rmd",
+  "rmds/03-design.Rmd",
+  "rmds/04-stat-mods.Rmd",
+  "rmds/05-overfitting.Rmd",
+  "rmds/06-choosing-alt-mods.Rmd"
+]
