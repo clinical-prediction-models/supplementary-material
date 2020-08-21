@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Assumptions in Regression Models - Additivity and Linearity | Clinical prediction models</title>
+  <meta name="description" content="12 Assumptions in Regression Models - Additivity and Linearity | Clinical prediction models" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Assumptions in Regression Models - Additivity and Linearity | Clinical prediction models" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="clinical-prediction-models/supplementary-material" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Assumptions in Regression Models - Additivity and Linearity | Clinical prediction models" />
+  
+  
+  
+
+<meta name="author" content="Ewout Steyerberg" />
+
+
+<meta name="date" content="2020-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-selection.html"/>
+<link rel="next" href="ch-estimation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Clinical Prediction Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="ch-introduction.html"><a href="ch-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>I Part I: Prediction models in medicine</b></span></li>
+<li class="chapter" data-level="2" data-path="ch-applications.html"><a href="ch-applications.html"><i class="fa fa-check"></i><b>2</b> Applications of Prediction Models</a></li>
+<li class="chapter" data-level="3" data-path="ch-design.html"><a href="ch-design.html"><i class="fa fa-check"></i><b>3</b> Study Design for Prediction Modeling</a></li>
+<li class="chapter" data-level="4" data-path="ch-statmods.html"><a href="ch-statmods.html"><i class="fa fa-check"></i><b>4</b> Statistical Models for Prediction</a></li>
+<li class="chapter" data-level="5" data-path="ch-overfitting.html"><a href="ch-overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#fig-5.2-noise-in-estimating-10-mortality-per-center"><i class="fa fa-check"></i><b>5.1.1</b> Fig 5.2: Noise in estimating 10% mortality per center</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figs-5.3-and-5.4"><i class="fa fa-check"></i><b>5.1.2</b> Figs 5.3 and 5.4</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n20"><i class="fa fa-check"></i><b>5.1.3</b> n=20</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n200"><i class="fa fa-check"></i><b>5.1.4</b> n=200</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-altmods.html"><a href="ch-altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch-altmods.html"><a href="ch-altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="ch-altmods.html"><a href="ch-altmods.html#prepare-gusto-data"><i class="fa fa-check"></i><b>6.1.1</b> Prepare GUSTO data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch-altmods.html"><a href="ch-altmods.html#anova-results-for-the-different-fits"><i class="fa fa-check"></i><b>6.1.2</b> anova results for the different fits</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-altmods.html"><a href="ch-altmods.html#plotting-of-age-effects"><i class="fa fa-check"></i><b>6.1.3</b> Plotting of age effects</a></li>
+<li class="chapter" data-level="6.1.4" data-path="ch-altmods.html"><a href="ch-altmods.html#start-surgical-mortality-by-age-in-medicare"><i class="fa fa-check"></i><b>6.1.4</b> Start surgical mortality by age in Medicare</a></li>
+<li class="chapter" data-level="6.1.5" data-path="ch-altmods.html"><a href="ch-altmods.html#anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery"><i class="fa fa-check"></i><b>6.1.5</b> anova results for the fit of age, with interaction by type of surgery</a></li>
+<li class="chapter" data-level="6.1.6" data-path="ch-altmods.html"><a href="ch-altmods.html#plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci"><i class="fa fa-check"></i><b>6.1.6</b> Plotting of predicted age effects, with interaction by type of surgery; add 95% CI</a></li>
+<li class="chapter" data-level="6.1.7" data-path="ch-altmods.html"><a href="ch-altmods.html#plotting-of-age-effects-with-original-data-points"><i class="fa fa-check"></i><b>6.1.7</b> Plotting of age effects with original data points</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Part II: Developing Valid Prediction Models</b></span></li>
+<li class="chapter" data-level="7" data-path="ch-missing.html"><a href="ch-missing.html"><i class="fa fa-check"></i><b>7</b> Missing values</a></li>
+<li class="chapter" data-level="8" data-path="ch-missing-case.html"><a href="ch-missing-case.html"><i class="fa fa-check"></i><b>8</b> Case Study on Dealing with Missing Values</a></li>
+<li class="chapter" data-level="9" data-path="ch-coding.html"><a href="ch-coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a><ul>
+<li class="chapter" data-level="9.1" data-path="ch-coding.html"><a href="ch-coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.1-age-linear-add-square-rcs-in-gusto-i"><i class="fa fa-check"></i><b>9.1.1</b> Fig 9.1: Age linear; add square; rcs in GUSTO-I</a></li>
+<li class="chapter" data-level="9.1.2" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.2-impact-of-number-of-st-elevations-ste"><i class="fa fa-check"></i><b>9.1.2</b> Fig 9.2: Impact of number of ST elevations (STE)</a></li>
+<li class="chapter" data-level="9.1.3" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830"><i class="fa fa-check"></i><b>9.1.3</b> Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</a></li>
+<li class="chapter" data-level="9.1.4" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.4-glucose-and-hb-in-tbi"><i class="fa fa-check"></i><b>9.1.4</b> Fig 9.4: Glucose and hb in TBI</a></li>
+<li class="chapter" data-level="9.1.5" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.5-non-linear-association-of-glucose"><i class="fa fa-check"></i><b>9.1.5</b> Fig 9.5: Non-linear association of glucose</a></li>
+<li class="chapter" data-level="9.1.6" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.6-systolic-blood-pressure-in-tbi"><i class="fa fa-check"></i><b>9.1.6</b> Fig 9.6: Systolic blood pressure in TBI</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ch-restrictions.html"><a href="ch-restrictions.html"><i class="fa fa-check"></i><b>10</b> Restrictions on Candidate Predictors</a></li>
+<li class="chapter" data-level="11" data-path="ch-selection.html"><a href="ch-selection.html"><i class="fa fa-check"></i><b>11</b> Selection of Main Effects</a></li>
+<li class="chapter" data-level="12" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a><ul>
+<li class="chapter" data-level="12.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#examine-interactions"><i class="fa fa-check"></i><b>12.1.1</b> Examine interactions</a></li>
+<li class="chapter" data-level="12.1.2" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.1"><i class="fa fa-check"></i><b>12.1.2</b> Fig 12.1</a></li>
+<li class="chapter" data-level="12.1.3" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.2"><i class="fa fa-check"></i><b>12.1.3</b> Fig 12.2</a></li>
+<li class="chapter" data-level="12.1.4" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#smart-coding-illustration"><i class="fa fa-check"></i><b>12.1.4</b> Smart coding illustration</a></li>
+<li class="chapter" data-level="12.1.5" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#table-12.2-better-predictions"><i class="fa fa-check"></i><b>12.1.5</b> Table 12.2 Better predictions?</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#mfp-and-other-non-linear-analyses-in-n544-data"><i class="fa fa-check"></i><b>12.2</b> MFP and other non-linear analyses in n544 data</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ch-estimation.html"><a href="ch-estimation.html"><i class="fa fa-check"></i><b>13</b> Modern Estimation Methods</a></li>
+<li class="chapter" data-level="14" data-path="ch-estimation-external.html"><a href="ch-estimation-external.html"><i class="fa fa-check"></i><b>14</b> Estimation with External Information</a></li>
+<li class="chapter" data-level="15" data-path="ch-evaluation.html"><a href="ch-evaluation.html"><i class="fa fa-check"></i><b>15</b> Evaluation of Performance</a></li>
+<li class="chapter" data-level="16" data-path="ch-usefulness.html"><a href="ch-usefulness.html"><i class="fa fa-check"></i><b>16</b> Evaluation of Clinical Usefulness</a></li>
+<li class="chapter" data-level="17" data-path="ch-validation.html"><a href="ch-validation.html"><i class="fa fa-check"></i><b>17</b> Validation of Prediction Models</a></li>
+<li class="chapter" data-level="18" data-path="ch-presentation.html"><a href="ch-presentation.html"><i class="fa fa-check"></i><b>18</b> Presentation Formats</a></li>
+<li class="part"><span><b>III Part III: Generalizability of Prediction Models</b></span></li>
+<li class="chapter" data-level="19" data-path="ch-external-validity.html"><a href="ch-external-validity.html"><i class="fa fa-check"></i><b>19</b> Patterns of External Validity</a></li>
+<li class="chapter" data-level="20" data-path="ch-updating.html"><a href="ch-updating.html"><i class="fa fa-check"></i><b>20</b> Updating for a New Setting</a></li>
+<li class="chapter" data-level="21" data-path="ch-updating-multiple.html"><a href="ch-updating-multiple.html"><i class="fa fa-check"></i><b>21</b> Updating for Multiple Settings</a></li>
+<li class="part"><span><b>IV Part IIII: Applications</b></span></li>
+<li class="chapter" data-level="22" data-path="ch-case-study-gusto.html"><a href="ch-case-study-gusto.html"><i class="fa fa-check"></i><b>22</b> Case Study on a Prediction of 30-Day Mortality</a></li>
+<li class="chapter" data-level="23" data-path="ch-case-study-cardiovascular.html"><a href="ch-case-study-cardiovascular.html"><i class="fa fa-check"></i><b>23</b> Case Study on Survival Analysis: Prediction of Cardiovascular Event</a></li>
+<li class="chapter" data-level="24" data-path="ch-lessons-datasets.html"><a href="ch-lessons-datasets.html"><i class="fa fa-check"></i><b>24</b> Overall Lessons and Data Sets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Clinical prediction models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch:additivity-linearity" class="section level1">
+<h1><span class="header-section-number">12</span> Assumptions in Regression Models - Additivity and Linearity</h1>
+<div id="gusto-i-interaction-analysis" class="section level2">
+<h2><span class="header-section-number">12.1</span> GUSTO-I interaction analysis</h2>
+<div id="examine-interactions" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> Examine interactions</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ch-additivity-linearity.html#cb39-1"></a><span class="co"># Import gusto, gustoB, and sample4 data sets</span></span>
+<span id="cb39-2"><a href="ch-additivity-linearity.html#cb39-2"></a>gusto  &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/gusto1.csv&quot;</span>)  <span class="co"># GUSTO sample with 40830 patients </span></span>
+<span id="cb39-3"><a href="ch-additivity-linearity.html#cb39-3"></a>gustoB &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/gustoB.csv&#39;</span>)  <span class="co"># GUSTO part B sample with 20318 patients </span></span>
+<span id="cb39-4"><a href="ch-additivity-linearity.html#cb39-4"></a>gustos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/sample4.csv&#39;</span>) <span class="co"># GUSTO sample4 with 785 patients </span></span>
+<span id="cb39-5"><a href="ch-additivity-linearity.html#cb39-5"></a></span>
+<span id="cb39-6"><a href="ch-additivity-linearity.html#cb39-6"></a><span class="kw">source</span>(<span class="st">&quot;R/auc.nonpara.mw.R&quot;</span>)</span>
+<span id="cb39-7"><a href="ch-additivity-linearity.html#cb39-7"></a><span class="kw">source</span>(<span class="st">&quot;R/ci.auc.R&quot;</span>)</span>
+<span id="cb39-8"><a href="ch-additivity-linearity.html#cb39-8"></a><span class="kw">source</span>(<span class="st">&quot;R/val.prob.ci.2.R&quot;</span>)</span>
+<span id="cb39-9"><a href="ch-additivity-linearity.html#cb39-9"></a></span>
+<span id="cb39-10"><a href="ch-additivity-linearity.html#cb39-10"></a><span class="co"># levels(gustos$HRT) &lt;- c(&quot;No tachycardia&quot;, &quot;Tachycardia&quot;)</span></span>
+<span id="cb39-11"><a href="ch-additivity-linearity.html#cb39-11"></a>dd  &lt;-<span class="st"> </span><span class="kw">datadist</span>(gustos)</span></code></pre></div>
+<pre><code>## Warning in datadist(gustos): ESAMP is constant</code></pre>
+<pre><code>## Warning in datadist(gustos): GRPL is constant</code></pre>
+<pre><code>## Warning in datadist(gustos): REGL is constant</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="ch-additivity-linearity.html#cb43-1"></a><span class="kw">options</span>(<span class="dt">datadist=</span><span class="st">&quot;dd&quot;</span>)</span></code></pre></div>
+<p>Evaluate interactions with age in a full model, which includes 8 predictors in total. The data set is small (sample4, n=785, 52 events)</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ch-additivity-linearity.html#cb44-1"></a><span class="co">### Full model and age interactions</span></span>
+<span id="cb44-2"><a href="ch-additivity-linearity.html#cb44-2"></a>full    &lt;-<span class="st"> </span><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE<span class="op">+</span>KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>HRT<span class="op">+</span>TTR<span class="op">+</span>SEX, <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T,<span class="dt">linear.predictors=</span>F)</span>
+<span id="cb44-3"><a href="ch-additivity-linearity.html#cb44-3"></a>fullint &lt;-<span class="st"> </span><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE<span class="op">*</span><span class="st"> </span>(KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>HRT<span class="op">+</span>TTR<span class="op">+</span>SEX), <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T,<span class="dt">linear.predictors=</span>F)</span>
+<span id="cb44-4"><a href="ch-additivity-linearity.html#cb44-4"></a><span class="kw">anova</span>(fullint)</span></code></pre></div>
+<pre><code>##                 Wald Statistics          Response: DAY30 
+## 
+##  Factor                                      Chi-Square d.f. P     
+##  AGE  (Factor+Higher Order Factors)          29.93       8   0.0002
+##   All Interactions                           11.01       7   0.1380
+##  KILLIP  (Factor+Higher Order Factors)        4.96       2   0.0839
+##   All Interactions                            1.01       1   0.3160
+##  HIG  (Factor+Higher Order Factors)           6.32       2   0.0424
+##   All Interactions                            2.20       1   0.1380
+##  DIA  (Factor+Higher Order Factors)           3.70       2   0.1571
+##   All Interactions                            0.64       1   0.4220
+##  HYP  (Factor+Higher Order Factors)           5.62       2   0.0603
+##   All Interactions                            1.46       1   0.2267
+##  HRT  (Factor+Higher Order Factors)          13.50       2   0.0012
+##   All Interactions                            4.49       1   0.0341
+##  TTR  (Factor+Higher Order Factors)           8.31       2   0.0157
+##   All Interactions                            2.80       1   0.0942
+##  SEX  (Factor+Higher Order Factors)           0.79       2   0.6736
+##   All Interactions                            0.42       1   0.5151
+##  AGE * KILLIP  (Factor+Higher Order Factors)  1.01       1   0.3160
+##  AGE * HIG  (Factor+Higher Order Factors)     2.20       1   0.1380
+##  AGE * DIA  (Factor+Higher Order Factors)     0.64       1   0.4220
+##  AGE * HYP  (Factor+Higher Order Factors)     1.46       1   0.2267
+##  AGE * HRT  (Factor+Higher Order Factors)     4.49       1   0.0341
+##  AGE * TTR  (Factor+Higher Order Factors)     2.80       1   0.0942
+##  AGE * SEX  (Factor+Higher Order Factors)     0.42       1   0.5151
+##  TOTAL INTERACTION                           11.01       7   0.1380
+##  TOTAL                                       64.59      15   &lt;.0001</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ch-additivity-linearity.html#cb46-1"></a><span class="co">### Select only interaction AGE * HRT</span></span>
+<span id="cb46-2"><a href="ch-additivity-linearity.html#cb46-2"></a>fullints &lt;-<span class="st"> </span><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE<span class="op">+</span>KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>HRT<span class="op">+</span>TTR<span class="op">+</span>SEX<span class="op">+</span>AGE<span class="op">*</span>HRT, <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T, <span class="dt">linear.predictors=</span>T)</span>
+<span id="cb46-3"><a href="ch-additivity-linearity.html#cb46-3"></a><span class="kw">anova</span>(fullints)</span></code></pre></div>
+<pre><code>##                 Wald Statistics          Response: DAY30 
+## 
+##  Factor                                   Chi-Square d.f. P     
+##  AGE  (Factor+Higher Order Factors)       26.67      2    &lt;.0001
+##   All Interactions                         2.70      1    0.1004
+##  KILLIP                                    3.52      1    0.0605
+##  HIG                                       5.38      1    0.0204
+##  DIA                                       3.14      1    0.0763
+##  HYP                                       3.49      1    0.0618
+##  HRT  (Factor+Higher Order Factors)       11.67      2    0.0029
+##   All Interactions                         2.70      1    0.1004
+##  TTR                                       5.66      1    0.0174
+##  SEX                                       0.19      1    0.6602
+##  AGE * HRT  (Factor+Higher Order Factors)  2.70      1    0.1004
+##  TOTAL                                    65.30      9    &lt;.0001</code></pre>
+</div>
+<div id="fig-12.1" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> Fig 12.1</h3>
+<p>Make 2 plots with linear interaction, in the small n=785 sample, and in the full n=40830 sample</p>
+<p><img src="fig/Fig%2012.1-1.png" width="672" /><img src="fig/Fig%2012.1-2.png" width="672" /></p>
+</div>
+<div id="fig-12.2" class="section level3">
+<h3><span class="header-section-number">12.1.3</span> Fig 12.2</h3>
+<p>Make 4 plots with main effects, linear interaction, and 2 variants of interaction only above age 55. The variable is (Age-55)[+].</p>
+<p><img src="fig/Fig%2012.2-1.png" width="672" /><img src="fig/Fig%2012.2-2.png" width="672" /><img src="fig/Fig%2012.2-3.png" width="672" /><img src="fig/Fig%2012.2-4.png" width="672" /></p>
+<p>In the last graph, the green dotted line follows the angle from below age 55 years (only 1 Age effect is estimated for the HRT==0 and HRT==1 and age&lt;55 patients). In the pre-final graph, there are 2 separate angles from age 55 for HRT==0 and HRT==1 (barely noticable for the green dotted line).</p>
+</div>
+<div id="smart-coding-illustration" class="section level3">
+<h3><span class="header-section-number">12.1.4</span> Smart coding illustration</h3>
+<p>Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ch-additivity-linearity.html#cb48-1"></a><span class="co"># Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)</span></span>
+<span id="cb48-2"><a href="ch-additivity-linearity.html#cb48-2"></a>gustos<span class="op">$</span>AGE0 &lt;-<span class="st"> </span>gustos<span class="op">$</span>AGE <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>gustos<span class="op">$</span>HRT)</span>
+<span id="cb48-3"><a href="ch-additivity-linearity.html#cb48-3"></a>gustos<span class="op">$</span>AGE1 &lt;-<span class="st"> </span>gustos<span class="op">$</span>AGE <span class="op">*</span><span class="st"> </span>gustos<span class="op">$</span>HRT</span>
+<span id="cb48-4"><a href="ch-additivity-linearity.html#cb48-4"></a><span class="co"># Standard</span></span>
+<span id="cb48-5"><a href="ch-additivity-linearity.html#cb48-5"></a><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE<span class="op">+</span>KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>HRT<span class="op">+</span>TTR<span class="op">+</span>SEX<span class="op">+</span>AGE<span class="op">*</span>HRT, <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T,<span class="dt">linear.predictors=</span>F)</span></code></pre></div>
+<pre><code>## Logistic Regression Model
+##  
+##  lrm(formula = DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + 
+##      TTR + SEX + AGE * HRT, data = gustos, x = T, y = T, linear.predictors = F)
+##  
+##                        Model Likelihood     Discrimination    Rank Discrim.    
+##                           Ratio Test           Indexes           Indexes       
+##  Obs           785    LR chi2      86.28    R2       0.270    C       0.831    
+##   0            733    d.f.             9    g        1.612    Dxy     0.662    
+##   1             52    Pr(&gt; chi2) &lt;0.0001    gr       5.013    gamma   0.662    
+##  max |deriv| 1e-09                          gp       0.084    tau-a   0.082    
+##                                             Brier    0.051                     
+##  
+##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
+##  Intercept -9.7431 1.6574 -5.88  &lt;0.0001 
+##  AGE        0.0759 0.0240  3.16  0.0016  
+##  KILLIP     0.4595 0.2448  1.88  0.0605  
+##  HIG        0.7900 0.3407  2.32  0.0204  
+##  DIA        0.7804 0.4403  1.77  0.0763  
+##  HYP        1.0403 0.5570  1.87  0.0618  
+##  HRT       -3.6376 2.8352 -1.28  0.1995  
+##  TTR        0.8201 0.3447  2.38  0.0174  
+##  SEX       -0.1534 0.3490 -0.44  0.6602  
+##  AGE * HRT  0.0655 0.0399  1.64  0.1004  
+## </code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ch-additivity-linearity.html#cb50-1"></a><span class="co"># Smart coding </span></span>
+<span id="cb50-2"><a href="ch-additivity-linearity.html#cb50-2"></a><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE0<span class="op">+</span>AGE1<span class="op">+</span>HRT<span class="op">+</span><span class="st"> </span>KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>TTR<span class="op">+</span>SEX, <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T,<span class="dt">linear.predictors=</span>F)</span></code></pre></div>
+<pre><code>## Logistic Regression Model
+##  
+##  lrm(formula = DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + 
+##      HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+##  
+##                        Model Likelihood     Discrimination    Rank Discrim.    
+##                           Ratio Test           Indexes           Indexes       
+##  Obs           785    LR chi2      86.28    R2       0.270    C       0.831    
+##   0            733    d.f.             9    g        1.612    Dxy     0.662    
+##   1             52    Pr(&gt; chi2) &lt;0.0001    gr       5.013    gamma   0.662    
+##  max |deriv| 1e-09                          gp       0.084    tau-a   0.082    
+##                                             Brier    0.051                     
+##  
+##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
+##  Intercept -9.7431 1.6574 -5.88  &lt;0.0001 
+##  AGE0       0.0759 0.0240  3.16  0.0016  
+##  AGE1       0.1414 0.0332  4.26  &lt;0.0001 
+##  HRT       -3.6376 2.8352 -1.28  0.1995  
+##  KILLIP     0.4595 0.2448  1.88  0.0605  
+##  HIG        0.7900 0.3407  2.32  0.0204  
+##  DIA        0.7804 0.4403  1.77  0.0763  
+##  HYP        1.0403 0.5570  1.87  0.0618  
+##  TTR        0.8201 0.3447  2.38  0.0174  
+##  SEX       -0.1534 0.3490 -0.44  0.6602  
+## </code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ch-additivity-linearity.html#cb52-1"></a><span class="co"># Identical fit, easier interpretation</span></span>
+<span id="cb52-2"><a href="ch-additivity-linearity.html#cb52-2"></a></span>
+<span id="cb52-3"><a href="ch-additivity-linearity.html#cb52-3"></a><span class="co"># Age 55 as reference for HRT effect</span></span>
+<span id="cb52-4"><a href="ch-additivity-linearity.html#cb52-4"></a>gustos<span class="op">$</span>AGE0 &lt;-<span class="st"> </span>(gustos<span class="op">$</span>AGE<span class="dv">-55</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>gustos<span class="op">$</span>HRT)</span>
+<span id="cb52-5"><a href="ch-additivity-linearity.html#cb52-5"></a>gustos<span class="op">$</span>AGE1 &lt;-<span class="st"> </span>(gustos<span class="op">$</span>AGE<span class="dv">-55</span>) <span class="op">*</span><span class="st"> </span>gustos<span class="op">$</span>HRT</span>
+<span id="cb52-6"><a href="ch-additivity-linearity.html#cb52-6"></a><span class="kw">lrm</span>(DAY30<span class="op">~</span>AGE0<span class="op">+</span>AGE1<span class="op">+</span>HRT<span class="op">+</span><span class="st"> </span>KILLIP<span class="op">+</span>HIG<span class="op">+</span>DIA<span class="op">+</span>HYP<span class="op">+</span>TTR<span class="op">+</span>SEX, <span class="dt">data=</span>gustos,<span class="dt">x=</span>T,<span class="dt">y=</span>T,<span class="dt">linear.predictors=</span>F)</span></code></pre></div>
+<pre><code>## Logistic Regression Model
+##  
+##  lrm(formula = DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + 
+##      HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+##  
+##                        Model Likelihood     Discrimination    Rank Discrim.    
+##                           Ratio Test           Indexes           Indexes       
+##  Obs           785    LR chi2      86.28    R2       0.270    C       0.831    
+##   0            733    d.f.             9    g        1.612    Dxy     0.662    
+##   1             52    Pr(&gt; chi2) &lt;0.0001    gr       5.013    gamma   0.662    
+##  max |deriv| 4e-11                          gp       0.084    tau-a   0.082    
+##                                             Brier    0.051                     
+##  
+##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
+##  Intercept -5.5703 0.5746 -9.69  &lt;0.0001 
+##  AGE0       0.0759 0.0240  3.16  0.0016  
+##  AGE1       0.1414 0.0332  4.26  &lt;0.0001 
+##  HRT       -0.0333 0.7043 -0.05  0.9623  
+##  KILLIP     0.4595 0.2448  1.88  0.0605  
+##  HIG        0.7900 0.3407  2.32  0.0204  
+##  DIA        0.7804 0.4403  1.77  0.0763  
+##  HYP        1.0403 0.5570  1.87  0.0618  
+##  TTR        0.8201 0.3447  2.38  0.0174  
+##  SEX       -0.1534 0.3490 -0.44  0.6602  
+## </code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ch-additivity-linearity.html#cb54-1"></a><span class="co"># Even nicer interpretation, HRT effect for age=55</span></span></code></pre></div>
+<p>The fit of each of the models is identical (always LR chi2=86.28); each model allows for linear interaction between AGE and HRT. The interpretation of the model is easier if the age effects are estimated for HRT==1 and for HRT==0. Scaling is easier by subtracting 55 from AGE (AGE-55); this implies the HRT effect relates to age 55.</p>
+</div>
+<div id="table-12.2-better-predictions" class="section level3">
+<h3><span class="header-section-number">12.1.5</span> Table 12.2 Better predictions?</h3>
+<p>Assess the performance if the models created in n=785 in an independent validation part, GustoB, n=20318.<br />
+Plots created with a modification of Frank Harrell’s val.prob() function:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ch-additivity-linearity.html#cb55-1"></a><span class="co"># Validate in independent part, named gustoB</span></span>
+<span id="cb55-2"><a href="ch-additivity-linearity.html#cb55-2"></a><span class="co"># main effects</span></span>
+<span id="cb55-3"><a href="ch-additivity-linearity.html#cb55-3"></a>lrm.val.full &lt;-<span class="st"> </span><span class="kw">predict</span>(full, <span class="dt">newdata=</span>gustoB, <span class="dt">type=</span><span class="st">&quot;lp&quot;</span>)</span>
+<span id="cb55-4"><a href="ch-additivity-linearity.html#cb55-4"></a><span class="co"># simple interaction</span></span>
+<span id="cb55-5"><a href="ch-additivity-linearity.html#cb55-5"></a>lrm.val.int1 &lt;-<span class="st"> </span><span class="kw">predict</span>(fullints, <span class="dt">newdata=</span>gustoB, <span class="dt">type=</span><span class="st">&quot;lp&quot;</span>)</span>
+<span id="cb55-6"><a href="ch-additivity-linearity.html#cb55-6"></a></span>
+<span id="cb55-7"><a href="ch-additivity-linearity.html#cb55-7"></a><span class="co"># Plot</span></span>
+<span id="cb55-8"><a href="ch-additivity-linearity.html#cb55-8"></a><span class="kw">val.prob.ci.2</span>(<span class="dt">y=</span>gustoB[,<span class="st">&quot;DAY30&quot;</span>], <span class="dt">logit=</span>lrm.val.full, <span class="dt">riskdist=</span><span class="st">&quot;predicted&quot;</span>, <span class="dt">logistic.cal=</span>F, </span>
+<span id="cb55-9"><a href="ch-additivity-linearity.html#cb55-9"></a>              <span class="dt">smooth =</span> <span class="st">&quot;rcs&quot;</span>, <span class="dt">nr.knots=</span><span class="dv">3</span>, <span class="dt">g=</span><span class="dv">8</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>), </span>
+<span id="cb55-10"><a href="ch-additivity-linearity.html#cb55-10"></a>              <span class="dt">legendloc =</span>  <span class="kw">c</span>(<span class="fl">0.18</span> , <span class="fl">0.15</span>), <span class="dt">statloc =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">4</span>), <span class="dt">roundstats=</span><span class="dv">3</span>,</span>
+<span id="cb55-11"><a href="ch-additivity-linearity.html#cb55-11"></a>              <span class="dt">xlab=</span><span class="st">&quot;Predicted probability from n=785&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Observed proportion in n=20318&quot;</span>)</span></code></pre></div>
+<p><img src="fig/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="fig/Table%2012.2-1.png" width="672" /></p>
+<p><strong>Conclusions</strong>
+Discrimination: worse with interactions than without.
+Calibration: We note some overfitting, as expected by a fit in a small sample.</p>
+</div>
+</div>
+<div id="mfp-and-other-non-linear-analyses-in-n544-data" class="section level2">
+<h2><span class="header-section-number">12.2</span> MFP and other non-linear analyses in n544 data</h2>
+<p>Upcoming.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-selection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -42,7 +42,6 @@ gusto <- read.csv("data/gusto_age.csv")[-1]
 Fmort <- as.data.frame(read.csv("data/Fmort.csv"))[-1]
 Fmort$age10 	<- Fmort$age/10
 Fmort$age102 	<- Fmort$age10^2
-getwd()
 ```
 
 
