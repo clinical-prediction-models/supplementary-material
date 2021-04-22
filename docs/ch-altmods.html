@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Choosing Between Alternative Models | Clinical prediction models</title>
   <meta name="description" content="6 Choosing Between Alternative Models | Clinical prediction models" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Choosing Between Alternative Models | Clinical prediction models" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Ewout Steyerberg" />
 
 
-<meta name="date" content="2020-08-21" />
+<meta name="date" content="2021-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="ch-overfitting.html"/>
 <link rel="next" href="ch-missing.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,18 +54,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,16 +139,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="ch-applications.html"><a href="ch-applications.html"><i class="fa fa-check"></i><b>2</b> Applications of Prediction Models</a></li>
 <li class="chapter" data-level="3" data-path="ch-design.html"><a href="ch-design.html"><i class="fa fa-check"></i><b>3</b> Study Design for Prediction Modeling</a></li>
 <li class="chapter" data-level="4" data-path="ch-statmods.html"><a href="ch-statmods.html"><i class="fa fa-check"></i><b>4</b> Statistical Models for Prediction</a></li>
-<li class="chapter" data-level="5" data-path="ch-overfitting.html"><a href="ch-overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a><ul>
-<li class="chapter" data-level="5.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a><ul>
+<li class="chapter" data-level="5" data-path="ch-overfitting.html"><a href="ch-overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#fig-5.2-noise-in-estimating-10-mortality-per-center"><i class="fa fa-check"></i><b>5.1.1</b> Fig 5.2: Noise in estimating 10% mortality per center</a></li>
 <li class="chapter" data-level="5.1.2" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figs-5.3-and-5.4"><i class="fa fa-check"></i><b>5.1.2</b> Figs 5.3 and 5.4</a></li>
 <li class="chapter" data-level="5.1.3" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n20"><i class="fa fa-check"></i><b>5.1.3</b> n=20</a></li>
 <li class="chapter" data-level="5.1.4" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n200"><i class="fa fa-check"></i><b>5.1.4</b> n=200</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch-altmods.html"><a href="ch-altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a><ul>
-<li class="chapter" data-level="6.1" data-path="ch-altmods.html"><a href="ch-altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a><ul>
+<li class="chapter" data-level="6" data-path="ch-altmods.html"><a href="ch-altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-altmods.html"><a href="ch-altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="ch-altmods.html"><a href="ch-altmods.html#prepare-gusto-data"><i class="fa fa-check"></i><b>6.1.1</b> Prepare GUSTO data</a></li>
 <li class="chapter" data-level="6.1.2" data-path="ch-altmods.html"><a href="ch-altmods.html#anova-results-for-the-different-fits"><i class="fa fa-check"></i><b>6.1.2</b> anova results for the different fits</a></li>
 <li class="chapter" data-level="6.1.3" data-path="ch-altmods.html"><a href="ch-altmods.html#plotting-of-age-effects"><i class="fa fa-check"></i><b>6.1.3</b> Plotting of age effects</a></li>
@@ -160,8 +165,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Part II: Developing Valid Prediction Models</b></span></li>
 <li class="chapter" data-level="7" data-path="ch-missing.html"><a href="ch-missing.html"><i class="fa fa-check"></i><b>7</b> Missing values</a></li>
 <li class="chapter" data-level="8" data-path="ch-missing-case.html"><a href="ch-missing-case.html"><i class="fa fa-check"></i><b>8</b> Case Study on Dealing with Missing Values</a></li>
-<li class="chapter" data-level="9" data-path="ch-coding.html"><a href="ch-coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a><ul>
-<li class="chapter" data-level="9.1" data-path="ch-coding.html"><a href="ch-coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a><ul>
+<li class="chapter" data-level="9" data-path="ch-coding.html"><a href="ch-coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ch-coding.html"><a href="ch-coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.1-age-linear-add-square-rcs-in-gusto-i"><i class="fa fa-check"></i><b>9.1.1</b> Fig 9.1: Age linear; add square; rcs in GUSTO-I</a></li>
 <li class="chapter" data-level="9.1.2" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.2-impact-of-number-of-st-elevations-ste"><i class="fa fa-check"></i><b>9.1.2</b> Fig 9.2: Impact of number of ST elevations (STE)</a></li>
 <li class="chapter" data-level="9.1.3" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830"><i class="fa fa-check"></i><b>9.1.3</b> Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</a></li>
@@ -172,8 +179,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="ch-restrictions.html"><a href="ch-restrictions.html"><i class="fa fa-check"></i><b>10</b> Restrictions on Candidate Predictors</a></li>
 <li class="chapter" data-level="11" data-path="ch-selection.html"><a href="ch-selection.html"><i class="fa fa-check"></i><b>11</b> Selection of Main Effects</a></li>
-<li class="chapter" data-level="12" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a><ul>
-<li class="chapter" data-level="12.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a><ul>
+<li class="chapter" data-level="12" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a>
+<ul>
 <li class="chapter" data-level="12.1.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#examine-interactions"><i class="fa fa-check"></i><b>12.1.1</b> Examine interactions</a></li>
 <li class="chapter" data-level="12.1.2" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.1"><i class="fa fa-check"></i><b>12.1.2</b> Fig 12.1</a></li>
 <li class="chapter" data-level="12.1.3" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.2"><i class="fa fa-check"></i><b>12.1.3</b> Fig 12.2</a></li>
@@ -216,79 +225,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch:altmods" class="section level1">
+<div id="ch:altmods" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Choosing Between Alternative Models</h1>
-<div id="non-linearity-illustrations" class="section level2">
+<div id="non-linearity-illustrations" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Non-linearity illustrations</h2>
-<div id="prepare-gusto-data" class="section level3">
+<div id="prepare-gusto-data" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Prepare GUSTO data</h3>
 <p>Some logistic regression fits with linear, square, rcs, linear spline terms</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch-altmods.html#cb4-1"></a><span class="co"># Import gusto; publicly available</span></span>
-<span id="cb4-2"><a href="ch-altmods.html#cb4-2"></a>gusto &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/gusto_age.csv&quot;</span>)[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb4-3"><a href="ch-altmods.html#cb4-3"></a>Fmort &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">read.csv</span>(<span class="st">&quot;data/Fmort.csv&quot;</span>))[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb4-4"><a href="ch-altmods.html#cb4-4"></a>Fmort<span class="op">$</span>age10     &lt;-<span class="st"> </span>Fmort<span class="op">$</span>age<span class="op">/</span><span class="dv">10</span></span>
-<span id="cb4-5"><a href="ch-altmods.html#cb4-5"></a>Fmort<span class="op">$</span>age102    &lt;-<span class="st"> </span>Fmort<span class="op">$</span>age10<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch-altmods.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto; publicly available</span></span>
+<span id="cb4-2"><a href="ch-altmods.html#cb4-2" aria-hidden="true" tabindex="-1"></a>gusto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/gusto_age.csv&quot;</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb4-3"><a href="ch-altmods.html#cb4-3" aria-hidden="true" tabindex="-1"></a>Fmort <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/Fmort.csv&quot;</span>))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb4-4"><a href="ch-altmods.html#cb4-4" aria-hidden="true" tabindex="-1"></a>Fmort<span class="sc">$</span>age10 <span class="ot">&lt;-</span> Fmort<span class="sc">$</span>age <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb4-5"><a href="ch-altmods.html#cb4-5" aria-hidden="true" tabindex="-1"></a>Fmort<span class="sc">$</span>age102 <span class="ot">&lt;-</span> Fmort<span class="sc">$</span>age10<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 </div>
-<div id="anova-results-for-the-different-fits" class="section level3">
+<div id="anova-results-for-the-different-fits" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> anova results for the different fits</h3>
 <p>We note minor differences between the continuous fits, and a clear loss of information for the dichtomization at age 65 years</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch-altmods.html#cb5-1"></a><span class="kw">anova</span>(agegusto.linear)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch-altmods.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.linear)</span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: DAY30 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  AGE        1728.89    1    &lt;.0001
-##  TOTAL      1728.89    1    &lt;.0001</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch-altmods.html#cb7-1"></a><span class="kw">anova</span>(agegusto.square)</span></code></pre></div>
+##  AGE        1729       1    &lt;.0001
+##  TOTAL      1729       1    &lt;.0001</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch-altmods.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.square)</span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: DAY30 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  AGE        1858.27    2    &lt;.0001
-##   Nonlinear   13.21    1    3e-04 
-##  TOTAL      1858.27    2    &lt;.0001</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch-altmods.html#cb9-1"></a><span class="kw">anova</span>(agegusto.rcs)</span></code></pre></div>
+##  AGE        1858.3     2    &lt;.0001
+##   Nonlinear   13.2     1    3e-04 
+##  TOTAL      1858.3     2    &lt;.0001</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch-altmods.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.rcs)</span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: DAY30 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  AGE        1878.45    4    &lt;.0001
-##   Nonlinear   24.71    3    &lt;.0001
-##  TOTAL      1878.45    4    &lt;.0001</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch-altmods.html#cb11-1"></a><span class="kw">anova</span>(agegusto.linearspline)</span></code></pre></div>
+##  AGE        1878.5     4    &lt;.0001
+##   Nonlinear   24.7     3    &lt;.0001
+##  TOTAL      1878.5     4    &lt;.0001</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch-altmods.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.linearspline)</span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: DAY30 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  AGE        1846.73    2    &lt;.0001
-##  TOTAL      1846.73    2    &lt;.0001</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ch-altmods.html#cb13-1"></a><span class="kw">anova</span>(agegusto.cat65)</span></code></pre></div>
+##  AGE        1847       2    &lt;.0001
+##  TOTAL      1847       2    &lt;.0001</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ch-altmods.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.cat65)</span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: DAY30 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  AGE        1262.57    1    &lt;.0001
-##  TOTAL      1262.57    1    &lt;.0001</code></pre>
+##  AGE        1263       1    &lt;.0001
+##  TOTAL      1263       1    &lt;.0001</code></pre>
 </div>
-<div id="plotting-of-age-effects" class="section level3">
+<div id="plotting-of-age-effects" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Plotting of age effects</h3>
 <p>Plot age effect first at lp scale (logodds), then at probability scale</p>
 <p>Age effect at logodds scale; Age effect at probability scale
 <img src="fig/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Fig 6.1</p>
 </div>
-<div id="start-surgical-mortality-by-age-in-medicare" class="section level3">
+<div id="start-surgical-mortality-by-age-in-medicare" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Start surgical mortality by age in Medicare</h3>
 <p>Age effect at logodds scale</p>
 </div>
-<div id="anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery" class="section level3">
+<div id="anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery" class="section level3" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> anova results for the fit of age, with interaction by type of surgery</h3>
 <p>Type of surgery is clearly most relevant (chi2 &gt;13500) in all fits. Age is als relevant (chi2&gt;3000), and a square term is not needed (chi2 = 2); the interaction adds a little bit (chi2 95). With these large numbers (1.1M patients), most effects have p&lt;.0001.</p>
 <p>We will evaluate the differences between fits with or without interaction term graphically further down</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ch-altmods.html#cb15-1"></a><span class="co"># Look for model improvements </span></span>
-<span id="cb15-2"><a href="ch-altmods.html#cb15-2"></a><span class="kw">anova</span>(fitplot2)  <span class="co"># linear age effect, no interaction with surgery</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ch-altmods.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for model improvements</span></span>
+<span id="cb15-2"><a href="ch-altmods.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitplot2) <span class="co"># linear age effect, no interaction with surgery</span></span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: mort 
 ## 
 ##  Factor     Chi-Square d.f. P     
-##  surgery    13500.19   13   &lt;.0001
-##  age         3167.14    1   &lt;.0001
-##  TOTAL      16445.99   14   &lt;.0001</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ch-altmods.html#cb17-1"></a><span class="kw">anova</span>(fitage2)   <span class="co"># age square added</span></span></code></pre></div>
+##  surgery    13500      13   &lt;.0001
+##  age         3167       1   &lt;.0001
+##  TOTAL      16446      14   &lt;.0001</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ch-altmods.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitage2) <span class="co"># age square added</span></span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: mort 
 ## 
 ##  Factor     Chi-Square d.f. P     
@@ -296,23 +305,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  age10         18.13    1   &lt;.0001
 ##  age102         2.33    1   0.127 
 ##  TOTAL      16424.97   15   &lt;.0001</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ch-altmods.html#cb19-1"></a><span class="kw">anova</span>(fitplot)   <span class="co"># interaction added to linear age effect</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ch-altmods.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitplot) <span class="co"># interaction added to linear age effect</span></span></code></pre></div>
 <pre><code>##                 Wald Statistics          Response: mort 
 ## 
 ##  Factor                                       Chi-Square d.f. P     
-##  surgery  (Factor+Higher Order Factors)       13566.02   26   &lt;.0001
-##   All Interactions                               94.55   13   &lt;.0001
-##  age  (Factor+Higher Order Factors)            3280.66   14   &lt;.0001
-##   All Interactions                               94.55   13   &lt;.0001
-##  surgery * age  (Factor+Higher Order Factors)    94.55   13   &lt;.0001
-##  TOTAL                                        16620.27   27   &lt;.0001</code></pre>
+##  surgery  (Factor+Higher Order Factors)       13566.0    26   &lt;.0001
+##   All Interactions                               94.5    13   &lt;.0001
+##  age  (Factor+Higher Order Factors)            3280.7    14   &lt;.0001
+##   All Interactions                               94.5    13   &lt;.0001
+##  surgery * age  (Factor+Higher Order Factors)    94.5    13   &lt;.0001
+##  TOTAL                                        16620.3    27   &lt;.0001</code></pre>
 </div>
-<div id="plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci" class="section level3">
+<div id="plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci" class="section level3" number="6.1.6">
 <h3><span class="header-section-number">6.1.6</span> Plotting of predicted age effects, with interaction by type of surgery; add 95% CI</h3>
 <p>Plot age effects at logodds scale with 95% CI</p>
 <p><img src="fig/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="plotting-of-age-effects-with-original-data-points" class="section level3">
+<div id="plotting-of-age-effects-with-original-data-points" class="section level3" number="6.1.7">
 <h3><span class="header-section-number">6.1.7</span> Plotting of age effects with original data points</h3>
 <p>Fit with interaction (solid lines) and no interaction (dashed lines)</p>
 <p><img src="fig/unnamed-chunk-7-1.png" width="672" /></p>

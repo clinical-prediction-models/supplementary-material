@@ -21,7 +21,7 @@ library(gam)
 library(mgcv)
 library(kableExtra)
 
-# Colours 
+# Colours
 mycolors <- c(
   "black" = 1,
   "Red" = "#ED0000",
@@ -41,17 +41,17 @@ mycolors <- c(
 
 ```{r}
 # Import gusto, gustoB, and sample4 data sets
-gusto  <- read.csv("data/gusto1.csv")  # GUSTO sample with 40830 patients 
-gustoB <- read.csv('data/gustoB.csv')  # GUSTO part B sample with 20318 patients 
-gustos <- read.csv('data/sample4.csv') # GUSTO sample4 with 785 patients 
+gusto <- read.csv("data/gusto1.csv") # GUSTO sample with 40830 patients
+gustoB <- read.csv("data/gustoB.csv") # GUSTO part B sample with 20318 patients
+gustos <- read.csv("data/sample4.csv") # GUSTO sample4 with 785 patients
 
 source("R/auc.nonpara.mw.R")
 source("R/ci.auc.R")
 source("R/val.prob.ci.2.R")
 
 # levels(gustos$HRT) <- c("No tachycardia", "Tachycardia")
-dd  <- datadist(gustos)
-options(datadist="dd")
+dd <- datadist(gustos)
+options(datadist = "dd")
 ```
 
 
@@ -59,12 +59,12 @@ Evaluate interactions with age in a full model, which includes 8 predictors in t
 
 ```{r interactions}
 ### Full model and age interactions
-full    <- lrm(DAY30~AGE+KILLIP+HIG+DIA+HYP+HRT+TTR+SEX, data=gustos,x=T,y=T,linear.predictors=F)
-fullint <- lrm(DAY30~AGE* (KILLIP+HIG+DIA+HYP+HRT+TTR+SEX), data=gustos,x=T,y=T,linear.predictors=F)
+full <- lrm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+fullint <- lrm(DAY30 ~ AGE * (KILLIP + HIG + DIA + HYP + HRT + TTR + SEX), data = gustos, x = T, y = T, linear.predictors = F)
 anova(fullint)
 
 ### Select only interaction AGE * HRT
-fullints <- lrm(DAY30~AGE+KILLIP+HIG+DIA+HYP+HRT+TTR+SEX+AGE*HRT, data=gustos,x=T,y=T, linear.predictors=T)
+fullints <- lrm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + TTR + SEX + AGE * HRT, data = gustos, x = T, y = T, linear.predictors = T)
 anova(fullints)
 ```
 
@@ -75,15 +75,19 @@ Make 2 plots with linear interaction, in the small n=785 sample, and in the full
 
 ``` {r Fig 12.1, echo=F}
 ### Linear interaction
-fullints2 <- glm(DAY30~AGE+KILLIP+HIG+DIA+HYP+HRT+TTR+SEX+AGE*HRT, data=gustos,family="binomial")
-fullintF  <- update(fullints2, data=gusto)
+fullints2 <- glm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + TTR + SEX + AGE * HRT, data = gustos, family = "binomial")
+fullintF <- update(fullints2, data = gusto)
 
 ### Plot in n=785
-interact_plot(fullints2, pred = AGE, modx = HRT, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2), main.title="GUSTO-I, n=785, AGE*HRT interaction",
-              interval=T, xlim=c(35,85), x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+interact_plot(fullints2,
+  pred = AGE, modx = HRT, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2), main.title = "GUSTO-I, n=785, AGE*HRT interaction",
+  interval = T, xlim = c(35, 85), x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 ### Plot in full data, n=40830
-interact_plot(fullintF, pred = AGE, modx = HRT, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2), main.title="GUSTO-I, n=40,830, AGE*HRT interaction",
-              interval=T, ylim=c(-4,0), xlim=c(35,85), x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+interact_plot(fullintF,
+  pred = AGE, modx = HRT, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2), main.title = "GUSTO-I, n=40,830, AGE*HRT interaction",
+  interval = T, ylim = c(-4, 0), xlim = c(35, 85), x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 ## End Fig 12.1
 ```
 
@@ -94,25 +98,33 @@ Make 4 plots with main effects, linear interaction, and 2 variants of interactio
 
 ``` {r Fig 12.2, echo=F, warning=F}
 ### Main effects
-full8 <- glm(DAY30~AGE+KILLIP+HIG+DIA+HYP+HRT+TTR+SEX, data=gustos,family="binomial")
-interact_plot(full8, pred = AGE, modx = HRT, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2), main.title="AGE + HRT, 2 df",
-              interval=T, xlim=c(35,85), x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+full8 <- glm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + TTR + SEX, data = gustos, family = "binomial")
+interact_plot(full8,
+  pred = AGE, modx = HRT, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2), main.title = "AGE + HRT, 2 df",
+  interval = T, xlim = c(35, 85), x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 
 ### Linear interaction
-fullints2 <- update(full8, .~.+AGE*HRT)
-interact_plot(fullints2, pred = AGE, modx = HRT, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2), main.title="GUSTO-I, n=785, AGE*HRT interaction",
-              interval=T, xlim=c(35,85), x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+fullints2 <- update(full8, . ~ . + AGE * HRT)
+interact_plot(fullints2,
+  pred = AGE, modx = HRT, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2), main.title = "GUSTO-I, n=785, AGE*HRT interaction",
+  interval = T, xlim = c(35, 85), x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 ### Age>55 interaction, 3 df
-fullints4 <- glm(DAY30~AGE+KILLIP+HIG+DIA+HYP+TTR+SEX+ ifelse(AGE>55,(AGE-55)*(HRT),0) + ifelse(AGE>55,(AGE-55)*(1-HRT),0) , data=gustos,family="binomial")
-interact_plot(fullints4, pred = AGE, modx = HRT, data=gustos, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2), 
-              main.title=("AGE + (AGE-55))[+] * HRT + (AGE-55)[+] * (1-HRT), 3 df") ,
-              interval=T, ylim=c(-9,1), xlim=c(35,85), x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+fullints4 <- glm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + TTR + SEX + ifelse(AGE > 55, (AGE - 55) * (HRT), 0) + ifelse(AGE > 55, (AGE - 55) * (1 - HRT), 0), data = gustos, family = "binomial")
+interact_plot(fullints4,
+  pred = AGE, modx = HRT, data = gustos, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2),
+  main.title = ("AGE + (AGE-55))[+] * HRT + (AGE-55)[+] * (1-HRT), 3 df"),
+  interval = T, ylim = c(-9, 1), xlim = c(35, 85), x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 
 ### Age>55 interaction, 2 df; no effect of age among HRT=0
-fullints3 <- glm(DAY30~AGE+KILLIP+HIG+DIA+HYP+TTR+SEX+ ifelse(AGE>55,(AGE-55)*(HRT),0) , data=gustos,family="binomial")
-interact_plot(fullints3, pred = AGE, modx = HRT, data=gustos, outcome.scale = "link", colors=mycolors[c(4,2)], lwd=c(3,2),  
-              main.title="AGE + (AGE-55)[+] * HRT, 2 df",
-                    interval=T, x.label="Age (years)", y.label = "Logit 30-day mortality", modx.labels=c(0,1), legend.main="HRT")
+fullints3 <- glm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + TTR + SEX + ifelse(AGE > 55, (AGE - 55) * (HRT), 0), data = gustos, family = "binomial")
+interact_plot(fullints3,
+  pred = AGE, modx = HRT, data = gustos, outcome.scale = "link", colors = mycolors[c(4, 2)], lwd = c(3, 2),
+  main.title = "AGE + (AGE-55)[+] * HRT, 2 df",
+  interval = T, x.label = "Age (years)", y.label = "Logit 30-day mortality", modx.labels = c(0, 1), legend.main = "HRT"
+)
 
 ## End Fig 12.2
 ```
@@ -129,15 +141,15 @@ Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)
 gustos$AGE0 <- gustos$AGE * (1 - gustos$HRT)
 gustos$AGE1 <- gustos$AGE * gustos$HRT
 # Standard
-lrm(DAY30~AGE+KILLIP+HIG+DIA+HYP+HRT+TTR+SEX+AGE*HRT, data=gustos,x=T,y=T,linear.predictors=F)
-# Smart coding 
-lrm(DAY30~AGE0+AGE1+HRT+ KILLIP+HIG+DIA+HYP+TTR+SEX, data=gustos,x=T,y=T,linear.predictors=F)
+lrm(DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + TTR + SEX + AGE * HRT, data = gustos, x = T, y = T, linear.predictors = F)
+# Smart coding
+lrm(DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
 # Identical fit, easier interpretation
 
 # Age 55 as reference for HRT effect
-gustos$AGE0 <- (gustos$AGE-55) * (1-gustos$HRT)
-gustos$AGE1 <- (gustos$AGE-55) * gustos$HRT
-lrm(DAY30~AGE0+AGE1+HRT+ KILLIP+HIG+DIA+HYP+TTR+SEX, data=gustos,x=T,y=T,linear.predictors=F)
+gustos$AGE0 <- (gustos$AGE - 55) * (1 - gustos$HRT)
+gustos$AGE1 <- (gustos$AGE - 55) * gustos$HRT
+lrm(DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
 # Even nicer interpretation, HRT effect for age=55
 ```
 
@@ -152,57 +164,67 @@ Plots created with a modification of Frank Harrell's val.prob() function:
 ```{r, results='hide',fig.keep='all'}
 # Validate in independent part, named gustoB
 # main effects
-lrm.val.full <- predict(full, newdata=gustoB, type="lp")
+lrm.val.full <- predict(full, newdata = gustoB, type = "lp")
 # simple interaction
-lrm.val.int1 <- predict(fullints, newdata=gustoB, type="lp")
+lrm.val.int1 <- predict(fullints, newdata = gustoB, type = "lp")
 
 # Plot
-val.prob.ci.2(y=gustoB[,"DAY30"], logit=lrm.val.full, riskdist="predicted", logistic.cal=F, 
-              smooth = "rcs", nr.knots=3, g=8, xlim=c(0,.5), ylim=c(0,.5), 
-              legendloc =  c(0.18 , 0.15), statloc = c(0,.4), roundstats=3,
-              xlab="Predicted probability from n=785", ylab="Observed proportion in n=20318")
+val.prob.ci.2(
+  y = gustoB[, "DAY30"], logit = lrm.val.full, riskdist = "predicted", logistic.cal = F,
+  smooth = "rcs", nr.knots = 3, g = 8, xlim = c(0, .5), ylim = c(0, .5),
+  legendloc = c(0.18, 0.15), statloc = c(0, .4), roundstats = 3,
+  xlab = "Predicted probability from n=785", ylab = "Observed proportion in n=20318"
+)
 ```   
 
 ``` {r Table 12.2, echo=F, results=F, warning=F}
 # Age>55 interaction, 3 df, or 2 df
-gustos$AGE55min 	    <- ifelse(gustos$AGE<55, gustos$AGE-55,0)
-gustos$AGE55plusHRT   <- ifelse(gustos$AGE<55|gustos$HRT==0, 0, gustos$AGE-55)
-gustos$AGE55plusNoHRT <- ifelse(gustos$AGE<55|gustos$HRT==1, 0, gustos$AGE-55) 
-gustos$AGE55 	        <- gustos$AGE-55
+gustos$AGE55min <- ifelse(gustos$AGE < 55, gustos$AGE - 55, 0)
+gustos$AGE55plusHRT <- ifelse(gustos$AGE < 55 | gustos$HRT == 0, 0, gustos$AGE - 55)
+gustos$AGE55plusNoHRT <- ifelse(gustos$AGE < 55 | gustos$HRT == 1, 0, gustos$AGE - 55)
+gustos$AGE55 <- gustos$AGE - 55
 # Same for GustoB set
-gustoB$AGE55min 	      <- ifelse(gustoB$AGE<55, gustoB$AGE-55,0)
-gustoB$AGE55plusHRT    <- ifelse(gustoB$AGE<55|gustoB$HRT==0, 0, gustoB$AGE-55)
-gustoB$AGE55plusNoHRT  <- ifelse(gustoB$AGE<55|gustoB$HRT==1, 0, gustoB$AGE-55) 
-gustoB$AGE55 	         <- gustoB$AGE-55
+gustoB$AGE55min <- ifelse(gustoB$AGE < 55, gustoB$AGE - 55, 0)
+gustoB$AGE55plusHRT <- ifelse(gustoB$AGE < 55 | gustoB$HRT == 0, 0, gustoB$AGE - 55)
+gustoB$AGE55plusNoHRT <- ifelse(gustoB$AGE < 55 | gustoB$HRT == 1, 0, gustoB$AGE - 55)
+gustoB$AGE55 <- gustoB$AGE - 55
 
 # Fit in n=785
-fit3ages    <- lrm(DAY30~AGE55min+AGE55plusNoHRT+AGE55plusHRT+ KILLIP+HIG+DIA+HYP+TTR+SEX, data=gustos,x=T,y=T,linear.predictors=F)
-fitage.HRT  <- lrm(DAY30~AGE55+AGE55plusHRT+ KILLIP+HIG+DIA+HYP+TTR+SEX, data=gustos,x=T,y=T,linear.predictors=F)
+fit3ages <- lrm(DAY30 ~ AGE55min + AGE55plusNoHRT + AGE55plusHRT + KILLIP + HIG + DIA + HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+fitage.HRT <- lrm(DAY30 ~ AGE55 + AGE55plusHRT + KILLIP + HIG + DIA + HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
 
 # Age>55 interaction, 3 df
-lrm.val.int2 <- predict(fit3ages, newdata=gustoB, type="lp")
+lrm.val.int2 <- predict(fit3ages, newdata = gustoB, type = "lp")
 # Age>55 interaction, 2 df; no effect of age among HRT=0
-lrm.val.int3 <- predict(fitage.HRT, newdata=gustoB, type="lp")
+lrm.val.int3 <- predict(fitage.HRT, newdata = gustoB, type = "lp")
 
-par(mfrow=c(2,2), mar=c(4,4,3,1))
-val.prob.ci.2(y=gustoB[,"DAY30"], logit=lrm.val.full, riskdist="predicted", logistic.cal=F, smooth = "rcs", nr.knots=3, g=8, 
-              xlim=c(0,.5), ylim=c(0,.5), legendloc =  c(0.18 , 0.15), statloc = c(0,.4), roundstats=3,
-              xlab="Predicted probability from n=785", ylab="Observed proportion in n=20318")
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
+val.prob.ci.2(
+  y = gustoB[, "DAY30"], logit = lrm.val.full, riskdist = "predicted", logistic.cal = F, smooth = "rcs", nr.knots = 3, g = 8,
+  xlim = c(0, .5), ylim = c(0, .5), legendloc = c(0.18, 0.15), statloc = c(0, .4), roundstats = 3,
+  xlab = "Predicted probability from n=785", ylab = "Observed proportion in n=20318"
+)
 title(bquote(paste("Main effects, 2", italic("df"))))
 
-val.prob.ci.2(y=gustoB[,"DAY30"], logit=lrm.val.int1, riskdist="predicted", logistic.cal=F, smooth = "rcs", nr.knots=3, g=8, 
-              xlim=c(0,.5), ylim=c(0,.5), legendloc =  c(0.18 , 0.15), statloc = c(0,.4), roundstats=3,
-              xlab="Predicted probability from n=785", ylab="Observed proportion in n=20318")
+val.prob.ci.2(
+  y = gustoB[, "DAY30"], logit = lrm.val.int1, riskdist = "predicted", logistic.cal = F, smooth = "rcs", nr.knots = 3, g = 8,
+  xlim = c(0, .5), ylim = c(0, .5), legendloc = c(0.18, 0.15), statloc = c(0, .4), roundstats = 3,
+  xlab = "Predicted probability from n=785", ylab = "Observed proportion in n=20318"
+)
 title(bquote(paste("Simple AGE*HRT interaction, 3", italic("df"))))
 
-val.prob.ci.2(y=gustoB[,"DAY30"], logit=lrm.val.int2, riskdist="predicted", logistic.cal=F, smooth = "rcs", nr.knots=3, g=8, 
-              xlim=c(0,.5), ylim=c(0,.5), legendloc =  c(0.18 , 0.15), statloc = c(0,.4), roundstats=3,
-              xlab="Predicted probability from n=785", ylab="Observed proportion in n=20318")
+val.prob.ci.2(
+  y = gustoB[, "DAY30"], logit = lrm.val.int2, riskdist = "predicted", logistic.cal = F, smooth = "rcs", nr.knots = 3, g = 8,
+  xlim = c(0, .5), ylim = c(0, .5), legendloc = c(0.18, 0.15), statloc = c(0, .4), roundstats = 3,
+  xlab = "Predicted probability from n=785", ylab = "Observed proportion in n=20318"
+)
 title(bquote(paste("(AGE-55)+*HRT interaction, 3", italic("df"))))
 
-val.prob.ci.2(y=gustoB[,"DAY30"], logit=lrm.val.int3, riskdist="predicted", logistic.cal=F, smooth = "rcs", nr.knots=3, g=8, 
-              xlim=c(0,.5), ylim=c(0,.5), legendloc =  c(0.18 , 0.15), statloc = c(0,.4), roundstats=3,
-              xlab="Predicted probability from n=785", ylab="Observed proportion in n=20318")
+val.prob.ci.2(
+  y = gustoB[, "DAY30"], logit = lrm.val.int3, riskdist = "predicted", logistic.cal = F, smooth = "rcs", nr.knots = 3, g = 8,
+  xlim = c(0, .5), ylim = c(0, .5), legendloc = c(0.18, 0.15), statloc = c(0, .4), roundstats = 3,
+  xlab = "Predicted probability from n=785", ylab = "Observed proportion in n=20318"
+)
 title(bquote(paste("AGE + (AGE-55)+*HRT, 2", italic("df"))))
 # End performance evaluation in GustoB part, n=20318
 ```

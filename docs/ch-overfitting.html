@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Overfitting and Optimism in Prediction Models | Clinical prediction models</title>
   <meta name="description" content="5 Overfitting and Optimism in Prediction Models | Clinical prediction models" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Overfitting and Optimism in Prediction Models | Clinical prediction models" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Ewout Steyerberg" />
 
 
-<meta name="date" content="2020-08-21" />
+<meta name="date" content="2021-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="ch-statmods.html"/>
 <link rel="next" href="ch-altmods.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,18 +54,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,16 +139,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="ch-applications.html"><a href="ch-applications.html"><i class="fa fa-check"></i><b>2</b> Applications of Prediction Models</a></li>
 <li class="chapter" data-level="3" data-path="ch-design.html"><a href="ch-design.html"><i class="fa fa-check"></i><b>3</b> Study Design for Prediction Modeling</a></li>
 <li class="chapter" data-level="4" data-path="ch-statmods.html"><a href="ch-statmods.html"><i class="fa fa-check"></i><b>4</b> Statistical Models for Prediction</a></li>
-<li class="chapter" data-level="5" data-path="ch-overfitting.html"><a href="ch-overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a><ul>
-<li class="chapter" data-level="5.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a><ul>
+<li class="chapter" data-level="5" data-path="ch-overfitting.html"><a href="ch-overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="ch-overfitting.html"><a href="ch-overfitting.html#fig-5.2-noise-in-estimating-10-mortality-per-center"><i class="fa fa-check"></i><b>5.1.1</b> Fig 5.2: Noise in estimating 10% mortality per center</a></li>
 <li class="chapter" data-level="5.1.2" data-path="ch-overfitting.html"><a href="ch-overfitting.html#figs-5.3-and-5.4"><i class="fa fa-check"></i><b>5.1.2</b> Figs 5.3 and 5.4</a></li>
 <li class="chapter" data-level="5.1.3" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n20"><i class="fa fa-check"></i><b>5.1.3</b> n=20</a></li>
 <li class="chapter" data-level="5.1.4" data-path="ch-overfitting.html"><a href="ch-overfitting.html#n200"><i class="fa fa-check"></i><b>5.1.4</b> n=200</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch-altmods.html"><a href="ch-altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a><ul>
-<li class="chapter" data-level="6.1" data-path="ch-altmods.html"><a href="ch-altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a><ul>
+<li class="chapter" data-level="6" data-path="ch-altmods.html"><a href="ch-altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-altmods.html"><a href="ch-altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="ch-altmods.html"><a href="ch-altmods.html#prepare-gusto-data"><i class="fa fa-check"></i><b>6.1.1</b> Prepare GUSTO data</a></li>
 <li class="chapter" data-level="6.1.2" data-path="ch-altmods.html"><a href="ch-altmods.html#anova-results-for-the-different-fits"><i class="fa fa-check"></i><b>6.1.2</b> anova results for the different fits</a></li>
 <li class="chapter" data-level="6.1.3" data-path="ch-altmods.html"><a href="ch-altmods.html#plotting-of-age-effects"><i class="fa fa-check"></i><b>6.1.3</b> Plotting of age effects</a></li>
@@ -160,8 +165,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Part II: Developing Valid Prediction Models</b></span></li>
 <li class="chapter" data-level="7" data-path="ch-missing.html"><a href="ch-missing.html"><i class="fa fa-check"></i><b>7</b> Missing values</a></li>
 <li class="chapter" data-level="8" data-path="ch-missing-case.html"><a href="ch-missing-case.html"><i class="fa fa-check"></i><b>8</b> Case Study on Dealing with Missing Values</a></li>
-<li class="chapter" data-level="9" data-path="ch-coding.html"><a href="ch-coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a><ul>
-<li class="chapter" data-level="9.1" data-path="ch-coding.html"><a href="ch-coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a><ul>
+<li class="chapter" data-level="9" data-path="ch-coding.html"><a href="ch-coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ch-coding.html"><a href="ch-coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.1-age-linear-add-square-rcs-in-gusto-i"><i class="fa fa-check"></i><b>9.1.1</b> Fig 9.1: Age linear; add square; rcs in GUSTO-I</a></li>
 <li class="chapter" data-level="9.1.2" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.2-impact-of-number-of-st-elevations-ste"><i class="fa fa-check"></i><b>9.1.2</b> Fig 9.2: Impact of number of ST elevations (STE)</a></li>
 <li class="chapter" data-level="9.1.3" data-path="ch-coding.html"><a href="ch-coding.html#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830"><i class="fa fa-check"></i><b>9.1.3</b> Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</a></li>
@@ -172,8 +179,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="ch-restrictions.html"><a href="ch-restrictions.html"><i class="fa fa-check"></i><b>10</b> Restrictions on Candidate Predictors</a></li>
 <li class="chapter" data-level="11" data-path="ch-selection.html"><a href="ch-selection.html"><i class="fa fa-check"></i><b>11</b> Selection of Main Effects</a></li>
-<li class="chapter" data-level="12" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a><ul>
-<li class="chapter" data-level="12.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a><ul>
+<li class="chapter" data-level="12" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a>
+<ul>
 <li class="chapter" data-level="12.1.1" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#examine-interactions"><i class="fa fa-check"></i><b>12.1.1</b> Examine interactions</a></li>
 <li class="chapter" data-level="12.1.2" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.1"><i class="fa fa-check"></i><b>12.1.2</b> Fig 12.1</a></li>
 <li class="chapter" data-level="12.1.3" data-path="ch-additivity-linearity.html"><a href="ch-additivity-linearity.html#fig-12.2"><i class="fa fa-check"></i><b>12.1.3</b> Fig 12.2</a></li>
@@ -216,68 +225,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch:overfitting" class="section level1">
+<div id="ch:overfitting" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Overfitting and Optimism in Prediction Models</h1>
-<div id="figures-5.2-to-5.5" class="section level2">
+<div id="figures-5.2-to-5.5" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Figures 5.2 to 5.5</h2>
-<div id="fig-5.2-noise-in-estimating-10-mortality-per-center" class="section level3">
+<div id="fig-5.2-noise-in-estimating-10-mortality-per-center" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Fig 5.2: Noise in estimating 10% mortality per center</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch-overfitting.html#cb1-1"></a><span class="co"># Surg mortality; 10%</span></span>
-<span id="cb1-2"><a href="ch-overfitting.html#cb1-2"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb1-3"><a href="ch-overfitting.html#cb1-3"></a><span class="cf">for</span> (mort <span class="cf">in</span> <span class="kw">c</span>(.<span class="dv">1</span>)) { <span class="co">##,0.05,0.02,.01)) { # 4 mortalities or only 1</span></span>
-<span id="cb1-4"><a href="ch-overfitting.html#cb1-4"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="op">-</span>.<span class="dv">025</span>,<span class="dt">to=</span>.<span class="dv">975</span>,<span class="dt">by=</span>.<span class="dv">05</span>), <span class="kw">dbinom</span>(<span class="dt">x=</span><span class="dv">0</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">20</span>,mort), <span class="dt">axes=</span>F,  <span class="dt">type =</span> <span class="st">&quot;s&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb1-5"><a href="ch-overfitting.html#cb1-5"></a>    <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">05</span>,.<span class="dv">35</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">33</span>), <span class="dt">col=</span>mycolors[<span class="dv">2</span>],</span>
-<span id="cb1-6"><a href="ch-overfitting.html#cb1-6"></a>    <span class="dt">xlab=</span><span class="kw">paste</span>(<span class="st">&#39;Observed mortality, true mortality &#39;</span>,<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>mort,<span class="dv">0</span>),<span class="st">&quot;%&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">ylab=</span><span class="st">&#39;probability density&#39;</span>) </span>
-<span id="cb1-7"><a href="ch-overfitting.html#cb1-7"></a><span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>,.<span class="dv">2</span>,.<span class="dv">3</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0%&quot;</span>,<span class="st">&quot;10%&quot;</span>,<span class="st">&quot;20%&quot;</span>,<span class="st">&quot;30%&quot;</span>))</span>
-<span id="cb1-8"><a href="ch-overfitting.html#cb1-8"></a><span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">2</span>,<span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>,.<span class="dv">2</span>,.<span class="dv">3</span>,.<span class="dv">4</span>,.<span class="dv">5</span>,.<span class="dv">6</span>,.<span class="dv">7</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0%&quot;</span>,<span class="st">&quot;10%&quot;</span>,<span class="st">&quot;20%&quot;</span>,<span class="st">&quot;30%&quot;</span>,<span class="st">&quot;40%&quot;</span>,<span class="st">&quot;50%&quot;</span>,<span class="st">&quot;60%&quot;</span>,<span class="st">&quot;70%&quot;</span>))</span>
-<span id="cb1-9"><a href="ch-overfitting.html#cb1-9"></a><span class="kw">text</span>(<span class="dt">x=</span>mort,<span class="dt">y=</span>.<span class="dv">02</span><span class="op">+</span><span class="st"> </span><span class="kw">dbinom</span>(<span class="dt">x=</span><span class="kw">max</span>(<span class="kw">round</span>(mort<span class="op">*</span><span class="dv">20</span>),<span class="dv">0</span>),<span class="dv">20</span>,mort),<span class="dt">labels=</span><span class="kw">paste</span>(<span class="st">&quot;n=20&quot;</span>), <span class="dt">col=</span>mycolors[<span class="dv">2</span>])</span>
-<span id="cb1-10"><a href="ch-overfitting.html#cb1-10"></a>                    </span>
-<span id="cb1-11"><a href="ch-overfitting.html#cb1-11"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">200</span>)) {  <span class="co"># add more sample sizes</span></span>
-<span id="cb1-12"><a href="ch-overfitting.html#cb1-12"></a><span class="kw">lines</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span><span class="op">-</span>(<span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">/</span>i),<span class="dt">to=</span><span class="dv">1</span><span class="op">-</span>(<span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">/</span>i),<span class="dt">by=</span><span class="dv">1</span><span class="op">/</span>i), <span class="kw">dbinom</span>(<span class="dt">x=</span><span class="dv">0</span><span class="op">:</span>i,i,mort),  </span>
-<span id="cb1-13"><a href="ch-overfitting.html#cb1-13"></a>    <span class="dt">type =</span> <span class="st">&quot;s&quot;</span>, <span class="dt">lty=</span><span class="kw">ifelse</span>(i<span class="op">==</span><span class="dv">50</span>,<span class="dv">2</span>,<span class="dv">4</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span>mycolors[<span class="kw">ifelse</span>(i<span class="op">==</span><span class="dv">50</span>,<span class="dv">3</span>,<span class="dv">4</span>)])   </span>
-<span id="cb1-14"><a href="ch-overfitting.html#cb1-14"></a><span class="kw">text</span>(<span class="dt">x=</span>mort,<span class="dt">y=</span>.<span class="dv">02</span><span class="op">+</span><span class="kw">dbinom</span>(<span class="dt">x=</span><span class="kw">max</span>(<span class="kw">round</span>(mort<span class="op">*</span>i),<span class="dv">0</span>),i,mort),<span class="dt">labels=</span><span class="kw">paste</span>(<span class="st">&quot;n=&quot;</span>,i, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">col=</span>mycolors[<span class="kw">ifelse</span>(i<span class="op">==</span><span class="dv">50</span>,<span class="dv">3</span>,<span class="dv">4</span>)]) </span>
-<span id="cb1-15"><a href="ch-overfitting.html#cb1-15"></a>} <span class="co"># end loop n=50,200</span></span>
-<span id="cb1-16"><a href="ch-overfitting.html#cb1-16"></a>} <span class="co"># end loop mort</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch-overfitting.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Surg mortality; 10%</span></span>
+<span id="cb1-2"><a href="ch-overfitting.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb1-3"><a href="ch-overfitting.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (mort <span class="cf">in</span> <span class="fu">c</span>(.<span class="dv">1</span>)) { <span class="do">## ,0.05,0.02,.01)) { # 4 mortalities or only 1</span></span>
+<span id="cb1-4"><a href="ch-overfitting.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(</span>
+<span id="cb1-5"><a href="ch-overfitting.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span>.<span class="dv">025</span>, <span class="at">to =</span> .<span class="dv">975</span>, <span class="at">by =</span> .<span class="dv">05</span>), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, mort), <span class="at">axes =</span> F, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb1-6"><a href="ch-overfitting.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">05</span>, .<span class="dv">35</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">33</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>],</span>
+<span id="cb1-7"><a href="ch-overfitting.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="fu">paste</span>(<span class="st">&quot;Observed mortality, true mortality &quot;</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> mort, <span class="dv">0</span>), <span class="st">&quot;%&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;probability density&quot;</span></span>
+<span id="cb1-8"><a href="ch-overfitting.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="ch-overfitting.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>))</span>
+<span id="cb1-10"><a href="ch-overfitting.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">4</span>, .<span class="dv">5</span>, .<span class="dv">6</span>, .<span class="dv">7</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>, <span class="st">&quot;40%&quot;</span>, <span class="st">&quot;50%&quot;</span>, <span class="st">&quot;60%&quot;</span>, <span class="st">&quot;70%&quot;</span>))</span>
+<span id="cb1-11"><a href="ch-overfitting.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> <span class="dv">20</span>), <span class="dv">0</span>), <span class="dv">20</span>, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">&quot;n=20&quot;</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>])</span>
+<span id="cb1-12"><a href="ch-overfitting.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="ch-overfitting.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">200</span>)) { <span class="co"># add more sample sizes</span></span>
+<span id="cb1-14"><a href="ch-overfitting.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(</span>
+<span id="cb1-15"><a href="ch-overfitting.html#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">to =</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">by =</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>i, i, mort),</span>
+<span id="cb1-16"><a href="ch-overfitting.html#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lty =</span> <span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb1-17"><a href="ch-overfitting.html#cb1-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-18"><a href="ch-overfitting.html#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> i), <span class="dv">0</span>), i, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">&quot;n=&quot;</span>, i, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
+<span id="cb1-19"><a href="ch-overfitting.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  } <span class="co"># end loop n=50,200</span></span>
+<span id="cb1-20"><a href="ch-overfitting.html#cb1-20" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop mort</span></span></code></pre></div>
 <p><img src="fig/Fig_5.2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ch-overfitting.html#cb2-1"></a><span class="co">## End Fig 5.2 ##</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch-overfitting.html#cb3-1"></a><span class="co">## function for Fig 5.3 and Fig 5.4: Noise vs Heterogeneity</span></span>
-<span id="cb3-2"><a href="ch-overfitting.html#cb3-2"></a>illustrate_noise_heterogeneity &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n=</span><span class="dv">20</span>, <span class="dt">mort=</span><span class="fl">0.1</span>, <span class="dt">tau =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">01</span>,.<span class="dv">02</span>,.<span class="dv">03</span>)) </span>
-<span id="cb3-3"><a href="ch-overfitting.html#cb3-3"></a>  { </span>
-<span id="cb3-4"><a href="ch-overfitting.html#cb3-4"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">pty=</span><span class="st">&#39;m&#39;</span>, <span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">2.5</span>,<span class="dv">4</span>,<span class="fl">1.5</span>,<span class="dv">1</span>))</span>
-<span id="cb3-5"><a href="ch-overfitting.html#cb3-5"></a><span class="co"># Make data set with 100 centers, each 20 patients, 10% mortality, variability sd 0 to 0.03</span></span>
-<span id="cb3-6"><a href="ch-overfitting.html#cb3-6"></a>seedn &lt;-<span class="st"> </span><span class="dv">102</span></span>
-<span id="cb3-7"><a href="ch-overfitting.html#cb3-7"></a><span class="kw">set.seed</span>(seedn)</span>
-<span id="cb3-8"><a href="ch-overfitting.html#cb3-8"></a>ncenter &lt;-<span class="st"> </span><span class="dv">50</span></span>
-<span id="cb3-9"><a href="ch-overfitting.html#cb3-9"></a>nsubjects &lt;-<span class="st"> </span>n <span class="co"># n can be changed</span></span>
-<span id="cb3-10"><a href="ch-overfitting.html#cb3-10"></a><span class="co"># simple SD used on probability scale, can be improved upon</span></span>
-<span id="cb3-11"><a href="ch-overfitting.html#cb3-11"></a><span class="cf">for</span> (sdtau <span class="cf">in</span> tau) { <span class="co"># set for tau can be changed</span></span>
-<span id="cb3-12"><a href="ch-overfitting.html#cb3-12"></a>truemort  &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span>ncenter,<span class="dt">mean=</span>mort,<span class="dt">sd=</span>sdtau) <span class="co"># mort can be changed</span></span>
-<span id="cb3-13"><a href="ch-overfitting.html#cb3-13"></a>mortmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span>ncenter, <span class="kw">sapply</span>(truemort,<span class="dt">FUN=</span><span class="cf">function</span>(x)<span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1</span>,nsubjects,x))<span class="op">/</span>nsubjects,truemort))</span>
-<span id="cb3-14"><a href="ch-overfitting.html#cb3-14"></a></span>
-<span id="cb3-15"><a href="ch-overfitting.html#cb3-15"></a><span class="co"># Start plotting</span></span>
-<span id="cb3-16"><a href="ch-overfitting.html#cb3-16"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span><span class="dv">0</span>, <span class="dt">pch=</span><span class="st">&#39;&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,<span class="fl">1.2</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">03</span>,.<span class="dv">35</span>),<span class="dt">axes=</span>F, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="kw">ifelse</span>(sdtau<span class="op">==</span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>sdtau<span class="op">==</span>.<span class="dv">02</span>, <span class="st">&#39;Mortality&#39;</span>, <span class="st">&quot;&quot;</span>))</span>
-<span id="cb3-17"><a href="ch-overfitting.html#cb3-17"></a><span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">2</span>,<span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>,.<span class="dv">2</span>,.<span class="dv">3</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0%&quot;</span>,<span class="st">&quot;10%&quot;</span>,<span class="st">&quot;20%&quot;</span>,<span class="st">&quot;30%&quot;</span>), <span class="dt">las=</span><span class="dv">1</span>)</span>
-<span id="cb3-18"><a href="ch-overfitting.html#cb3-18"></a><span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">1</span>,<span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;Observed&quot;</span>,<span class="st">&quot;True mortality&quot;</span>))</span>
-<span id="cb3-19"><a href="ch-overfitting.html#cb3-19"></a><span class="kw">text</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span>.<span class="dv">3</span>, <span class="kw">ifelse</span>(sdtau<span class="op">==</span><span class="dv">0</span>,<span class="st">&quot;No heterogeneity&quot;</span>, </span>
-<span id="cb3-20"><a href="ch-overfitting.html#cb3-20"></a>        <span class="kw">ifelse</span>(sdtau<span class="op">!=</span><span class="dv">0</span>, <span class="kw">paste</span>(<span class="st">&quot;+/-&quot;</span>, sdtau))), <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">adj=</span><span class="dv">1</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
-<span id="cb3-21"><a href="ch-overfitting.html#cb3-21"></a><span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>ncenter)) {</span>
-<span id="cb3-22"><a href="ch-overfitting.html#cb3-22"></a> <span class="kw">set.seed</span>(i<span class="op">+</span>seedn)</span>
-<span id="cb3-23"><a href="ch-overfitting.html#cb3-23"></a> <span class="kw">lines</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">0</span><span class="op">+</span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dt">min=</span><span class="op">-</span>.<span class="dv">07</span>,<span class="dt">max=</span>.<span class="dv">07</span>),<span class="dv">1</span>), </span>
-<span id="cb3-24"><a href="ch-overfitting.html#cb3-24"></a>       <span class="dt">y=</span><span class="kw">c</span>(mortmat[i,<span class="dv">2</span>]<span class="op">+</span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dt">min=</span><span class="op">-</span>.<span class="dv">001</span>,<span class="dt">max=</span>.<span class="dv">01</span>), mortmat[i,<span class="dv">3</span>]), <span class="dt">col=</span>mycolors[<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">10</span>)[i]])</span>
-<span id="cb3-25"><a href="ch-overfitting.html#cb3-25"></a> <span class="kw">set.seed</span>(i<span class="op">+</span>seedn)</span>
-<span id="cb3-26"><a href="ch-overfitting.html#cb3-26"></a> <span class="kw">points</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">0</span><span class="op">+</span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dt">min=</span><span class="op">-</span>.<span class="dv">07</span>,<span class="dt">max=</span>.<span class="dv">07</span>),<span class="dv">1</span>), </span>
-<span id="cb3-27"><a href="ch-overfitting.html#cb3-27"></a>        <span class="dt">y=</span><span class="kw">c</span>(mortmat[i,<span class="dv">2</span>]<span class="op">+</span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dt">min=</span><span class="op">-</span>.<span class="dv">001</span>,<span class="dt">max=</span>.<span class="dv">01</span>), mortmat[i,<span class="dv">3</span>]), <span class="dt">pch=</span><span class="kw">c</span>(<span class="st">&quot;o&quot;</span>, <span class="st">&quot;+&quot;</span>),<span class="dt">col=</span>mycolors[<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">10</span>)[i]]) } }</span>
-<span id="cb3-28"><a href="ch-overfitting.html#cb3-28"></a>} <span class="co"># end function that illustrates the impact of noise (determined by n) vs heterogeneity (determined by sdtau)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ch-overfitting.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End Fig 5.2 ##</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch-overfitting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## function for Fig 5.3 and Fig 5.4: Noise vs Heterogeneity</span></span>
+<span id="cb3-2"><a href="ch-overfitting.html#cb3-2" aria-hidden="true" tabindex="-1"></a>illustrate_noise_heterogeneity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mort =</span> <span class="fl">0.1</span>, <span class="at">tau =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">03</span>)) {</span>
+<span id="cb3-3"><a href="ch-overfitting.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">pty =</span> <span class="st">&quot;m&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">4</span>, <span class="fl">1.5</span>, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="ch-overfitting.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make data set with 100 centers, each 20 patients, 10% mortality, variability sd 0 to 0.03</span></span>
+<span id="cb3-5"><a href="ch-overfitting.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  seedn <span class="ot">&lt;-</span> <span class="dv">102</span></span>
+<span id="cb3-6"><a href="ch-overfitting.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seedn)</span>
+<span id="cb3-7"><a href="ch-overfitting.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  ncenter <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-8"><a href="ch-overfitting.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  nsubjects <span class="ot">&lt;-</span> n <span class="co"># n can be changed</span></span>
+<span id="cb3-9"><a href="ch-overfitting.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simple SD used on probability scale, can be improved upon</span></span>
+<span id="cb3-10"><a href="ch-overfitting.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (sdtau <span class="cf">in</span> tau) { <span class="co"># set for tau can be changed</span></span>
+<span id="cb3-11"><a href="ch-overfitting.html#cb3-11" aria-hidden="true" tabindex="-1"></a>    truemort <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> ncenter, <span class="at">mean =</span> mort, <span class="at">sd =</span> sdtau) <span class="co"># mort can be changed</span></span>
+<span id="cb3-12"><a href="ch-overfitting.html#cb3-12" aria-hidden="true" tabindex="-1"></a>    mortmat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span>ncenter, <span class="fu">sapply</span>(truemort, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, nsubjects, x)) <span class="sc">/</span> nsubjects, truemort))</span>
+<span id="cb3-13"><a href="ch-overfitting.html#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="ch-overfitting.html#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Start plotting</span></span>
+<span id="cb3-15"><a href="ch-overfitting.html#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">pch =</span> <span class="st">&quot;&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">2</span>, <span class="fl">1.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">03</span>, .<span class="dv">35</span>), <span class="at">axes =</span> F, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> sdtau <span class="sc">==</span> .<span class="dv">02</span>, <span class="st">&quot;Mortality&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb3-16"><a href="ch-overfitting.html#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="ch-overfitting.html#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Observed&quot;</span>, <span class="st">&quot;True mortality&quot;</span>))</span>
+<span id="cb3-18"><a href="ch-overfitting.html#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> .<span class="dv">3</span>, <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;No heterogeneity&quot;</span>,</span>
+<span id="cb3-19"><a href="ch-overfitting.html#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sdtau <span class="sc">!=</span> <span class="dv">0</span>, <span class="fu">paste</span>(<span class="st">&quot;+/-&quot;</span>, sdtau))</span>
+<span id="cb3-20"><a href="ch-overfitting.html#cb3-20" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">adj =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb3-21"><a href="ch-overfitting.html#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>ncenter)) {</span>
+<span id="cb3-22"><a href="ch-overfitting.html#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-23"><a href="ch-overfitting.html#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines</span>(</span>
+<span id="cb3-24"><a href="ch-overfitting.html#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-25"><a href="ch-overfitting.html#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-26"><a href="ch-overfitting.html#cb3-26" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-27"><a href="ch-overfitting.html#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-28"><a href="ch-overfitting.html#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">points</span>(</span>
+<span id="cb3-29"><a href="ch-overfitting.html#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-30"><a href="ch-overfitting.html#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">pch =</span> <span class="fu">c</span>(<span class="st">&quot;o&quot;</span>, <span class="st">&quot;+&quot;</span>), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-31"><a href="ch-overfitting.html#cb3-31" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-32"><a href="ch-overfitting.html#cb3-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-33"><a href="ch-overfitting.html#cb3-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-34"><a href="ch-overfitting.html#cb3-34" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function that illustrates the impact of noise (determined by n) vs heterogeneity (determined by sdtau)</span></span></code></pre></div>
 </div>
-<div id="figs-5.3-and-5.4" class="section level3">
+<div id="figs-5.3-and-5.4" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Figs 5.3 and 5.4</h3>
 <p>These plots llustrate the impact of noise (determined by n, 20 or 200) vs heterogeneity (determined by sdtau (0 - 0.03)). With small n, such as n=20 per center, mortality such as 10% cannot be estimated reliably. Reliable estimation of a center’s performance requires a large n, such as n=200.</p>
 </div>
-<div id="n20" class="section level3">
+<div id="n20" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> n=20</h3>
 <p><img src="fig/Fig_5.3-1.png" width="672" /></p>
 </div>
-<div id="n200" class="section level3">
+<div id="n200" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> n=200</h3>
 <p><img src="fig/Fig_5.4-1.png" width="672" /></p>
 
