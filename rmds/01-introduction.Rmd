@@ -1,4 +1,4 @@
-# Introduction {#ch:introduction}
+# Introduction {#introduction}
 
 ```{r setup-ch1, include=FALSE}
 knitr::opts_knit$set(

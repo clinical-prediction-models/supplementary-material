@@ -1,4 +1,4 @@
-# Case Study on Survival Analysis: Prediction of Cardiovascular Event {#ch:case-study-cardiovascular}
+# Case Study on Survival Analysis: Prediction of Cardiovascular Event {#case-study-cardiovascular}
 
 ```{r setup-ch23, include=FALSE}
 knitr::opts_knit$set(

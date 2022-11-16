@@ -1,4 +1,4 @@
-# Updating for a New Setting {#ch:updating}
+# Updating for a New Setting {#updating}
 
 ```{r setup-ch20, include=FALSE}
 knitr::opts_knit$set(

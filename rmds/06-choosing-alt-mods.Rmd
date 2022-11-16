@@ -1,4 +1,4 @@
-# Choosing Between Alternative Models {#ch:altmods}
+# Choosing Between Alternative Models {#altmods}
 
 ## Non-linearity illustrations
 

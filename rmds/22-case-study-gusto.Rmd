@@ -1,6 +1,6 @@
 # (PART) Part IIII: Applications {-}
 
-# Case Study on a Prediction of 30-Day Mortality {#ch:case-study-gusto}
+# Case Study on a Prediction of 30-Day Mortality {#case-study-gusto}
 
 ```{r setup-ch22, include=FALSE}
 knitr::opts_knit$set(

@@ -1,4 +1,4 @@
-# Estimation with External Information {#ch:estimation-external}
+# Estimation with External Information {#estimation-external}
 
 ```{r setup-ch14, include=FALSE}
 knitr::opts_knit$set(

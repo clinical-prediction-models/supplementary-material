@@ -1,4 +1,4 @@
-# Evaluation of Performance {#ch:evaluation}
+# Evaluation of Performance {#evaluation}
 
 ```{r setup-ch15, include=FALSE}
 knitr::opts_knit$set(

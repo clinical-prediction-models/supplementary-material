@@ -1,6 +1,6 @@
 # (PART) Part I: Prediction models in medicine {-}
 
-# Applications of Prediction Models {#ch:applications}
+# Applications of Prediction Models {#applications}
 
 ```{r setup-ch2, include=FALSE}
 knitr::opts_knit$set(

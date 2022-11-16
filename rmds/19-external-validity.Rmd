@@ -1,6 +1,6 @@
 # (PART) Part III: Generalizability of Prediction Models {-}
 
-# Patterns of External Validity {#ch:external-validity}
+# Patterns of External Validity {#external-validity}
 
 ```{r setup-ch19, include=FALSE}
 knitr::opts_knit$set(
@@ -11,6 +11,311 @@ knitr::opts_knit$set(
 knitr::opts_chunk$set(
   fig.path = "fig/"
 )
+
+library(rms)
+library(knitr)
+library(kableExtra)
+
+options(digits=3)
+mycolors <- c(
+  "black" = 1,
+  "Red" = "#ED0000",
+  "CongressBlue" = "#00468B",
+  "Apple" = "#42B540",
+  "BondiBlue" = "#0099B4",
+  "TrendyPink" = "#925E9F",
+  "Carmine" = "#AD002A",
+  "CodGray" = "#1B1919",
+  "MonaLisa" = "#FDAF91",
+  "Edward" = "#ADB6B6"
+)
+# need the stat.ES() function
+source("R/val.functions.17jan19.R")
 ```
 
-Chapter 19 additional material upcoming.
+### Fig 19.1: a missed predictor Z
+
+```{r Fig19.1, echo=FALSE}
+set.seed(2)
+n	<- 1000
+x	<- rnorm(n, 0, 1)
+x	<- x[order(x)]
+z	<- rnorm(n, 0, 1) # uncorrelated z, 'missed predictor'
+z2   <- rnorm(n=n, mean=0)  # Make correlated below
+z3   <- rnorm(n=n, mean=0)  # Make weakly correlated below
+
+# Make vars truly Normal in mean and sd
+x <- (x - mean(x))/sd(x)
+z <- (z - mean(z))/sd(z)
+z2 <- (z2 - mean(z2))/sd(z2)
+z3 <- (z3 - mean(z3))/sd(z3)
+
+z2   <- sqrt(.25) * x + sqrt(1-.25) * z2
+z3   <- sqrt(.11) * x + sqrt(1-.11) * z3
+
+cat("Actual correlations in n=1000\nr=0:", cor(z, x), " r=.33:", cor(z3, x), " r=.5:",cor(z2, x))
+
+
+# Fig 19.1 #
+par(mfrow=c(1,3), pty="s", mar=c(4,4,3,1))
+plot(x,z, xlab="x", ylab="z, uncorrelated", xlim=c(-3,3), ylim=c(-3,3), cex.lab=1.2, main="r = 0", cex.main=2, col=mycolors[2])
+plot(x,z3, xlab="x", ylab="z, weakly correlated", xlim=c(-3,3), ylim=c(-3,3), cex.lab=1.2, main="r = 0.33", cex.main=2, col=mycolors[3])
+plot(x,z2, xlab="x", ylab="z, moderately correlated", xlim=c(-3,3), ylim=c(-3,3), cex.lab=1.2, main="r = 0.5", cex.main=2, col=mycolors[4])
+# End Fig 19.1 #
+```
+
+### Fig 19.2: a missed predictor Z with identical distribution
+
+--> no impact
+```{r Fig19.2, echo=FALSE}
+# simulations: z indep, z correlated, z weakly correlated
+set.seed(12)
+n	<- 500000
+x	<- rnorm(n, 0, 1)
+x	<- x[order(x)]
+z	<- rnorm(n, 0, 1) # uncorrelated z, 'missed predictor'
+z2   <- rnorm(n=n, mean=0)  # Make correlated below
+z3   <- rnorm(n=n, mean=0)  # Make weakly correlated below
+
+# Make vars truly Normal in mean and sd
+x <- (x - mean(x))/sd(x)
+z <- (z - mean(z))/sd(z)
+z2 <- (z2 - mean(z2))/sd(z2)
+z3 <- (z3 - mean(z3))/sd(z3)
+
+z2   <- sqrt(.25) * x + sqrt(1-.25) * z2 # weak correlation
+z3   <- sqrt(.106) * x + sqrt(1-.106) * z3 # stronger = 'moderate' correlation
+
+# Set coefficients for adjusted / unadjusted analysis
+b		<- 1.53
+b2	<- 2.045
+bz2  <- 1.5
+b3  <- 1.179
+logit	<- b*x
+logit2	<- b2*x + bz2*z
+logit3	<- b3*x + bz2*z2
+logit4	<- b*x  + b*z3 # correlation and stratification balance out
+
+# Weak correlation
+p2	<- plogis(logit4)
+y2 	<- ifelse(runif(n)<=p2, 1, 0)
+
+# No correlation
+p		<- plogis(logit2)
+y 		<- ifelse(runif(n)<=p, 1, 0)
+
+# Moderate correlation
+p3		<- plogis(logit3)
+y3 		<- ifelse(runif(n)<=p3, 1, 0)
+
+# Fig 19.2: Graphs for 3 situations
+par(mfrow=c(1,3), pty="s", mar=c(4,4,3,1))
+stat.ES(p=plogis(logit),y=y,cutoff=.3, smooth=F, logistic.cal=T, main="Uncorrelated x-z", rounddec1=1, rounddec2=1, rounddec4=3, cex.main=1.5)
+stat.ES(p=plogis(logit),y=y2,cutoff=.3, smooth=F, logistic.cal=T, main="Weakly correlated x-z",rounddec1=1, rounddec2=1, rounddec4=3, cex.main=1.5)
+stat.ES(p=plogis(logit),y=y3,cutoff=.3, smooth=F, logistic.cal=T, main="Correlated x-z", rounddec1=1, rounddec2=1, rounddec4=3, cex.main=1.5)
+### end Fig 19.2 ###
+```
+
+### Fig 19.3: more or less severe cases selected
+
+```{r Fig19.3, echo=FALSE}
+### selection on x
+# MNAR on x, R2 50%, 50% missing (since mean x1==0)
+# More severe case-mix
+# Fig 19.3 #
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+set.seed(6)
+xMNAR1   <- ifelse(rnorm(n=n,sd=.8) < x, x, NA)
+stat.ES(p=plogis(logit)[!is.na(xMNAR1)],y=y2[!is.na(xMNAR1)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe x selected", rounddec1=0,rounddec2=1, rounddec4=3, cex.main=1.5)
+# Less severe case-mix
+xMNAR   <- ifelse(rnorm(n=n,sd=.8) > x, x, NA)
+stat.ES(p=plogis(logit)[!is.na(xMNAR)],y=y2[!is.na(xMNAR)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe x selected", rounddec1=1,rounddec2=1, rounddec4=3, cex.main=1.5)
+## End Fig 19.3 ##
+```
+
+### Fig 19.4: more or less heterogeneous cases selected
+
+```{r Fig19.4, echo=FALSE}
+# More heterogeneous case-mix
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+set.seed(2)
+xhetero  <- ifelse(runif(n=n, min=0, max=max(x)) < abs(x), x, NA)
+stat.ES(p=plogis(logit)[!is.na(xhetero)],y=y2[!is.na(xhetero)],cutoff=.3, smooth=F, logistic.cal=T, 
+  main="More heterogeneous x selected", rounddec1=0,rounddec2=1, rounddec4=3, cex.main=1.2)
+# More homogeneous case-mix
+xhomo  <- ifelse(rnorm(n=n,sd=1.5) > abs(x), x, NA)
+stat.ES(p=plogis(logit)[!is.na(xhomo)],y=y2[!is.na(xhomo)],cutoff=.3, smooth=F, logistic.cal=T, 
+main="Less heterogeneous x selected", rounddec1=1,rounddec2=1, rounddec4=3, cex.main=1.2)
+## End Fig 19.4 ##
+```
+
+### Fig 19.5: more or less severe cases selected by Z
+
+--> Selection by missed predictor leads to miscalibration
+```{r Fig19.5, echo=FALSE}
+##### Missed predictor, z ###
+# More severe z
+par(mfrow=c(2,3), pty="s", mar=c(4,4,3,1))
+set.seed(2)
+zMNAR1   <- ifelse(rnorm(n=n,sd=.8) < z, z, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR1)],y=y[!is.na(zMNAR1)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z selected, r=0",rounddec1=2,rounddec2=2, rounddec4=3)
+zMNAR2   <- ifelse(rnorm(n=n,sd=.8) < z3, z3, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR2)],y=y2[!is.na(zMNAR2)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z selected, r=0.33",rounddec1=2,rounddec2=2, rounddec4=3)
+zMNAR3   <- ifelse(rnorm(n=n,sd=.8) < z2, z2, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR3)],y=y3[!is.na(zMNAR3)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z selected, r=0.5",rounddec1=2,rounddec2=2, rounddec4=3)
+# Less severe z
+zMNAR11   <- ifelse(rnorm(n=n,sd=.8) > z, z, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR11)],y=y[!is.na(zMNAR11)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z selected, r=0",rounddec1=2,rounddec2=2, rounddec4=3)
+zMNAR21   <- ifelse(rnorm(n=n,sd=.8) > z3, z3, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR21)],y=y2[!is.na(zMNAR21)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z selected, r=0.33",rounddec1=2,rounddec2=2, rounddec4=3)
+zMNAR31   <- ifelse(rnorm(n=n,sd=.8) > z2, z2, NA)
+stat.ES(p=plogis(logit)[!is.na(zMNAR31)],y=y3[!is.na(zMNAR31)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z selected, r=0.5",rounddec1=2,rounddec2=2, rounddec4=3)
+# End Fig 19.5 #
+```
+
+
+### Fig 19.6: more or less heterogeneous cases selected by Z
+
+--> Selection by missed predictor has minor impact
+```{r Fig19.6, echo=FALSE}
+# More heterogeneous case-mix
+par(mfrow=c(2,3), pty="s", mar=c(4,4,3,1))
+set.seed(1)
+zhetero1  <- ifelse(runif(n=n, min=0, max=max(z)) < abs(z), z, NA)
+stat.ES(p=plogis(logit)[!is.na(zhetero1)],y=y[!is.na(zhetero1)],cutoff=.3, smooth=F, logistic.cal=T, main="More heterogeneous z selected, r=0",rounddec1=1,rounddec2=2, rounddec4=3, cex.main=0.8)
+zhetero2  <- ifelse(runif(n=n, min=0, max=max(z3)) < abs(z3), z3, NA)
+stat.ES(p=plogis(logit)[!is.na(zhetero2)],y=y2[!is.na(zhetero2)],cutoff=.3, smooth=F, logistic.cal=T, main="More heterogeneous z selected, r=0.33",rounddec1=1,rounddec2=1, rounddec4=3, cex.main=0.8)
+zhetero3  <- ifelse(runif(n=n, min=0, max=max(z2)) < abs(z2), z2, NA)
+stat.ES(p=plogis(logit)[!is.na(zhetero3)],y=y3[!is.na(zhetero3)],cutoff=.3, smooth=F, logistic.cal=T, main="More heterogeneous z selected, r=0.5",rounddec1=1,rounddec2=2, rounddec4=3, cex.main=0.8)
+# More homogeneous case-mix
+zhomo1  <- ifelse(rnorm(n=n,sd=1.5) > abs(z), z, NA)
+stat.ES(p=plogis(logit)[!is.na(zhomo1)],y=y[!is.na(zhomo1)],cutoff=.3, smooth=F, logistic.cal=T, main="Less heterogeneous z selected, r=0", rounddec1=1,rounddec2=2, rounddec4=3, cex.main=0.8)
+zhomo2  <- ifelse(rnorm(n=n,sd=1.5) > abs(z3), z3, NA)
+stat.ES(p=plogis(logit)[!is.na(zhomo2)],y=y2[!is.na(zhomo2)],cutoff=.3, smooth=F, logistic.cal=T, main="Less heterogeneous z selected, r=0.33", rounddec1=1,rounddec2=1, rounddec4=3, cex.main=0.8)
+zhomo3  <- ifelse(rnorm(n=n,sd=1.5) > abs(z2), z2, NA)
+stat.ES(p=plogis(logit)[!is.na(zhomo3)],y=y3[!is.na(zhomo3)],cutoff=.3, smooth=F, logistic.cal=T, main="Less heterogeneous z selected, r=0.5", rounddec1=2,rounddec2=2, rounddec4=3, cex.main=0.8)
+# End Fig 19.6 #
+## End z simulations ##
+```
+
+
+## Fig 19.7: Case-control design disturbs calibration
+
+Disturbance is exactly as expected by ratio of selecting cases:controls (log(2))
+Select all cases, and half of the controls --> same as shift in intercept
+
+```{r Fig19.7, echo=FALSE}
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+set.seed(1)
+j	<- ifelse(y==1 | sample(y==0, 0.5*length(y==0)),T,F)
+stat.ES(p=plogis(logit)[j],y=y[j],cutoff=.3, smooth=F, logistic.cal=T, main="More cases selected", rounddec1=1,rounddec2=1, rounddec4=3, cex.main=1.5)
+## Select more severe cases according to x
+j2	<- ifelse(y==0 | sample(y==1, 0.5*length(y==1)),T,F)
+stat.ES(p=plogis(logit)[j2],y=y[j2],cutoff=.3, smooth=F, logistic.cal=T, main="Less cases selected", rounddec1=1,rounddec2=1, rounddec4=3, cex.main=1.5)
+```
+
+
+### Fig 19.8: Overfitting disturbs discrimination and calibration
+
+```{r Fig19.8, echo=FALSE}
+set.seed(1)
+logit	<- b*x
+logit2s	<- 0.804*b2*x + bz2*z
+logit3s	<- 0.683*b3*x + bz2*z2
+logit4s	<- 0.74*b*x  + b*z3 # correlation and stratification balance out
+logit4ss	<- 0.479*b*x  + b*z3 # correlation and stratification balance out
+
+# Weak correlation
+p2s	<- plogis(logit4s)
+y2s	<- ifelse(runif(n)<=p2s, 1, 0)
+
+
+p2ss	<- plogis(logit4ss)  # with double shrinkage = 0.6
+y2ss	<- ifelse(runif(n)<=p2ss, 1, 0)
+
+#### Graphs for 2 shrinkage scenarios, 19.8 ####
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+stat.ES(p=plogis(logit),y=y2s,cutoff=.3, smooth=F, logistic.cal=T, main="Slope linear predictor 0.8",rounddec1=1,rounddec2=1, rounddec4=3)
+stat.ES(p=plogis(logit),y=y2ss,cutoff=.3, smooth=F, logistic.cal=T, main="Slope linear predictor 0.6",rounddec1=1,rounddec2=1, rounddec4=3)
+## End Fig 19.8
+```
+
+
+### Fig 19.9: Different coeficients (model misspecification) disturbs discrimination and calibration
+
+```{r Fig19.9, echo=FALSE}
+set.seed(1)
+n <- 500000
+x1  <- rnorm(n,sd=1)
+x2  <- rnorm(n,sd=.9)
+x3  <- rnorm(n,sd=.8)
+x4  <- rnorm(n,sd=.7)
+x5  <- rnorm(n,sd=.6)
+x6  <- rnorm(n,sd=.5)
+x7  <- rnorm(n,sd=.4)
+x8  <- rnorm(n,sd=.3)
+x9  <- rnorm(n,sd=.2)
+x10  <- rnorm(n,sd=.1)
+xsum <- x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 # lp in development data
+xval <- .5*x1 + 1.5*x2 + .5*x3 + 1.5*x4 + 0.5*x5 + 1.5*x6 + 0.5*x7 + 1.5*x8 + 0.5*x9 + 1.5*x10 # lp in validation data
+xval2 <- .25*x1 + 1.5*x2 +  .25*x3 + 1.5*x4 + .25 *x5 + 1.5*x6 + .25*x7 + 1.5*x8 + .25*x9 + 1.5*x10 # lp in validation data
+
+logit.dev	<- 0.76 * xsum
+pdev	<- plogis(logit.dev)
+ydev	<- ifelse(runif(n)<=pdev, 1, 0)
+
+logit.val	<- 0.76 * xval
+pval	<- plogis(logit.val)
+yval	<- ifelse(runif(n)<=pval, 1, 0)
+
+logit.val2	<- 0.76 * xval2
+pval2	<- plogis(logit.val2)
+yval2	<- ifelse(runif(n)<=pval2, 1, 0)
+
+#### Graphs for 2 different coefs scenarios  ####
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+stat.ES(p=plogis(logit.dev),y=yval,cutoff=.3, smooth=F, logistic.cal=T, main="X effects * 0.5 or 1.5",rounddec1=1,rounddec2=2, rounddec4=3)
+stat.ES(p=plogis(logit.dev),y=yval2,cutoff=.3, smooth=F, logistic.cal=T, main="X effects * 0.25 or 1.5",rounddec1=1,rounddec2=2, rounddec4=3)
+### End different effects, Fig 19.9 ###
+```
+
+
+### Scenarios: Table 19.4
+
+Change of setting may especially impact calibration
+RCT vs survey may impact discrimination (more homogeneity) and calibration 
+
+```{r Scenarios, echo=FALSE}
+# Case-mix + different effects (some shrinkage)
+z3   <- rnorm(n=n, mean=0)    # Make weakly correlated below
+z3 <- (z3 - mean(z3))/sd(z3)  # Make vars truly Normal in mean and sd
+z3   <- sqrt(.107) * ((xsum - mean(xsum))/sd(xsum)) + sqrt(1-.107) * z3
+
+# Set coefficients for adjusted / unadjusted analysis
+b		<- 1.5
+logitsum	<- 0.76*xsum
+logit4	<- 0.76*xval  + b*z3 # correlation and stratification balance out
+
+# Weak correlation
+p2	<- plogis(logit4)
+y2 	<- ifelse(runif(n)<=p2, 1, 0)
+
+## graphs change of setting scenarios
+par(mfrow=c(1,2), pty="s", mar=c(4,4,3,1))
+zMNAR1   <- ifelse(rnorm(n=n,sd=.8) < z3, z3, NA) # More severe
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR1)],y=y2[!is.na(zMNAR1)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z; \nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3)
+zMNAR2   <- ifelse(rnorm(n=n,sd=.8) > z3, z3, NA) # Less severe
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR2)],y=y2[!is.na(zMNAR2)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z; \nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3)
+
+## scenario RCT validation
+# More homogeneous x case-mix + more severe z
+# par(mfrow=c(2,2), pty="s", mar=c(4,4,3,1))
+xhomo  <- ifelse(rnorm(n=n,sd=1.5) > abs(xval), xval, NA)
+xhetero  <- ifelse(runif(n=n, min=0, max=max(xval)) < abs(xval), xval, NA)
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR1)&!is.na(xhetero)],y=y2[!is.na(zMNAR1)&!is.na(xhetero)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z; more heterogeneous x;\nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3, cex.main=.8)
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR1)&!is.na(xhomo)],y=y2[!is.na(zMNAR1)&!is.na(xhomo)],cutoff=.3, smooth=F, logistic.cal=T, main="More severe z; less heterogeneous x;\nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3, cex.main=.8)
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR2)&!is.na(xhetero)],y=y2[!is.na(zMNAR2)&!is.na(xhetero)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z; more heterogeneous x;\nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3, cex.main=.8)
+stat.ES(p=plogis(logitsum)[!is.na(zMNAR2)&!is.na(xhomo)],y=y2[!is.na(zMNAR2)&!is.na(xhomo)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z; less heterogeneous x;\nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3, cex.main=.8)
+```
+
+### Uncertainty in validation simulations

@@ -1,4 +1,4 @@
-# Statistical Models for Prediction {#ch:statmods}
+# Statistical Models for Prediction {#statmods}
 
 ```{r setup-ch4, include=FALSE}
 knitr::opts_knit$set(
