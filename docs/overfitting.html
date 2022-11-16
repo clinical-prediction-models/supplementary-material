@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Overfitting and Optimism in Prediction Models | Clinical prediction models</title>
+  <meta name="description" content="5 Overfitting and Optimism in Prediction Models | Clinical prediction models" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Overfitting and Optimism in Prediction Models | Clinical prediction models" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="clinical-prediction-models/supplementary-material" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Overfitting and Optimism in Prediction Models | Clinical prediction models" />
+  
+  
+  
+
+<meta name="author" content="Ewout Steyerberg" />
+
+
+<meta name="date" content="2022-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statmods.html"/>
+<link rel="next" href="altmods.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Clinical Prediction Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>I Part I: Prediction models in medicine</b></span></li>
+<li class="chapter" data-level="2" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>2</b> Applications of Prediction Models</a></li>
+<li class="chapter" data-level="3" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>3</b> Study Design for Prediction Modeling</a></li>
+<li class="chapter" data-level="4" data-path="statmods.html"><a href="statmods.html"><i class="fa fa-check"></i><b>4</b> Statistical Models for Prediction</a></li>
+<li class="chapter" data-level="5" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>5</b> Overfitting and Optimism in Prediction Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="overfitting.html"><a href="overfitting.html#figures-5.2-to-5.5"><i class="fa fa-check"></i><b>5.1</b> Figures 5.2 to 5.5</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="overfitting.html"><a href="overfitting.html#fig-5.2-noise-in-estimating-10-mortality-per-center"><i class="fa fa-check"></i><b>5.1.1</b> Fig 5.2: Noise in estimating 10% mortality per center</a></li>
+<li class="chapter" data-level="5.1.2" data-path="overfitting.html"><a href="overfitting.html#figs-5.3-and-5.4"><i class="fa fa-check"></i><b>5.1.2</b> Figs 5.3 and 5.4</a></li>
+<li class="chapter" data-level="5.1.3" data-path="overfitting.html"><a href="overfitting.html#n20"><i class="fa fa-check"></i><b>5.1.3</b> n=20</a></li>
+<li class="chapter" data-level="5.1.4" data-path="overfitting.html"><a href="overfitting.html#n200"><i class="fa fa-check"></i><b>5.1.4</b> n=200</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="altmods.html"><a href="altmods.html"><i class="fa fa-check"></i><b>6</b> Choosing Between Alternative Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="altmods.html"><a href="altmods.html#non-linearity-illustrations"><i class="fa fa-check"></i><b>6.1</b> Non-linearity illustrations</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="altmods.html"><a href="altmods.html#prepare-gusto-data"><i class="fa fa-check"></i><b>6.1.1</b> Prepare GUSTO data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="altmods.html"><a href="altmods.html#anova-results-for-the-different-fits"><i class="fa fa-check"></i><b>6.1.2</b> anova results for the different fits</a></li>
+<li class="chapter" data-level="6.1.3" data-path="altmods.html"><a href="altmods.html#plotting-of-age-effects"><i class="fa fa-check"></i><b>6.1.3</b> Plotting of age effects</a></li>
+<li class="chapter" data-level="6.1.4" data-path="altmods.html"><a href="altmods.html#start-surgical-mortality-by-age-in-medicare"><i class="fa fa-check"></i><b>6.1.4</b> Start surgical mortality by age in Medicare</a></li>
+<li class="chapter" data-level="6.1.5" data-path="altmods.html"><a href="altmods.html#anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery"><i class="fa fa-check"></i><b>6.1.5</b> anova results for the fit of age, with interaction by type of surgery</a></li>
+<li class="chapter" data-level="6.1.6" data-path="altmods.html"><a href="altmods.html#plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci"><i class="fa fa-check"></i><b>6.1.6</b> Plotting of predicted age effects, with interaction by type of surgery; add 95% CI</a></li>
+<li class="chapter" data-level="6.1.7" data-path="altmods.html"><a href="altmods.html#plotting-of-age-effects-with-original-data-points"><i class="fa fa-check"></i><b>6.1.7</b> Plotting of age effects with original data points</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Part II: Developing Valid Prediction Models</b></span></li>
+<li class="chapter" data-level="7" data-path="missing.html"><a href="missing.html"><i class="fa fa-check"></i><b>7</b> Missing values</a></li>
+<li class="chapter" data-level="8" data-path="missing-case.html"><a href="missing-case.html"><i class="fa fa-check"></i><b>8</b> Case Study on Dealing with Missing Values</a></li>
+<li class="chapter" data-level="9" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>9</b> Coding of Categorical and Continuous Predictors</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="coding.html"><a href="coding.html#figues-9.1-to-9.6"><i class="fa fa-check"></i><b>9.1</b> Figues 9.1 to 9.6</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="coding.html"><a href="coding.html#fig-9.1-age-linear-add-square-rcs-in-gusto-i"><i class="fa fa-check"></i><b>9.1.1</b> Fig 9.1: Age linear; add square; rcs in GUSTO-I</a></li>
+<li class="chapter" data-level="9.1.2" data-path="coding.html"><a href="coding.html#fig-9.2-impact-of-number-of-st-elevations-ste"><i class="fa fa-check"></i><b>9.1.2</b> Fig 9.2: Impact of number of ST elevations (STE)</a></li>
+<li class="chapter" data-level="9.1.3" data-path="coding.html"><a href="coding.html#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830"><i class="fa fa-check"></i><b>9.1.3</b> Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</a></li>
+<li class="chapter" data-level="9.1.4" data-path="coding.html"><a href="coding.html#fig-9.4-glucose-and-hb-in-tbi"><i class="fa fa-check"></i><b>9.1.4</b> Fig 9.4: Glucose and hb in TBI</a></li>
+<li class="chapter" data-level="9.1.5" data-path="coding.html"><a href="coding.html#fig-9.5-non-linear-association-of-glucose"><i class="fa fa-check"></i><b>9.1.5</b> Fig 9.5: Non-linear association of glucose</a></li>
+<li class="chapter" data-level="9.1.6" data-path="coding.html"><a href="coding.html#fig-9.6-systolic-blood-pressure-in-tbi"><i class="fa fa-check"></i><b>9.1.6</b> Fig 9.6: Systolic blood pressure in TBI</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="restrictions.html"><a href="restrictions.html"><i class="fa fa-check"></i><b>10</b> Restrictions on Candidate Predictors</a></li>
+<li class="chapter" data-level="11" data-path="selection.html"><a href="selection.html"><i class="fa fa-check"></i><b>11</b> Selection of Main Effects</a></li>
+<li class="chapter" data-level="12" data-path="additivity-linearity.html"><a href="additivity-linearity.html"><i class="fa fa-check"></i><b>12</b> Assumptions in Regression Models - Additivity and Linearity</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="additivity-linearity.html"><a href="additivity-linearity.html#gusto-i-interaction-analysis"><i class="fa fa-check"></i><b>12.1</b> GUSTO-I interaction analysis</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="additivity-linearity.html"><a href="additivity-linearity.html#examine-interactions"><i class="fa fa-check"></i><b>12.1.1</b> Examine interactions</a></li>
+<li class="chapter" data-level="12.1.2" data-path="additivity-linearity.html"><a href="additivity-linearity.html#fig-12.1"><i class="fa fa-check"></i><b>12.1.2</b> Fig 12.1</a></li>
+<li class="chapter" data-level="12.1.3" data-path="additivity-linearity.html"><a href="additivity-linearity.html#fig-12.2"><i class="fa fa-check"></i><b>12.1.3</b> Fig 12.2</a></li>
+<li class="chapter" data-level="12.1.4" data-path="additivity-linearity.html"><a href="additivity-linearity.html#smart-coding-illustration"><i class="fa fa-check"></i><b>12.1.4</b> Smart coding illustration</a></li>
+<li class="chapter" data-level="12.1.5" data-path="additivity-linearity.html"><a href="additivity-linearity.html#table-12.2-better-predictions"><i class="fa fa-check"></i><b>12.1.5</b> Table 12.2 Better predictions?</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="additivity-linearity.html"><a href="additivity-linearity.html#mfp-and-other-non-linear-analyses-in-n544-data"><i class="fa fa-check"></i><b>12.2</b> MFP and other non-linear analyses in n544 data</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Modern Estimation Methods</a></li>
+<li class="chapter" data-level="14" data-path="estimation-external.html"><a href="estimation-external.html"><i class="fa fa-check"></i><b>14</b> Estimation with External Information</a></li>
+<li class="chapter" data-level="15" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>15</b> Evaluation of Performance</a></li>
+<li class="chapter" data-level="16" data-path="usefulness.html"><a href="usefulness.html"><i class="fa fa-check"></i><b>16</b> Evaluation of Clinical Usefulness</a></li>
+<li class="chapter" data-level="17" data-path="validation.html"><a href="validation.html"><i class="fa fa-check"></i><b>17</b> Validation of Prediction Models</a></li>
+<li class="chapter" data-level="18" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>18</b> Presentation Formats</a></li>
+<li class="part"><span><b>III Part III: Generalizability of Prediction Models</b></span></li>
+<li class="chapter" data-level="19" data-path="external-validity.html"><a href="external-validity.html"><i class="fa fa-check"></i><b>19</b> Patterns of External Validity</a>
+<ul>
+<li class="chapter" data-level="19.0.1" data-path="external-validity.html"><a href="external-validity.html#fig-19.1-a-missed-predictor-z"><i class="fa fa-check"></i><b>19.0.1</b> Fig 19.1: a missed predictor Z</a></li>
+<li class="chapter" data-level="19.0.2" data-path="external-validity.html"><a href="external-validity.html#fig-19.2-a-missed-predictor-z-with-identical-distribution"><i class="fa fa-check"></i><b>19.0.2</b> Fig 19.2: a missed predictor Z with identical distribution</a></li>
+<li class="chapter" data-level="19.0.3" data-path="external-validity.html"><a href="external-validity.html#fig-19.3-more-or-less-severe-cases-selected"><i class="fa fa-check"></i><b>19.0.3</b> Fig 19.3: more or less severe cases selected</a></li>
+<li class="chapter" data-level="19.0.4" data-path="external-validity.html"><a href="external-validity.html#fig-19.4-more-or-less-heterogeneous-cases-selected"><i class="fa fa-check"></i><b>19.0.4</b> Fig 19.4: more or less heterogeneous cases selected</a></li>
+<li class="chapter" data-level="19.0.5" data-path="external-validity.html"><a href="external-validity.html#fig-19.5-more-or-less-severe-cases-selected-by-z"><i class="fa fa-check"></i><b>19.0.5</b> Fig 19.5: more or less severe cases selected by Z</a></li>
+<li class="chapter" data-level="19.0.6" data-path="external-validity.html"><a href="external-validity.html#fig-19.6-more-or-less-heterogeneous-cases-selected-by-z"><i class="fa fa-check"></i><b>19.0.6</b> Fig 19.6: more or less heterogeneous cases selected by Z</a></li>
+<li class="chapter" data-level="19.1" data-path="external-validity.html"><a href="external-validity.html#fig-19.7-case-control-design-disturbs-calibration"><i class="fa fa-check"></i><b>19.1</b> Fig 19.7: Case-control design disturbs calibration</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="external-validity.html"><a href="external-validity.html#fig-19.8-overfitting-disturbs-discrimination-and-calibration"><i class="fa fa-check"></i><b>19.1.1</b> Fig 19.8: Overfitting disturbs discrimination and calibration</a></li>
+<li class="chapter" data-level="19.1.2" data-path="external-validity.html"><a href="external-validity.html#fig-19.9-different-coeficients-model-misspecification-disturbs-discrimination-and-calibration"><i class="fa fa-check"></i><b>19.1.2</b> Fig 19.9: Different coeficients (model misspecification) disturbs discrimination and calibration</a></li>
+<li class="chapter" data-level="19.1.3" data-path="external-validity.html"><a href="external-validity.html#scenarios-table-19.4"><i class="fa fa-check"></i><b>19.1.3</b> Scenarios: Table 19.4</a></li>
+<li class="chapter" data-level="19.1.4" data-path="external-validity.html"><a href="external-validity.html#uncertainty-in-validation-simulations"><i class="fa fa-check"></i><b>19.1.4</b> Uncertainty in validation simulations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="updating.html"><a href="updating.html"><i class="fa fa-check"></i><b>20</b> Updating for a New Setting</a></li>
+<li class="chapter" data-level="21" data-path="updating-multiple.html"><a href="updating-multiple.html"><i class="fa fa-check"></i><b>21</b> Updating for Multiple Settings</a></li>
+<li class="part"><span><b>IV Part IIII: Applications</b></span></li>
+<li class="chapter" data-level="22" data-path="case-study-gusto.html"><a href="case-study-gusto.html"><i class="fa fa-check"></i><b>22</b> Case Study on a Prediction of 30-Day Mortality</a></li>
+<li class="chapter" data-level="23" data-path="case-study-cardiovascular.html"><a href="case-study-cardiovascular.html"><i class="fa fa-check"></i><b>23</b> Case Study on Survival Analysis: Prediction of Cardiovascular Event</a></li>
+<li class="chapter" data-level="24" data-path="lessons-datasets.html"><a href="lessons-datasets.html"><i class="fa fa-check"></i><b>24</b> Overall Lessons and Data Sets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Clinical prediction models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="overfitting" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Overfitting and Optimism in Prediction Models<a href="overfitting.html#overfitting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="figures-5.2-to-5.5" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Figures 5.2 to 5.5<a href="overfitting.html#figures-5.2-to-5.5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fig-5.2-noise-in-estimating-10-mortality-per-center" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Fig 5.2: Noise in estimating 10% mortality per center<a href="overfitting.html#fig-5.2-noise-in-estimating-10-mortality-per-center" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="overfitting.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Surg mortality; 10%</span></span>
+<span id="cb1-2"><a href="overfitting.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb1-3"><a href="overfitting.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (mort <span class="cf">in</span> <span class="fu">c</span>(.<span class="dv">1</span>)) { <span class="do">## ,0.05,0.02,.01)) { # 4 mortalities or only 1</span></span>
+<span id="cb1-4"><a href="overfitting.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(</span>
+<span id="cb1-5"><a href="overfitting.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span>.<span class="dv">025</span>, <span class="at">to =</span> .<span class="dv">975</span>, <span class="at">by =</span> .<span class="dv">05</span>), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, mort), <span class="at">axes =</span> F, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb1-6"><a href="overfitting.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">05</span>, .<span class="dv">35</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">33</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>],</span>
+<span id="cb1-7"><a href="overfitting.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="fu">paste</span>(<span class="st">&quot;Observed mortality, true mortality &quot;</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> mort, <span class="dv">0</span>), <span class="st">&quot;%&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;probability density&quot;</span></span>
+<span id="cb1-8"><a href="overfitting.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="overfitting.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>))</span>
+<span id="cb1-10"><a href="overfitting.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">4</span>, .<span class="dv">5</span>, .<span class="dv">6</span>, .<span class="dv">7</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>, <span class="st">&quot;40%&quot;</span>, <span class="st">&quot;50%&quot;</span>, <span class="st">&quot;60%&quot;</span>, <span class="st">&quot;70%&quot;</span>))</span>
+<span id="cb1-11"><a href="overfitting.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> <span class="dv">20</span>), <span class="dv">0</span>), <span class="dv">20</span>, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">&quot;n=20&quot;</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>])</span>
+<span id="cb1-12"><a href="overfitting.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="overfitting.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">200</span>)) { <span class="co"># add more sample sizes</span></span>
+<span id="cb1-14"><a href="overfitting.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(</span>
+<span id="cb1-15"><a href="overfitting.html#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">to =</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">by =</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>i, i, mort),</span>
+<span id="cb1-16"><a href="overfitting.html#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lty =</span> <span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb1-17"><a href="overfitting.html#cb1-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-18"><a href="overfitting.html#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> i), <span class="dv">0</span>), i, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">&quot;n=&quot;</span>, i, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
+<span id="cb1-19"><a href="overfitting.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  } <span class="co"># end loop n=50,200</span></span>
+<span id="cb1-20"><a href="overfitting.html#cb1-20" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop mort</span></span></code></pre></div>
+<p><img src="fig/Fig_5.2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="overfitting.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End Fig 5.2 ##</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="overfitting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## function for Fig 5.3 and Fig 5.4: Noise vs Heterogeneity</span></span>
+<span id="cb3-2"><a href="overfitting.html#cb3-2" aria-hidden="true" tabindex="-1"></a>illustrate_noise_heterogeneity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mort =</span> <span class="fl">0.1</span>, <span class="at">tau =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">03</span>)) {</span>
+<span id="cb3-3"><a href="overfitting.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">pty =</span> <span class="st">&quot;m&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">4</span>, <span class="fl">1.5</span>, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="overfitting.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make data set with 100 centers, each 20 patients, 10% mortality, variability sd 0 to 0.03</span></span>
+<span id="cb3-5"><a href="overfitting.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  seedn <span class="ot">&lt;-</span> <span class="dv">102</span></span>
+<span id="cb3-6"><a href="overfitting.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seedn)</span>
+<span id="cb3-7"><a href="overfitting.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  ncenter <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-8"><a href="overfitting.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  nsubjects <span class="ot">&lt;-</span> n <span class="co"># n can be changed</span></span>
+<span id="cb3-9"><a href="overfitting.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simple SD used on probability scale, can be improved upon</span></span>
+<span id="cb3-10"><a href="overfitting.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (sdtau <span class="cf">in</span> tau) { <span class="co"># set for tau can be changed</span></span>
+<span id="cb3-11"><a href="overfitting.html#cb3-11" aria-hidden="true" tabindex="-1"></a>    truemort <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> ncenter, <span class="at">mean =</span> mort, <span class="at">sd =</span> sdtau) <span class="co"># mort can be changed</span></span>
+<span id="cb3-12"><a href="overfitting.html#cb3-12" aria-hidden="true" tabindex="-1"></a>    mortmat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span>ncenter, <span class="fu">sapply</span>(truemort, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, nsubjects, x)) <span class="sc">/</span> nsubjects, truemort))</span>
+<span id="cb3-13"><a href="overfitting.html#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="overfitting.html#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Start plotting</span></span>
+<span id="cb3-15"><a href="overfitting.html#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">pch =</span> <span class="st">&quot;&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">2</span>, <span class="fl">1.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">03</span>, .<span class="dv">35</span>), <span class="at">axes =</span> F, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> sdtau <span class="sc">==</span> .<span class="dv">02</span>, <span class="st">&quot;Mortality&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb3-16"><a href="overfitting.html#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0%&quot;</span>, <span class="st">&quot;10%&quot;</span>, <span class="st">&quot;20%&quot;</span>, <span class="st">&quot;30%&quot;</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="overfitting.html#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Observed&quot;</span>, <span class="st">&quot;True mortality&quot;</span>))</span>
+<span id="cb3-18"><a href="overfitting.html#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> .<span class="dv">3</span>, <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;No heterogeneity&quot;</span>,</span>
+<span id="cb3-19"><a href="overfitting.html#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sdtau <span class="sc">!=</span> <span class="dv">0</span>, <span class="fu">paste</span>(<span class="st">&quot;+/-&quot;</span>, sdtau))</span>
+<span id="cb3-20"><a href="overfitting.html#cb3-20" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">adj =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb3-21"><a href="overfitting.html#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>ncenter)) {</span>
+<span id="cb3-22"><a href="overfitting.html#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-23"><a href="overfitting.html#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines</span>(</span>
+<span id="cb3-24"><a href="overfitting.html#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-25"><a href="overfitting.html#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-26"><a href="overfitting.html#cb3-26" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-27"><a href="overfitting.html#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-28"><a href="overfitting.html#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">points</span>(</span>
+<span id="cb3-29"><a href="overfitting.html#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-30"><a href="overfitting.html#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">pch =</span> <span class="fu">c</span>(<span class="st">&quot;o&quot;</span>, <span class="st">&quot;+&quot;</span>), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-31"><a href="overfitting.html#cb3-31" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-32"><a href="overfitting.html#cb3-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-33"><a href="overfitting.html#cb3-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-34"><a href="overfitting.html#cb3-34" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function that illustrates the impact of noise (determined by n) vs heterogeneity (determined by sdtau)</span></span></code></pre></div>
+</div>
+<div id="figs-5.3-and-5.4" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Figs 5.3 and 5.4<a href="overfitting.html#figs-5.3-and-5.4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These plots llustrate the impact of noise (determined by n, 20 or 200) vs heterogeneity (determined by sdtau (0 - 0.03)). With small n, such as n=20 per center, mortality such as 10% cannot be estimated reliably. Reliable estimation of a center’s performance requires a large n, such as n=200.</p>
+</div>
+<div id="n20" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> n=20<a href="overfitting.html#n20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="fig/Fig_5.3-1.png" width="672" /></p>
+</div>
+<div id="n200" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> n=200<a href="overfitting.html#n200" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="fig/Fig_5.4-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statmods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="altmods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

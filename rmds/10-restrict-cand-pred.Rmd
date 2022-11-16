@@ -1,4 +1,4 @@
-# Restrictions on Candidate Predictors {#ch:restrictions}
+# Restrictions on Candidate Predictors {#restrictions}
 
 ```{r setup-ch10, include=FALSE}
 knitr::opts_knit$set(

@@ -1,4 +1,4 @@
-# Evaluation of Clinical Usefulness {#ch:usefulness}
+# Evaluation of Clinical Usefulness {#usefulness}
 
 ```{r setup-ch16, include=FALSE}
 knitr::opts_knit$set(

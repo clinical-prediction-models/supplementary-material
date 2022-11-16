@@ -1,4 +1,4 @@
-# Overall Lessons and Data Sets {#ch:lessons-datasets}
+# Overall Lessons and Data Sets {#lessons-datasets}
 
 ```{r setup-ch24, include=FALSE}
 knitr::opts_knit$set(

@@ -1,6 +1,6 @@
 # (PART) Part II: Developing Valid Prediction Models {-}
 
-# Missing values {#ch:missing}
+# Missing values {#missing}
 
 ```{r setup-ch7, include=FALSE}
 knitr::opts_knit$set(

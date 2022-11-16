@@ -1,4 +1,4 @@
-# Overfitting and Optimism in Prediction Models {#ch:overfitting}
+# Overfitting and Optimism in Prediction Models {#overfitting}
 
 ```{r setup-ch5, include=FALSE}
 knitr::opts_knit$set(

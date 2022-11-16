@@ -1,4 +1,4 @@
-# Study Design for Prediction Modeling {#ch:design}
+# Study Design for Prediction Modeling {#design}
 
 ```{r setup-ch3, include=FALSE}
 knitr::opts_knit$set(

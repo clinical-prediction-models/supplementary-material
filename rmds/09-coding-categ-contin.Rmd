@@ -1,4 +1,4 @@
-# Coding of Categorical and Continuous Predictors {#ch:coding}
+# Coding of Categorical and Continuous Predictors {#coding}
 
 ```{r setup-ch9, include=FALSE}
 knitr::opts_knit$set(

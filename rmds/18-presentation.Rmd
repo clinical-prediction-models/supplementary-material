@@ -1,4 +1,4 @@
-# Presentation Formats {#ch:presentation}
+# Presentation Formats {#presentation}
 
 ```{r setup-ch18, include=FALSE}
 knitr::opts_knit$set(

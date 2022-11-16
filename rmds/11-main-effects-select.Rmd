@@ -1,4 +1,4 @@
-# Selection of Main Effects {#ch:selection}
+# Selection of Main Effects {#selection}
 
 ```{r setup-ch11, include=FALSE}
 knitr::opts_knit$set(

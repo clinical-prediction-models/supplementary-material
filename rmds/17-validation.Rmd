@@ -1,4 +1,4 @@
-# Validation of Prediction Models {#ch:validation}
+# Validation of Prediction Models {#validation}
 
 ```{r setup-ch17, include=FALSE}
 knitr::opts_knit$set(

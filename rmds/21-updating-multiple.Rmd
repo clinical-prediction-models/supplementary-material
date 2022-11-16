@@ -1,4 +1,4 @@
-# Updating for Multiple Settings {#ch:updating-multiple}
+# Updating for Multiple Settings {#updating-multiple}
 
 ```{r setup-ch21, include=FALSE}
 knitr::opts_knit$set(

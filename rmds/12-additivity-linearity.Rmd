@@ -1,4 +1,4 @@
-# Assumptions in Regression Models - Additivity and Linearity{#ch:additivity-linearity}
+# Assumptions in Regression Models - Additivity and Linearity {#additivity-linearity}
 
 ## GUSTO-I interaction analysis
 
