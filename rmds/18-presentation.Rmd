@@ -313,8 +313,8 @@ Intermediate scores can be obtained by interpolation.
 ### Translate score in probability estimates with 95% CI
 
 ```{r scoreplot}
-### Function to relate scores to predictions in graph ###
-make.score.matrix <-function(fit, scores, shrinkage=1, limits.scores="none") {   
+##'# Function to relate scores to predictions in graph ###
+make.score.matrix <-function(fit, scores, shrinkage=1, limits.scores=NULL) {   
   # lpscore for score chart + graph
   fit         <- update(fit, x=T,y=T, se.fit=T)   # SE of predictions from original model
   rounded.lp	<- fit$x %*% scores                 # Linear predictor
@@ -326,7 +326,7 @@ make.score.matrix <-function(fit, scores, shrinkage=1, limits.scores="none") {
   lp2	        <- fit.lp$coef[1] + shrunk.beta*rounded.lp
   cat("\nlinear predictor:", fit.lp$coef[1], "+", shrunk.beta, "* rounded.lp\n",
         " original range of scores", min(rounded.lp), max(rounded.lp), "\n")
-  if (limits.scores!="none")  {
+  if (!is.null(limits.scores))  {
     rounded.lp[rounded.lp < min(limits.scores)] <- min(limits.scores)
     rounded.lp[rounded.lp > max(limits.scores)] <- max(limits.scores) }
   cat("restricted range of scores", min(rounded.lp), max(rounded.lp), "\n") 

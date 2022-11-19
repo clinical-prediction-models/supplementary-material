@@ -23,7 +23,7 @@
 <meta name="author" content="Ewout Steyerberg" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2022-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -92,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -198,7 +200,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>15</b> Evaluation of Performance</a></li>
 <li class="chapter" data-level="16" data-path="usefulness.html"><a href="usefulness.html"><i class="fa fa-check"></i><b>16</b> Evaluation of Clinical Usefulness</a></li>
 <li class="chapter" data-level="17" data-path="validation.html"><a href="validation.html"><i class="fa fa-check"></i><b>17</b> Validation of Prediction Models</a></li>
-<li class="chapter" data-level="18" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>18</b> Presentation Formats</a></li>
+<li class="chapter" data-level="18" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>18</b> Presentation Formats</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="presentation.html"><a href="presentation.html#fit-logistic-models-in-n544-data-set-6-predictors"><i class="fa fa-check"></i><b>18.1</b> Fit logistic models in n544 data set; 6 predictors</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="presentation.html"><a href="presentation.html#internal-validation-by-bootstrapping"><i class="fa fa-check"></i><b>18.1.1</b> Internal validation by bootstrapping</a></li>
+<li class="chapter" data-level="18.1.2" data-path="presentation.html"><a href="presentation.html#shrunk-model-and-penalization"><i class="fa fa-check"></i><b>18.1.2</b> Shrunk model and penalization</a></li>
+<li class="chapter" data-level="18.1.3" data-path="presentation.html"><a href="presentation.html#fit-penalized-model-and-compare-fits"><i class="fa fa-check"></i><b>18.1.3</b> Fit penalized model and compare fits</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#fig-18.1"><i class="fa fa-check"></i>Fig 18.1</a>
+<ul>
+<li class="chapter" data-level="18.1.4" data-path="presentation.html"><a href="presentation.html#make-nomogram-from-penalized-model"><i class="fa fa-check"></i><b>18.1.4</b> Make nomogram from penalized model</a></li>
+<li class="chapter" data-level="18.1.5" data-path="presentation.html"><a href="presentation.html#score-chart-creation-with-categorized-and-continuous-predictors"><i class="fa fa-check"></i><b>18.1.5</b> Score chart creation with categorized and continuous predictors</a></li>
+<li class="chapter" data-level="18.1.6" data-path="presentation.html"><a href="presentation.html#consider-making-rounded-scores-from-penalized-coefs"><i class="fa fa-check"></i><b>18.1.6</b> Consider making rounded scores from penalized coefs</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="presentation.html"><a href="presentation.html#scores-for-continuous-predictors"><i class="fa fa-check"></i><b>18.2</b> Scores for continuous predictors</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="presentation.html"><a href="presentation.html#ldh"><i class="fa fa-check"></i><b>18.2.1</b> LDH</a></li>
+<li class="chapter" data-level="18.2.2" data-path="presentation.html"><a href="presentation.html#study-scores-for-postchemotherapy-size"><i class="fa fa-check"></i><b>18.2.2</b> Study scores for postchemotherapy size</a></li>
+<li class="chapter" data-level="18.2.3" data-path="presentation.html"><a href="presentation.html#study-scores-for-reduction-in-size"><i class="fa fa-check"></i><b>18.2.3</b> Study scores for reduction in size</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#table-18.2"><i class="fa fa-check"></i>Table 18.2</a>
+<ul>
+<li class="chapter" data-level="18.2.4" data-path="presentation.html"><a href="presentation.html#make-a-score-chart"><i class="fa fa-check"></i><b>18.2.4</b> Make a score chart</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#fig-18.2"><i class="fa fa-check"></i>Fig 18.2</a>
+<ul>
+<li class="chapter" data-level="18.2.5" data-path="presentation.html"><a href="presentation.html#translate-score-in-probability-estimates-with-95-ci"><i class="fa fa-check"></i><b>18.2.5</b> Translate score in probability estimates with 95% CI</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#end-table-18.2-score-chart-and-fig-18.2-graphic-translation-from-score-to-probability"><i class="fa fa-check"></i>End Table 18.2 (score chart) and Fig 18.2 (graphic translation from score to probability)</a>
+<ul>
+<li class="chapter" data-level="18.2.6" data-path="presentation.html"><a href="presentation.html#categorized-coding"><i class="fa fa-check"></i><b>18.2.6</b> Categorized coding</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#table-18.3"><i class="fa fa-check"></i>Table 18.3</a>
+<ul>
+<li class="chapter" data-level="18.2.7" data-path="presentation.html"><a href="presentation.html#alternative-make-a-score-from-0---5"><i class="fa fa-check"></i><b>18.2.7</b> Alternative: make a score from 0 - 5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#fig-18.3"><i class="fa fa-check"></i>Fig 18.3</a>
+<ul>
+<li class="chapter" data-level="18.2.8" data-path="presentation.html"><a href="presentation.html#iso-probability-lines"><i class="fa fa-check"></i><b>18.2.8</b> Iso-probability lines</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#fig-18.4"><i class="fa fa-check"></i>Fig 18.4</a>
+<ul>
+<li class="chapter" data-level="18.2.9" data-path="presentation.html"><a href="presentation.html#meta-model-with-tree-presentation"><i class="fa fa-check"></i><b>18.2.9</b> Meta-model with tree presentation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentation.html"><a href="presentation.html#apparent-performance-of-penalized-vs-rescaled-vs-simplified-models"><i class="fa fa-check"></i>Apparent performance of penalized vs rescaled vs simplified models</a>
+<ul>
+<li class="chapter" data-level="18.2.10" data-path="presentation.html"><a href="presentation.html#end-comparisons-of-c-statistics"><i class="fa fa-check"></i><b>18.2.10</b> End comparisons of c statistics</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>III Part III: Generalizability of Prediction Models</b></span></li>
 <li class="chapter" data-level="19" data-path="external-validity.html"><a href="external-validity.html"><i class="fa fa-check"></i><b>19</b> Patterns of External Validity</a>
 <ul>
@@ -268,52 +318,257 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb44-2"><a href="additivity-linearity.html#cb44-2" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
 <span id="cb44-3"><a href="additivity-linearity.html#cb44-3" aria-hidden="true" tabindex="-1"></a>fullint <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">*</span> (KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX), <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
 <span id="cb44-4"><a href="additivity-linearity.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullint)</span></code></pre></div>
-<pre><code>##                 Wald Statistics          Response: DAY30 
-## 
-##  Factor                                      Chi-Square d.f. P     
-##  AGE  (Factor+Higher Order Factors)          29.93       8   0.0002
-##   All Interactions                           11.01       7   0.1380
-##  KILLIP  (Factor+Higher Order Factors)        4.96       2   0.0839
-##   All Interactions                            1.01       1   0.3160
-##  HIG  (Factor+Higher Order Factors)           6.32       2   0.0424
-##   All Interactions                            2.20       1   0.1380
-##  DIA  (Factor+Higher Order Factors)           3.70       2   0.1571
-##   All Interactions                            0.64       1   0.4220
-##  HYP  (Factor+Higher Order Factors)           5.62       2   0.0603
-##   All Interactions                            1.46       1   0.2267
-##  HRT  (Factor+Higher Order Factors)          13.50       2   0.0012
-##   All Interactions                            4.49       1   0.0341
-##  TTR  (Factor+Higher Order Factors)           8.31       2   0.0157
-##   All Interactions                            2.80       1   0.0942
-##  SEX  (Factor+Higher Order Factors)           0.79       2   0.6736
-##   All Interactions                            0.42       1   0.5151
-##  AGE * KILLIP  (Factor+Higher Order Factors)  1.01       1   0.3160
-##  AGE * HIG  (Factor+Higher Order Factors)     2.20       1   0.1380
-##  AGE * DIA  (Factor+Higher Order Factors)     0.64       1   0.4220
-##  AGE * HYP  (Factor+Higher Order Factors)     1.46       1   0.2267
-##  AGE * HRT  (Factor+Higher Order Factors)     4.49       1   0.0341
-##  AGE * TTR  (Factor+Higher Order Factors)     2.80       1   0.0942
-##  AGE * SEX  (Factor+Higher Order Factors)     0.42       1   0.5151
-##  TOTAL INTERACTION                           11.01       7   0.1380
-##  TOTAL                                       64.59      15   &lt;.0001</code></pre>
+<pre><code>## &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;&lt;td colspan=&#39;4&#39; style=&#39;text-align: left;&#39;&gt;
+## Wald Statistics for &lt;code style=&quot;font-size:0.8em&quot;&gt;DAY30&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;th style=&#39;border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;&lt;i&gt;χ&lt;sup&gt;2&lt;/sup&gt;&lt;/i&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;d.f.&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;&lt;i&gt;P&lt;/i&gt;&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;29.93&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 8&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0002&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;11.01&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 7&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1380&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;KILLIP  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 4.96&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0839&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1.01&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.3160&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HIG  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 6.32&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0424&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.20&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1380&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;DIA  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 3.70&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1571&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.64&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.4220&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HYP  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 5.62&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0603&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1.46&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.2267&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HRT  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;13.50&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0012&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 4.49&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0341&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;TTR  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 8.31&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0157&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.80&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0942&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;SEX  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.79&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.6736&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.42&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.5151&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × KILLIP  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1.01&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.3160&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × HIG  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.20&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1380&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × DIA  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.64&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.4220&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × HYP  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1.46&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.2267&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × HRT  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 4.49&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0341&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × TTR  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.80&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0942&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × SEX  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.42&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.5151&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;TOTAL INTERACTION&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;11.01&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 7&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1380&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;border-bottom: 2px solid grey; text-align: left;&#39;&gt;TOTAL&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;64.59&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;15&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="additivity-linearity.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Select only interaction AGE * HRT</span></span>
 <span id="cb46-2"><a href="additivity-linearity.html#cb46-2" aria-hidden="true" tabindex="-1"></a>fullints <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX <span class="sc">+</span> AGE <span class="sc">*</span> HRT, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> T)</span>
 <span id="cb46-3"><a href="additivity-linearity.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullints)</span></code></pre></div>
-<pre><code>##                 Wald Statistics          Response: DAY30 
-## 
-##  Factor                                   Chi-Square d.f. P     
-##  AGE  (Factor+Higher Order Factors)       26.67      2    &lt;.0001
-##   All Interactions                         2.70      1    0.1004
-##  KILLIP                                    3.52      1    0.0605
-##  HIG                                       5.38      1    0.0204
-##  DIA                                       3.14      1    0.0763
-##  HYP                                       3.49      1    0.0618
-##  HRT  (Factor+Higher Order Factors)       11.67      2    0.0029
-##   All Interactions                         2.70      1    0.1004
-##  TTR                                       5.66      1    0.0174
-##  SEX                                       0.19      1    0.6602
-##  AGE * HRT  (Factor+Higher Order Factors)  2.70      1    0.1004
-##  TOTAL                                    65.30      9    &lt;.0001</code></pre>
+<pre><code>## &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;&lt;td colspan=&#39;4&#39; style=&#39;text-align: left;&#39;&gt;
+## Wald Statistics for &lt;code style=&quot;font-size:0.8em&quot;&gt;DAY30&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;th style=&#39;border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;&lt;i&gt;χ&lt;sup&gt;2&lt;/sup&gt;&lt;/i&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;d.f.&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;&lt;i&gt;P&lt;/i&gt;&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;26.67&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.70&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1004&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;KILLIP&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 3.52&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0605&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HIG&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 5.38&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0204&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;DIA&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 3.14&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0763&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HYP&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 3.49&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0618&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;HRT  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;11.67&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;2&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0029&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt; &lt;i&gt;All Interactions&lt;/i&gt;&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.70&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1004&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;TTR&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 5.66&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.0174&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;SEX&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 0.19&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.6602&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;text-align: left;&#39;&gt;AGE × HRT  (Factor+Higher Order Factors)&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt; 2.70&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;1&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; text-align: right;&#39;&gt;0.1004&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;border-bottom: 2px solid grey; text-align: left;&#39;&gt;TOTAL&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;65.30&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;9&lt;/td&gt;
+## &lt;td style=&#39;padding-left:3ex; border-bottom: 2px solid grey; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 </div>
 <div id="fig-12.1" class="section level3 hasAnchor" number="12.1.2">
 <h3><span class="header-section-number">12.1.2</span> Fig 12.1<a href="additivity-linearity.html#fig-12.1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -334,86 +589,398 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb48-3"><a href="additivity-linearity.html#cb48-3" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE1 <span class="ot">&lt;-</span> gustos<span class="sc">$</span>AGE <span class="sc">*</span> gustos<span class="sc">$</span>HRT</span>
 <span id="cb48-4"><a href="additivity-linearity.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard</span></span>
 <span id="cb48-5"><a href="additivity-linearity.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX <span class="sc">+</span> AGE <span class="sc">*</span> HRT, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div>
-<pre><code>## Logistic Regression Model
+<pre><code>## 
+##  &lt;strong&gt;Logistic Regression Model&lt;/strong&gt;
 ##  
+##  &lt;pre&gt;
 ##  lrm(formula = DAY30 ~ AGE + KILLIP + HIG + DIA + HYP + HRT + 
 ##      TTR + SEX + AGE * HRT, data = gustos, x = T, y = T, linear.predictors = F)
+##  &lt;/pre&gt;
 ##  
-##                         Model Likelihood      Discrimination    Rank Discrim.    
-##                               Ratio Test             Indexes          Indexes    
-##  Obs           785    LR chi2      86.28      R2       0.270    C       0.831    
-##   0            733    d.f.             9      R2(9,785)0.094    Dxy     0.662    
-##   1             52    Pr(&gt; chi2) &lt;0.0001    R2(9,145.7)0.412    gamma   0.662    
-##  max |deriv| 1e-09                            Brier    0.051    tau-a   0.082    
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Model Likelihood&lt;br&gt;Ratio Test&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Discrimination&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Rank Discrim.&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;Obs 785&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;LR χ&lt;sup&gt;2&lt;/sup&gt; 86.28&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; 0.270&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;C&lt;/i&gt; 0.831&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 0 733&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;d.f. 9&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,785&lt;/span&gt;&lt;/sub&gt; 0.094&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;D&lt;/i&gt;&lt;sub&gt;xy&lt;/sub&gt; 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 1 52&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;Pr(&gt;χ&lt;sup&gt;2&lt;/sup&gt;) &lt;0.0001&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,145.7&lt;/span&gt;&lt;/sub&gt; 0.412&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;γ 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;max |∂log &lt;i&gt;L&lt;/i&gt;/∂β| 1×10&lt;sup&gt;-9&lt;/sup&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Brier 0.051&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;τ&lt;sub&gt;a&lt;/sub&gt; 0.082&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;
+## 
 ##  
-##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
-##  Intercept -9.7431 1.6574 -5.88  &lt;0.0001 
-##  AGE        0.0759 0.0240  3.16  0.0016  
-##  KILLIP     0.4595 0.2448  1.88  0.0605  
-##  HIG        0.7900 0.3407  2.32  0.0204  
-##  DIA        0.7804 0.4403  1.77  0.0763  
-##  HYP        1.0403 0.5570  1.87  0.0618  
-##  HRT       -3.6376 2.8352 -1.28  0.1995  
-##  TTR        0.8201 0.3447  2.38  0.0174  
-##  SEX       -0.1534 0.3490 -0.44  0.6602  
-##  AGE * HRT  0.0655 0.0399  1.64  0.1004  
-## </code></pre>
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;&lt;th style=&#39;border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; min-width: 7em; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;β&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;S.E.&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Wald &lt;i&gt;Z&lt;/i&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Pr(&gt;|&lt;i&gt;Z&lt;/i&gt;|)&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;Intercept&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -9.7431&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.6574&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-5.88&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;AGE&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.0759&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.0240&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 3.16&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0016&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;KILLIP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.4595&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.2448&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.88&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0605&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HIG&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7900&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3407&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.32&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0204&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;DIA&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7804&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.4403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.77&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0763&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HYP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  1.0403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.5570&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.87&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0618&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HRT&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -3.6376&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.8352&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-1.28&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.1995&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;TTR&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.8201&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3447&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.38&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0174&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;SEX&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -0.1534&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3490&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-0.44&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.6602&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: left;&#39;&gt;AGE × HRT&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;  0.0655&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; 0.0399&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; 1.64&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;0.1004&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="additivity-linearity.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smart coding</span></span>
 <span id="cb50-2"><a href="additivity-linearity.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div>
-<pre><code>## Logistic Regression Model
+<pre><code>## 
+##  &lt;strong&gt;Logistic Regression Model&lt;/strong&gt;
 ##  
+##  &lt;pre&gt;
 ##  lrm(formula = DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + 
 ##      HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+##  &lt;/pre&gt;
 ##  
-##                         Model Likelihood      Discrimination    Rank Discrim.    
-##                               Ratio Test             Indexes          Indexes    
-##  Obs           785    LR chi2      86.28      R2       0.270    C       0.831    
-##   0            733    d.f.             9      R2(9,785)0.094    Dxy     0.662    
-##   1             52    Pr(&gt; chi2) &lt;0.0001    R2(9,145.7)0.412    gamma   0.662    
-##  max |deriv| 1e-09                            Brier    0.051    tau-a   0.082    
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Model Likelihood&lt;br&gt;Ratio Test&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Discrimination&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Rank Discrim.&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;Obs 785&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;LR χ&lt;sup&gt;2&lt;/sup&gt; 86.28&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; 0.270&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;C&lt;/i&gt; 0.831&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 0 733&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;d.f. 9&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,785&lt;/span&gt;&lt;/sub&gt; 0.094&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;D&lt;/i&gt;&lt;sub&gt;xy&lt;/sub&gt; 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 1 52&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;Pr(&gt;χ&lt;sup&gt;2&lt;/sup&gt;) &lt;0.0001&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,145.7&lt;/span&gt;&lt;/sub&gt; 0.412&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;γ 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;max |∂log &lt;i&gt;L&lt;/i&gt;/∂β| 1×10&lt;sup&gt;-9&lt;/sup&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Brier 0.051&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;τ&lt;sub&gt;a&lt;/sub&gt; 0.082&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;
+## 
 ##  
-##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
-##  Intercept -9.7431 1.6574 -5.88  &lt;0.0001 
-##  AGE0       0.0759 0.0240  3.16  0.0016  
-##  AGE1       0.1414 0.0332  4.26  &lt;0.0001 
-##  HRT       -3.6376 2.8352 -1.28  0.1995  
-##  KILLIP     0.4595 0.2448  1.88  0.0605  
-##  HIG        0.7900 0.3407  2.32  0.0204  
-##  DIA        0.7804 0.4403  1.77  0.0763  
-##  HYP        1.0403 0.5570  1.87  0.0618  
-##  TTR        0.8201 0.3447  2.38  0.0174  
-##  SEX       -0.1534 0.3490 -0.44  0.6602  
-## </code></pre>
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;&lt;th style=&#39;border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; min-width: 7em; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;β&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;S.E.&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Wald &lt;i&gt;Z&lt;/i&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Pr(&gt;|&lt;i&gt;Z&lt;/i&gt;|)&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;Intercept&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -9.7431&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.6574&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-5.88&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;AGE0&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.0759&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.0240&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 3.16&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0016&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;AGE1&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.1414&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.0332&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 4.26&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HRT&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -3.6376&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.8352&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-1.28&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.1995&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;KILLIP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.4595&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.2448&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.88&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0605&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HIG&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7900&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3407&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.32&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0204&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;DIA&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7804&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.4403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.77&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0763&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HYP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  1.0403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.5570&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.87&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0618&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;TTR&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.8201&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3447&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.38&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0174&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: left;&#39;&gt;SEX&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; -0.1534&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; 0.3490&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;-0.44&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;0.6602&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="additivity-linearity.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identical fit, easier interpretation</span></span>
 <span id="cb52-2"><a href="additivity-linearity.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="additivity-linearity.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Age 55 as reference for HRT effect</span></span>
 <span id="cb52-4"><a href="additivity-linearity.html#cb52-4" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE0 <span class="ot">&lt;-</span> (gustos<span class="sc">$</span>AGE <span class="sc">-</span> <span class="dv">55</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> gustos<span class="sc">$</span>HRT)</span>
 <span id="cb52-5"><a href="additivity-linearity.html#cb52-5" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE1 <span class="ot">&lt;-</span> (gustos<span class="sc">$</span>AGE <span class="sc">-</span> <span class="dv">55</span>) <span class="sc">*</span> gustos<span class="sc">$</span>HRT</span>
 <span id="cb52-6"><a href="additivity-linearity.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div>
-<pre><code>## Logistic Regression Model
+<pre><code>## 
+##  &lt;strong&gt;Logistic Regression Model&lt;/strong&gt;
 ##  
+##  &lt;pre&gt;
 ##  lrm(formula = DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + 
 ##      HYP + TTR + SEX, data = gustos, x = T, y = T, linear.predictors = F)
+##  &lt;/pre&gt;
 ##  
-##                         Model Likelihood      Discrimination    Rank Discrim.    
-##                               Ratio Test             Indexes          Indexes    
-##  Obs           785    LR chi2      86.28      R2       0.270    C       0.831    
-##   0            733    d.f.             9      R2(9,785)0.094    Dxy     0.662    
-##   1             52    Pr(&gt; chi2) &lt;0.0001    R2(9,145.7)0.412    gamma   0.662    
-##  max |deriv| 4e-11                            Brier    0.051    tau-a   0.082    
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Model Likelihood&lt;br&gt;Ratio Test&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Discrimination&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Rank Discrim.&lt;br&gt;Indexes&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;Obs 785&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;LR χ&lt;sup&gt;2&lt;/sup&gt; 86.28&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; 0.270&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;C&lt;/i&gt; 0.831&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 0 733&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;d.f. 9&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,785&lt;/span&gt;&lt;/sub&gt; 0.094&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;D&lt;/i&gt;&lt;sub&gt;xy&lt;/sub&gt; 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt; 1 52&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;Pr(&gt;χ&lt;sup&gt;2&lt;/sup&gt;) &lt;0.0001&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;i&gt;R&lt;/i&gt;&lt;sup&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;2&lt;/span&gt;&lt;/sup&gt;&lt;sub style=&#39;position: relative; left: -.47em; bottom: -.4em;&#39;&gt;&lt;span style=&#39;font-size: 70%;&#39;&gt;9,145.7&lt;/span&gt;&lt;/sub&gt; 0.412&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-right: 1px solid black; text-align: center;&#39;&gt;γ 0.662&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black; text-align: center;&#39;&gt;max |∂log &lt;i&gt;L&lt;/i&gt;/∂β| 4×10&lt;sup&gt;-11&lt;/sup&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;Brier 0.051&lt;/td&gt;
+## &lt;td style=&#39;min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: center;&#39;&gt;τ&lt;sub&gt;a&lt;/sub&gt; 0.082&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;
+## 
 ##  
-##            Coef    S.E.   Wald Z Pr(&gt;|Z|)
-##  Intercept -5.5703 0.5746 -9.69  &lt;0.0001 
-##  AGE0       0.0759 0.0240  3.16  0.0016  
-##  AGE1       0.1414 0.0332  4.26  &lt;0.0001 
-##  HRT       -0.0333 0.7043 -0.05  0.9623  
-##  KILLIP     0.4595 0.2448  1.88  0.0605  
-##  HIG        0.7900 0.3407  2.32  0.0204  
-##  DIA        0.7804 0.4403  1.77  0.0763  
-##  HYP        1.0403 0.5570  1.87  0.0618  
-##  TTR        0.8201 0.3447  2.38  0.0174  
-##  SEX       -0.1534 0.3490 -0.44  0.6602  
-## </code></pre>
+##  &lt;table class=&#39;gmisc_table&#39; style=&#39;border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;&#39; &gt;
+## &lt;thead&gt;
+## &lt;tr&gt;&lt;th style=&#39;border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; min-width: 7em; text-align: center;&#39;&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;β&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;S.E.&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Wald &lt;i&gt;Z&lt;/i&gt;&lt;/th&gt;
+## &lt;th style=&#39;font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;&#39;&gt;Pr(&gt;|&lt;i&gt;Z&lt;/i&gt;|)&lt;/th&gt;
+## &lt;/tr&gt;
+## &lt;/thead&gt;
+## &lt;tbody&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;Intercept&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -5.5703&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.5746&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-9.69&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;AGE0&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.0759&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.0240&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 3.16&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0016&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;AGE1&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.1414&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.0332&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 4.26&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;&lt;0.0001&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HRT&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; -0.0333&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.7043&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;-0.05&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.9623&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;KILLIP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.4595&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.2448&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.88&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0605&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HIG&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7900&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3407&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.32&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0204&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;DIA&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.7804&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.4403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.77&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0763&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;HYP&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  1.0403&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.5570&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 1.87&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0618&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: left;&#39;&gt;TTR&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;  0.8201&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 0.3447&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt; 2.38&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; text-align: right;&#39;&gt;0.0174&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;tr&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: left;&#39;&gt;SEX&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; -0.1534&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt; 0.3490&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;-0.44&lt;/td&gt;
+## &lt;td style=&#39;min-width: 7em; border-bottom: 2px solid grey; text-align: right;&#39;&gt;0.6602&lt;/td&gt;
+## &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="additivity-linearity.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Even nicer interpretation, HRT effect for age=55</span></span></code></pre></div>
 <p>The fit of each of the models is identical (always LR chi2=86.28); each model allows for linear interaction between AGE and HRT. The interpretation of the model is easier if the age effects are estimated for HRT==1 and for HRT==0. Scaling is easier by subtracting 55 from AGE (AGE-55); this implies the HRT effect relates to age 55.</p>
 </div>
