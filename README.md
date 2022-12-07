@@ -6,3 +6,7 @@ This is a bookdown-based repository containing the supplementary materials from 
 
 https://clinical-prediction-models.github.io/supplementary-material/
 
+For further information and materials related to the book, refer to the update website:
+
+https://www.clinicalpredictionmodels.org/
+
