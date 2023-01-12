@@ -23,7 +23,7 @@
 <meta name="author" content="Ewout Steyerberg" />
 
 
-<meta name="date" content="2022-11-19" />
+<meta name="date" content="2023-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,7 +196,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2" data-path="additivity-linearity.html"><a href="additivity-linearity.html#mfp-and-other-non-linear-analyses-in-n544-data"><i class="fa fa-check"></i><b>12.2</b> MFP and other non-linear analyses in n544 data</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Modern Estimation Methods</a></li>
-<li class="chapter" data-level="14" data-path="estimation-external.html"><a href="estimation-external.html"><i class="fa fa-check"></i><b>14</b> Estimation with External Information</a></li>
+<li class="chapter" data-level="14" data-path="estimation-external.html"><a href="estimation-external.html"><i class="fa fa-check"></i><b>14</b> Estimation with External Information</a>
+<ul>
+<li class="chapter" data-level="" data-path="estimation-external.html"><a href="estimation-external.html#learning-from-external-information"><i class="fa fa-check"></i>Learning from external information</a>
+<ul>
+<li class="chapter" data-level="14.0.1" data-path="estimation-external.html"><a href="estimation-external.html#a-local-model-with-external-information-table-14.1"><i class="fa fa-check"></i><b>14.0.1</b> A local model with external information: Table 14.1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="estimation-external.html"><a href="estimation-external.html#the-data-tbi-n11022-and-aaa-n238-data-sets"><i class="fa fa-check"></i>The data: TBI (n=11022) and AAA (n=238) data sets</a></li>
+<li class="chapter" data-level="" data-path="estimation-external.html"><a href="estimation-external.html#the-impact-study"><i class="fa fa-check"></i>The impact study</a>
+<ul>
+<li class="chapter" data-level="14.0.2" data-path="estimation-external.html"><a href="estimation-external.html#descriptives"><i class="fa fa-check"></i><b>14.0.2</b> Descriptives</a></li>
+<li class="chapter" data-level="14.0.3" data-path="estimation-external.html"><a href="estimation-external.html#analyses-for-table-14.2"><i class="fa fa-check"></i><b>14.0.3</b> Analyses for Table 14.2</a></li>
+<li class="chapter" data-level="14.0.4" data-path="estimation-external.html"><a href="estimation-external.html#estimation-of-coefficients-naive-stratified-and-ipd-ma"><i class="fa fa-check"></i><b>14.0.4</b> Estimation of coefficients: naive, stratified and IPD-MA</a></li>
+<li class="chapter" data-level="14.0.5" data-path="estimation-external.html"><a href="estimation-external.html#estimation-of-standard-errors"><i class="fa fa-check"></i><b>14.0.5</b> Estimation of standard errors</a></li>
+<li class="chapter" data-level="14.0.6" data-path="estimation-external.html"><a href="estimation-external.html#estimation-for-a-specific-study-assuming-a-global-model-holds"><i class="fa fa-check"></i><b>14.0.6</b> Estimation for a specific study, assuming a global model holds</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="estimation-external.html"><a href="estimation-external.html#the-aaa-study"><i class="fa fa-check"></i>The AAA study</a>
+<ul>
+<li class="chapter" data-level="14.0.7" data-path="estimation-external.html"><a href="estimation-external.html#descriptives-1"><i class="fa fa-check"></i><b>14.0.7</b> Descriptives</a></li>
+<li class="chapter" data-level="14.0.8" data-path="estimation-external.html"><a href="estimation-external.html#literature-univariate-estimates-table-14.4"><i class="fa fa-check"></i><b>14.0.8</b> Literature, univariate estimates: Table 14.4</a></li>
+<li class="chapter" data-level="14.0.9" data-path="estimation-external.html"><a href="estimation-external.html#a-simple-prediction-model-table-14.5"><i class="fa fa-check"></i><b>14.0.9</b> A simple prediction model: Table 14.5</a></li>
+<li class="chapter" data-level="14.0.10" data-path="estimation-external.html"><a href="estimation-external.html#adaptation-of-univariate-coefficients-table-14.6"><i class="fa fa-check"></i><b>14.0.10</b> Adaptation of univariate coefficients: Table 14.6</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="estimation-external.html"><a href="estimation-external.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>15</b> Evaluation of Performance</a></li>
 <li class="chapter" data-level="16" data-path="usefulness.html"><a href="usefulness.html"><i class="fa fa-check"></i><b>16</b> Evaluation of Clinical Usefulness</a></li>
 <li class="chapter" data-level="17" data-path="validation.html"><a href="validation.html"><i class="fa fa-check"></i><b>17</b> Validation of Prediction Models</a></li>
@@ -430,6 +453,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
