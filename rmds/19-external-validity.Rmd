@@ -33,7 +33,7 @@ mycolors <- c(
 source("R/val.functions.17jan19.R")
 ```
 
-### Fig 19.1: a missed predictor Z
+### Fig 19.1: a missed predictor Z {-}
 
 ```{r Fig19.1, echo=FALSE}
 set.seed(2)
@@ -64,7 +64,7 @@ plot(x,z2, xlab="x", ylab="z, moderately correlated", xlim=c(-3,3), ylim=c(-3,3)
 # End Fig 19.1 #
 ```
 
-### Fig 19.2: a missed predictor Z with identical distribution
+### Fig 19.2: a missed predictor Z with identical distribution {-}
 
 --> no impact
 ```{r Fig19.2, echo=FALSE}
@@ -116,7 +116,7 @@ stat.ES(p=plogis(logit),y=y3,cutoff=.3, smooth=F, logistic.cal=T, main="Correlat
 ### end Fig 19.2 ###
 ```
 
-### Fig 19.3: more or less severe cases selected
+### Fig 19.3: more or less severe cases selected {-}
 
 ```{r Fig19.3, echo=FALSE}
 ### selection on x
@@ -133,7 +133,7 @@ stat.ES(p=plogis(logit)[!is.na(xMNAR)],y=y2[!is.na(xMNAR)],cutoff=.3, smooth=F, 
 ## End Fig 19.3 ##
 ```
 
-### Fig 19.4: more or less heterogeneous cases selected
+### Fig 19.4: more or less heterogeneous cases selected {-}
 
 ```{r Fig19.4, echo=FALSE}
 # More heterogeneous case-mix
@@ -149,7 +149,7 @@ main="Less heterogeneous x selected", rounddec1=1,rounddec2=1, rounddec4=3, cex.
 ## End Fig 19.4 ##
 ```
 
-### Fig 19.5: more or less severe cases selected by Z
+### Fig 19.5: more or less severe cases selected by Z {-}
 
 --> Selection by missed predictor leads to miscalibration
 ```{r Fig19.5, echo=FALSE}
@@ -174,7 +174,7 @@ stat.ES(p=plogis(logit)[!is.na(zMNAR31)],y=y3[!is.na(zMNAR31)],cutoff=.3, smooth
 ```
 
 
-### Fig 19.6: more or less heterogeneous cases selected by Z
+### Fig 19.6: more or less heterogeneous cases selected by Z {-}
 
 --> Selection by missed predictor has minor impact
 ```{r Fig19.6, echo=FALSE}
@@ -199,7 +199,7 @@ stat.ES(p=plogis(logit)[!is.na(zhomo3)],y=y3[!is.na(zhomo3)],cutoff=.3, smooth=F
 ```
 
 
-## Fig 19.7: Case-control design disturbs calibration
+## Fig 19.7: Case-control design disturbs calibration {-}
 
 Disturbance is exactly as expected by ratio of selecting cases:controls (log(2))
 Select all cases, and half of the controls --> same as shift in intercept
@@ -215,7 +215,7 @@ stat.ES(p=plogis(logit)[j2],y=y[j2],cutoff=.3, smooth=F, logistic.cal=T, main="L
 ```
 
 
-### Fig 19.8: Overfitting disturbs discrimination and calibration
+### Fig 19.8: Overfitting disturbs discrimination and calibration {-}
 
 ```{r Fig19.8, echo=FALSE}
 set.seed(1)
@@ -241,7 +241,7 @@ stat.ES(p=plogis(logit),y=y2ss,cutoff=.3, smooth=F, logistic.cal=T, main="Slope 
 ```
 
 
-### Fig 19.9: Different coeficients (model misspecification) disturbs discrimination and calibration
+### Fig 19.9: Different coeficients (model misspecification) disturbs discrimination and calibration {-}
 
 ```{r Fig19.9, echo=FALSE}
 set.seed(1)
@@ -280,7 +280,7 @@ stat.ES(p=plogis(logit.dev),y=yval2,cutoff=.3, smooth=F, logistic.cal=T, main="X
 ```
 
 
-### Scenarios: Table 19.4
+### Scenarios: Table 19.4 {-}
 
 Change of setting may especially impact calibration
 RCT vs survey may impact discrimination (more homogeneity) and calibration 
@@ -318,4 +318,4 @@ stat.ES(p=plogis(logitsum)[!is.na(zMNAR2)&!is.na(xhetero)],y=y2[!is.na(zMNAR2)&!
 stat.ES(p=plogis(logitsum)[!is.na(zMNAR2)&!is.na(xhomo)],y=y2[!is.na(zMNAR2)&!is.na(xhomo)],cutoff=.3, smooth=F, logistic.cal=T, main="Less severe z; less heterogeneous x;\nX effects 0.5 or 1.5",rounddec1=2,rounddec2=2, rounddec4=3, cex.main=.8)
 ```
 
-### Uncertainty in validation simulations
+### Uncertainty in validation simulations {-}

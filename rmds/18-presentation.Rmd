@@ -37,7 +37,7 @@ names(n544)[c(1,2,3,4,7,8,9)] <- Cs(Teratoma,Pre.AFP,Pre.HCG, Pre.lnLDH, Necrosi
 names(n544)[c(10,11)] <- Cs(LDHst,Post.size)
 ```
 
-## Fit logistic models in n544 data set; 6 predictors
+## Fit logistic models in n544 data set; 6 predictors {-}
 
 We develop a prediction model with 6 predictors for presence of residual tumor in 544 men treated for metastatic nonseminomatous testicular cancer. Predictors were pre-specified based on review of the medical [literature](https://www.ncbi.nlm.nih.gov/pubmed/7999405).   
 
@@ -62,7 +62,7 @@ full <- lrm(Necrosis ~ Teratoma+Pre.AFP+Pre.HCG+log(LDHst)+sqrt(Post.size)+Reduc
 print(full)
 ```
 
-### Internal validation by bootstrapping
+### Internal validation by bootstrapping {-}
 
 ```{r validate.model}
 ## Validate model with bootstrapping
@@ -83,7 +83,7 @@ For illustration, we consider 2 shrinkage approaches:
 Empirical comparisons between shrinkage apporaches are here: [Steyerberg 2000](https://www.ncbi.nlm.nih.gov/pubmed/10790680). A recent study compared the stability of shrinkage estimators: [Van Calster 2020](https://arxiv.org/abs/1907.11493).
 
 
-### Shrunk model and penalization
+### Shrunk model and penalization {-}
 
 ```{r shrunk.model}
 # Apply linear shrinkage
@@ -102,7 +102,7 @@ lines(x=c(4,4), y=c(196, 1000))
 
 The optimal penalty factor is `r p$penalty`. Let's update the full model fit with this penalty term.
 
-### Fit penalized model and compare fits
+### Fit penalized model and compare fits {-}
 
 ```{r pen.model.fit}
 full.pen	<- update(full, penalty=p$penalty) 
@@ -114,7 +114,7 @@ kable(as.data.frame(fit.coefs, digits=3))  %>% kable_styling(full_width=F, posit
 
 ## Fig 18.1 {-}
 
-### Make nomogram from penalized model
+### Make nomogram from penalized model {-}
 
 ```{r nomogram}
 par(mfrow=c(1,1), mar=c(1,1,4,.5))
@@ -147,11 +147,12 @@ Note that the number 100 may be debated, since the effective sample
 size for some covariate patterns may be far less._
 
 
-### Score chart creation with categorized and continuous predictors
+### Score chart creation with categorized and continuous predictors {-}
+
 We first search for some nice rounding of logistic regression coefficients. A classic approach is multiplying by 10. We find that multiplying by **10/8, or `r 10/8`** works well.  
 We then continue with searching for a similarly nice scoring for continuous predictors. This is a trial and error process, supported by graphical illustrations.
 
-### Consider making rounded scores from penalized coefs
+### Consider making rounded scores from penalized coefs {-}
 
 ```{r scores}
 scores <- matrix(nrow=10, ncol=length(full.pen$coefficients), 
@@ -169,9 +170,9 @@ kable(as.data.frame(rbind(mult10=round(10*full.pen$coef[-1]),
 So, we like the multiplier of **10/8, or `r 10/8`**. Let's search for the mapping of coefficients of continuous predictors on nice scores as well.
 
 
-## Scores for continuous predictors
+## Scores for continuous predictors {-}
 
-### LDH
+### LDH {-}
 
 Start with LDH, where we use the log scale for standardized LDH values. We could e.g. find: 1 point per ln, so 1 point per 2.7 times normal. We use a score of 10/8 for LDH in a plot. We add reference lines for point allocation.
 
@@ -197,7 +198,7 @@ lines(x=c(2.5^2,2.5^2), y=c(-.5, 2.5))
 We find that a score of 1 corresponds to 2.5 times larger LDH values.  
 Continue with post.size.
 
-### Study scores for postchemotherapy size
+### Study scores for postchemotherapy size {-}
 
 ```{r post.size}
 # calculate score by sequence 2 to 100mm; 
@@ -232,7 +233,7 @@ So, approximate scores for clinically meaningful sizes:
 
 Continue with Reduction. This should be simple, since Reduction was modelled as a linear variable, without transformations.
 
-### Study scores for reduction in size
+### Study scores for reduction in size {-}
 
 ```{r reduction}
 Redplot <- as.data.frame(cbind(n544$Reduction, 
@@ -278,7 +279,8 @@ n544$REDUC5  <- round(n544$reduc10 / 5,1)
 
 ## Table 18.2 {-}
 
-### Make a score chart
+### Make a score chart {-}
+
 Score chart to be made by hand, using the points as derived above.  
 Could also have kept life simpler by multiplying coefs by 10 and rounding.
 
@@ -310,7 +312,7 @@ Intermediate scores can be obtained by interpolation.
 
 ## Fig 18.2 {-}
 
-### Translate score in probability estimates with 95% CI
+### Translate score in probability estimates with 95% CI {-}
 
 ```{r scoreplot}
 ##'# Function to relate scores to predictions in graph ###
@@ -375,7 +377,7 @@ text(x=lp.n544[,1],y=-10,labels=lp.n544$total, cex=1, col="red")
 
 ## End Table 18.2 (score chart) and Fig 18.2 (graphic translation from score to probability) {-}
 
-### Categorized coding
+### Categorized coding {-}
 
 We can categorize the continuous predictors; a **[bad idea](https://www.ncbi.nlm.nih.gov/pubmed/16217841)** generally speaking
 
@@ -396,7 +398,7 @@ So, each category approx 1 point.
 
 ## Table 18.3 {-}
 
-### Alternative: make a score from 0 - 5
+### Alternative: make a score from 0 - 5 {-}
 
 >    **Ultra simple scores**  
 >   "*.. categories of the predictors were simplified for practical application. We conclude that a simple statistical model, based on a limited number of patient characteristics, provides better guidelines for patient selection than those currently used in clinical practice. [Br J Cancer 1996](https://www.ncbi.nlm.nih.gov/pubmed/8912551)*"
@@ -462,7 +464,7 @@ In this way we created a very simple table, with probability of necrosis accordi
 
 ## Fig 18.3 {-}
 
-### Iso-probability lines
+### Iso-probability lines {-}
 
 For radiologists, it is natural to consider the pre-chemotherapy mass size and post-chemotherapy mass size. According to our analysis, the key information is the pre-chemotherapy size and the reduction in size. These pieces of information need to be considered jointly with the 4 other predictors (Teratoma, 3 tumor markers). We attempted to convey this message in iso-probability lines (Fig 18.3) [Radiology](https://www.ncbi.nlm.nih.gov/pubmed/10796922)
 
@@ -542,7 +544,7 @@ So, we obtain some nice graphics. With score 0, men are at high risk of tumor. W
 
 ## Fig 18.4 {-}
 
-### Meta-model with tree presentation
+### Meta-model with tree presentation {-}
 
 We can present a decision rule for patients with testicular cancer, assuming a threshold of 70% for the probability of necrosis. If the probability is higher than 70%, this is a good prognosis group which could be spared surgery.
 
@@ -604,7 +606,8 @@ kable(as.data.frame(cstats), digits = 4) %>% kable_styling(full_width=F, positio
 ```
 
 
-### End comparisons of c statistics 
+### End comparisons of c statistics {-}
+
 As expected, the apparent performance of penalized  vs rescaled models was very similar. Two formats led to a substantial loss in performance:  
 
 -   simple table (Table 18.3): categorization and simplification, c=0.73 cp to c=0.84  

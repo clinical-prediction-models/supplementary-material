@@ -29,10 +29,10 @@ mycolors <- c(
 )
 ```
 
-## Figures 5.2 to 5.5
+## Figures 5.2 to 5.5 {-}
 
 
-### Fig 5.2: Noise in estimating 10% mortality per center
+### Fig 5.2: Noise in estimating 10% mortality per center {-}
 
 ```{r Fig_5.2, echo=T}
 # Surg mortality; 10%
@@ -96,16 +96,17 @@ illustrate_noise_heterogeneity <- function(n = 20, mort = 0.1, tau = c(0, .01, .
 } # end function that illustrates the impact of noise (determined by n) vs heterogeneity (determined by sdtau)
 ```
 
-### Figs 5.3 and 5.4
+### Figs 5.3 and 5.4 {-}
+
 These plots llustrate the impact of noise (determined by n, 20 or 200) vs heterogeneity (determined by sdtau (0 - 0.03)). With small n, such as n=20 per center, mortality such as 10% cannot be estimated reliably. Reliable estimation of a center's performance requires a large n, such as n=200.
 
-### n=20
+### n=20 {-}
 
 ```{r Fig_5.3, echo=F}
 illustrate_noise_heterogeneity(n = 20, mort = 0.1, tau = c(0, .01, .02, .03))
 ```
 
-### n=200
+### n=200 {-}
 
 ```{r Fig_5.4, echo=F}
 illustrate_noise_heterogeneity(n = 200, mort = 0.1, tau = c(0, .01, .02, .03))

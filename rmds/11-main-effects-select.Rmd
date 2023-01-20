@@ -11,4 +11,4 @@ knitr::opts_chunk$set(
 )
 ```
 
-Chapter 11 additional material upcoming.
+Chapter 11 materials upcoming.
