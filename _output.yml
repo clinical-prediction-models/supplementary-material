@@ -1,6 +1,7 @@
 bookdown::gitbook:
   #css: style.css # this will be the styling
   split_by: chapter
+  code_folding: hide
   config:
     toc:
       collapse: section

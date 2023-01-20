@@ -13,4 +13,4 @@ knitr::opts_chunk$set(
 )
 ```
 
-See [here](http://www.clinicalpredictionmodels.org/doku.php?id=additional:chapter02) for additional material.
+See [here](https://www.clinicalpredictionmodels.org/extra-material/chapter-2) for additional material.

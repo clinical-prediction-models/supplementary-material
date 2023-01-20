@@ -1,6 +1,6 @@
 # Choosing Between Alternative Models {#altmods}
 
-## Non-linearity illustrations
+## Non-linearity illustrations {-}
 
 
 ```{r setup-ch6, include=FALSE}
@@ -33,7 +33,8 @@ mycolors <- c(
 )
 ```
 
-### Prepare GUSTO data
+### Prepare GUSTO data {-}
+
 Some logistic regression fits with linear, square, rcs, linear spline terms
 
 ```{r}
@@ -62,7 +63,8 @@ agegusto.linearspline <- lrm(DAY30 ~ lspline(AGE, 5.0), data = gusto, x = T, y =
 agegusto.cat65 <- lrm(DAY30 ~ ifelse(AGE < 6.5, 0, 1), data = gusto, x = T, y = T)
 ```
 
-### anova results for the different fits
+### Anova results for the different fits {-}
+
 We note minor differences between the continuous fits, and a clear loss of information for the dichtomization at age 65 years
 ```{r echo=T}
 anova(agegusto.linear)
@@ -72,7 +74,7 @@ anova(agegusto.linearspline)
 anova(agegusto.cat65)
 ```
 
-### Plotting of age effects
+### Plotting of age effects {-}
 Plot age effect first at lp scale (logodds), then at probability scale
 
 Age effect at logodds scale;  Age effect at probability scale
@@ -129,7 +131,7 @@ title("Probability scale")
 
 Fig 6.1
 
-### Start surgical mortality by age in Medicare
+### Start surgical mortality by age in Medicare {-}
 
 Age effect at logodds scale
 ```{r Medicare_data, echo=F, warning=F}
@@ -145,7 +147,7 @@ fitplot <- lrm(mort ~ surgery * age, weights = w, data = Fmort, x = T, y = T)
 fitplot2 <- lrm(mort ~ surgery + age, weights = w, data = Fmort, x = T, y = T)
 ```
 
-### anova results for the fit of age, with interaction by type of surgery
+### Anova results for the fit of age, with interaction by type of surgery {-}
 
 Type of surgery is clearly most relevant (chi2 >13500) in all fits. Age is als relevant (chi2>3000), and a square term is not needed (chi2 = 2); the interaction adds a little bit (chi2 95). With these large numbers (1.1M patients), most effects have p<.0001.
 
@@ -158,7 +160,7 @@ anova(fitage2) # age square added
 anova(fitplot) # interaction added to linear age effect
 ```
 
-### Plotting of predicted age effects, with interaction by type of surgery; add 95% CI
+### Plotting of predicted age effects, with interaction by type of surgery; add 95% CI {-}
 
 Plot age effects at logodds scale with 95% CI
 
@@ -169,7 +171,7 @@ plot(Predict(fitplot, age = 65:100, surgery = NA),
 )
 ```
 
-### Plotting of age effects with original data points
+### Plotting of age effects with original data points {-}
 
 Fit with interaction (solid lines) and no interaction (dashed lines)
 

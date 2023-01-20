@@ -31,7 +31,7 @@ mycolors <- c(
 )
 ```
 
-## Figues 9.1 to 9.6
+## Figues 9.1 to 9.6 {-}
 
 GUSTO-I is a data set with patients suffering from an acute myocardial infarction, where we want to predict 30-day mortality.
 TBI is a data set with patients suffering from a moderate or severe traumatic brain injury.
@@ -47,7 +47,7 @@ gustos <- read.csv("data/Gustos4Age.csv")
 TBI <- read.csv("data/TBI2vars.csv")
 ```
 
-### Fig 9.1: Age linear; add square; rcs in GUSTO-I
+### Fig 9.1: Age linear; add square; rcs in GUSTO-I {-}
 
 ```{r Fig9.1, message = FALSE }
 agegusto.linear <- lrm(DAY30 ~ AGE, data = gusto, x = T, y = T)
@@ -85,7 +85,7 @@ legend("topleft",
 ```
 
 
-### Fig 9.2: Impact of number of ST elevations (STE)
+### Fig 9.2: Impact of number of ST elevations (STE) {-}
 
 ```{r Fig9.2, message = FALSE }
 # winsorize at STE 10
@@ -129,7 +129,7 @@ legend("topleft",
 
 
 
-### Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)
+### Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830) {-}
 
 ```{r Fig9.3, message = FALSE, warning=FALSE }
 # Examine non-linearities in gustos sample
@@ -197,7 +197,7 @@ title("GUSTO-I, n=40,830")
 ```
 
 
-### Fig 9.4: Glucose and hb in TBI
+### Fig 9.4: Glucose and hb in TBI {-}
 
 We evaluate the predictors 'glucose' and 'hemoglobin' in TBI. Both are first truncated, after inspecting boxplots (Fig 9.4), and then analyzed for their prognostic value, with plots for illustration of the estimated relations (Fig 9.5).
 
@@ -233,7 +233,7 @@ axis(1, at = c(1, 2), labels = c("before ", "after winsorizing"))
 title("Hemoglobin")
 ```
 
-### Fig 9.5:  Non-linear association of glucose
+### Fig 9.5:  Non-linear association of glucose {-}
 
 ```{r Fig9.5, message = FALSE, echo=FALSE }
 g1 <- lrm(d.gos < 2 ~ rcs(glucose), data = TBI, x = T, y = T)
@@ -290,7 +290,7 @@ lines(x = g.mat2[, 1], y = g.mat2[, 5], lty = 4, lwd = 3, col = mycolors[4])
 histSpike(x = TBI$glucoset, side = 3, frac = .2, col = "darkblue", add = T)
 ```
 
-### Fig 9.6: Systolic blood pressure in TBI
+### Fig 9.6: Systolic blood pressure in TBI {-}
 
 We now examine the prognostic value of systolic blood pressure (BP) in TBI patients. 
 We expect low BP (hypotension) to be especially risky.

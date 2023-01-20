@@ -9,6 +9,124 @@ knitr::opts_knit$set(
 knitr::opts_chunk$set(
   fig.path = "fig/"
 )
+
+options(digits=2)
+library(rms)
+library(knitr)
 ```
 
-Chapter 10 additional material upcoming.
+## Case-study: {-}
+
+### Mortality after surgery for esophageal cancer {-}
+
+Let's consider the example of predicting 30 day mortality after surgery for esophageal cancer, We analyzed data from the SEER-Medicare database. Among 2041 patients who were over 65 years old and diagnosed between 1991 and 1996, 221 had died by 30 days [JCO 2006](https://pubmed.ncbi.nlm.nih.gov/16963730/ "Surgical mortality in patients with esophageal cancer: development and validation of a simple risk score").
+
+For a robust evaluation of the prognostic relevance of comorbidity, we create a simple sum score. It is based on the sum of imputed values for 5 comorbidities. The maximum is 3 comorbidities in this case.
+
+| Variable   | Meaning                                                 |
+|------------|---------------------------------------------------------|
+| `COMORBI`  | Comorbidity score based on the count of 5 comorbidities |
+| `CPD`      | Chronic Pulmonary Disease                               |
+| `Cardio`   | Cardiovascular disease                                  |
+| `Diabetes` | Diabetes                                                |
+| `Liver`    | Liver disease                                           |
+| `Renal`    | Renal disease                                           |
+
+: Comorbidity variables
+
+We describe the data below. Note that some missing values for comorbidities were imputed with values between 0 and 1. A regression imputation model was used, with the expected value used as a single imputed value.
+
+```{r Initial.Data.Analysis, warning=F}
+# Import SEER data set, n=2041
+Surgery <- read.csv("data/EsoSurgery.csv")
+options(prType='html')
+html(describe(Surgery), scroll=TRUE)
+fit1 <- lrm(D30~COMORBI, data=Surgery)
+print(fit1)
+```
+
+The prognostic value of the score is modest; on its own (univariate logistic regression of `D30~COMORBI)`, we find a *c* statistic of 0.55.
+
+### Testing the equal weights assumption in a simple sumscore {-}
+
+Simple sums of predictors make the assumption of equal weights for each predictor. This assumption can be assessed in at least two ways
+
+1.  An overall test: is a more refined coding preferable over a simple sum?\
+    In the example of comorbidity, we consider the sum of 5 comorbidity conditions as a simple sumscore (Table 10.2). A model considering the 5 comorbidity conditions separately has 5 df and a Likelihood Ratio statistic of 18, in contrast to 14 for the simple sumscore. The difference of 3.6 with 4 df has a p-value of 0.46, far from convincing against the idea of using the simple sumscore.
+2.  Component-wise testing: is one of the comborbidities really deviant in a prognostic value?\
+    We adding the conditions one by one in a regression model that already contains the sumscore. The coefficient of the condition added in a model indicates the deviation from the common effect based on the other conditions.\
+    We note that the deviations from the common effect are relatively small, except for liver disease and renal disease. Renal disease even seemed to have a protective effect. Both effects were based on small numbers. The standard errors of the estimates were large, and the effects were statistically nonsignificant.
+
+```{r  test.equal.weights}
+# Make function that that a score plus its components
+# outcome and data specified as well
+test.equal.weights <- function(data=Surgery, y="D30", sumscore="COMORBI", 
+                  components=Cs(CPD, Cardio, Diabetes, Liver, Renal)) {
+# results in matrix
+matrix.coefs <- matrix(nrow=(2+length(components)), ncol=7)
+# labels.components <- dput(as.character(components)) # to get it nice for row.labels
+dimnames(matrix.coefs) <- list(c("sumscore", "ALL", dput(as.character(components))),
+                            Cs(Coef.Sumscore, SE.Sumscore, Coef.Component, SE.Component, 
+                               LR, df, p-value))
+# Make models:
+# 1. sumscore
+fit1 <- lrm(data[,y] ~ data[,sumscore])
+matrix.coefs[1,]  <- c(fit1$coef[2], sqrt(fit1$var[2,2]), NA, NA, fit1$stats[3:5])
+
+# 2. full model for overall comparison
+fit.full <- lrm(data[,y] ~ as.matrix(data[,components]), x=T)
+# compare model fits
+p.anova.comparison <- pchisq(fit.full$stats[3] - fit1$stats[3], 
+                             df= fit.full$stats[4] - fit1$stats[4], lower.tail = F )
+matrix.coefs[2,]  <- c(NA, NA, NA, NA, fit.full$stats[3:4], p.anova.comparison)
+
+# 3. fit incremenal differences to sumscore
+for (i in 1:length(components)) {
+fiti <- update(fit1, .~.+ fit.full$x[,i])
+# compare model fits
+p.anova.comparison <- pchisq(fiti$stats[3] - fit1$stats[3], 
+                             df= fiti$stats[4] - fit1$stats[4], lower.tail = F )
+matrix.coefs[2+i,]  <- c(fiti$coef[2], sqrt(fiti$var[2,2]), fiti$coef[3], sqrt(fiti$var[3,3]),
+                          fiti$stats[3:4], p.anova.comparison) } # end loop
+return(matrix.coefs)
+} # end function
+
+kable(test.equal.weights(data=Surgery, y="D30", sumscore="COMORBI", 
+                  components=Cs(CPD, Cardio, Diabetes, Liver, Renal)), 
+                  caption="**Table 10.2**: Testing deviations for each condition in a sum score. Data from esophageal cancer patients who underwent surgery (2041 patients from SEER-Medicare data, 221 died by 30 days). The overall test for deviations from a simple sum score had a p-value of 0.46 (overall LR test, 4 *df*)")
+```
+
+### Discussion {-}
+
+In the SEER data case study, **we stick to our assumption of a similar effect for all comorbities**. The apparently most deviant effects of liver disease and renal disease were unreliable. We hence may assume similar effects for `Liver` and `Renal` as for the other comorbidities.
+
+An extension of the component-wise testing might be to apply a **LASSO regression model** where the sumscore effect is taken as an offset, with shrinkage of deviations from this offset. In the case study, the overall test was far from statistically significant, and hence we expect shrinkage of most or all of these deviations to zero. This idea is similar to **updating** of a prediction model, with shrinkage of deviating coefficients to values of a prior model: `y~predictor, offset=linear.predictor` [Stat Med 2004](https://pubmed.ncbi.nlm.nih.gov/15287085/ "Validation and updating of predictive logistic regression models: a study on sample size and shrinkage").
+
+Further discussions on robust modeling were motivated by a case study on **prediction of mutations based on family history** [JAMA 2006](https://pubmed.ncbi.nlm.nih.gov/17003395/ "Prediction of MLH1 and MSH2 mutations in Lynch syndrome"). A simple weighting of second degree relatives as half the effect of first degree relatives worked well in this case. And the effect for age of diagnosis in a relative could be assumed identical for the index patient (proband) and the first and second degree relatives. This simplification saved degrees of freedom in the modeling process at the expense of potentially missing specific patterns in the data [Stat Med 2007](https://pubmed.ncbi.nlm.nih.gov/17948867/ "Data reduction for prediction: a case study on robust coding of age and family history for the risk of having a genetic mutation").\
+A robust approach is especially attractive in relatively small data set. Indeed, a major study attempted to model family history for different cancers (*colon, endometrial, other*) separately for first and second degree relatives, with dichotomization of age as below or above 50 years in 870 patients with only 38 mutations identified [NEJM 2006](https://pubmed.ncbi.nlm.nih.gov/16807412/ "Identification and survival of carriers of mutations in DNA mismatch-repair genes in colon cancer"). Simulations confirmed that attempting such modeling was a bad idea [JCE 2018](https://pubmed.ncbi.nlm.nih.gov/29174118/ "Poor performance of clinical prediction models: the harm of commonly applied methods"), both because of severe overfitting (38 events) and [dichotomania](https://twitter.com/MaartenvSmeden/status/1504422652215185413 "Dichotomania - dichotomizing variables is often a very bad idea"). In contrast, the robust modeling strategy was applied in various versions of prediction models for mutation status [Gastroenterology 2011](https://pubmed.ncbi.nlm.nih.gov/20727894/ "The PREMM(1,2,6) model predicts risk of MLH1, MSH2, and MSH6 germline mutations based on cancer history"); [JCO 2017](https://pubmed.ncbi.nlm.nih.gov/28489507/ "Development and Validation of the PREMM5 Model for Comprehensive Risk Assessment of Lynch Syndrome"), with satisfactory performance in a large-scale international validation study [JNCI 2015](https://pubmed.ncbi.nlm.nih.gov/26582061/ "Comparison of Prediction Models for Lynch Syndrome Among Individuals With Colorectal Cancer").
+
+### Literature {-}
+
+**SEER data case study**:
+
+-   Steyerberg EW, Neville BA, Koppert LB, Lemmens VE, Tilanus HW, Coebergh JW, Weeks JC, Earle CC. [Surgical mortality in patients with esophageal cancer: development and validation of a simple risk score.](https://pubmed.ncbi.nlm.nih.gov/16963730/) J Clin Oncol. 2006 Sep 10;24(26):4277-84. doi: 10.1200/JCO.2005.05.0658. PMID: 16963730
+
+**Methods papers:**
+
+-   Steyerberg EW, Borsboom GJ, van Houwelingen HC, Eijkemans MJ, Habbema JD. [Validation and updating of predictive logistic regression models: a study on sample size and shrinkage.](https://pubmed.ncbi.nlm.nih.gov/15287085/) Stat Med. 2004 Aug 30;23(16):2567-86. doi: 10.1002/sim.1844. PMID: 15287085
+
+-   Steyerberg EW, Uno H, Ioannidis JPA, van Calster B; Collaborators. [Poor performance of clinical prediction models: the harm of commonly applied methods.](https://pubmed.ncbi.nlm.nih.gov/29174118/) J Clin Epidemiol. 2018 Jun;98:133-143. doi: 10.1016/j.jclinepi.2017.11.013. Epub 2017 Nov 24. PMID: 29174118
+
+-   Steyerberg EW, Balmaña J, Stockwell DH, Syngal S. [Data reduction for prediction: a case study on robust coding of age and family history for the risk of having a genetic mutation.](https://pubmed.ncbi.nlm.nih.gov/17948867/) Stat Med. 2007 Dec 30;26(30):5545-56. doi: 10.1002/sim.3119. PMID: 17948867
+
+**Mutation status prediction:**
+
+-   Balmaña J, Stockwell DH, Steyerberg EW, ..., Burbidge LA, Syngal S. [Prediction of MLH1 and MSH2 mutations in Lynch syndrome.](https://pubmed.ncbi.nlm.nih.gov/17003395/) JAMA. 2006 Sep 27;296(12):1469-78. doi: 10.1001/jama.296.12.1469. PMID: 17003395
+
+-   Barnetson RA, Tenesa A, Farrington SM, Nicholl ID, Cetnarskyj R, Porteous ME, Campbell H, Dunlop MG. [Identification and survival of carriers of mutations in DNA mismatch-repair genes in colon cancer.](https://pubmed.ncbi.nlm.nih.gov/16807412/) N Engl J Med. 2006 Jun 29;354(26):2751-63. doi: 10.1056/NEJMoa053493
+
+-   Kastrinos F, Uno H, Ukaegbu C, ..., Steyerberg EW, Syngal S. [Development and Validation of the PREMM~5~ Model for Comprehensive Risk Assessment of Lynch Syndrome.](https://pubmed.ncbi.nlm.nih.gov/28489507/) J Clin Oncol. 2017 Jul 1;35(19):2165-2172. doi: 10.1200/JCO.2016.69.6120. Epub 2017 May 10. PMID: 28489507
+
+-   Kastrinos F, Steyerberg EW, Mercado R, ..., Wenstrup RJ, Syngal S. [The PREMM(1,2,6) model predicts risk of MLH1, MSH2, and MSH6 germline mutations based on cancer history.](https://pubmed.ncbi.nlm.nih.gov/20727894/) Gastroenterology. 2011 Jan;140(1):73-81. doi: 10.1053/j.gastro.2010.08.021. Epub 2010 Aug 19. PMID: 20727894
+
+-   Kastrinos F, Ojha RP, Leenen C, ..., Syngal S, Steyerberg EW; Lynch Syndrome prediction model validation study group. [Comparison of Prediction Models for Lynch Syndrome Among Individuals With Colorectal Cancer.](https://pubmed.ncbi.nlm.nih.gov/26582061/) [J]{.underline} Natl Cancer Inst. 2015 Nov 18;108(2):djv308. doi: 10.1093/jnci/djv308. Print 2016 Feb.PMID: 26582061

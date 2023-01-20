@@ -1,6 +1,6 @@
 # Assumptions in Regression Models - Additivity and Linearity {#additivity-linearity}
 
-## GUSTO-I interaction analysis
+## GUSTO-I interaction analysis {-}
 
 ```{r setup-ch12, include=FALSE}
 knitr::opts_knit$set(
@@ -36,8 +36,7 @@ mycolors <- c(
 )
 ```
 
-### Examine interactions
-
+### Examine interactions {-}
 
 ```{r}
 # Import gusto, gustoB, and sample4 data sets
@@ -69,7 +68,7 @@ anova(fullints)
 ```
 
 
-### Fig 12.1
+### Fig 12.1 {-}
 
 Make 2 plots with linear interaction, in the small n=785 sample, and in the full n=40830 sample
 
@@ -92,7 +91,7 @@ interact_plot(fullintF,
 ```
 
 
-### Fig 12.2
+### Fig 12.2 {-}
 
 Make 4 plots with main effects, linear interaction, and 2 variants of interaction only above age 55. The variable is (Age-55)[+].
 
@@ -132,7 +131,7 @@ interact_plot(fullints3,
 In the last graph, the green dotted line follows the angle from below age 55 years (only 1 Age effect is estimated for the HRT==0 and HRT==1 and age<55 patients). In the pre-final graph, there are 2 separate angles from age 55 for HRT==0 and HRT==1 (barely noticable for the green dotted line).
 
 
-### Smart coding illustration
+### Smart coding illustration {-}
 
 Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)
 
@@ -156,7 +155,7 @@ lrm(DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA + HYP + TTR + SEX, data = gus
 The fit of each of the models is identical (always LR chi2=86.28); each model allows for linear interaction between AGE and HRT. The interpretation of the model is easier if the age effects are estimated for HRT==1 and for HRT==0. Scaling is easier by subtracting 55 from AGE (AGE-55); this implies the HRT effect relates to age 55.
 
 
-### Table 12.2 Better predictions? 
+### Table 12.2 Better predictions?  {-}
 
 Assess the performance if the models created in n=785 in an independent validation part, GustoB, n=20318.  
 Plots created with a modification of Frank Harrell's val.prob() function:  
@@ -233,6 +232,6 @@ title(bquote(paste("AGE + (AGE-55)+*HRT, 2", italic("df"))))
 Discrimination: worse with interactions than without.
 Calibration: We note some overfitting, as expected by a fit in a small sample.
 
-## MFP and other non-linear analyses in n544 data
+## MFP and other non-linear analyses in n544 data {-}
 
 Upcoming.
