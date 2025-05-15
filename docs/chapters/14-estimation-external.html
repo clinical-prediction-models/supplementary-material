@@ -1,0 +1,3115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Estimation with External Information – Clinical Prediction Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/15-evaluation-performance.html" rel="next">
+<link href="../chapters/13-modern-estimation.html" rel="prev">
+<link href="../cover-snippet.PNG" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/14-estimation-external.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/clinical-prediction-models/supplementary-material" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Prediction Models in Medicine</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Applications of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Study Design for Prediction Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Developing Valid Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assumptions in Regression Models - Additivity and Linearity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Evaluation of Clinical Usefulness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Validation of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Presentation Formats</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Generalizability of Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Patterns of External Validity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/20-updating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Updating for a New Setting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Updating for Multiple Settings</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study on a Prediction of 30-Day Mortality</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Case Study on Survival Analysis: Prediction of Cardiovascular Event</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Overall Lessons and Data Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-from-external-information" id="toc-learning-from-external-information" class="nav-link active" data-scroll-target="#learning-from-external-information">Learning from external information</a>
+  <ul>
+  <li><a href="#a-local-model-with-external-information-table-14.1" id="toc-a-local-model-with-external-information-table-14.1" class="nav-link" data-scroll-target="#a-local-model-with-external-information-table-14.1">A local model with external information: Table 14.1</a></li>
+  </ul></li>
+  <li><a href="#the-data-tbi-n11022-and-aaa-n238-data-sets" id="toc-the-data-tbi-n11022-and-aaa-n238-data-sets" class="nav-link" data-scroll-target="#the-data-tbi-n11022-and-aaa-n238-data-sets">The data: TBI (n=11022) and AAA (n=238) data sets</a></li>
+  <li><a href="#the-impact-study" id="toc-the-impact-study" class="nav-link" data-scroll-target="#the-impact-study">The impact study</a>
+  <ul>
+  <li><a href="#descriptives" id="toc-descriptives" class="nav-link" data-scroll-target="#descriptives">Descriptives</a></li>
+  <li><a href="#analyses-for-table-14.2" id="toc-analyses-for-table-14.2" class="nav-link" data-scroll-target="#analyses-for-table-14.2">Analyses for Table 14.2</a></li>
+  <li><a href="#estimation-of-coefficients-naive-stratified-and-ipd-ma" id="toc-estimation-of-coefficients-naive-stratified-and-ipd-ma" class="nav-link" data-scroll-target="#estimation-of-coefficients-naive-stratified-and-ipd-ma">Estimation of coefficients: naive, stratified and IPD-MA</a></li>
+  <li><a href="#estimation-of-standard-errors" id="toc-estimation-of-standard-errors" class="nav-link" data-scroll-target="#estimation-of-standard-errors">Estimation of standard errors</a></li>
+  <li><a href="#estimation-for-a-specific-study-assuming-a-global-model-holds" id="toc-estimation-for-a-specific-study-assuming-a-global-model-holds" class="nav-link" data-scroll-target="#estimation-for-a-specific-study-assuming-a-global-model-holds">Estimation for a specific study, assuming a global model holds</a></li>
+  </ul></li>
+  <li><a href="#the-aaa-study" id="toc-the-aaa-study" class="nav-link" data-scroll-target="#the-aaa-study">The AAA study</a>
+  <ul>
+  <li><a href="#descriptives-1" id="toc-descriptives-1" class="nav-link" data-scroll-target="#descriptives-1">Descriptives</a></li>
+  <li><a href="#literature-univariate-estimates-table-14.4" id="toc-literature-univariate-estimates-table-14.4" class="nav-link" data-scroll-target="#literature-univariate-estimates-table-14.4">Literature, univariate estimates: Table 14.4</a></li>
+  <li><a href="#a-simple-prediction-model-table-14.5" id="toc-a-simple-prediction-model-table-14.5" class="nav-link" data-scroll-target="#a-simple-prediction-model-table-14.5">A simple prediction model: Table 14.5</a></li>
+  <li><a href="#adaptation-of-univariate-coefficients-table-14.6" id="toc-adaptation-of-univariate-coefficients-table-14.6" class="nav-link" data-scroll-target="#adaptation-of-univariate-coefficients-table-14.6">Adaptation of univariate coefficients: Table 14.6</a>
+  <ul>
+  <li><a href="#adaptation-results-coefficients-in-table-14.6" id="toc-adaptation-results-coefficients-in-table-14.6" class="nav-link" data-scroll-target="#adaptation-results-coefficients-in-table-14.6">Adaptation results: coefficients in Table 14.6</a></li>
+  <li><a href="#adaptation-results-variance-in-table-14.6" id="toc-adaptation-results-variance-in-table-14.6" class="nav-link" data-scroll-target="#adaptation-results-variance-in-table-14.6">Adaptation results: variance in Table 14.6</a></li>
+  <li><a href="#a-score-for-prediction-in-aaa-patients-table-14.6" id="toc-a-score-for-prediction-in-aaa-patients-table-14.6" class="nav-link" data-scroll-target="#a-score-for-prediction-in-aaa-patients-table-14.6">A score for prediction in AAA patients: Table 14.6</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/14-estimation-external.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="estimation-external" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="learning-from-external-information" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="learning-from-external-information">Learning from external information</h2>
+<section id="a-local-model-with-external-information-table-14.1" class="level3">
+<h3 class="anchored" data-anchor-id="a-local-model-with-external-information-table-14.1">A local model with external information: Table 14.1</h3>
+<p>We can use external information to optimize the development of a prediction model with local or global applicability.</p>
+<p>Table 14.1 provides the basic idea of model development with a focus on a locally applicable model.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 14.1: local vs global models</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 39%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modeling aspect</th>
+<th style="text-align: left;">Local model</th>
+<th style="text-align: left;">Global model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Model specification</td>
+<td style="text-align: left;">Mixture of IPD and literature</td>
+<td style="text-align: left;">Focus on consensus in literature</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model coefficients</td>
+<td style="text-align: left;">IPD with literature as background</td>
+<td style="text-align: left;">Meta-analysis of literature</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baseline risk</td>
+<td style="text-align: left;">IPD</td>
+<td style="text-align: left;">Literature</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="the-data-tbi-n11022-and-aaa-n238-data-sets" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-data-tbi-n11022-and-aaa-n238-data-sets">The data: TBI (n=11022) and AAA (n=238) data sets</h2>
+<p>The impact data set includes patients with moderate / severe TBI for 15 studies (<a href="https://pubmed.ncbi.nlm.nih.gov/31373722/" title="Assessment of heterogeneity in an individual participant data meta-analysis of prediction models: An overview and illustration">Steyerberg 2019</a>). We can learn from the combined information in an Individual Patient Data Meta-Analysis (IPD MA).</p>
+<p>The AAA data set includes a small set of patients undergoing elective surgery for Abdominal Aortic Aneurysm (<a href="https://pubmed.ncbi.nlm.nih.gov/7575054/" title="Perioperative mortality of elective abdominal aortic aneurysm surgery. A clinical prediction rule based on literature and individual patient data">Steyerberg 1995</a>). We can learn from univariate information in the literature where many studies are available (<a href="https://pubmed.ncbi.nlm.nih.gov/22883206/" title="Incorporating published univariable associations in diagnostic and prognostic modeling">Debray 2012</a>). Specifically, we borrow information from the univariate coefficients in other studies and perform an adaptation of the multivariable coefficients in the AAA data set. The resulting model is stabilized such that better local and global performance is expected.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># impact data come with metamisc package Debray; read here</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"impact"</span>, <span class="at">package =</span> <span class="st">"metamisc"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>name         <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>name)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>ct           <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>ct)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>age10        <span class="ot">&lt;-</span> impact<span class="sc">$</span>age<span class="sc">/</span><span class="dv">10</span> <span class="sc">-</span> <span class="fl">3.5</span> <span class="co"># reference 35-year-old patient, close to mean age</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>motor_score  <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>motor_score)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>pupil        <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>pupil)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(impact<span class="sc">$</span>ct) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"I/II"</span>, <span class="st">"III/IV"</span>, <span class="st">"V/VI"</span>) <span class="co"># correct an error in Debray labels</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>motor.lin    <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(impact<span class="sc">$</span>motor_score) <span class="co"># 1/2, 3, 4, 5/6 linear</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>pupil.lin    <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(impact<span class="sc">$</span>pupil) <span class="co"># 1, 2, 3 linear</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>study <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"TINT"</span>, <span class="dv">1</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"TIUS"</span>, <span class="dv">2</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"SLIN"</span>, <span class="dv">3</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"SAP"</span>, <span class="dv">4</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"PEG"</span>, <span class="dv">5</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"HIT I"</span>, <span class="dv">6</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"UK4"</span>, <span class="dv">7</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"TCDB"</span>, <span class="dv">8</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"SKB"</span>, <span class="dv">9</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"EBIC"</span>, <span class="dv">10</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"HIT II"</span>, <span class="dv">11</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"NABIS"</span>, <span class="dv">12</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"CSTAT"</span>, <span class="dv">13</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"PHARMOS"</span>, <span class="dv">14</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"APOE"</span>, <span class="dv">15</span>,<span class="cn">NA</span>))))))))))))))))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">levels</span>(impact[,<span class="dv">1</span>])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>AAA  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AAA.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="the-impact-study" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-impact-study">The impact study</h2>
+<section id="descriptives" class="level3">
+<h3 class="anchored" data-anchor-id="descriptives">Descriptives</h3>
+<p>Overall results are presented below. We note that missing values were imputed (using mice, a single imputation for simple illustrations).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(impact), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="width: 100ex; overflow: auto; height: 25ex;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+
+<title>impact Descriptives</title>
+<font color="MidnightBlue"><div align="center"><span style="font-weight:bold">impact <br><br> 15  Variables   11022  Observations</span></div></font>
+<hr class="thinhr">
+<span style="font-weight:bold">name</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lEQVQokbWQUQoAIAhDZ/c/dNjILIX8UYbYfBoICQFEz3ojBBLPeh24WWWcLjxiWQs/dXDe4cla+APRWsJvO99b8F/V8UfXbAueCZIqdyfiIAK5Me79nQAAAABJRU5ErkJggg==" alt="image"></div>
+<style>
+ .hmisctable123264 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable123264 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable123264 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable123264">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>15</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value         APOE   CSTAT    EBIC   HIT I  HIT II   NABIS     PEG PHARMOS     SAP
+ Frequency      756     517     822     350     819     385    1510     856     919
+ Proportion   0.069   0.047   0.075   0.032   0.074   0.035   0.137   0.078   0.083
+                                                           
+ Value          SKB    SLIN    TCDB    TINT    TIUS     UK4
+ Frequency      126     409     603    1118    1041     791
+ Proportion   0.011   0.037   0.055   0.101   0.094   0.072 </pre>
+
+<hr class="thinhr">
+<span style="font-weight:bold">type</span>
+<style>
+ .hmisctable333001 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable333001 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable333001 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable333001">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value       OBS  RCT
+ Frequency  2972 8050
+ Proportion 0.27 0.73 </pre>
+
+<hr class="thinhr">
+<span style="font-weight:bold">age</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlEQVQ4jc3TUQrAIAwD0MT7H3qbcwVHdaxU2whF/PERKCgBwDRBkeBOSRFhAMld1RbO013xtbX/36pwWVtBzXWt5zO2b+qkL62/bS3+cI21q1x2VafzZDq5vsgW11KVFYjRLvqH56mju6hv5AFLoAmXsSf0pQAAAABJRU5ErkJggg==" alt="image"></div>
+<style>
+ .hmisctable433967 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable433967 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable433967 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable433967">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>34.93</td><td>17.58</td><td>17</td><td>18</td><td>22</td><td>31</td><td>46</td><td>59</td><td>65</td></tr>
+ </tbody></table>
+
+<span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 14 15 16 17 18 ,  <font color="MidnightBlue">highest</font>: 89 90 91 92 93</span>
+<hr class="thinhr">
+<span style="font-weight:bold">motor_score</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQImWNgRAAGBgYmBGBA4SJ4IBrCQ2B0HsgsGMavkngespkAQpAApng6CAMAAAAASUVORK5CYII=" alt="image"></div>
+<style>
+ .hmisctable759013 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable759013 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable759013 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable759013">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>4</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value        1/2     3     4   5/6
+ Frequency   2850  2285  2438  3449
+ Proportion 0.259 0.207 0.221 0.313 </pre>
+
+<hr class="thinhr">
+<span style="font-weight:bold">pupil</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAIUlEQVQImWNgYIQBBgYmGCCNicsEKBcbk4EBhQnSCtYPADc4ALRqtyaiAAAAAElFTkSuQmCC" alt="image"></div>
+<style>
+ .hmisctable248809 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable248809 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable248809 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable248809">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>3</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value       Both  None   One
+ Frequency   7325  2296  1401
+ Proportion 0.665 0.208 0.127 </pre>
+
+<hr class="thinhr">
+<span style="font-weight:bold">ct</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAHklEQVQImWNgYIQABiBgggBSmSDNcBPAMqQy4SYAACojAIpx1DUiAAAAAElFTkSuQmCC" alt="image"></div>
+<style>
+ .hmisctable772697 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable772697 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable772697 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable772697">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>3</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value        I/II III/IV   V/VI
+ Frequency    4479   2239   4304
+ Proportion  0.406  0.203  0.390 </pre>
+
+<hr class="thinhr">
+<span style="font-weight:bold">hypox</span>
+<style>
+ .hmisctable565977 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable565977 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable565977 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable565977">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.507</td><td>2375</td><td>0.2155</td><td>0.3381</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">hypots</span>
+<style>
+ .hmisctable443683 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable443683 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable443683 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable443683">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.424</td><td>1875</td><td>0.1701</td><td>0.2824</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">tsah</span>
+<style>
+ .hmisctable705218 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable705218 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable705218 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable705218">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.744</td><td>5012</td><td>0.4547</td><td>0.4959</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">edh</span>
+<style>
+ .hmisctable178401 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable178401 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable178401 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable178401">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.346</td><td>1464</td><td>0.1328</td><td>0.2304</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">mort</span>
+<style>
+ .hmisctable889212 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable889212 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable889212 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable889212">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.578</td><td>2874</td><td>0.2608</td><td>0.3856</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">age10</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlEQVQ4jc3TUQrAIAwD0MT7H3qbcwVHdaxU2whF/PERKCgBwDRBkeBOSRFhAMld1RbO013xtbX/36pwWVtBzXWt5zO2b+qkL62/bS3+cI21q1x2VafzZDq5vsgW11KVFYjRLvqH56mju6hv5AFLoAmXsSf0pQAAAABJRU5ErkJggg==" alt="image"></div>
+<style>
+ .hmisctable294372 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable294372 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable294372 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable294372">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>-0.006959</td><td>1.758</td><td>-1.8</td><td>-1.7</td><td>-1.3</td><td>-0.4</td><td> 1.1</td><td> 2.4</td><td> 3.0</td></tr>
+ </tbody></table>
+
+<span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: -2.1 -2   -1.9 -1.8 -1.7 ,  <font color="MidnightBlue">highest</font>: 5.4  5.5  5.6  5.7  5.8 </span>
+<hr class="thinhr">
+<span style="font-weight:bold">motor.lin</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQImWNgRAAGBgYmBGBA4SJ4IBrCQ2B0HsgsGMavkngespkAQpAApng6CAMAAAAASUVORK5CYII=" alt="image"></div>
+<style>
+ .hmisctable927480 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable927480 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable927480 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable927480">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>4</td><td>0.932</td><td>2.588</td><td>1.311</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value          1     2     3     4
+ Frequency   2850  2285  2438  3449
+ Proportion 0.259 0.207 0.221 0.313 </pre>
+
+
+For the frequency table, variable is rounded to the nearest 0
+<hr class="thinhr">
+<span style="font-weight:bold">pupil.lin</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAIUlEQVQImWNgYIQBBgYmGCCNicsEKBcbk4EBhQnSCtYPADc4ALRqtyaiAAAAAElFTkSuQmCC" alt="image"></div>
+<style>
+ .hmisctable738148 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable738148 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable738148 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable738148">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>3</td><td>0.695</td><td>1.463</td><td>0.6678</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value          1     2     3
+ Frequency   7325  2296  1401
+ Proportion 0.665 0.208 0.127 </pre>
+
+
+For the frequency table, variable is rounded to the nearest 0
+<hr class="thinhr">
+<span style="font-weight:bold">study</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAUUlEQVQoka2QSQ4AIAgDi/9/tEZFKmLUxKYHlqEHICRADkIiYeoiveKM3OGDesH5zs5dVMH7Q7iwT42m1UG6Zbr06htcWcVXO+o3vllAQsfTDN7sArkaM43RAAAAAElFTkSuQmCC" alt="image"></div>
+<style>
+ .hmisctable544483 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable544483 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable544483 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable544483">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>11022</td><td>0</td><td>15</td></tr>
+ </tbody></table>
+
+<pre style="font-size:85%;"> Value          1     2     3     4     5     6     7     8     9    10    11    12
+ Frequency   1118  1041   409   919  1510   350   791   603   126   822   819   385
+ Proportion 0.101 0.094 0.037 0.083 0.137 0.032 0.072 0.055 0.011 0.075 0.074 0.035
+                             
+ Value         13    14    15
+ Frequency    517   856   756
+ Proportion 0.047 0.078 0.069 </pre>
+
+<hr class="thinhr">
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(impact<span class="sc">$</span>name, impact<span class="sc">$</span>mort), <span class="at">row.names =</span> T, <span class="at">caption =</span> <span class="st">"Mortality by study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Mortality by study</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">0</th>
+<th style="text-align: right;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">APOE</td>
+<td style="text-align: right;">639</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CSTAT</td>
+<td style="text-align: right;">402</td>
+<td style="text-align: right;">115</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EBIC</td>
+<td style="text-align: right;">541</td>
+<td style="text-align: right;">281</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HIT I</td>
+<td style="text-align: right;">251</td>
+<td style="text-align: right;">99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HIT II</td>
+<td style="text-align: right;">631</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NABIS</td>
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">101</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PEG</td>
+<td style="text-align: right;">1148</td>
+<td style="text-align: right;">362</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PHARMOS</td>
+<td style="text-align: right;">711</td>
+<td style="text-align: right;">145</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SAP</td>
+<td style="text-align: right;">707</td>
+<td style="text-align: right;">212</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SKB</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SLIN</td>
+<td style="text-align: right;">315</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TCDB</td>
+<td style="text-align: right;">339</td>
+<td style="text-align: right;">264</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TINT</td>
+<td style="text-align: right;">840</td>
+<td style="text-align: right;">278</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TIUS</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: right;">225</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UK4</td>
+<td style="text-align: right;">432</td>
+<td style="text-align: right;">359</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="analyses-for-table-14.2" class="level3">
+<h3 class="anchored" data-anchor-id="analyses-for-table-14.2">Analyses for Table 14.2</h3>
+<p>We analyze various model variants for the <code>impact</code> data, with 3 key predictors:</p>
+<ul>
+<li><p><code>age10</code>: age per decade, continuous; centered at age 40</p></li>
+<li><p><code>motor.lin</code>: the Motor score component from the Glasgow Coma Scale, continuous for codes 1/2, 3, 4, 5/6</p></li>
+<li><p><code>pupil.lin</code>: pupillary reactivity, continuous for codes 1, 2, 3 relating to both, one, or no reacting pupils</p></li>
+</ul>
+<p>The models are as follows:</p>
+<ol type="1">
+<li>A naive analyses of the merged data, ignoring the clustering nature of the data (<code>rms::lrm</code>)</li>
+<li>Per study analyses for each of the 15 studies (<code>rms::lrm</code>)</li>
+<li>Stratified analysis, with study as a factor variable to estimate common predictor effects (<code>rms::lrm</code>)</li>
+<li>One-stage meta-analysis, with study as a random effect to estimate common predictor effects (<code>lme4::glmer</code>)</li>
+<li>Two-stage univariate meta-analysis, with pooling of the per study estimates obtained in step 2, to obtain random effect estimates for the predictor effects (<code>metamisc::uvmeta</code>)</li>
+</ol>
+<p>The output includes estimates for the model intercept and the predictor effects. Standard errors (SE) are obtained for each estimate. Moreover, the 1-step and 2-step meta-analyses estimate the heterogeneity parameter tau, which reflects between study differences in the estimates. This heterogeneity is considered in the random effect 95% confidence intervals, and in 95% prediction intervals.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in 2 matrices to produce something close to Table 14.2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>coef.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">23</span>, <span class="at">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>se.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">23</span>, <span class="at">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(coef.matrix) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(se.matrix) <span class="ot">&lt;-</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="fu">c</span>(<span class="fu">levels</span>(impact<span class="sc">$</span>study), <span class="st">"naive"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"stratified"</span>, <span class="st">"one-stage"</span>, <span class="st">"tau-1"</span>, <span class="st">"two-stage"</span>, <span class="st">"tau-2"</span>, <span class="st">"Low pred"</span>, <span class="st">"High pred"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                      ,<span class="fu">Cs</span>(Intercept,age,motor,pupils))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># naive merged model</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fit0 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin, <span class="at">data=</span>impact)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">16</span>,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit0)  </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">16</span>,] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit0))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>) {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fit stratified models</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>fit.lin <span class="ot">&lt;-</span><span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin, <span class="at">data=</span>impact, <span class="at">subset=</span>impact<span class="sc">$</span>study<span class="sc">==</span>i)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>coef.matrix[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit.lin)  </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>se.matrix[i,] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit.lin)) }</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># global model with stratification; intercept is for Study==1</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>fit.stratified <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin <span class="sc">+</span>name, <span class="at">data=</span>impact)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit.stratified)[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit.stratified))[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 1 step, global model for covariate effects</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>fit.lin.meta <span class="ot">&lt;-</span> <span class="fu">glmer</span>(mort<span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> name) <span class="sc">+</span> age10  <span class="sc">+</span> motor.lin<span class="sc">+</span>pupil.lin, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span><span class="fu">binomial</span>(), <span class="at">data =</span> impact)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">18</span>,]  <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>beta</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">18</span>,]    <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(fit.lin.meta)))</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">19</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>theta</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 2 step model</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>impact.meta <span class="ot">&lt;-</span> <span class="fu">uvmeta</span>( <span class="at">r=</span>coef.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i], <span class="at">r.se=</span>se.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i])</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">20</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>est</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">20</span>,i]   <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>se</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">21</span>,i] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(impact.meta<span class="sc">$</span>tau)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">22</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.lb</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">23</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.ub</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop over 4 columns of per study estimates</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Made Tabe 14.2; SE estimates separate</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"Coefficients and heterogeneity by study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Coefficients and heterogeneity by study</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Intercept</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">motor</th>
+<th style="text-align: right;">pupils</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">-0.348</td>
+<td style="text-align: right;">0.275</td>
+<td style="text-align: right;">-0.479</td>
+<td style="text-align: right;">0.380</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">-0.177</td>
+<td style="text-align: right;">0.288</td>
+<td style="text-align: right;">-0.577</td>
+<td style="text-align: right;">0.360</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">-0.916</td>
+<td style="text-align: right;">0.339</td>
+<td style="text-align: right;">-0.367</td>
+<td style="text-align: right;">0.495</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">-1.564</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">-0.259</td>
+<td style="text-align: right;">0.616</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">-0.748</td>
+<td style="text-align: right;">0.266</td>
+<td style="text-align: right;">-0.604</td>
+<td style="text-align: right;">0.534</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">-0.892</td>
+<td style="text-align: right;">0.337</td>
+<td style="text-align: right;">-0.515</td>
+<td style="text-align: right;">0.586</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">-0.607</td>
+<td style="text-align: right;">0.640</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">0.302</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">-0.677</td>
+<td style="text-align: right;">0.629</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">-1.023</td>
+<td style="text-align: right;">0.427</td>
+<td style="text-align: right;">-0.239</td>
+<td style="text-align: right;">0.414</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">-0.432</td>
+<td style="text-align: right;">0.420</td>
+<td style="text-align: right;">-0.690</td>
+<td style="text-align: right;">0.696</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">-0.752</td>
+<td style="text-align: right;">0.335</td>
+<td style="text-align: right;">-0.440</td>
+<td style="text-align: right;">0.277</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">-0.976</td>
+<td style="text-align: right;">0.220</td>
+<td style="text-align: right;">-0.386</td>
+<td style="text-align: right;">0.526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13</td>
+<td style="text-align: right;">-1.382</td>
+<td style="text-align: right;">0.295</td>
+<td style="text-align: right;">-0.456</td>
+<td style="text-align: right;">0.806</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">-1.157</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">-0.360</td>
+<td style="text-align: right;">0.298</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: right;">-1.375</td>
+<td style="text-align: right;">0.553</td>
+<td style="text-align: right;">-0.846</td>
+<td style="text-align: right;">1.035</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">naive</td>
+<td style="text-align: right;">-0.720</td>
+<td style="text-align: right;">0.339</td>
+<td style="text-align: right;">-0.512</td>
+<td style="text-align: right;">0.555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stratified</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">-0.517</td>
+<td style="text-align: right;">0.528</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">one-stage</td>
+<td style="text-align: right;">-0.677</td>
+<td style="text-align: right;">0.342</td>
+<td style="text-align: right;">-0.517</td>
+<td style="text-align: right;">0.530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tau-1</td>
+<td style="text-align: right;">0.356</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">two-stage</td>
+<td style="text-align: right;">-0.735</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">-0.507</td>
+<td style="text-align: right;">0.538</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tau-2</td>
+<td style="text-align: right;">0.438</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Low pred</td>
+<td style="text-align: right;">-1.730</td>
+<td style="text-align: right;">0.182</td>
+<td style="text-align: right;">-0.784</td>
+<td style="text-align: right;">0.227</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">High pred</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">0.503</td>
+<td style="text-align: right;">-0.231</td>
+<td style="text-align: right;">0.849</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="estimation-of-coefficients-naive-stratified-and-ipd-ma" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-of-coefficients-naive-stratified-and-ipd-ma">Estimation of coefficients: naive, stratified and IPD-MA</h3>
+<p>We consider the estimates for the multivariable coefficients of 3 predictors: age, motor score, and pupils. Per study differences are modest; a forest plot might visualize the patterns. The model is:</p>
+<p><code>lrm(mort~age10+motor.lin+pupil.lin, data=impact, subset=impact$study==i)</code></p>
+<p>A naive summary estimate ignores the pooling:</p>
+<p><code>lrm(mort~age10+motor.lin+pupil.lin, data=impact)</code></p>
+<p>It produces overall estimates that are only slightly different than the estimates from a stratified model (with study as fixed effect). Also, similar estimates come for a one-step random effect analysis (with <code>lrm4::glmer</code>), or a two-step random effect analysis (with <code>metamisc::uvmeta</code>). Overall, the summary effect estimates for the predictors are quite similar.</p>
+<p>The intercept differences between the studies are more substantial, but the summary estimates of the overall baseline risks are similar, all close to the naive estimate of -0.55. For the stratified analysis, a specific study intercept is taken as the reference, so the overall estimate is not available directly from <code>lrm</code>.</p>
+<p>The between study variability is quantified with the parameter tau: slot <code>@beta</code> in glmer, and <code>$tau</code> in <code>metamisc::uvmeta</code>. The tau estimates were 0.356 with a one-step random effect analysis (with <code>lrm4::glmer</code>); and 0.438 with a two-step random effect analysis (with <code>metamisc::uvmeta</code>). Note that the latter tau estimate for the intercept depends on the coding of the predictors; it is the heterogeneity for a reference patient with zero values for the covariates, in our case; age 35, poor motor score and both pupils reacting.<br>
+The prediction interval (from <code>metamisc::uvmeta</code>) was quite wide: [-1.7 - .2], or odds ranging from exp(-1.73)=0.177 to exp(0.26)=1.3, or mortality risks between <code>plogis(-1.73)</code>=15% to <code>plogis(0.26)</code>=56% for a reference patient with all covariate values set to zero (age 35, poor motor score and both pupils reacting). We can also obtain prediction intervals for the predictor effects with the two-stage approach, which shows wider intervals than the standard 95% confidence intervals (either from fixed or random effect meta-analysis).</p>
+</section>
+<section id="estimation-of-standard-errors" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-of-standard-errors">Estimation of standard errors</h3>
+<p>The SE estimates (see below) for the predictor effects are very similar with a naive, stratified, or one-stage approach: 0.015 for age, around 0.02 for motor, and 0.03 for pupils. The pooled SEs are substantially smaller than the SE estimates per study. Even for the larger studies, the SEs are substantially wider: around 0.05 for age, around 0.07 for motor, and 0.09 for pupils. These SEs are fixed effect estimates, assuming a single, uniform association of each predictor with the outcome, 6-month mortality.</p>
+<p>The random effect estimates allow for between study heterogeneity, and are wider: 0.024 for age, around 0.04 for motor, and 0.05 for pupils. For the model intercept, the naive approach underestimates the uncertainty by ignoring the clustering of the data. The one-stage and two-stage meta-analysis approach largely agree (SE = 0.12 - 0.14).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(se.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"SE estimates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>SE estimates</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Intercept</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">motor</th>
+<th style="text-align: right;">pupils</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.271</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.093</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">0.322</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.076</td>
+<td style="text-align: right;">0.113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">0.423</td>
+<td style="text-align: right;">0.089</td>
+<td style="text-align: right;">0.119</td>
+<td style="text-align: right;">0.143</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.105</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">0.213</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.061</td>
+<td style="text-align: right;">0.095</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">0.394</td>
+<td style="text-align: right;">0.084</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.169</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">0.322</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.081</td>
+<td style="text-align: right;">0.121</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">0.349</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.089</td>
+<td style="text-align: right;">0.152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">0.652</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.197</td>
+<td style="text-align: right;">0.288</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">0.316</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.082</td>
+<td style="text-align: right;">0.131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">0.282</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: right;">0.120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">0.402</td>
+<td style="text-align: right;">0.095</td>
+<td style="text-align: right;">0.109</td>
+<td style="text-align: right;">0.164</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">0.084</td>
+<td style="text-align: right;">0.107</td>
+<td style="text-align: right;">0.134</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">0.302</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">0.091</td>
+<td style="text-align: right;">0.110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: right;">0.488</td>
+<td style="text-align: right;">0.068</td>
+<td style="text-align: right;">0.134</td>
+<td style="text-align: right;">0.185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">naive</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stratified</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.032</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">one-stage</td>
+<td style="text-align: right;">0.123</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tau-1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">two-stage</td>
+<td style="text-align: right;">0.142</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.050</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tau-2</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Low pred</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">High pred</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="estimation-for-a-specific-study-assuming-a-global-model-holds" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-for-a-specific-study-assuming-a-global-model-holds">Estimation for a specific study, assuming a global model holds</h3>
+<p>We can estimate the intercept for study 14 with fixed estimates from the stratified model:</p>
+<p><code>Mortality | Study 14 ~ intercept14 + offset(global linear predictor)</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratified model, fixed effects</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit.stratified <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin <span class="sc">+</span>name, <span class="at">data=</span>impact)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>study14 <span class="ot">&lt;-</span> impact[impact<span class="sc">$</span>study<span class="sc">==</span><span class="dv">14</span>, ] <span class="co"># selected reference set</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fit<span class="fl">.14</span> <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>study14<span class="sc">$</span>mort, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">offset=</span><span class="fu">as.matrix</span>(study14[,<span class="fu">c</span>(<span class="st">"age10"</span>,  <span class="st">"motor.lin"</span>, <span class="st">"pupil.lin"</span>)]) <span class="sc">%*%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                    fit.stratified<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] )</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fixed effect estimates for study 14, Tirilazad US (TIUS)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fixed effect estimates for study 14, Tirilazad US (TIUS)</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">coef</span>(fit<span class="fl">.14</span>), fit.stratified<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercept     age10 motor.lin pupil.lin 
+   -1.179     0.343    -0.517     0.528 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-aaa-study" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-aaa-study">The AAA study</h2>
+<section id="descriptives-1" class="level3">
+<h3 class="anchored" data-anchor-id="descriptives-1">Descriptives</h3>
+<p>The AAA data set is rather small, with n=238 patients undergoing elective surgery for an Abdominal Aortic Aneurysm, and only 18 events (<code>STATUS==1</code>). The data set consists of patients operated on at the University Hospital Leiden (the Netherlands) between 1977 and 1988 (<a href="https://pubmed.ncbi.nlm.nih.gov/7575054/" title="Perioperative mortality of elective abdominal aortic aneurysm surgery. A clinical prediction rule based on literature and individual patient data">Steyerberg 1995</a>).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(AAA), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="width: 100ex; overflow: auto; height: 25ex;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+
+<title>AAA Descriptives</title>
+<font color="MidnightBlue"><div align="center"><span style="font-weight:bold">AAA <br><br> 8  Variables   238  Observations</span></div></font>
+<hr class="thinhr">
+<span style="font-weight:bold">SEX</span>
+<style>
+ .hmisctable107020 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable107020 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable107020 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable107020">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.241</td><td>21</td><td>0.08824</td><td>0.1616</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">AGE10</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lEQVQ4jc2T2xKAIAhEt/7/o1OJEHUMpJp8yAu2HBkWW3wAlqOpwh4f6EWAweFE4WkK2vyMwgazRNFIl2368PwhBctX2QMUq6ZgF6S5LPWcKRxm8dfifLSuRXl7VRNVCw5NNM2JuzR3FKiAa4qRsV+kgKZoO8lC0dCHKeCn6Gs4pJCqc1I/Bf2UO5T6VJsAEuGmz30PMQEZQTzRhMFhuZ71cImTfFkeC+cJRmGwHGEAAAAASUVORK5CYII=" alt="image"></div>
+<style>
+ .hmisctable537116 {
+ border: none;
+ font-size: 74%;
+ }
+ .hmisctable537116 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable537116 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable537116">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>238</td><td>0</td><td>55</td><td>0.999</td><td>6.635</td><td>0.8432</td><td>5.400</td><td>5.600</td><td>6.100</td><td>6.700</td><td>7.100</td><td>7.500</td><td>7.815</td></tr>
+ </tbody></table>
+
+<span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 4.3 4.5 4.9 4.9 5   ,  <font color="MidnightBlue">highest</font>: 7.9 7.9 8   8.2 8.4</span>
+<hr class="thinhr">
+<span style="font-weight:bold">MI</span>
+<style>
+ .hmisctable836067 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable836067 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable836067 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable836067">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.553</td><td>58</td><td>0.2437</td><td>0.3702</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">CHF</span>
+<style>
+ .hmisctable515038 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable515038 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable515038 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable515038">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.669</td><td>80</td><td>0.3361</td><td>0.4482</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">ISCHEMIA</span>
+<style>
+ .hmisctable507044 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable507044 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable507044 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable507044">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.681</td><td>83</td><td>0.3487</td><td>0.4562</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">LUNG</span>
+<style>
+ .hmisctable268990 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable268990 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable268990 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable268990">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.46</td><td>45</td><td>0.1891</td><td>0.3079</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">RENAL</span>
+<style>
+ .hmisctable118591 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable118591 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable118591 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable118591">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.177</td><td>15</td><td>0.06303</td><td>0.1186</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">STATUS</span>
+<style>
+ .hmisctable262639 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable262639 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable262639 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable262639">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.21</td><td>18</td><td>0.07563</td><td>0.1404</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+</div>
+</div>
+</div>
+</section>
+<section id="literature-univariate-estimates-table-14.4" class="level3">
+<h3 class="anchored" data-anchor-id="literature-univariate-estimates-table-14.4">Literature, univariate estimates: Table 14.4</h3>
+<p>We consider the development of a prediction model for in-hospital mortality after elective surgery for AAA. We consider predictors that are identified as relevant in the literature and that are available in the local data. We performed a literature review to obtain univariate estimates of regression coefficients from publications in PubMed between 1980 and 1994. The selection was limited to English-language studies, which had to contain frequency data on the association of a potential predictor and surgical mortality, either in tables or mentioned in the text.</p>
+<p>The pooled log odds ratio estimates (=logistic regression coefficients) from a fixed effect or random effect procedure. The estimates agreed up to 2 decimals usually. We compare the univariate coefficients from the literature (fixed or random pooled estimates) to the estimates from the local data.</p>
+<ul>
+<li><p>the effect for <code>SEX</code> was small, a slightly stronger in the literature (0.36 vs 0.28)</p></li>
+<li><p>the age effect (per decade) was strong. A literature coefficient of 0.79 (slightly smaller than the local 0.98 estimate) implies a exp(0.79)=2.2 times higher odds of mortality per 10 years older. So, as often in surgical procedures, age was a strong predictor (<a href="https://pubmed.ncbi.nlm.nih.gov/11525104/" title="Operative mortality with elective surgery in older adults">Finlayson 2001</a>)</p></li>
+<li><p>the univariate estimates for cardiac comorbidity (a history of <code>MI</code>, presence of <code>CHF</code>, presence of <code>ISCHEMIA</code>) were all a bit smaller in the literature than the local data</p></li>
+<li><p><code>LUNG</code> or <code>RENAL</code> comorbidity showed quite similar univariate associations in the literature and the IPD, so using or ignoring the literature would result in similar coefficient estimates</p></li>
+</ul>
+<p>The standard errors (SE) were smaller for the literature estimates, as expected. The pooled estimates of the predictors <code>SEX</code> and <code>AGE10</code> were based on large numbers and many studies, especially for age. This leads to a relatively small fixed effect SE. For other predictors, the number of studies was small leading to a modestly smaller SE, e.g.&nbsp;for cardiac, lung and renal comorbidity. The random effect SE was larger for <code>SEX</code> and <code>AGE10</code>, including the between study heterogeneity in effect estimates. We used the random effect estimates of the coefficients with the random effect SE for the adaptation procedures.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following estimates come from a univariable logistic regression analysis</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed effects, better random effect estimates</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lit.coefficients.f  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">log</span>(<span class="fl">1.44</span>),<span class="fu">log</span>(<span class="fl">2.20</span>),<span class="fu">log</span>(<span class="fl">2.80</span>),<span class="fu">log</span>(<span class="fl">4.89</span>),<span class="fu">log</span>(<span class="fl">4.58</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">log</span>(<span class="fl">3.75</span>),<span class="fu">log</span>(<span class="fl">2.43</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>lit.se.f            <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.08</span>,<span class="fl">0.06</span>,<span class="fl">0.27</span>,<span class="fl">0.33</span>,<span class="fl">0.31</span>,<span class="fl">0.25</span>,<span class="fl">0.23</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Random effects</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>lit.coefficients    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.3606</span>,<span class="fl">0.788</span>,<span class="fl">1.034</span>,<span class="fl">1.590</span>,<span class="fl">1.514</span>,<span class="fl">1.302</span>,<span class="fl">0.8502</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>lit.se          <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.176</span>,<span class="fl">0.112</span>,<span class="fl">0.317</span>,<span class="fl">0.4109</span>,<span class="fl">0.378</span>,<span class="fl">0.2595</span>,<span class="fl">0.2367</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Local data multivariable estimates</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(STATUS<span class="sc">~</span>SEX<span class="sc">+</span>AGE10<span class="sc">+</span>MI<span class="sc">+</span>CHF<span class="sc">+</span>ISCHEMIA<span class="sc">+</span>RENAL<span class="sc">+</span>LUNG,<span class="at">data=</span>AAA,<span class="at">x=</span>T,<span class="at">y=</span>T)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Local data univariate estimates</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>local.coef <span class="ot">&lt;-</span> local.se <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">7</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>local.coef[i] <span class="ot">&lt;-</span> fit.ind.x<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>local.se[i]   <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]) }</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 14.4</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(local.coef, local.se, </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            lit.coefficients.f, lit.se.f, </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>            lit.coefficients, lit.se)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"local.coef"</span>, <span class="st">"local.se"</span>, </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"fixed.coef"</span>, <span class="st">"fixed.se"</span>, </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"random.coef"</span>, <span class="st">"random.se"</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Univariate coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Univariate coefficients</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">local.coef</th>
+<th style="text-align: right;">local.se</th>
+<th style="text-align: right;">fixed.coef</th>
+<th style="text-align: right;">fixed.se</th>
+<th style="text-align: right;">random.coef</th>
+<th style="text-align: right;">random.se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AGE10</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CHF</td>
+<td style="text-align: right;">1.78</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ISCHEMIA</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">1.52</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">1.51</td>
+<td style="text-align: right;">0.38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RENAL</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">0.26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LUNG</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;">0.24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="a-simple-prediction-model-table-14.5" class="level3">
+<h3 class="anchored" data-anchor-id="a-simple-prediction-model-table-14.5">A simple prediction model: Table 14.5</h3>
+<p>We may fit a simple model for in-hospital mortality based on predictors that are known to be relevant from the literature, and that are available in the local data. The standard logistic model with maximum likelihood is obtained from: <code>lrm(STATUS~SEX+AGE10+MI+CHF+ISCHEMIA+RENAL+LUNG,data=AAA)</code></p>
+<p>We may apply a shrinkage factor, estimated by bootstrapping using the <code>rms::validate</code> function. And finally we explore penalized logistic regression, using <code>rms::pentrace</code>. We find that</p>
+<ul>
+<li><p>the estimated coefficients are shrunken towards zero with both the bootstrap shrinkage approach and the penalized maximum likelihood approach.</p></li>
+<li><p>the estimated shrinkage factor is 0.66, the reduction in c statistic is from 0.83 to 0.76, the reduction in R^2 is from 24 to 10%; this is all in agreement with the small effective sample size (18 events).</p></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(STATUS<span class="sc">~</span>SEX<span class="sc">+</span>AGE10<span class="sc">+</span>MI<span class="sc">+</span>CHF<span class="sc">+</span>ISCHEMIA<span class="sc">+</span>RENAL<span class="sc">+</span>LUNG,<span class="at">data=</span>AAA,<span class="at">x=</span>T,<span class="at">y=</span>T)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate shrinkage factor</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>full.validate <span class="ot">&lt;-</span> <span class="fu">validate</span>(full, <span class="at">B=</span><span class="dv">500</span>, <span class="at">maxit=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Divergence or singularity in 3 samples</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply shrinkage factor on model coefficients</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients    <span class="ot">&lt;-</span> full.validate[<span class="st">"Slope"</span>,<span class="st">"index.corrected"</span>] <span class="sc">*</span> full<span class="sc">$</span>coefficients</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust intercept with lp as offset variable</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>lp.AAA  <span class="ot">&lt;-</span> full<span class="sc">$</span>x <span class="sc">%*%</span> full.shrunk.coefficients[<span class="dv">2</span><span class="sc">:</span>(<span class="fu">ncol</span>(full<span class="sc">$</span>x)<span class="sc">+</span><span class="dv">1</span>)]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>lp.AAA)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients[<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model, penalized estimation</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>penalty <span class="ot">&lt;-</span> <span class="fu">pentrace</span>(full,<span class="at">penalty=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">48</span>),<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penalty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/AAA.models-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/AAA.models-2.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The optimal penalty was"</span>, penalty<span class="sc">$</span>penalty, <span class="st">"for effective df around 3.5 rather than 7 df</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The optimal penalty was 16 for effective df around 3.5 rather than 7 df</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>full.penalized <span class="ot">&lt;-</span> <span class="fu">update</span>(full, <span class="at">penalty=</span>penalty<span class="sc">$</span>penalty)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the 3 sets of coefs</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>coef.mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coef, full.shrunk.coefficients, full.penalized<span class="sc">$</span>coef )</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coef.mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Full, ML"</span>, <span class="st">"Shrinkage"</span>, <span class="st">"Penalized"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.mat, <span class="at">digits=</span><span class="dv">2</span>, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Estimated local multivariable regression coefficients in IPD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Estimated local multivariable regression coefficients in IPD</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Full, ML</th>
+<th style="text-align: right;">Shrinkage</th>
+<th style="text-align: right;">Penalized</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercept</td>
+<td style="text-align: right;">-8.10</td>
+<td style="text-align: right;">-6.04</td>
+<td style="text-align: right;">-5.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AGE10</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CHF</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ISCHEMIA</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RENAL</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LUNG</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shrinkage factor: slope of lp</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cstat <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cstat[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="co"># c = D/2 + 0.5</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cstat[<span class="dv">4</span>] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="dv">4</span>] <span class="sc">*</span> <span class="fl">0.5</span> <span class="co"># optimism in c</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show key performance measures, including c statistic, R2, and estimated shrinkage factor</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">rbind</span>(cstat, full.validate[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]), <span class="at">digits =</span> <span class="dv">2</span>, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Internally validated performance"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Internally validated performance</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 24%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">index.orig</th>
+<th style="text-align: right;">training</th>
+<th style="text-align: right;">test</th>
+<th style="text-align: right;">optimism</th>
+<th style="text-align: right;">index.corrected</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cstat</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">497</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dxy</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">497</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">497</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intercept</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-0.69</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">-0.69</td>
+<td style="text-align: right;">497</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Slope</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">497</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="adaptation-of-univariate-coefficients-table-14.6" class="level3">
+<h3 class="anchored" data-anchor-id="adaptation-of-univariate-coefficients-table-14.6">Adaptation of univariate coefficients: Table 14.6</h3>
+<p>We implement two variants of an “adaptation method” that takes advantage of univariate literature data in the estimation of the multivariable regression coefficients in a local prediction model.</p>
+<p>Adaptation method 1 is simple: beta m|(I+L) = beta u|L + (beta m|I - beta u|I), where beta m|(I+L) is the set of multivariable coefficients (“m”) for the predictors considering both individual patient data (“I”) and literature data (“L”). The univariate coefficients are denoted as “beta u”.</p>
+<p>The adaptation factor (beta m|I - beta u|I) is the difference between multivariable and univariate coefficient in the IPD data set. The adaptation factor adapts beta u|L, the set of univariate estimates from the literature.</p>
+<p>Adaptation method 2 is a bit more complex: beta m|(I+L) = beta m|I + <em>c</em> * (beta u|L - beta u|I), with c a factor between 0 and 1.</p>
+<ul>
+<li><p>With <em>c</em>=0, adaptation method 2 is ignoring literature information; we simply use the mulktivariable coefficients from our local data.</p></li>
+<li><p>With <em>c</em>=1, adaptation method 2 is the same as adaptation method 1, rewritten as:<br>
+beta m|(I+L) = beta m|I + beta u|L - beta u|I.</p></li>
+<li><p>The optimal value if c can be derived as a combination of the variance estimates of the components beta m|, beta u|L, and beta u|I with the correlation between univariate and multivariable coefficient in the individual patient data: <em>r</em>(beta m|I, beta u|I). The latter correlation can be estimated empirically by a bootstrap procedure. We estimate coefficients in many bootstap samples drawn with replacement and calculate the correlation after excluding outliers.</p></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we need the user written function</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>full.uni.mult.cor   <span class="ot">&lt;-</span> <span class="fu">bootcor.uni.mult</span>(full, <span class="at">group=</span>full<span class="sc">$</span>y, <span class="at">B=</span><span class="dv">500</span>, <span class="at">maxit=</span><span class="dv">10</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">trim=</span>.<span class="dv">1</span>,<span class="at">save.indices =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bootsample: 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270 280 290 300 310 320 330 340 350 360 370 380 390 400 410 420 430 440 450 460 470 480 490 500 
+Number of valid bootstraps for correlation and shrinkage:  484
+Correlation coefficients: 0.36 0.84 0.91 0.9 0.89 0.97 0.91 
+Shrinkage: 0.72 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># outliers are removed by 'outliers' package</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full.uni.mult.cor[4]  # matrix with results per bootstrap</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now do adaptation method approach</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>adapt.factors   <span class="ot">&lt;-</span> adapt.coefficients   <span class="ot">&lt;-</span> adapt.var <span class="ot">&lt;-</span> adapt.coef.Gr   <span class="ot">&lt;-</span> adapt.var.Gr <span class="ot">&lt;-</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">7</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 1, simple, just take the difference in own data between m and u estimates for coefficients</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>adapt.coef.Gr[i] <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                <span class="dv">1</span> <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>adapt.var.Gr[i] <span class="ot">&lt;-</span> full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> lit.se[i]<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a> } <span class="co"># end adaptation 1</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 2: optimal adaptation factors</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>adapt.factors[i]    <span class="ot">&lt;-</span> (full.uni.mult.cor<span class="sc">$</span>r[i] <span class="sc">*</span> </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sqrt</span>(full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>]) <span class="sc">*</span> <span class="fu">sqrt</span>(fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]) ) <span class="sc">/</span> </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                      (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>adapt.coefficients[i]   <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>                    adapt.factors[i] <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>adapt.var[i]        <span class="ot">&lt;-</span> full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>(full.uni.mult.cor<span class="sc">$</span>r[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">/</span> </span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>                (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]))) } <span class="co"># end adaptation 2</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all coefficients and related measures in a nice matrix</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.coefficients, local.coef, full<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>], full.uni.mult.cor<span class="sc">$</span>r,</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>               adapt.factors, adapt.coef.Gr, adapt.coefficients, </span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>               full.shrunk.coefficients[<span class="sc">-</span><span class="dv">1</span>], full.penalized<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>] )</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.coef.u"</span>, <span class="st">"local.coef.u"</span>, <span class="st">"local.coef.m"</span>, <span class="st">"r"</span>,</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapt.opt"</span>, <span class="st">"adapted.1.m"</span>, <span class="st">"adapted.2.m"</span>,</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"shrunk.m"</span>, <span class="st">"penalized.m"</span>)</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Coefficients for AAA modeling"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Coefficients for AAA modeling</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">random.coef.u</th>
+<th style="text-align: right;">local.coef.u</th>
+<th style="text-align: right;">local.coef.m</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">adapt.opt</th>
+<th style="text-align: right;">adapted.1.m</th>
+<th style="text-align: right;">adapted.2.m</th>
+<th style="text-align: right;">shrunk.m</th>
+<th style="text-align: right;">penalized.m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AGE10</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CHF</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">1.78</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ISCHEMIA</td>
+<td style="text-align: right;">1.51</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RENAL</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LUNG</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="adaptation-results-coefficients-in-table-14.6" class="level4">
+<h4 class="anchored" data-anchor-id="adaptation-results-coefficients-in-table-14.6">Adaptation results: coefficients in Table 14.6</h4>
+<p>The first 3 columns show the estimates that are input for the adaptation approaches:</p>
+<ol type="1">
+<li>the random effect pooled estimates for the univariate associations (<strong>random.coef.u</strong>)</li>
+<li>the local, or IPD, univariate associations (<strong>local.coef.u</strong>); and</li>
+<li>the local multivariable associations (<strong>local.coef.m</strong>).</li>
+</ol>
+<p>The empirically estimated correlation <em>r</em> between local univariate and multivariable coefficients was between 0.36 for <code>SEX</code> and around 0.9 for other the predictors. The optimal adaptation factor (<strong>adapt.opt</strong>) was closely related to the estimate of <em>r</em>. Adaptation method 1 or 2 lead to similar estimates for the multivariable coefficient (beta m|(I+L), denoted as <strong>adapted.1.m</strong> and <strong>adapted.2.m</strong>). The adapted estimates are larger than shrunk or penalized estimates that only consider the local IPD.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all standard error estimates in a nice matrix</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.se, local.se, <span class="fu">sqrt</span>(<span class="fu">diag</span>(full<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>]),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(adapt.var.Gr), <span class="fu">sqrt</span>(adapt.var), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sqrt</span>(<span class="fu">diag</span>(full.penalized<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>] ))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduction in variance</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>reduct.var <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">-</span> <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>adapt.var <span class="sc">/</span> <span class="fu">diag</span>(full<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tab14, reduct.var)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.u"</span>, <span class="st">"local.u"</span>, <span class="st">"local.m"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapted.1"</span>, <span class="st">"adapted.2"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"penalized.m"</span>, <span class="st">"% reduction variance adapt 2"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"SE estimates and reduction in variance by adaptation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>SE estimates and reduction in variance by adaptation</caption>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">random.u</th>
+<th style="text-align: right;">local.u</th>
+<th style="text-align: right;">local.m</th>
+<th style="text-align: right;">adapted.1</th>
+<th style="text-align: right;">adapted.2</th>
+<th style="text-align: right;">penalized.m</th>
+<th style="text-align: right;">% reduction variance adapt 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AGE10</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CHF</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ISCHEMIA</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RENAL</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LUNG</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">69</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="adaptation-results-variance-in-table-14.6" class="level4">
+<h4 class="anchored" data-anchor-id="adaptation-results-variance-in-table-14.6">Adaptation results: variance in Table 14.6</h4>
+<p>As discussed above, the standard errors (SEs) from random effect pooling of literature data are notably smaller than those for the local univariate coefficients. The local multivariable coefficients have larger SEs, as always for logistic regression models (<a href="https://www.jstor.org/stable/1403444#metadata_info_tab_contents" title="Some Surprising Results about Covariate Adjustment in Logistic Regression Models">Robinson &amp; Jewell, 1991</a>).</p>
+<p>The adaptation methods suggest substantially smaller SEs. For SEX the reduction is only 13%, reflecting the poor correlation between multivariable and univariable coefficients in the IPD (<em>r</em>=0.36). Over 50% reduction in variance is obtained for the other estimates; assuming a global prediction model holds with respect to the predictor effects.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Round the coefficients after shrinkage 0.9</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rounded.coef <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.9</span><span class="sc">*</span>adapt.coefficients,<span class="dv">1</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we estimate the intercept</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(full<span class="sc">$</span>x)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>X[,<span class="dv">2</span>] <span class="ot">&lt;-</span> X[,<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">7</span> <span class="co"># center around age=7 decades (70 years)</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as offset in lrm.fit</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>offset.AAA  <span class="ot">&lt;-</span> X <span class="sc">%*%</span> rounded.coef</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>offset.AAA)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate baseline risk to 5% (odds(0.05.0.95)); observed was 18/238, or odds 18/220</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>recal.intercept <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="do">###################################################################</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative, crude naive Bayes approach </span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate literature coefficients with one calibration factor </span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as the only x variable in lrm.fit</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>lit.score   <span class="ot">&lt;-</span> X <span class="sc">%*%</span> lit.coefficients</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>fit.lit  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>lit.score)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit.lit, <span class="at">digits=</span><span class="dv">2</span>) <span class="co"># uni coefs model fit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic Regression Model
+
+lrm.fit(x = lit.score, y = full$y)
+
+                       Model Likelihood     Discrimination    Rank Discrim.    
+                             Ratio Test            Indexes          Indexes    
+Obs           238    LR chi2      25.14     R2       0.242    C       0.835    
+ 0            220    d.f.             1     R2(1,238)0.096    Dxy     0.669    
+ 1             18    Pr(&gt; chi2) &lt;0.0001    R2(1,49.9)0.384    gamma   0.670    
+max |deriv| 1e-08                           Brier    0.061    tau-a   0.094    
+
+          Coef  S.E. Wald Z Pr(&gt;|Z|)
+Intercept -4.08 0.56 -7.35  &lt;0.0001 
+x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 formulas for risk calculation</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>recal.intercept.lit <span class="ot">&lt;-</span> fit.lit<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coefficients, </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>               full.penalized<span class="sc">$</span>coefficients, </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept, rounded.coef),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(<span class="cn">NA</span>, lit.coefficients),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept.lit, fit.lit<span class="sc">$</span>coef[<span class="dv">2</span>]<span class="sc">*</span>lit.coefficients))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit coefs"</span>, <span class="st">"lit score"</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">1</span>, </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Rounded coefficients with IPD only, adaptation approach, or naive Bayes score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Rounded coefficients with IPD only, adaptation approach, or naive Bayes score</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">full.coef</th>
+<th style="text-align: right;">penalized.m</th>
+<th style="text-align: right;">adapted</th>
+<th style="text-align: right;">lit coefs</th>
+<th style="text-align: right;">lit score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercept</td>
+<td style="text-align: right;">-8.1</td>
+<td style="text-align: right;">-5.6</td>
+<td style="text-align: right;">-4.1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">-4.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AGE10</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CHF</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ISCHEMIA</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RENAL</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LUNG</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">0.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="a-score-for-prediction-in-aaa-patients-table-14.6" class="level4">
+<h4 class="anchored" data-anchor-id="a-score-for-prediction-in-aaa-patients-table-14.6">A score for prediction in AAA patients: Table 14.6</h4>
+<p>Prediction of mortality in AAA patients could be based on the simple full model estimates, based on maximum likelihood (<strong>full.coef)</strong>. Shrinkage or penalization leads to estimates closer to zero (<strong>penalized.m</strong>). The adaptation results were shrunk with an overall factor of 0.9, based on the empirical behavior in the GUSTO data set, as described in Table 14.3, section 14.1.9 of <em>Clinical Prediction Models</em>. The adapted estimates are rather somewhat in between the <strong>full.coef</strong> and <strong>penalized.m</strong>estimates, and are kind of compromise with the univariate literature estimates (<strong>lit coefs)</strong>. Smaller adapted estimates than in the penalized model are obtained for <code>MI</code> (history of a myocardial infarction), reflecting the finding of a univariate estimate of 1.5 in the IPD versus 1.0 in the literature.</p>
+<p>An alternative approach is to calibrate a score based on the univariate literature coefficients. The calibration factor is 0.69, estimated by using the score as a single predictor:</p>
+<p><code>lit.score  &lt;- X %*% lit.coefficients</code></p>
+<p><code>fit.lit     &lt;- lrm.fit(y=full$y, x=lit.score)</code></p>
+<p>Finally, we can calibrate the scores to an average risk of 5%. This recalibration was implemented by the log(odds ratio) for odds(5%) / odds(case study) to the estimated logistic regression model intercept :</p>
+<p><code>fit.offset$coef[1] + log((0.05/0.95)/(18/220))</code></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit with adapted coefficients in score to obtain c statistics</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>adapt.fit <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>offset.AAA)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(full<span class="sc">$</span>stats[<span class="dv">6</span>], full.penalized<span class="sc">$</span>stats[<span class="dv">6</span>], adapt.fit<span class="sc">$</span>stats[<span class="dv">6</span>], fit.lit<span class="sc">$</span>stats[<span class="dv">6</span>]), <span class="at">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">"Apparent c statistic"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit score"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"C stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>C stats</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">full.coef</th>
+<th style="text-align: right;">penalized.m</th>
+<th style="text-align: right;">adapted</th>
+<th style="text-align: right;">lit score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Apparent c statistic</td>
+<td style="text-align: right;">0.832</td>
+<td style="text-align: right;">0.833</td>
+<td style="text-align: right;">0.829</td>
+<td style="text-align: right;">0.835</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calibration</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="dv">1</span><span class="sc">/</span>adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>] ), <span class="at">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"adapted coefficient"</span>, <span class="st">"adapted effective shrinkage"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Calibration insights"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Calibration insights</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">adapted coefficient</th>
+<th style="text-align: right;">adapted effective shrinkage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">0.778</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The apparent discriminative performance is all similar for these sets of coefficients, with c statistics around 0.83. We noted from the bootstrap procedure above that the internally validated estimate was 0.80 rather than 0.83. We do not know what the validated performance is for the model variants based on literature data (<strong>adapted</strong>; <strong>lit score</strong>).</p>
+<p>For calibration, we noted that the estimated shrinkage factor for the full model was around 0.7. When we fit a model with adapted coefficients, the coefficient is 1.29; so an effective shrinkage of 1/1.29 = 0.78 was built in by considering the literature estimates in an adaptation approach.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="conclusions" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>Findings from other studies can be used in various ways to develop a locally applicable prediction model.</p>
+<ul>
+<li><p>The modeling with <code>impact</code> data for TBI patients illustrated an IPD MA approach. A global model can readily be derived with a local baseline risk estimate.</p></li>
+<li><p>The modeling with <code>AAA</code> data for aneurysm surgery illustrated two variants of adaptation approaches:</p>
+<ol type="1">
+<li>simple, subtracting the difference in IPD data between univariate and multivariable coefficient from univariate literature estimates;</li>
+<li>a more sophisticated approach, with an optimized adaptation factor from a bootstrap procedure</li>
+</ol></li>
+<li><p>We can also recalibrate a simple score based on univariate literature coefficients. This is a variant of naive Bayes modeling.</p></li>
+</ul>
+<p>By definition, estimates that borrow information of other studies are more stable than per study estimates; the assumption is that the observed predictor associations in other studies are relevant for the local setting. For baseline risk, substantial heterogeneity was observed in the TBI case study. For the AAA study, calibration to an average risk of 5% was implemented.</p>
+<p>Local validation studies are needed to confirm the applicability of prediction models; followed by updating where needed (<a href="https://pubmed.ncbi.nlm.nih.gov/36510134/" title="Methodological guidance for the evaluation and updating of clinical prediction models: a systematic review">Binuya 2022</a>).</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/13-modern-estimation.html" class="pagination-link" aria-label="Modern Estimation Methods">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/15-evaluation-performance.html" class="pagination-link" aria-label="Evaluation of Performance">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Clinical Prediction Models</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

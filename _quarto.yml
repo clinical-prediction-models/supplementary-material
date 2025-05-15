@@ -1,0 +1,81 @@
+project:
+  type: book
+  output-dir: docs
+  execute-dir: project
+  
+book:
+  title: "Clinical Prediction Models"
+  subtitle: ""
+  author: "Ewout Steyerberg"
+  date: last-modified
+  sidebar:
+    logo: cover-snippet.PNG
+    title: " "
+  page-footer:
+    left: |
+      Clinical Prediction Models
+    right: |
+      Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>
+  cover-image: cover-snippet.PNG
+  favicon: cover-snippet.PNG
+  repo-actions: issue
+  repo-url: https://github.com/clinical-prediction-models/supplementary-material
+  chapters:
+  - index.qmd
+  - chapters/01-introduction.qmd
+  - part: "Part I: Prediction Models in Medicine"
+    chapters: 
+    - chapters/02-applications-pred-mods.qmd
+    - chapters/03-design.qmd 
+    - chapters/04-stat-mods.qmd 
+    - chapters/05-overfitting.qmd 
+    - chapters/06-choosing-alt-mods.qmd
+  - part: "Part II: Developing Valid Prediction Models"
+    chapters:
+    - chapters/07-missing.qmd 
+    - chapters/08-case-study-missing.qmd 
+    - chapters/09-coding-categ-contin.qmd 
+    - chapters/10-restrict-cand-pred.qmd 
+    - chapters/11-main-effects-select.qmd 
+    - chapters/12-additivity-linearity.qmd 
+    - chapters/13-modern-estimation.qmd 
+    - chapters/14-estimation-external.qmd 
+    - chapters/15-evaluation-performance.qmd 
+    - chapters/16-clinical-usefulness.qmd 
+    - chapters/17-validation.qmd 
+    - chapters/18-presentation.qmd
+  - part: "Part III: Generalizability of Prediction Models"
+    chapters:
+    - chapters/19-external-validity.qmd 
+    - chapters/20-updating.qmd 
+    - chapters/21-updating-multiple.qmd
+  - part: "Part IV: Applications"
+    chapters:
+    - chapters/22-case-study-gusto.qmd 
+    - chapters/23-case-study-cardiovascular.qmd 
+    - chapters/24-lessons-datasets.qmd
+  #- errata.qmd
+execute: 
+  warning: false
+  message: false
+  freeze: auto
+  
+format:
+  html:
+    code-block-border-left: "#6C6C6C"
+    code-block-bg: true
+    code-fold: show
+    code-tools:
+      source: false
+      toggle: true
+      caption: "Show/hide all code"
+    code-summary: "Code show/hide"
+    fig-width: 11.69
+    fig-height: 8.27
+    number-depth: 0
+    toc-depth: 5
+    theme:
+      - cosmo
+    #  - dynpredb.scss
+editor: source
+number-sections: true
