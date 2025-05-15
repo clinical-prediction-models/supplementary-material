@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -313,15 +348,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#figure-and-table-7.1" id="toc-figure-and-table-7.1" class="nav-link active" data-scroll-target="#figure-and-table-7.1">Figure and Table 7.1</a></li>
+  <li><a href="#figure-7.2" id="toc-figure-7.2" class="nav-link" data-scroll-target="#figure-7.2">Figure 7.2</a></li>
+  <li><a href="#table-7.4" id="toc-table-7.4" class="nav-link" data-scroll-target="#table-7.4">Table 7.4</a></li>
+  <li><a href="#table-7.5" id="toc-table-7.5" class="nav-link" data-scroll-target="#table-7.5">Table 7.5</a></li>
+  <li><a href="#table-7.6" id="toc-table-7.6" class="nav-link" data-scroll-target="#table-7.6">Table 7.6</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/07-missing.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="missing" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="missing" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -338,9 +383,853 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Chapter 7 additional material upcoming.</p>
+<section id="figure-and-table-7.1" class="level2">
+<h2 class="anchored" data-anchor-id="figure-and-table-7.1">Figure and Table 7.1</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">###################################</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ewout Steyerberg, Aug 18, 2018 #</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Missing values: illustrate MCAR, MAR, MNAR mechanism</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use simple linear models</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">###################################</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rms) <span class="co"># Harrell's library with many useful functions</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># For identical results at repetition</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="co"># arbitrary, large, sample size</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># n &lt;- 1000000           # used for book</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># x2 standard normal</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># Uncorrelated x1</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># x1   &lt;- sqrt(.5) * x2 + rnorm(n=n, mean=0, sd=sqrt(1-.5))  # x2 correlated with x1</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> x1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="dv">0</span>)) <span class="co"># generate y</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># var of y1 larger with correlated x1 - x2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">pch =</span> <span class="st">"."</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ps =</span> .<span class="dv">1</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make approx half missing</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x1: MCAR, MAR and MNAR mechanisms</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x1MCAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(n) <span class="sc">&lt;</span> .<span class="dv">5</span>, x1, <span class="cn">NA</span>) <span class="co"># MCAR mechanism for 50% of x1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x1MARx <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> x2, x1, <span class="cn">NA</span>) <span class="co"># MAR on x2, R2 50%, 50% missing (since mean x2==0)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x1MARy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> (<span class="fu">sqrt</span>(<span class="dv">3</span>) <span class="sc">*</span> .<span class="dv">8</span>)) <span class="sc">&gt;</span> y1, x1, <span class="cn">NA</span>) <span class="co"># MAR on y, R2 50%, 50% missing (since mean y1==0)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x1MNAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> x1, x1, <span class="cn">NA</span>) <span class="co"># MNAR on x1, R2 50%, 50% missing (since mean x1==0)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># y1: MCAR, MAR and MNAR mechanisms</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>yMCAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(n) <span class="sc">&lt;</span> .<span class="dv">5</span>, y1, <span class="cn">NA</span>) <span class="co"># MCAR mechanism for 50% of x1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>yMARx2 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> x2, y1, <span class="cn">NA</span>) <span class="co"># MAR on x2, R2 39%, 50% missing (since mean x2==0)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>yMNAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> y1, y1, <span class="cn">NA</span>) <span class="co"># MNAR on x1, R2 50%, 50% missing (since mean x1==0)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlations ##</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(x1MCAR), x2)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.531179e-05</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(x1MARx), x2)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3922284</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(x1MARy), y1)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3905377</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(x1MNAR), x1)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3909611</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(yMCAR), y1)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.549048e-08</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(yMARx2), x2)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3924581</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">is.na</span>(yMNAR), y1)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5305992</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># End check correlations; 0.388 for those with some correlation, 0.52 for yMNAR</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Fig 7.1 </span><span class="al">###</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">### Examine relation between x1 and x2</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty =</span> <span class="st">"s"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># MCAR</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1MCAR[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># MCAR</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1MCAR), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0, b=0"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x1MARx</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1MARx[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># MCAR</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1MARx), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0.6, b=0"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x1MARy</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1MARy[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># MCAR</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1MARy), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=-0.4, b=-0.1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>) <span class="co"># -.413, -.149</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x1MNAR</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1MNAR[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># MCAR</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1MNAR), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0, b=0"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-5.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## y ##</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># y MCAR</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMCAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">y =</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(yMCAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># yMCAR</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2[<span class="sc">!</span><span class="fu">is.na</span>(yMCAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>] <span class="sc">~</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMCAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>]), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0, b=0"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-6.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y MAR</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMARx2)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">y =</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(yMARx2)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># yMCAR</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2[<span class="sc">!</span><span class="fu">is.na</span>(yMARx2)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>] <span class="sc">~</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMARx2)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>]), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0.6, b=0"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-7.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y MNAR</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">y =</span> x2[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>], <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">ylab =</span> <span class="st">"x2"</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co"># Orig</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2 <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">y =</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">250</span>], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># yMCAR</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(x2[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>] <span class="sc">~</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)][<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>]), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"a=0.5, b=0.2"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-8.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">### End Fig 7.1 </span><span class="al">###</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Table 7.1 ##</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x1MARy, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3579431</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x2[<span class="sc">!</span><span class="fu">is.na</span>(x1MARy)], <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3703634</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x1MNAR, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6202571</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y MNAR</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(yMNAR, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.266413</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x1[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)], <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4039278</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x2[<span class="sc">!</span><span class="fu">is.na</span>(yMNAR)], <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4216802</code></pre>
+</div>
+</div>
+</section>
+<section id="figure-7.2" class="level2">
+<h2 class="anchored" data-anchor-id="figure-7.2">Figure 7.2</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fig 7.2 ##</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="do">############################################################</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Make plot function for graphs with y~x1; 4 with y~x2 ##</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="do">## First for missing x1, then missing y</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="do">############################################################</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>refx1 <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>refx2 <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x2)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>nsel <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>CCplot <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, sel, reffit, lab, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">800</span>) {</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">pty =</span> <span class="st">"s"</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span>nsel], <span class="at">y =</span> y1[<span class="dv">1</span><span class="sc">:</span>nsel], <span class="at">pch =</span> <span class="dv">3</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>), <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">xlab =</span> xlab, <span class="at">ylab =</span> ylab) <span class="co"># Orig</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(reffit, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(<span class="at">x =</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(sel)][<span class="dv">1</span><span class="sc">:</span>nsel2], <span class="at">y =</span> y1[<span class="sc">!</span><span class="fu">is.na</span>(sel)][<span class="dv">1</span><span class="sc">:</span>nsel2], <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="co"># Missings</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  y1_bis <span class="ot">&lt;-</span> y1[<span class="sc">!</span><span class="fu">is.na</span>(sel)][<span class="dv">1</span><span class="sc">:</span>nsel3]</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>  x1_bis <span class="ot">&lt;-</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(sel)][<span class="dv">1</span><span class="sc">:</span>nsel3]</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="fu">ols</span>(y1_bis <span class="sc">~</span> x1_bis), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="co"># MCAR</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MCAR, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"x1 MCAR"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>)</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0, b1=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MCAR, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0, b2=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MAR on x</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MARx, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"x1 MAR on x2"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">10000</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0.6, b1=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MARx, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">10000</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0, b2=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MAR on y</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MARy, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"x1 MAR on y"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">10000</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=-0.6, b1=0.7"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MARy, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">10000</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=-0.6, b2=0.7"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x1MNAR</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MNAR, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"x1 MNAR"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">3000</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0, b1=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-7.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> x1MNAR, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">10000</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"CC: a=0.6, b2=1"</span>, <span class="at">cex.main =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-8.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## end X ##</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="do">## End Fig 7.2 ##</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="do">##### Extra Fig #####</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="do">##### Missing y patterns ####</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># y MCAR</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMCAR, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"y MCAR"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=0, b1=1"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-9.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMCAR, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=0, b2=1"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-10.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yMARx</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMARx2, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"y MAR on x2"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=0.6, b1=1"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-11.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMARx2, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=0, b2=1"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-12.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yMNAR</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x1, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMNAR, <span class="at">reffit =</span> refx1, <span class="at">lab =</span> <span class="st">"y MNAR"</span>, <span class="at">xlab =</span> <span class="st">"x1"</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=1.0, b1=0.6"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-13.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CCplot</span>(<span class="at">x1 =</span> x2, <span class="at">y1 =</span> y1, <span class="at">sel =</span> yMNAR, <span class="at">reffit =</span> refx2, <span class="at">lab =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"x2"</span>, <span class="at">nsel1 =</span> <span class="dv">400</span>, <span class="at">nsel2 =</span> <span class="dv">200</span>, <span class="at">nsel3 =</span> <span class="dv">1000</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Complete data"</span>, <span class="st">"Missings, CC:</span><span class="sc">\n</span><span class="st">a=1.0, b2=0.6"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-14.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x1[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>], <span class="at">y =</span> y1[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>], <span class="at">pch =</span> <span class="st">"."</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>), <span class="at">ps =</span> .<span class="dv">1</span>) <span class="co"># Orig</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> x1, <span class="at">y =</span> yMNAR, <span class="at">pch =</span> <span class="st">"o"</span>, <span class="at">ps =</span> .<span class="dv">1</span>) <span class="co"># MCAR</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">ols</span>(yMNAR <span class="sc">~</span> x1), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"y MNAR on y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-15.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">## end y ##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="table-7.4" class="level2">
+<h2 class="anchored" data-anchor-id="table-7.4">Table 7.4</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Table 7.4; requires large N ##</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Describe the 7 missing value patterns, impact on x1 and x2</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>missing.descx <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, x2, <span class="at">digits =</span> <span class="dv">3</span>) {</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(x1)]</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">mean</span>(x1, <span class="at">na.rm =</span> T), <span class="fu">sd</span>(x1, <span class="at">na.rm =</span> T), <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> T), <span class="fu">sd</span>(x2, <span class="at">na.rm =</span> T)), <span class="at">digits =</span> digits)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MCAR, <span class="at">x2 =</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.00326  1.00187  0.00287  1.00883</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MARx, <span class="at">x2 =</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.0237  0.9855  0.6324  0.7857</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MARy, <span class="at">x2 =</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.358  0.914 -0.370  0.956</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MNAR, <span class="at">x2 =</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.62026 0.79132 0.00461 1.00280</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">## y</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>missing.descy <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, x2, y, <span class="at">digits =</span> <span class="dv">3</span>) {</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> x1[<span class="sc">!</span><span class="fu">is.na</span>(y)]</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(y)]</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">mean</span>(x1, <span class="at">na.rm =</span> T), <span class="fu">sd</span>(x1, <span class="at">na.rm =</span> T), <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> T), <span class="fu">sd</span>(x2, <span class="at">na.rm =</span> T)), <span class="at">digits =</span> digits)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMCAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.00347  0.99201 -0.00431  1.01040</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMARx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.0257  0.9883  0.6366  0.7855</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMNAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.404 0.915 0.422 0.914</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MCAR, <span class="at">x2 =</span> x2),</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MARx, <span class="at">x2 =</span> x2),</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MARy, <span class="at">x2 =</span> x2),</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descx</span>(<span class="at">x1 =</span> x1MNAR, <span class="at">x2 =</span> x2),</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMCAR),</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMARx2),</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">missing.descy</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, <span class="at">y =</span> yMNAR)</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.00326  1.00187  0.00287  1.00883
+[1] -0.0237  0.9855  0.6324  0.7857
+[1] -0.358  0.914 -0.370  0.956
+[1] 0.62026 0.79132 0.00461 1.00280
+[1] -0.00347  0.99201 -0.00431  1.01040
+[1] -0.0257  0.9883  0.6366  0.7855
+[1] 0.404 0.915 0.422 0.914
+        [,1] [,2]    [,3] [,4]
+[1,] -0.0033 1.00  0.0029 1.01
+[2,] -0.0237 0.99  0.6324 0.79
+[3,] -0.3579 0.91 -0.3704 0.96
+[4,]  0.6203 0.79  0.0046 1.00
+[5,] -0.0035 0.99 -0.0043 1.01
+[6,] -0.0257 0.99  0.6366 0.79
+[7,]  0.4039 0.92  0.4217 0.91</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End descriptives Table 7.4 ##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="table-7.5" class="level2">
+<h2 class="anchored" data-anchor-id="table-7.5">Table 7.5</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Table 7.5 Compare fits in the various selections</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="do">## only x1</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>fx1.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>fx1MCAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MCAR)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>fx1MARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MARx)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>fx1MARy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MARy)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>fx1MNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MNAR)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>fy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMCAR <span class="sc">~</span> x1)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>fyMARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMARx2 <span class="sc">~</span> x1)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>fyMNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMNAR <span class="sc">~</span> x1)</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1.CC),</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MCAR.CC), <span class="fu">coef</span>(fx1MARx.CC), <span class="fu">coef</span>(fx1MARy.CC), <span class="fu">coef</span>(fx1MNAR.CC),</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fy.CC), <span class="fu">coef</span>(fyMARx.CC), <span class="fu">coef</span>(fyMNAR.CC)</span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a><span class="do">## only x2</span></span>
+<span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a>fx1.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x2)</span>
+<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a>fx1MCAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1[<span class="sc">!</span><span class="fu">is.na</span>(x1MCAR)] <span class="sc">~</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(x1MCAR)])</span>
+<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>fx1MARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1[<span class="sc">!</span><span class="fu">is.na</span>(x1MARx)] <span class="sc">~</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(x1MARx)])</span>
+<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a>fx1MARy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1[<span class="sc">!</span><span class="fu">is.na</span>(x1MARy)] <span class="sc">~</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(x1MARy)])</span>
+<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a>fx1MNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1[<span class="sc">!</span><span class="fu">is.na</span>(x1MNAR)] <span class="sc">~</span> x2[<span class="sc">!</span><span class="fu">is.na</span>(x1MNAR)])</span>
+<span id="cb68-29"><a href="#cb68-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-30"><a href="#cb68-30" aria-hidden="true" tabindex="-1"></a>fy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMCAR <span class="sc">~</span> x2)</span>
+<span id="cb68-31"><a href="#cb68-31" aria-hidden="true" tabindex="-1"></a>fyMARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMARx2 <span class="sc">~</span> x2)</span>
+<span id="cb68-32"><a href="#cb68-32" aria-hidden="true" tabindex="-1"></a>fyMNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMNAR <span class="sc">~</span> x2)</span>
+<span id="cb68-33"><a href="#cb68-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-34"><a href="#cb68-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients</span></span>
+<span id="cb68-35"><a href="#cb68-35" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb68-36"><a href="#cb68-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1.CC),</span>
+<span id="cb68-37"><a href="#cb68-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MCAR.CC), <span class="fu">coef</span>(fx1MARx.CC), <span class="fu">coef</span>(fx1MARy.CC), <span class="fu">coef</span>(fx1MNAR.CC),</span>
+<span id="cb68-38"><a href="#cb68-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fy.CC), <span class="fu">coef</span>(fyMARx.CC), <span class="fu">coef</span>(fyMNAR.CC)</span>
+<span id="cb68-39"><a href="#cb68-39" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb68-40"><a href="#cb68-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-41"><a href="#cb68-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-42"><a href="#cb68-42" aria-hidden="true" tabindex="-1"></a><span class="co"># x1 + x2</span></span>
+<span id="cb68-43"><a href="#cb68-43" aria-hidden="true" tabindex="-1"></a>fx1.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb68-44"><a href="#cb68-44" aria-hidden="true" tabindex="-1"></a>fx1MCAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MCAR <span class="sc">+</span> x2)</span>
+<span id="cb68-45"><a href="#cb68-45" aria-hidden="true" tabindex="-1"></a>fx1MARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MARx <span class="sc">+</span> x2)</span>
+<span id="cb68-46"><a href="#cb68-46" aria-hidden="true" tabindex="-1"></a>fx1MARy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MARy <span class="sc">+</span> x2)</span>
+<span id="cb68-47"><a href="#cb68-47" aria-hidden="true" tabindex="-1"></a>fx1MNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(y1 <span class="sc">~</span> x1MNAR <span class="sc">+</span> x2)</span>
+<span id="cb68-48"><a href="#cb68-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-49"><a href="#cb68-49" aria-hidden="true" tabindex="-1"></a>fy.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMCAR <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb68-50"><a href="#cb68-50" aria-hidden="true" tabindex="-1"></a>fyMARx.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMARx2 <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb68-51"><a href="#cb68-51" aria-hidden="true" tabindex="-1"></a>fyMNAR.CC <span class="ot">&lt;-</span> <span class="fu">ols</span>(yMNAR <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="table-7.6" class="level2">
+<h2 class="anchored" data-anchor-id="table-7.6">Table 7.6</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Table 7.6 ##</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients and R2</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1.CC), fx1.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MCAR.CC), fx1MCAR.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MARx.CC), fx1MARx.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MARy.CC), fx1MARy.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MNAR.CC), fx1MNAR.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fy.CC), fy.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fyMARx.CC), fyMARx.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fyMNAR.CC), fyMNAR.CC<span class="sc">$</span>stats[<span class="st">"R2"</span>])</span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">2</span></span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation; make data sets with different types of missings</span></span>
+<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(y1, x1, x2, x1MCAR, x1MARx, x1MARy, x1MNAR))</span>
+<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">500000</span>, ]</span>
+<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>dMCAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="co"># data set with x1 missings according to MCAR</span></span>
+<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>dMARx <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)] <span class="co"># x1 MAR on x2</span></span>
+<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a>dMARy <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)] <span class="co"># x1 MAR on y</span></span>
+<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>dMNAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>)] <span class="co"># x1 MNAR at x1</span></span>
+<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a>dy <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(y1, x1, x2, yMCAR, yMARx2, yMNAR))</span>
+<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>dy <span class="ot">&lt;-</span> dy[<span class="dv">1</span><span class="sc">:</span><span class="dv">500000</span>, ]</span>
+<span id="cb69-27"><a href="#cb69-27" aria-hidden="true" tabindex="-1"></a>dyMCAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="co"># data set with y missing MCAR</span></span>
+<span id="cb69-28"><a href="#cb69-28" aria-hidden="true" tabindex="-1"></a>dyMARx <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)] <span class="co"># x1 MAR on x2</span></span>
+<span id="cb69-29"><a href="#cb69-29" aria-hidden="true" tabindex="-1"></a>dyMNAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>)] <span class="co"># x1 MAR on x2</span></span>
+<span id="cb69-30"><a href="#cb69-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-31"><a href="#cb69-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Imputation using the aregImpute function from rms</span></span>
+<span id="cb69-32"><a href="#cb69-32" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># to be changed</span></span>
+<span id="cb69-33"><a href="#cb69-33" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1 <span class="sc">+</span> x1MCAR <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-34"><a href="#cb69-34" aria-hidden="true" tabindex="-1"></a><span class="do">## fit models per imputed set and combine results using Rubin's rules</span></span>
+<span id="cb69-35"><a href="#cb69-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Use fit.mult.impute() function from rms</span></span>
+<span id="cb69-36"><a href="#cb69-36" aria-hidden="true" tabindex="-1"></a>fx1MCAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MCAR, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-37"><a href="#cb69-37" aria-hidden="true" tabindex="-1"></a>fx2MCAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-38"><a href="#cb69-38" aria-hidden="true" tabindex="-1"></a>fx1MCAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MCAR <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-39"><a href="#cb69-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-40"><a href="#cb69-40" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1 <span class="sc">+</span> x1MARx <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-41"><a href="#cb69-41" aria-hidden="true" tabindex="-1"></a>fx1MARx.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MARx, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-42"><a href="#cb69-42" aria-hidden="true" tabindex="-1"></a>fx2MARx.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-43"><a href="#cb69-43" aria-hidden="true" tabindex="-1"></a>fx1MARx.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MARx <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-44"><a href="#cb69-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-45"><a href="#cb69-45" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1 <span class="sc">+</span> x1MARy <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-46"><a href="#cb69-46" aria-hidden="true" tabindex="-1"></a>fx1MARy.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MARy, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-47"><a href="#cb69-47" aria-hidden="true" tabindex="-1"></a>fx2MARy.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-48"><a href="#cb69-48" aria-hidden="true" tabindex="-1"></a>fx1MARy.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MARy <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-49"><a href="#cb69-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-50"><a href="#cb69-50" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1 <span class="sc">+</span> x1MNAR <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-51"><a href="#cb69-51" aria-hidden="true" tabindex="-1"></a>fx1MNAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MNAR, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-52"><a href="#cb69-52" aria-hidden="true" tabindex="-1"></a>fx2MNAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-53"><a href="#cb69-53" aria-hidden="true" tabindex="-1"></a>fx1MNAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1 <span class="sc">~</span> x1MNAR <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-54"><a href="#cb69-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-55"><a href="#cb69-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients after MI with aregImpute</span></span>
+<span id="cb69-56"><a href="#cb69-56" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-57"><a href="#cb69-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MCAR.MI.u), <span class="fu">coef</span>(fx2MCAR.MI.u), <span class="fu">coef</span>(fx1MCAR.MI),</span>
+<span id="cb69-58"><a href="#cb69-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MARx.MI.u), <span class="fu">coef</span>(fx2MARx.MI.u), <span class="fu">coef</span>(fx1MARx.MI),</span>
+<span id="cb69-59"><a href="#cb69-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MARy.MI.u), <span class="fu">coef</span>(fx2MARy.MI.u), <span class="fu">coef</span>(fx1MARy.MI),</span>
+<span id="cb69-60"><a href="#cb69-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MNAR.MI.u), <span class="fu">coef</span>(fx2MNAR.MI.u), <span class="fu">coef</span>(fx1MNAR.MI)</span>
+<span id="cb69-61"><a href="#cb69-61" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb69-62"><a href="#cb69-62" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span></span>
+<span id="cb69-63"><a href="#cb69-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-64"><a href="#cb69-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-65"><a href="#cb69-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 7.6 #</span></span>
+<span id="cb69-66"><a href="#cb69-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients and performqnce of x1+x2 model after MI with aregImpute</span></span>
+<span id="cb69-67"><a href="#cb69-67" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-68"><a href="#cb69-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MCAR.MI), fx1MCAR.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-69"><a href="#cb69-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MARx.MI), fx1MARx.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-70"><a href="#cb69-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MARy.MI), fx1MARy.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-71"><a href="#cb69-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fx1MNAR.MI), fx1MNAR.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>])</span>
+<span id="cb69-72"><a href="#cb69-72" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb69-73"><a href="#cb69-73" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span></span>
+<span id="cb69-74"><a href="#cb69-74" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-75"><a href="#cb69-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-76"><a href="#cb69-76" aria-hidden="true" tabindex="-1"></a><span class="do">## End x, start y ##</span></span>
+<span id="cb69-77"><a href="#cb69-77" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> yMCAR <span class="sc">+</span> x1 <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> dy, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-78"><a href="#cb69-78" aria-hidden="true" tabindex="-1"></a>fy.x1.MCAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMCAR <span class="sc">~</span> x1, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-79"><a href="#cb69-79" aria-hidden="true" tabindex="-1"></a>fy.x2.MCAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMCAR <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-80"><a href="#cb69-80" aria-hidden="true" tabindex="-1"></a>fyMCAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMCAR <span class="sc">~</span> x1 <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-81"><a href="#cb69-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-82"><a href="#cb69-82" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> yMARx2 <span class="sc">+</span> x1 <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> dy, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-83"><a href="#cb69-83" aria-hidden="true" tabindex="-1"></a>fy.x1.MAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMARx2 <span class="sc">~</span> x1, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-84"><a href="#cb69-84" aria-hidden="true" tabindex="-1"></a>fy.x2.MAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMARx2 <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-85"><a href="#cb69-85" aria-hidden="true" tabindex="-1"></a>fyMAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMARx2 <span class="sc">~</span> x1 <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-86"><a href="#cb69-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-87"><a href="#cb69-87" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> yMNAR <span class="sc">+</span> x1 <span class="sc">+</span> x2, <span class="at">n.impute =</span> m, <span class="at">data =</span> dy, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-88"><a href="#cb69-88" aria-hidden="true" tabindex="-1"></a>fy.x1.MNAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMNAR <span class="sc">~</span> x1, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-89"><a href="#cb69-89" aria-hidden="true" tabindex="-1"></a>fy.x2.MNAR.MI.u <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMNAR <span class="sc">~</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F)</span>
+<span id="cb69-90"><a href="#cb69-90" aria-hidden="true" tabindex="-1"></a>fyMNAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(yMNAR <span class="sc">~</span> x1 <span class="sc">+</span> x2, ols, <span class="at">xtrans =</span> g, <span class="at">data =</span> dy, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-91"><a href="#cb69-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-92"><a href="#cb69-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients after MI with aregImpute</span></span>
+<span id="cb69-93"><a href="#cb69-93" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-94"><a href="#cb69-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fy.x1.MCAR.MI.u), <span class="fu">coef</span>(fy.x2.MCAR.MI.u), <span class="fu">coef</span>(fx1MCAR.MI),</span>
+<span id="cb69-95"><a href="#cb69-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fy.x1.MAR.MI.u), <span class="fu">coef</span>(fy.x2.MAR.MI.u), <span class="fu">coef</span>(fyMCAR.MI),</span>
+<span id="cb69-96"><a href="#cb69-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fy.x1.MNAR.MI.u), <span class="fu">coef</span>(fy.x2.MNAR.MI.u), <span class="fu">coef</span>(fyMNAR.MI)</span>
+<span id="cb69-97"><a href="#cb69-97" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb69-98"><a href="#cb69-98" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span></span>
+<span id="cb69-99"><a href="#cb69-99" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-100"><a href="#cb69-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-101"><a href="#cb69-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients and performance after MI with aregImpute</span></span>
+<span id="cb69-102"><a href="#cb69-102" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-103"><a href="#cb69-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fyMCAR.MI), fyMCAR.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-104"><a href="#cb69-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fyMAR.MI), fyMAR.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>]),</span>
+<span id="cb69-105"><a href="#cb69-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">coef</span>(fyMNAR.MI), fyMNAR.MI<span class="sc">$</span>stats[<span class="st">"R2"</span>])</span>
+<span id="cb69-106"><a href="#cb69-106" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb69-107"><a href="#cb69-107" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span></span>
+<span id="cb69-108"><a href="#cb69-108" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-109"><a href="#cb69-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-110"><a href="#cb69-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-111"><a href="#cb69-111" aria-hidden="true" tabindex="-1"></a><span class="do">#### End Table 7.6 illustration missing values and imputation ####</span></span>
+<span id="cb69-112"><a href="#cb69-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-113"><a href="#cb69-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-114"><a href="#cb69-114" aria-hidden="true" tabindex="-1"></a><span class="do">#### Repeat for binary outcomes ####</span></span>
+<span id="cb69-115"><a href="#cb69-115" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb69-116"><a href="#cb69-116" aria-hidden="true" tabindex="-1"></a><span class="fu">md.pattern</span>(dMNAR)</span>
+<span id="cb69-117"><a href="#cb69-117" aria-hidden="true" tabindex="-1"></a><span class="fu">na.pattern</span>(dMNAR)</span>
+<span id="cb69-118"><a href="#cb69-118" aria-hidden="true" tabindex="-1"></a><span class="fu">naclus</span>(dMNAR)</span>
+<span id="cb69-119"><a href="#cb69-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-120"><a href="#cb69-120" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># For identical results at repetition</span></span>
+<span id="cb69-121"><a href="#cb69-121" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100000</span> <span class="co"># arbitrary sample size</span></span>
+<span id="cb69-122"><a href="#cb69-122" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># x2 standard normal</span></span>
+<span id="cb69-123"><a href="#cb69-123" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># Uncorrelated x1</span></span>
+<span id="cb69-124"><a href="#cb69-124" aria-hidden="true" tabindex="-1"></a>y1.bin <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="dv">1</span> <span class="sc">*</span> x1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> x2)) <span class="co"># generate y</span></span>
+<span id="cb69-125"><a href="#cb69-125" aria-hidden="true" tabindex="-1"></a>x1MCAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(n) <span class="sc">&lt;</span> .<span class="dv">5</span>, x1, <span class="cn">NA</span>) <span class="co"># MCAR mechanism for 50% of x1</span></span>
+<span id="cb69-126"><a href="#cb69-126" aria-hidden="true" tabindex="-1"></a>x1MARx <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> x2, x1, <span class="cn">NA</span>) <span class="co"># MAR on x2, R2 50%, 50% missing (since mean x2==0)</span></span>
+<span id="cb69-127"><a href="#cb69-127" aria-hidden="true" tabindex="-1"></a>x1MARy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rbinom</span>(n, <span class="dv">1</span>, .<span class="dv">8</span> <span class="sc">*</span> y1.bin) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, .<span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> y1.bin)) <span class="sc">==</span> <span class="dv">1</span>, <span class="cn">NA</span>, x1) <span class="co"># MAR on y, R2 50%, 50% missing (since mean y1==0)</span></span>
+<span id="cb69-128"><a href="#cb69-128" aria-hidden="true" tabindex="-1"></a>x1MNAR <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">sd =</span> .<span class="dv">8</span>) <span class="sc">&lt;</span> x1, x1, <span class="cn">NA</span>) <span class="co"># MNAR on x1, R2 50%, 50% missing (since mean x1==0)</span></span>
+<span id="cb69-129"><a href="#cb69-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-130"><a href="#cb69-130" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(x1MARy)[y1.bin <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb69-131"><a href="#cb69-131" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(x1MARy)[y1.bin <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb69-132"><a href="#cb69-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-133"><a href="#cb69-133" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb69-134"><a href="#cb69-134" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MCAR <span class="sc">+</span> x2)</span>
+<span id="cb69-135"><a href="#cb69-135" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MARx <span class="sc">+</span> x2)</span>
+<span id="cb69-136"><a href="#cb69-136" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MARy <span class="sc">+</span> x2)</span>
+<span id="cb69-137"><a href="#cb69-137" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MNAR <span class="sc">+</span> x2)</span>
+<span id="cb69-138"><a href="#cb69-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-139"><a href="#cb69-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare fits in the various selections</span></span>
+<span id="cb69-140"><a href="#cb69-140" aria-hidden="true" tabindex="-1"></a>fx1.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb69-141"><a href="#cb69-141" aria-hidden="true" tabindex="-1"></a>fx1MARx.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MARx <span class="sc">+</span> x2)</span>
+<span id="cb69-142"><a href="#cb69-142" aria-hidden="true" tabindex="-1"></a>fx1MARy.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MARy <span class="sc">+</span> x2)</span>
+<span id="cb69-143"><a href="#cb69-143" aria-hidden="true" tabindex="-1"></a>fx1MNAR.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(y1.bin <span class="sc">~</span> x1MNAR <span class="sc">+</span> x2)</span>
+<span id="cb69-144"><a href="#cb69-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-145"><a href="#cb69-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients</span></span>
+<span id="cb69-146"><a href="#cb69-146" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-147"><a href="#cb69-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1.CC), <span class="fu">coef</span>(fx1MARx.CC),</span>
+<span id="cb69-148"><a href="#cb69-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MARy.CC), <span class="fu">coef</span>(fx1MNAR.CC)</span>
+<span id="cb69-149"><a href="#cb69-149" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb69-150"><a href="#cb69-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-151"><a href="#cb69-151" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-152"><a href="#cb69-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1.CC<span class="sc">$</span>var)), <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MARx.CC<span class="sc">$</span>var)),</span>
+<span id="cb69-153"><a href="#cb69-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MARy.CC<span class="sc">$</span>var)), <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MNAR.CC<span class="sc">$</span>var))</span>
+<span id="cb69-154"><a href="#cb69-154" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb69-155"><a href="#cb69-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-156"><a href="#cb69-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation; make data sets with different types of missings</span></span>
+<span id="cb69-157"><a href="#cb69-157" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(y1.bin, x1, x2, x1MCAR, x1MARx, x1MARy, x1MNAR))</span>
+<span id="cb69-158"><a href="#cb69-158" aria-hidden="true" tabindex="-1"></a>dMCAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="co"># data set with x1 missings according to MCAR</span></span>
+<span id="cb69-159"><a href="#cb69-159" aria-hidden="true" tabindex="-1"></a>dMARx <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)] <span class="co"># x1 MAR on x2</span></span>
+<span id="cb69-160"><a href="#cb69-160" aria-hidden="true" tabindex="-1"></a>dMARy <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)] <span class="co"># x1 MAR on y</span></span>
+<span id="cb69-161"><a href="#cb69-161" aria-hidden="true" tabindex="-1"></a>dMNAR <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>)] <span class="co"># x1 MNAR at x1</span></span>
+<span id="cb69-162"><a href="#cb69-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-163"><a href="#cb69-163" aria-hidden="true" tabindex="-1"></a><span class="do">## MI using the aregImpute function from rms</span></span>
+<span id="cb69-164"><a href="#cb69-164" aria-hidden="true" tabindex="-1"></a><span class="do">## help(areImpute) for more info</span></span>
+<span id="cb69-165"><a href="#cb69-165" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1.bin <span class="sc">+</span> x1MCAR <span class="sc">+</span> x2, <span class="at">n.impute =</span> <span class="dv">5</span>, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-166"><a href="#cb69-166" aria-hidden="true" tabindex="-1"></a><span class="do">## fit models per imputed set and combine results using Rubin's rules</span></span>
+<span id="cb69-167"><a href="#cb69-167" aria-hidden="true" tabindex="-1"></a><span class="do">## Use fit.mult.impute() function from rms</span></span>
+<span id="cb69-168"><a href="#cb69-168" aria-hidden="true" tabindex="-1"></a>fx1MCAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1.bin <span class="sc">~</span> x1MCAR <span class="sc">+</span> x2, lrm, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F)</span>
+<span id="cb69-169"><a href="#cb69-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-170"><a href="#cb69-170" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1.bin <span class="sc">+</span> x1MARx <span class="sc">+</span> x2, <span class="at">n.impute =</span> <span class="dv">5</span>, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-171"><a href="#cb69-171" aria-hidden="true" tabindex="-1"></a>fx1MARx.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1.bin <span class="sc">~</span> x1MARx <span class="sc">+</span> x2, lrm, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-172"><a href="#cb69-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-173"><a href="#cb69-173" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1.bin <span class="sc">+</span> x1MARy <span class="sc">+</span> x2, <span class="at">n.impute =</span> <span class="dv">5</span>, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-174"><a href="#cb69-174" aria-hidden="true" tabindex="-1"></a>fx1MARy.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1.bin <span class="sc">~</span> x1MARy <span class="sc">+</span> x2, lrm, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-175"><a href="#cb69-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-176"><a href="#cb69-176" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">aregImpute</span>(<span class="sc">~</span> y1.bin <span class="sc">+</span> x1MNAR <span class="sc">+</span> x2, <span class="at">n.impute =</span> <span class="dv">5</span>, <span class="at">data =</span> d, <span class="at">pr =</span> F, <span class="at">type =</span> <span class="st">"pmm"</span>)</span>
+<span id="cb69-177"><a href="#cb69-177" aria-hidden="true" tabindex="-1"></a>fx1MNAR.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(y1.bin <span class="sc">~</span> x1MNAR <span class="sc">+</span> x2, lrm, <span class="at">xtrans =</span> g, <span class="at">data =</span> d, <span class="at">pr =</span> F) <span class="do">## areg</span></span>
+<span id="cb69-178"><a href="#cb69-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-179"><a href="#cb69-179" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression coefficients after MI with aregImpute</span></span>
+<span id="cb69-180"><a href="#cb69-180" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-181"><a href="#cb69-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MCAR.MI), <span class="fu">coef</span>(fx1MARx.MI),</span>
+<span id="cb69-182"><a href="#cb69-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(fx1MARy.MI), <span class="fu">coef</span>(fx1MNAR.MI)</span>
+<span id="cb69-183"><a href="#cb69-183" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb69-184"><a href="#cb69-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-185"><a href="#cb69-185" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(</span>
+<span id="cb69-186"><a href="#cb69-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MCAR.MI<span class="sc">$</span>var)), <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MARx.MI<span class="sc">$</span>var)),</span>
+<span id="cb69-187"><a href="#cb69-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MARy.MI<span class="sc">$</span>var)), <span class="fu">sqrt</span>(<span class="fu">diag</span>(fx1MNAR.MI<span class="sc">$</span>var))</span>
+<span id="cb69-188"><a href="#cb69-188" aria-hidden="true" tabindex="-1"></a>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -813,7 +1702,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p>
 </div>
