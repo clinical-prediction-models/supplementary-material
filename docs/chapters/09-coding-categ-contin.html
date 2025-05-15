@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Coding of Categorical and Continuous Predictors – Clinical Prediction Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/10-restrict-cand-pred.html" rel="next">
+<link href="../chapters/08-case-study-missing.html" rel="prev">
+<link href="../cover-snippet.PNG" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/09-coding-categ-contin.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/clinical-prediction-models/supplementary-material" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Prediction Models in Medicine</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Applications of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Study Design for Prediction Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Developing Valid Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assumptions in Regression Models - Additivity and Linearity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Evaluation of Clinical Usefulness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Validation of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Presentation Formats</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Generalizability of Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Patterns of External Validity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/20-updating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Updating for a New Setting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Updating for Multiple Settings</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study on a Prediction of 30-Day Mortality</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Case Study on Survival Analysis: Prediction of Cardiovascular Event</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Overall Lessons and Data Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#figues-9.1-to-9.6" id="toc-figues-9.1-to-9.6" class="nav-link active" data-scroll-target="#figues-9.1-to-9.6">Figues 9.1 to 9.6</a>
+  <ul>
+  <li><a href="#fig-9.1-age-linear-add-square-rcs-in-gusto-i" id="toc-fig-9.1-age-linear-add-square-rcs-in-gusto-i" class="nav-link" data-scroll-target="#fig-9.1-age-linear-add-square-rcs-in-gusto-i">Fig 9.1: Age linear; add square; rcs in GUSTO-I</a></li>
+  <li><a href="#fig-9.2-impact-of-number-of-st-elevations-ste" id="toc-fig-9.2-impact-of-number-of-st-elevations-ste" class="nav-link" data-scroll-target="#fig-9.2-impact-of-number-of-st-elevations-ste">Fig 9.2: Impact of number of ST elevations (STE)</a></li>
+  <li><a href="#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830" id="toc-fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830" class="nav-link" data-scroll-target="#fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830">Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</a></li>
+  <li><a href="#fig-9.4-glucose-and-hb-in-tbi" id="toc-fig-9.4-glucose-and-hb-in-tbi" class="nav-link" data-scroll-target="#fig-9.4-glucose-and-hb-in-tbi">Fig 9.4: Glucose and hb in TBI</a></li>
+  <li><a href="#fig-9.5-non-linear-association-of-glucose" id="toc-fig-9.5-non-linear-association-of-glucose" class="nav-link" data-scroll-target="#fig-9.5-non-linear-association-of-glucose">Fig 9.5: Non-linear association of glucose</a></li>
+  <li><a href="#fig-9.6-systolic-blood-pressure-in-tbi" id="toc-fig-9.6-systolic-blood-pressure-in-tbi" class="nav-link" data-scroll-target="#fig-9.6-systolic-blood-pressure-in-tbi">Fig 9.6: Systolic blood pressure in TBI</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/09-coding-categ-contin.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="coding" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="figues-9.1-to-9.6" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="figues-9.1-to-9.6">Figues 9.1 to 9.6</h2>
+<p>GUSTO-I is a data set with patients suffering from an acute myocardial infarction, where we want to predict 30-day mortality. TBI is a data set with patients suffering from a moderate or severe traumatic brain injury.</p>
+<div class="cell" data-warnings="false">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gusto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/gusto_age_STE.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import sample4; n=785</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gustos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Gustos4Age.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Import TBI data; n=2159</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>TBI <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI2vars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="fig-9.1-age-linear-add-square-rcs-in-gusto-i" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.1-age-linear-add-square-rcs-in-gusto-i">Fig 9.1: Age linear; add square; rcs in GUSTO-I</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>agegusto.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>agegusto.square <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">pol</span>(AGE, <span class="dv">2</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>agegusto.rcs <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(AGE, <span class="dv">5</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dichotomize</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>agegusto.cat65 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">ifelse</span>(AGE <span class="sc">&lt;</span> <span class="dv">65</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 categories</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>agegusto<span class="fl">.3</span>cat <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">ifelse</span>(AGE <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="dv">0</span>, <span class="fu">ifelse</span>(AGE <span class="sc">&lt;</span> <span class="dv">70</span>, <span class="dv">1</span>, <span class="dv">2</span>)), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict for age 20:95</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>newdata.age <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"AGE"</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">95</span>, <span class="at">by =</span> <span class="fl">0.1</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pred.agegusto.linear <span class="ot">&lt;-</span> <span class="fu">predict</span>(agegusto.linear, newdata.age)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pred.agegusto.square <span class="ot">&lt;-</span> <span class="fu">predict</span>(agegusto.square, newdata.age)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>pred.agegusto.rcs <span class="ot">&lt;-</span> <span class="fu">predict</span>(agegusto.rcs, newdata.age)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>pred.agegusto.cat65 <span class="ot">&lt;-</span> <span class="fu">predict</span>(agegusto.cat65, newdata.age)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>pred.agegusto<span class="fl">.3</span>cat <span class="ot">&lt;-</span> <span class="fu">predict</span>(agegusto<span class="fl">.3</span>cat, newdata.age)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Make plot</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">datadist</span>(gusto)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">"dd"</span>) <span class="co"># for rms</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> newdata.age[, <span class="dv">1</span>], <span class="at">y =</span> pred.agegusto.linear, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">92</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">0</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age in years"</span>, <span class="at">ylab =</span> <span class="st">"logit of 30-day mortality"</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.age[, <span class="dv">1</span>], <span class="at">y =</span> pred.agegusto.cat65, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.age[, <span class="dv">1</span>], <span class="at">y =</span> pred.agegusto<span class="fl">.3</span>cat, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">scat1d</span>(<span class="at">x =</span> gusto<span class="sc">$</span>AGE, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">frac =</span> .<span class="dv">05</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"linear"</span>, <span class="st">"&lt;65 vs &gt;=65"</span>, <span class="st">"&lt;60, 60-69, 70+"</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.1-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-9.2-impact-of-number-of-st-elevations-ste" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.2-impact-of-number-of-st-elevations-ste">Fig 9.2: Impact of number of ST elevations (STE)</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># winsorize at STE 10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gusto<span class="sc">$</span>STE <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(gusto<span class="sc">$</span>STE <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="dv">10</span>, gusto<span class="sc">$</span>STE)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gusto<span class="sc">$</span>STE.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(gusto<span class="sc">$</span>STE)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>STE.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> STE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>STE.square <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">pol</span>(STE, <span class="dv">2</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>STE.rcs <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(STE, <span class="dv">5</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>STE.factor <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> STE.f, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dichotomize</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>STE.cat4 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">ifelse</span>(STE <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># predict for STE 0:10</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>newdata.STE <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"STE"</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pred.STE.linear <span class="ot">&lt;-</span> <span class="fu">predict</span>(STE.linear, newdata.STE)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>pred.STE.square <span class="ot">&lt;-</span> <span class="fu">predict</span>(STE.square, newdata.STE)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>pred.STE.rcs <span class="ot">&lt;-</span> <span class="fu">predict</span>(STE.rcs, newdata.STE)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>pred.STE.cat4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(STE.cat4, newdata.STE)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> newdata.STE[, <span class="dv">1</span>], <span class="at">y =</span> pred.STE.linear, <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Number of leads with ST elevation"</span>, <span class="at">ylab =</span> <span class="st">"logit of 30-day mortality"</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.STE[, <span class="dv">1</span>], <span class="at">y =</span> pred.STE.square, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.STE[, <span class="dv">1</span>], <span class="at">y =</span> pred.STE.rcs, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.STE[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>], <span class="at">y =</span> pred.STE.cat4[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">5</span>])</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> newdata.STE[<span class="dv">6</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">1</span>], <span class="at">y =</span> pred.STE.cat4[<span class="dv">6</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">5</span>])</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Original data points, with size proportional to sqrt(events)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>STEmort <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">by</span>(gusto<span class="sc">$</span>DAY, gusto<span class="sc">$</span>STE, mean) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">by</span>(gusto<span class="sc">$</span>DAY, gusto<span class="sc">$</span>STE, mean)))[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>STEw <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">by</span>(gusto<span class="sc">$</span>DAY, gusto<span class="sc">$</span>STE, sum)[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>]) <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> newdata.STE[, <span class="dv">1</span>], <span class="at">y =</span> STEmort, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> STEw, <span class="at">col =</span> <span class="st">"black"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">scat1d</span>(<span class="at">x =</span> gusto<span class="sc">$</span>STE, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">frac =</span> .<span class="dv">05</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"data"</span>, <span class="st">"linear"</span>, <span class="st">".. +square"</span>, <span class="st">"rcs"</span>, <span class="st">"&lt;=4, vs &gt;4"</span>),</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.2-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.3-non-linearities-in-small-sample-n751-and-full-gusto-i-n40830">Fig 9.3: Non-linearities in small sample (n=751); and full GUSTO-I (n=40,830)</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine non-linearities in gustos sample</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Age</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>age.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>age.rcs1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(AGE, <span class="dv">5</span>), <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>age.fp1 <span class="ot">&lt;-</span> <span class="fu">mfp</span>(DAY30 <span class="sc">~</span> <span class="fu">fp</span>(AGE, <span class="at">df =</span> <span class="dv">4</span>), <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">data =</span> gustos, <span class="at">family =</span> binomial) <span class="co"># selected: -2 and 3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>age.gam1 <span class="ot">&lt;-</span> <span class="fu">gam</span>(DAY30 <span class="sc">~</span> <span class="fu">s</span>(AGE), <span class="at">data =</span> gustos, <span class="at">family =</span> binomial)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># examine predictions for age 20:95</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>age.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">751</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(age.mat) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">Cs</span>(AGE, linear, fp, rcs, gam))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>AGE <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">95</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>age.mat[, <span class="dv">1</span>] <span class="ot">&lt;-</span> AGE</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>age.mat[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.linear, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE), <span class="at">type =</span> <span class="st">"lp"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>age.mat[, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.fp1, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>age.mat[, <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.rcs1, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE), <span class="at">type =</span> <span class="st">"lp"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>age.mat[, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.gam1, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for n=785, Fig 9.3, part A #</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> age.mat[, <span class="dv">1</span>], <span class="at">y =</span> age.mat[, <span class="dv">2</span>], <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">92</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="fl">0.2</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age in years"</span>, <span class="at">ylab =</span> <span class="st">"logit of 30-day mortality"</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>]</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat[, <span class="dv">1</span>], <span class="at">y =</span> age.mat[, <span class="dv">3</span>], <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat[, <span class="dv">1</span>], <span class="at">y =</span> age.mat[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat[, <span class="dv">1</span>], <span class="at">y =</span> age.mat[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">5</span>])</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> gustos<span class="sc">$</span>AGE, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">frac =</span> .<span class="dv">1</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"linear"</span>, <span class="st">"fp"</span>, <span class="st">"rcs"</span>, <span class="st">"gam"</span>),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"GUSTO-I, n=785"</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># End plot n=785</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="do">####################</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Now: N=40,830 ##</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>age.linear<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>age.rcs1<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(AGE, <span class="dv">5</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>age.fp1<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">mfp</span>(DAY30 <span class="sc">~</span> <span class="fu">fp</span>(AGE, <span class="at">df =</span> <span class="dv">4</span>), <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">data =</span> gusto, <span class="at">family =</span> binomial) <span class="co"># selected: -2 and 3</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>age.gam1<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gam</span>(DAY30 <span class="sc">~</span> <span class="fu">s</span>(AGE), <span class="at">data =</span> gusto, <span class="at">family =</span> binomial)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># examine predictions for age 20:95</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">751</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(age.mat<span class="fl">.2</span>) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">Cs</span>(AGE, linear, fp, rcs, gam))</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span>[, <span class="dv">1</span>] <span class="ot">&lt;-</span> AGE</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span>[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.linear<span class="fl">.2</span>, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE), <span class="at">type =</span> <span class="st">"lp"</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span>[, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.fp1<span class="fl">.2</span>, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span>[, <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.rcs1<span class="fl">.2</span>, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE), <span class="at">type =</span> <span class="st">"lp"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>age.mat<span class="fl">.2</span>[, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(age.gam1<span class="fl">.2</span>, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> AGE))</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for n=40830</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">2</span>], <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">92</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="fl">0.2</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age in years"</span>, <span class="at">ylab =</span> <span class="st">""</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>]</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>))</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">3</span>], <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">5</span>])</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> gusto<span class="sc">$</span>AGE, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">frac =</span> .<span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"GUSTO-I, n=40,830"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.3-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-9.4-glucose-and-hb-in-tbi" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.4-glucose-and-hb-in-tbi">Fig 9.4: Glucose and hb in TBI</h3>
+<p>We evaluate the predictors ‘glucose’ and ‘hemoglobin’ in TBI. Both are first truncated, after inspecting boxplots (Fig 9.4), and then analyzed for their prognostic value, with plots for illustration of the estimated relations (Fig 9.5).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># glucose</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>glucose, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 0.5%    1%    2%   98%   99% 99.5% 
+ 1.57  2.26  4.28 18.34 20.92 23.39 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  1.57  2.26  4.28 18.34 20.92 23.39</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># So, winsorize / truncate at 3 and 20</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use simple function to do the winsorizing:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># {ifelse(x&lt;lower,upper,  ifelse(x&gt;upper,upper, x))}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>winsorize <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lower =</span> <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fl">0.01</span>), <span class="at">upper =</span> <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fl">0.99</span>)) {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> lower, lower,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> upper, upper, x)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>TBI<span class="sc">$</span>glucoset <span class="ot">&lt;-</span> <span class="fu">winsorize</span>(TBI<span class="sc">$</span>glucose, <span class="dv">3</span>, <span class="dv">20</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># systolic bp</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>hb, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 0.5%    1%    2%   98%   99% 99.5% 
+ 4.87  5.40  6.30 16.50 16.80 17.00 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  4.87  5.40  6.30 16.50 16.80 17.00</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># So, winsorize / truncate at 6 and 17</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>TBI<span class="sc">$</span>hbt <span class="ot">&lt;-</span> <span class="fu">winsorize</span>(TBI<span class="sc">$</span>hb, <span class="dv">6</span>, <span class="dv">17</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplots for illustration</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="at">x =</span> <span class="fu">cbind</span>(TBI<span class="sc">$</span>glucose, TBI<span class="sc">$</span>glucoset), <span class="at">outcol =</span> <span class="fu">c</span>(<span class="st">"red"</span>, mycolors[<span class="dv">4</span>]), <span class="at">border =</span> mycolors[<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)], <span class="at">xaxt =</span> <span class="st">"n"</span>, <span class="at">ylab =</span> <span class="st">"glucose (mmol/L)"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"before "</span>, <span class="st">"after winsorizing"</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Glucose"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="at">x =</span> <span class="fu">cbind</span>(TBI<span class="sc">$</span>hb, TBI<span class="sc">$</span>hbt), <span class="at">outcol =</span> <span class="fu">c</span>(<span class="st">"red"</span>, mycolors[<span class="dv">4</span>]), <span class="at">border =</span> mycolors[<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)], <span class="at">xaxt =</span> <span class="st">"n"</span>, <span class="at">ylab =</span> <span class="st">"hb (mmol/L)"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"before "</span>, <span class="st">"after winsorizing"</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Hemoglobin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.4-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-9.5-non-linear-association-of-glucose" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.5-non-linear-association-of-glucose">Fig 9.5: Non-linear association of glucose</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.5-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-9.6-systolic-blood-pressure-in-tbi" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-9.6-systolic-blood-pressure-in-tbi">Fig 9.6: Systolic blood pressure in TBI</h3>
+<p>We now examine the prognostic value of systolic blood pressure (BP) in TBI patients. We expect low BP (hypotension) to be especially risky.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>d.sysbpt, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">25</span>, .<span class="dv">75</span>, .<span class="dv">99</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1%   25%   75%   99% 
+ 92.9 121.1 142.1 171.8 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>TBIs <span class="ot">&lt;-</span> TBI[<span class="sc">!</span><span class="fu">is.na</span>(TBI<span class="sc">$</span>d.sysbpt), ]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   1%   25%   75%   99%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 92.9 121.1 142.1 171.8</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="fu">rcs</span>(d.sysbpt, <span class="dv">3</span>), <span class="at">data =</span> TBIs)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="fu">rcs</span>(d.sysbpt, <span class="dv">3</span>), <span class="at">data =</span> TBIs)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">4</span> <span class="sc">~</span> <span class="fu">rcs</span>(d.sysbpt, <span class="dv">3</span>), <span class="at">data =</span> TBIs)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="fu">rcs</span>(d.sysbpt, <span class="dv">3</span>), <span class="at">data =</span> TBIs)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define categorical variants of systolic BP</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>TBIs<span class="sc">$</span>d.sysbpt.c <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(TBIs<span class="sc">$</span>d.sysbpt <span class="sc">&lt;</span> <span class="dv">120</span>, <span class="dv">1</span>, <span class="fu">ifelse</span>(TBIs<span class="sc">$</span>d.sysbpt <span class="sc">&gt;</span> <span class="dv">150</span>, <span class="dv">2</span>, <span class="dv">0</span>)))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>g1t <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> d.sysbpt.c, <span class="at">data =</span> TBIs)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>g2t <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> d.sysbpt.c, <span class="at">data =</span> TBIs)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>g3t <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">4</span> <span class="sc">~</span> d.sysbpt.c, <span class="at">data =</span> TBIs)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>g4t <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.gos <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> d.sysbpt.c, <span class="at">data =</span> TBIs)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">datadist</span>(TBIs)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">"dd"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Odds ratios</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(g1t)) <span class="co"># OR 2.78 for low BP and 1.25 for high BP</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Intercept d.sysbpt.c=1 d.sysbpt.c=2 
+       0.226        2.777        1.245 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI<span class="sc">$</span>d.sysbpt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TBI$d.sysbpt 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
+    2159        0     1566        1    131.4    17.61    107.0    112.2    121.1    131.3    142.1 
+     .90      .95 
+   151.1    156.2 
+
+lowest : 60     64.19  65.6   71.33  73.71 , highest: 182.92 184.16 184.7  188.29 207.4 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBIs<span class="sc">$</span>d.sysbpt.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TBIs$d.sysbpt.c 
+       n  missing distinct 
+    2159        0        3 
+                            
+Value          0     1     2
+Frequency   1435   474   250
+Proportion 0.665 0.220 0.116</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data in matrix for plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d.sysbpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">60</span>, <span class="dv">210</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># 151 elements</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>g.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">151</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(g.mat) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">Cs</span>(d.sysbpt, g1, g2, g3, g4))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>g.mat[, <span class="dv">1</span>] <span class="ot">&lt;-</span> d.sysbpt</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>g.mat[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(g1, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>g.mat[, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(g2, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt))</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>g.mat[, <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(g3, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>g.mat[, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">predict</span>(g4, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Fig 9.6, part I</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> g.mat[, <span class="dv">1</span>], <span class="at">y =</span> g.mat[, <span class="dv">2</span>], <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">210</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.7</span>, <span class="fl">2.7</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Systolic blood pressure (mmHg)"</span>, <span class="at">ylab =</span> <span class="st">"logit GOS at 6 months"</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">1</span>]</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>))</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat[, <span class="dv">1</span>], <span class="at">y =</span> g.mat[, <span class="dv">3</span>], <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>])</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat[, <span class="dv">1</span>], <span class="at">y =</span> g.mat[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat[, <span class="dv">1</span>], <span class="at">y =</span> g.mat[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> TBI<span class="sc">$</span>d.sysbpt, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">frac =</span> .<span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"&lt;good recovery"</span>, <span class="st">"unfavorable"</span>, <span class="st">"mort+veg"</span>, <span class="st">"mortality"</span>), <span class="at">lty =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>])</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"continuous, rcs 3 knots"</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 9.6, part II</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>d.sysbpt.c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>d.sysbpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">60</span>, <span class="dv">210</span>, <span class="at">by =</span> .<span class="dv">1</span>) <span class="co"># 1501 elements</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>g.mat2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">1501</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>g1t.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(g1t, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt.c))</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>g2t.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(g2t, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt.c))</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>g3t.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(g3t, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt.c))</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>g4t.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(g4t, <span class="at">newdata =</span> <span class="fu">as.data.frame</span>(<span class="at">x =</span> d.sysbpt.c))</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(g.mat2) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">Cs</span>(d.sysbpt, g1, g2, g3, g4))</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>g.mat2[, <span class="dv">1</span>] <span class="ot">&lt;-</span> d.sysbpt</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>g.mat2[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&lt;</span> <span class="dv">120</span>, g1t.c[<span class="dv">2</span>], <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&gt;</span> <span class="dv">150</span>, g1t.c[<span class="dv">3</span>], g1t.c[<span class="dv">1</span>]))</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>g.mat2[, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&lt;</span> <span class="dv">120</span>, g2t.c[<span class="dv">2</span>], <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&gt;</span> <span class="dv">150</span>, g2t.c[<span class="dv">3</span>], g2t.c[<span class="dv">1</span>]))</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>g.mat2[, <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&lt;</span> <span class="dv">120</span>, g3t.c[<span class="dv">2</span>], <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&gt;</span> <span class="dv">150</span>, g3t.c[<span class="dv">3</span>], g3t.c[<span class="dv">1</span>]))</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>g.mat2[, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&lt;</span> <span class="dv">120</span>, g4t.c[<span class="dv">2</span>], <span class="fu">ifelse</span>(d.sysbpt <span class="sc">&gt;</span> <span class="dv">150</span>, g4t.c[<span class="dv">3</span>], g4t.c[<span class="dv">1</span>]))</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">2</span>], <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">210</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.7</span>, <span class="fl">2.7</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Systolic blood pressure (mmHg)"</span>, <span class="at">ylab =</span> <span class="st">""</span>, <span class="at">cex.lab =</span> <span class="fl">1.2</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">1</span>]</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>))</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">3</span>], <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span>])</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> TBI<span class="sc">$</span>d.sysbpt, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">frac =</span> .<span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"3 categories"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig9.6-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/08-case-study-missing.html" class="pagination-link" aria-label="Case Study on Dealing with Missing Values">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/10-restrict-cand-pred.html" class="pagination-link" aria-label="Restrictions on Candidate Predictors">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Clinical Prediction Models</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

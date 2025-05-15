@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ewout Steyerberg">
-<meta name="dcterms.date" content="2025-05-15">
 
-<title>Clinical Prediction Models</title>
+<title>6&nbsp; Choosing Between Alternative Models – Clinical Prediction Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,28 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/01-introduction.html" rel="next">
-<link href="./cover-snippet.PNG" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/07-missing.html" rel="next">
+<link href="../chapters/05-overfitting.html" rel="prev">
+<link href="../cover-snippet.PNG" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-applications-pred-mods.html">Part I: Prediction Models in Medicine</a></li><li class="breadcrumb-item"><a href="../chapters/06-choosing-alt-mods.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,11 +132,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"></a> 
+      <a href="../"></a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/clinical-prediction-models/supplementary-material" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -117,13 +151,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -138,31 +172,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Applications of Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-design.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-design.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Study Design for Prediction Modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></a>
   </div>
 </li>
@@ -179,73 +213,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/07-missing.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/07-missing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assumptions in Regression Models - Additivity and Linearity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Evaluation of Clinical Usefulness</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/17-validation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/17-validation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Validation of Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Presentation Formats</span></span></a>
   </div>
 </li>
@@ -262,19 +296,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Patterns of External Validity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/20-updating.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/20-updating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Updating for a New Setting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Updating for Multiple Settings</span></span></a>
   </div>
 </li>
@@ -291,19 +325,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study on a Prediction of 30-Day Mortality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Case Study on Survival Analysis: Prediction of Cardiovascular Event</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Overall Lessons and Data Sets</span></span></a>
   </div>
 </li>
@@ -319,35 +353,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#non-linearity-illustrations" id="toc-non-linearity-illustrations" class="nav-link active" data-scroll-target="#non-linearity-illustrations">Non-linearity illustrations</a>
+  <ul>
+  <li><a href="#prepare-gusto-data" id="toc-prepare-gusto-data" class="nav-link" data-scroll-target="#prepare-gusto-data">Prepare GUSTO data</a></li>
+  <li><a href="#anova-results-for-the-different-fits" id="toc-anova-results-for-the-different-fits" class="nav-link" data-scroll-target="#anova-results-for-the-different-fits">Anova results for the different fits</a></li>
+  <li><a href="#plotting-of-age-effects" id="toc-plotting-of-age-effects" class="nav-link" data-scroll-target="#plotting-of-age-effects">Plotting of age effects</a></li>
+  <li><a href="#start-surgical-mortality-by-age-in-medicare" id="toc-start-surgical-mortality-by-age-in-medicare" class="nav-link" data-scroll-target="#start-surgical-mortality-by-age-in-medicare">Start surgical mortality by age in Medicare</a></li>
+  <li><a href="#anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery" id="toc-anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery" class="nav-link" data-scroll-target="#anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery">Anova results for the fit of age, with interaction by type of surgery</a></li>
+  <li><a href="#plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci" id="toc-plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci" class="nav-link" data-scroll-target="#plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci">Plotting of predicted age effects, with interaction by type of surgery; add 95% CI</a></li>
+  <li><a href="#plotting-of-age-effects-with-original-data-points" id="toc-plotting-of-age-effects-with-original-data-points" class="nav-link" data-scroll-target="#plotting-of-age-effects-with-original-data-points">Plotting of age effects with original data points</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-applications-pred-mods.html">Part I: Prediction Models in Medicine</a></li><li class="breadcrumb-item"><a href="../chapters/06-choosing-alt-mods.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clinical Prediction Models</h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="altmods" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ewout Steyerberg </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 15, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -357,13 +388,192 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="non-linearity-illustrations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="non-linearity-illustrations">Non-linearity illustrations</h2>
+<section id="prepare-gusto-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="prepare-gusto-data">Prepare GUSTO data</h3>
+<p>Some logistic regression fits with linear, square, rcs, linear spline terms</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto; publicly available</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "_freeze"                       "_quarto.yml"                  
+ [3] "chapters"                      "clin-pred-mods_bookdown.Rproj"
+ [5] "data"                          "docs"                         
+ [7] "index.html"                    "index.qmd"                    
+ [9] "R"                             "README.md"                    
+[11] "site_libs"                    </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gusto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/gusto_age.csv"</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Fmort <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">read.csv</span>(<span class="st">"data/Fmort.csv"</span>))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Fmort<span class="sc">$</span>age10 <span class="ot">&lt;-</span> Fmort<span class="sc">$</span>age <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Fmort<span class="sc">$</span>age102 <span class="ot">&lt;-</span> Fmort<span class="sc">$</span>age10<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="anova-results-for-the-different-fits" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="anova-results-for-the-different-fits">Anova results for the different fits</h3>
+<p>We note minor differences between the continuous fits, and a clear loss of information for the dichtomization at age 65 years</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: DAY30 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="cover-snippet.PNG" title="Clinical Prediction Models" class="quarto-cover-image nolightbox img-fluid"></p>
-<p><strong><em>Work in progress</em></strong></p>
-<p>This bookdown-based website containing the supplementary materials from ‘Clinical Prediction Models: A Practical Approach to Development, Validation, and Updating’, by E. W. Steyerberg (2009).</p>
+ Factor     Chi-Square d.f. P     
+ AGE        1728.89    1    &lt;.0001
+ TOTAL      1728.89    1    &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.square)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: DAY30 
+
+ Factor     Chi-Square d.f. P     
+ AGE        1858.27    2    &lt;.0001
+  Nonlinear   13.21    1    3e-04 
+ TOTAL      1858.27    2    &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.rcs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: DAY30 
+
+ Factor     Chi-Square d.f. P     
+ AGE        1878.45    4    &lt;.0001
+  Nonlinear   24.71    3    &lt;.0001
+ TOTAL      1878.45    4    &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.linearspline)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: DAY30 
+
+ Factor     Chi-Square d.f. P     
+ AGE        1846.73    2    &lt;.0001
+ TOTAL      1846.73    2    &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(agegusto.cat65)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: DAY30 
+
+ Factor     Chi-Square d.f. P     
+ AGE        1262.57    1    &lt;.0001
+ TOTAL      1262.57    1    &lt;.0001</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-of-age-effects" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plotting-of-age-effects">Plotting of age effects</h3>
+<p>Plot age effect first at lp scale (logodds), then at probability scale</p>
+<p>Age effect at logodds scale; Age effect at probability scale</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Fig 6.1</p>
+</section>
+<section id="start-surgical-mortality-by-age-in-medicare" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="start-surgical-mortality-by-age-in-medicare">Start surgical mortality by age in Medicare</h3>
+<p>Age effect at logodds scale</p>
+</section>
+<section id="anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="anova-results-for-the-fit-of-age-with-interaction-by-type-of-surgery">Anova results for the fit of age, with interaction by type of surgery</h3>
+<p>Type of surgery is clearly most relevant (chi2 &gt;13500) in all fits. Age is als relevant (chi2&gt;3000), and a square term is not needed (chi2 = 2); the interaction adds a little bit (chi2 95). With these large numbers (1.1M patients), most effects have p&lt;.0001.</p>
+<p>We will evaluate the differences between fits with or without interaction term graphically further down</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for model improvements</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitplot2) <span class="co"># linear age effect, no interaction with surgery</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: mort 
+
+ Factor     Chi-Square d.f. P     
+ surgery    13500.19   13   &lt;.0001
+ age         3167.14    1   &lt;.0001
+ TOTAL      16445.99   14   &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitage2) <span class="co"># age square added</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: mort 
+
+ Factor     Chi-Square d.f. P     
+ surgery    13499.66   13   &lt;.0001
+ age10         18.13    1   &lt;.0001
+ age102         2.33    1   0.127 
+ TOTAL      16424.97   15   &lt;.0001</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitplot) <span class="co"># interaction added to linear age effect</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Wald Statistics          Response: mort 
+
+ Factor                                       Chi-Square d.f. P     
+ surgery  (Factor+Higher Order Factors)       13566.02   26   &lt;.0001
+  All Interactions                               94.55   13   &lt;.0001
+ age  (Factor+Higher Order Factors)            3280.66   14   &lt;.0001
+  All Interactions                               94.55   13   &lt;.0001
+ surgery * age  (Factor+Higher Order Factors)    94.55   13   &lt;.0001
+ TOTAL                                        16620.27   27   &lt;.0001</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plotting-of-predicted-age-effects-with-interaction-by-type-of-surgery-add-95-ci">Plotting of predicted age effects, with interaction by type of surgery; add 95% CI</h3>
+<p>Plot age effects at logodds scale with 95% CI</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-of-age-effects-with-original-data-points" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plotting-of-age-effects-with-original-data-points">Plotting of age effects with original data points</h3>
+<p>Fit with interaction (solid lines) and no interaction (dashed lines)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -819,10 +1029,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../chapters/05-overfitting.html" class="pagination-link" aria-label="Overfitting and Optimism in Prediction Models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01-introduction.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-missing.html" class="pagination-link" aria-label="Missing values">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

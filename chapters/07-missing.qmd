@@ -1,0 +1,14 @@
+# Missing values {#missing}
+
+```{r setup-ch7, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+Chapter 7 additional material upcoming.

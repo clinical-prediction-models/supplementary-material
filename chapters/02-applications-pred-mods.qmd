@@ -1,0 +1,14 @@
+# Applications of Prediction Models {#applications}
+
+```{r setup-ch2, include=FALSE}
+knitr::opts_knit$set(
+  echo = TRUE,
+  root.dir = here::here()
+)
+
+knitr::opts_chunk$set(
+  fig.path = "fig/"
+)
+```
+
+See [here](https://www.clinicalpredictionmodels.org/extra-material/chapter-2) for additional material.

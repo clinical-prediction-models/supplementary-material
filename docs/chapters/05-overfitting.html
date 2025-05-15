@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ewout Steyerberg">
-<meta name="dcterms.date" content="2025-05-15">
 
-<title>Clinical Prediction Models</title>
+<title>5&nbsp; Overfitting and Optimism in Prediction Models – Clinical Prediction Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,28 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/01-introduction.html" rel="next">
-<link href="./cover-snippet.PNG" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/06-choosing-alt-mods.html" rel="next">
+<link href="../chapters/04-stat-mods.html" rel="prev">
+<link href="../cover-snippet.PNG" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-applications-pred-mods.html">Part I: Prediction Models in Medicine</a></li><li class="breadcrumb-item"><a href="../chapters/05-overfitting.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,11 +132,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"></a> 
+      <a href="../"></a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/clinical-prediction-models/supplementary-material" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -117,13 +151,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -138,31 +172,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Applications of Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-design.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-design.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Study Design for Prediction Modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/05-overfitting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></a>
   </div>
 </li>
@@ -179,73 +213,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/07-missing.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/07-missing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assumptions in Regression Models - Additivity and Linearity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Evaluation of Clinical Usefulness</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/17-validation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/17-validation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Validation of Prediction Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Presentation Formats</span></span></a>
   </div>
 </li>
@@ -262,19 +296,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Patterns of External Validity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/20-updating.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/20-updating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Updating for a New Setting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Updating for Multiple Settings</span></span></a>
   </div>
 </li>
@@ -291,19 +325,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study on a Prediction of 30-Day Mortality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Case Study on Survival Analysis: Prediction of Cardiovascular Event</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Overall Lessons and Data Sets</span></span></a>
   </div>
 </li>
@@ -319,35 +353,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#figures-5.2-to-5.5" id="toc-figures-5.2-to-5.5" class="nav-link active" data-scroll-target="#figures-5.2-to-5.5">Figures 5.2 to 5.5</a>
+  <ul>
+  <li><a href="#fig-5.2-noise-in-estimating-10-mortality-per-center" id="toc-fig-5.2-noise-in-estimating-10-mortality-per-center" class="nav-link" data-scroll-target="#fig-5.2-noise-in-estimating-10-mortality-per-center">Fig 5.2: Noise in estimating 10% mortality per center</a></li>
+  <li><a href="#figs-5.3-and-5.4" id="toc-figs-5.3-and-5.4" class="nav-link" data-scroll-target="#figs-5.3-and-5.4">Figs 5.3 and 5.4</a></li>
+  <li><a href="#n20" id="toc-n20" class="nav-link" data-scroll-target="#n20">n=20</a></li>
+  <li><a href="#n200" id="toc-n200" class="nav-link" data-scroll-target="#n200">n=200</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-applications-pred-mods.html">Part I: Prediction Models in Medicine</a></li><li class="breadcrumb-item"><a href="../chapters/05-overfitting.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clinical Prediction Models</h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="overfitting" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ewout Steyerberg </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 15, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -357,13 +385,116 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="figures-5.2-to-5.5" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="figures-5.2-to-5.5">Figures 5.2 to 5.5</h2>
+<section id="fig-5.2-noise-in-estimating-10-mortality-per-center" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fig-5.2-noise-in-estimating-10-mortality-per-center">Fig 5.2: Noise in estimating 10% mortality per center</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Surg mortality; 10%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (mort <span class="cf">in</span> <span class="fu">c</span>(.<span class="dv">1</span>)) { <span class="do">## ,0.05,0.02,.01)) { # 4 mortalities or only 1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span>.<span class="dv">025</span>, <span class="at">to =</span> .<span class="dv">975</span>, <span class="at">by =</span> .<span class="dv">05</span>), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, mort), <span class="at">axes =</span> F, <span class="at">type =</span> <span class="st">"s"</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">05</span>, .<span class="dv">35</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">33</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="fu">paste</span>(<span class="st">"Observed mortality, true mortality "</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> mort, <span class="dv">0</span>), <span class="st">"%"</span>, <span class="at">sep =</span> <span class="st">""</span>), <span class="at">ylab =</span> <span class="st">"probability density"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0%"</span>, <span class="st">"10%"</span>, <span class="st">"20%"</span>, <span class="st">"30%"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">4</span>, .<span class="dv">5</span>, .<span class="dv">6</span>, .<span class="dv">7</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0%"</span>, <span class="st">"10%"</span>, <span class="st">"20%"</span>, <span class="st">"30%"</span>, <span class="st">"40%"</span>, <span class="st">"50%"</span>, <span class="st">"60%"</span>, <span class="st">"70%"</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> <span class="dv">20</span>), <span class="dv">0</span>), <span class="dv">20</span>, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">"n=20"</span>), <span class="at">col =</span> mycolors[<span class="dv">2</span>])</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">200</span>)) { <span class="co"># add more sample sizes</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">to =</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="at">by =</span> <span class="dv">1</span> <span class="sc">/</span> i), <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>i, i, mort),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"s"</span>, <span class="at">lty =</span> <span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> mort, <span class="at">y =</span> .<span class="dv">02</span> <span class="sc">+</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">max</span>(<span class="fu">round</span>(mort <span class="sc">*</span> i), <span class="dv">0</span>), i, mort), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">"n="</span>, i, <span class="at">sep =</span> <span class="st">""</span>), <span class="at">col =</span> mycolors[<span class="fu">ifelse</span>(i <span class="sc">==</span> <span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  } <span class="co"># end loop n=50,200</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop mort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig_5.2-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End Fig 5.2 ##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## function for Fig 5.3 and Fig 5.4: Noise vs Heterogeneity</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>illustrate_noise_heterogeneity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mort =</span> <span class="fl">0.1</span>, <span class="at">tau =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">03</span>)) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">pty =</span> <span class="st">"m"</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">4</span>, <span class="fl">1.5</span>, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make data set with 100 centers, each 20 patients, 10% mortality, variability sd 0 to 0.03</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  seedn <span class="ot">&lt;-</span> <span class="dv">102</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seedn)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ncenter <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  nsubjects <span class="ot">&lt;-</span> n <span class="co"># n can be changed</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simple SD used on probability scale, can be improved upon</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (sdtau <span class="cf">in</span> tau) { <span class="co"># set for tau can be changed</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    truemort <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> ncenter, <span class="at">mean =</span> mort, <span class="at">sd =</span> sdtau) <span class="co"># mort can be changed</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    mortmat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span>ncenter, <span class="fu">sapply</span>(truemort, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, nsubjects, x)) <span class="sc">/</span> nsubjects, truemort))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Start plotting</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">pch =</span> <span class="st">""</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">2</span>, <span class="fl">1.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">03</span>, .<span class="dv">35</span>), <span class="at">axes =</span> F, <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> sdtau <span class="sc">==</span> .<span class="dv">02</span>, <span class="st">"Mortality"</span>, <span class="st">""</span>))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0%"</span>, <span class="st">"10%"</span>, <span class="st">"20%"</span>, <span class="st">"30%"</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Observed"</span>, <span class="st">"True mortality"</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> .<span class="dv">3</span>, <span class="fu">ifelse</span>(sdtau <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"No heterogeneity"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(sdtau <span class="sc">!=</span> <span class="dv">0</span>, <span class="fu">paste</span>(<span class="st">"+/-"</span>, sdtau))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">adj =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>ncenter)) {</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set.seed</span>(i <span class="sc">+</span> seedn)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">points</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">07</span>, <span class="at">max =</span> .<span class="dv">07</span>), <span class="dv">1</span>),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">c</span>(mortmat[i, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span>.<span class="dv">001</span>, <span class="at">max =</span> .<span class="dv">01</span>), mortmat[i, <span class="dv">3</span>]), <span class="at">pch =</span> <span class="fu">c</span>(<span class="st">"o"</span>, <span class="st">"+"</span>), <span class="at">col =</span> mycolors[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)[i]]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function that illustrates the impact of noise (determined by n) vs heterogeneity (determined by sdtau)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="figs-5.3-and-5.4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="figs-5.3-and-5.4">Figs 5.3 and 5.4</h3>
+<p>These plots llustrate the impact of noise (determined by n, 20 or 200) vs heterogeneity (determined by sdtau (0 - 0.03)). With small n, such as n=20 per center, mortality such as 10% cannot be estimated reliably. Reliable estimation of a center’s performance requires a large n, such as n=200.</p>
+</section>
+<section id="n20" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="n20">n=20</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig_5.3-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="n200" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="n200">n=200</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/Fig_5.4-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="cover-snippet.PNG" title="Clinical Prediction Models" class="quarto-cover-image nolightbox img-fluid"></p>
-<p><strong><em>Work in progress</em></strong></p>
-<p>This bookdown-based website containing the supplementary materials from ‘Clinical Prediction Models: A Practical Approach to Development, Validation, and Updating’, by E. W. Steyerberg (2009).</p>
 
-
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -819,10 +950,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../chapters/04-stat-mods.html" class="pagination-link" aria-label="Statistical Models for Prediction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01-introduction.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/06-choosing-alt-mods.html" class="pagination-link" aria-label="Choosing Between Alternative Models">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

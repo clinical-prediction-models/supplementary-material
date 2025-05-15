@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Restrictions on Candidate Predictors – Clinical Prediction Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/11-main-effects-select.html" rel="next">
+<link href="../chapters/09-coding-categ-contin.html" rel="prev">
+<link href="../cover-snippet.PNG" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/10-restrict-cand-pred.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/clinical-prediction-models/supplementary-material" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Prediction Models in Medicine</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-applications-pred-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Applications of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Study Design for Prediction Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-stat-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Models for Prediction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-overfitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overfitting and Optimism in Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-choosing-alt-mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Choosing Between Alternative Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Developing Valid Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-case-study-missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-coding-categ-contin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-restrict-cand-pred.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-main-effects-select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-additivity-linearity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assumptions in Regression Models - Additivity and Linearity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-modern-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modern Estimation Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14-estimation-external.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimation with External Information</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15-evaluation-performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation of Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-clinical-usefulness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Evaluation of Clinical Usefulness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Validation of Prediction Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/18-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Presentation Formats</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Generalizability of Prediction Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/19-external-validity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Patterns of External Validity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/20-updating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Updating for a New Setting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21-updating-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Updating for Multiple Settings</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22-case-study-gusto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study on a Prediction of 30-Day Mortality</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/23-case-study-cardiovascular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Case Study on Survival Analysis: Prediction of Cardiovascular Event</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/24-lessons-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Overall Lessons and Data Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#case-study" id="toc-case-study" class="nav-link active" data-scroll-target="#case-study">Case-study:</a>
+  <ul>
+  <li><a href="#mortality-after-surgery-for-esophageal-cancer" id="toc-mortality-after-surgery-for-esophageal-cancer" class="nav-link" data-scroll-target="#mortality-after-surgery-for-esophageal-cancer">Mortality after surgery for esophageal cancer</a></li>
+  <li><a href="#testing-the-equal-weights-assumption-in-a-simple-sumscore" id="toc-testing-the-equal-weights-assumption-in-a-simple-sumscore" class="nav-link" data-scroll-target="#testing-the-equal-weights-assumption-in-a-simple-sumscore">Testing the equal weights assumption in a simple sumscore</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/10-restrict-cand-pred.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="restrictions" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Restrictions on Candidate Predictors</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="case-study" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="case-study">Case-study:</h2>
+<section id="mortality-after-surgery-for-esophageal-cancer" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="mortality-after-surgery-for-esophageal-cancer">Mortality after surgery for esophageal cancer</h3>
+<p>Let’s consider the example of predicting 30 day mortality after surgery for esophageal cancer, We analyzed data from the SEER-Medicare database. Among 2041 patients who were over 65 years old and diagnosed between 1991 and 1996, 221 had died by 30 days <a href="https://pubmed.ncbi.nlm.nih.gov/16963730/" title="Surgical mortality in patients with esophageal cancer: development and validation of a simple risk score">JCO 2006</a>.</p>
+<p>For a robust evaluation of the prognostic relevance of comorbidity, we create a simple sum score. It is based on the sum of imputed values for 5 comorbidities. The maximum is 3 comorbidities in this case.</p>
+<table class="caption-top table">
+<caption>Comorbidity variables</caption>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>COMORBI</code></td>
+<td>Comorbidity score based on the count of 5 comorbidities</td>
+</tr>
+<tr class="even">
+<td><code>CPD</code></td>
+<td>Chronic Pulmonary Disease</td>
+</tr>
+<tr class="odd">
+<td><code>Cardio</code></td>
+<td>Cardiovascular disease</td>
+</tr>
+<tr class="even">
+<td><code>Diabetes</code></td>
+<td>Diabetes</td>
+</tr>
+<tr class="odd">
+<td><code>Liver</code></td>
+<td>Liver disease</td>
+</tr>
+<tr class="even">
+<td><code>Renal</code></td>
+<td>Renal disease</td>
+</tr>
+</tbody>
+</table>
+<p>We describe the data below. Note that some missing values for comorbidities were imputed with values between 0 and 1. A regression imputation model was used, with the expected value used as a single imputed value.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import SEER data set, n=2041</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Surgery <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/EsoSurgery.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">prType=</span><span class="st">'html'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(Surgery), <span class="at">scroll=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="width: 100ex; overflow: auto; height: 25ex;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+
+<title>Surgery Descriptives</title>
+<font color="MidnightBlue"><div align="center"><span style="font-weight:bold">Surgery <br><br> 8  Variables   2041  Observations</span></div></font>
+<hr class="thinhr">
+<span style="font-weight:bold">D30</span>
+<style>
+ .hmisctable952327 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable952327 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable952327 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable952327">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>2041</td><td>0</td><td>2</td><td>0.29</td><td>221</td><td>0.1083</td><td>0.1932</td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">AGE</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAjElEQVQ4jc2VgQ6AIAgFn/3/RzcEFMktV0jdLIPcurleoQhAP/fWUGeCgwBo8EUD2rXNLDAYdMEfeTFWEHpDRcd5sxc8k45Kfup1xS9K8KLY3eLXpORxwWu6gXv365mX2AHtO/MnL+cYKRjmZeQi/GK9IG+eKHJtHrZuu5bH9xTOdP3h1qOYULt8U3kCBnYI6l9Y/pkAAAAASUVORK5CYII=" alt="image"></div>
+<style>
+ .hmisctable717753 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable717753 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable717753 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable717753">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>2041</td><td>0</td><td>801</td><td>1</td><td>73.5</td><td>6.723</td><td>65.83</td><td>66.42</td><td>68.58</td><td>72.42</td><td>77.25</td><td>81.91</td><td>85.17</td></tr>
+ </tbody></table>
+
+<span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 65.0021 65.076  65.0815 65.0842 65.1608 ,  <font color="MidnightBlue">highest</font>: 94.6639 94.6667 95.0856 97.9986 101.744</span>
+<hr class="thinhr">
+<span style="font-weight:bold">COMORBI</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAFIAAAANCAMAAAANKsmLAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlEQVQ4jWNgZGBgpC5gYGJgYKIuGDWSikaOxjhdjCTTMloYCY5xEAnH8EQAYSEJICIVIoktuhkZARiBBw6g/yoLAAAAAElFTkSuQmCC" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      393    0.737   0.2983   0.4589   0.0000   0.0000   0.0000 
+      .50      .75      .90      .95 
+   0.0000   0.3756   1.0000   1.1968  </pre>
+
+<span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 0        0.179426 0.182296 0.189824 0.193299 ,  <font color="MidnightBlue">highest</font>: 2.14073  2.15795  2.15974  2.21896  3       </span>
+<hr class="thinhr">
+<span style="font-weight:bold">CPD</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQokWNgYGAkHzAwMDCRD0aw7tEwp6duoE5ImDPAAUkBzggAU34FPoS8LCkAAAAASUVORK5CYII=" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      376    0.591  0.09873   0.1718  0.00000  0.00000  0.00000 
+      .50      .75      .90      .95 
+  0.00000  0.07714  0.16931  1.00000  </pre>
+
+<pre style="font-size:85%;"> Value       0.00  0.06  0.07  0.08  0.09  0.10  0.11  0.12  0.13  0.14  0.15  0.16
+ Frequency   1514     5    17    32    29    35    28    56    40    30    29    25
+ Proportion 0.742 0.002 0.008 0.016 0.014 0.017 0.014 0.027 0.020 0.015 0.014 0.012
+                                                           
+ Value       0.17  0.18  0.19  0.20  0.21  0.22  0.23  1.00
+ Frequency     18    11     7     5     2     3     2   153
+ Proportion 0.009 0.005 0.003 0.002 0.001 0.001 0.001 0.075 </pre>
+
+
+For the frequency table, variable is rounded to the nearest 0.01
+<hr class="thinhr">
+<span style="font-weight:bold">Cardio</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAFIAAAANCAMAAAANKsmLAAAACVBMVEUAAADMzMz////1iUV5AAAAMUlEQVQ4jWNgZGBgpC5gYGJgYKIuGDWSikaOxvgIMhJkGCTGGdABUIgRlBJITQ0gnQAdIgcX0zj6mAAAAABJRU5ErkJggg==" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      374    0.593  0.09677   0.1702   0.0000   0.0000   0.0000 
+      .50      .75      .90      .95 
+   0.0000   0.0536   0.1692   1.0000  </pre>
+
+<style>
+ .hmisctable174135 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable174135 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable174135 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable174135">
+ <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0        </td><td>0.0425048</td><td>0.0433258</td><td>0.0447525</td><td>0.0448201</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.296846 </td><td>0.299705 </td><td>0.325783 </td><td>0.36526  </td><td>1        </td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">Diabetes</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADoAAAANCAMAAADPGo0PAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQokWNgYGAkEzAwMDCRCUaY1tEQpp1WoDZQCDPAASnBywgAhOgE+eiEfCoAAAAASUVORK5CYII=" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      378    0.594  0.09295   0.1641   0.0000   0.0000   0.0000 
+      .50      .75      .90      .95 
+   0.0000   0.0566   0.1304   1.0000  </pre>
+
+<pre style="font-size:85%;"> Value       0.00  0.04  0.05  0.06  0.07  0.08  0.09  0.10  0.11  0.12  0.13  0.14
+ Frequency   1511     5    33    59    54    47    35    33    24    32    19    12
+ Proportion 0.740 0.002 0.016 0.029 0.026 0.023 0.017 0.016 0.012 0.016 0.009 0.006
+                                                     
+ Value       0.15  0.16  0.17  0.18  0.19  0.20  1.00
+ Frequency      7     7     3     2     3     1   154
+ Proportion 0.003 0.003 0.001 0.001 0.001 0.000 0.075 </pre>
+
+
+For the frequency table, variable is rounded to the nearest 0.01
+<hr class="thinhr">
+<span style="font-weight:bold">Liver</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAN0lEQVQ4je3TIRIAMAwCwSP/f3TbmGhUI9gZ/BmQQPtQxd066fKky0P+aEmXJ12e/mP7/cDxUg6k6Q1e+bJHDQAAAABJRU5ErkJggg==" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      391    0.474 0.002736 0.005334 0.000000 0.000000 0.000000 
+      .50      .75      .90      .95 
+ 0.000000 0.000000 0.001706 0.005047  </pre>
+
+<style>
+ .hmisctable298810 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable298810 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable298810 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable298810">
+ <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0          </td><td>0.000277464</td><td>0.000284278</td><td>0.000291895</td><td>0.000293725</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.024005   </td><td>0.0259095  </td><td>0.0290324  </td><td>0.0364262  </td><td>1          </td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+<span style="font-weight:bold">Renal</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlEQVQ4je3TsQ0AMAwCwcf7D53YmYAqLjiJ/huQQPtQxd066fKky0P+aEmXJ12e+eMzN/j9w9YRB6PSDVx1FUCKAAAAAElFTkSuQmCC" alt="image"></div>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     2041        0      391     0.48 0.007155  0.01381 0.000000 0.000000 0.000000 
+      .50      .75      .90      .95 
+ 0.000000 0.000000 0.007221 0.012013  </pre>
+
+<style>
+ .hmisctable666624 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable666624 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable666624 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table data-quarto-disable-processing="true" class="hmisctable666624">
+ <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0          </td><td>0.000242474</td><td>0.000406405</td><td>0.000550073</td><td>0.00060003 </td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.0391617  </td><td>0.0409958  </td><td>0.0413482  </td><td>0.0746603  </td><td>1          </td></tr>
+ </tbody></table>
+
+<hr class="thinhr">
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(D30<span class="sc">~</span>COMORBI, <span class="at">data=</span>Surgery)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><strong>Logistic Regression Model</strong></p>
+
+<pre>lrm(formula = D30 ~ COMORBI, data = Surgery)
+</pre>
+
+
+<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black;">Model Likelihood<br>
+Ratio Test</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black;">Discrimination<br>
+Indexes</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; border-right: 1px solid black;">Rank Discrim.<br>
+Indexes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; min-width: 9em; border-left: 1px solid black; border-right: 1px solid black;">Obs 2041</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">LR χ<sup>2</sup> 13.99</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>R</em><sup>2</sup> 0.014</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>C</em> 0.549</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; min-width: 9em; border-left: 1px solid black; border-right: 1px solid black;">0 1820</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">d.f. 1</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>R</em><sup><span style="font-size: 70%;">2</span></sup><sub><span style="font-size: 70%;">1,2041</span></sub> 0.006</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>D</em><sub>xy</sub> 0.098</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; min-width: 9em; border-left: 1px solid black; border-right: 1px solid black;">1 221</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">Pr(&gt;χ<sup>2</sup>) 0.0002</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>R</em><sup><span style="font-size: 70%;">2</span></sup><sub><span style="font-size: 70%;">1,591.2</span></sub> 0.022</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">γ 0.162</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black;">max |∂log <em>L</em>/∂β| 3×10<sup>-9</sup></td>
+<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;"></td>
+<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;">Brier 0.096</td>
+<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;">τ<sub>a</sub> 0.019</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1px solid grey; border-top: 2px solid grey;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey;">β</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey;">S.E.</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey;">Wald <em>Z</em></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey;">Pr(&gt;|<em>Z</em>|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; min-width: 7em;">Intercept</td>
+<td style="text-align: right; min-width: 7em;">&nbsp;-2.2643</td>
+<td style="text-align: right; min-width: 7em;">&nbsp;0.0850</td>
+<td style="text-align: right; min-width: 7em;">-26.65</td>
+<td style="text-align: right; min-width: 7em;">&lt;0.0001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; min-width: 7em; border-bottom: 2px solid grey;">COMORBI</td>
+<td style="text-align: right; min-width: 7em; border-bottom: 2px solid grey;">&nbsp; 0.4443</td>
+<td style="text-align: right; min-width: 7em; border-bottom: 2px solid grey;">&nbsp;0.1129</td>
+<td style="text-align: right; min-width: 7em; border-bottom: 2px solid grey;">3.93</td>
+<td style="text-align: right; min-width: 7em; border-bottom: 2px solid grey;">&lt;0.0001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The prognostic value of the score is modest; on its own (univariate logistic regression of <code>D30~COMORBI)</code>, we find a <em>c</em> statistic of 0.55.</p>
+</section>
+<section id="testing-the-equal-weights-assumption-in-a-simple-sumscore" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="testing-the-equal-weights-assumption-in-a-simple-sumscore">Testing the equal weights assumption in a simple sumscore</h3>
+<p>Simple sums of predictors make the assumption of equal weights for each predictor. This assumption can be assessed in at least two ways</p>
+<ol type="1">
+<li>An overall test: is a more refined coding preferable over a simple sum?<br>
+In the example of comorbidity, we consider the sum of 5 comorbidity conditions as a simple sumscore (Table 10.2). A model considering the 5 comorbidity conditions separately has 5 df and a Likelihood Ratio statistic of 18, in contrast to 14 for the simple sumscore. The difference of 3.6 with 4 df has a p-value of 0.46, far from convincing against the idea of using the simple sumscore.</li>
+<li>Component-wise testing: is one of the comborbidities really deviant in a prognostic value?<br>
+We adding the conditions one by one in a regression model that already contains the sumscore. The coefficient of the condition added in a model indicates the deviation from the common effect based on the other conditions.<br>
+We note that the deviations from the common effect are relatively small, except for liver disease and renal disease. Renal disease even seemed to have a protective effect. Both effects were based on small numbers. The standard errors of the estimates were large, and the effects were statistically nonsignificant.</li>
+</ol>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make function that that a score plus its components</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome and data specified as well</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>test.equal.weights <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">data=</span>Surgery, <span class="at">y=</span><span class="st">"D30"</span>, <span class="at">sumscore=</span><span class="st">"COMORBI"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">components=</span><span class="fu">Cs</span>(CPD, Cardio, Diabetes, Liver, Renal)) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># results in matrix</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>matrix.coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>(<span class="dv">2</span><span class="sc">+</span><span class="fu">length</span>(components)), <span class="at">ncol=</span><span class="dv">7</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># labels.components &lt;- dput(as.character(components)) # to get it nice for row.labels</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(matrix.coefs) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"sumscore"</span>, <span class="st">"ALL"</span>, <span class="fu">dput</span>(<span class="fu">as.character</span>(components))),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">Cs</span>(Coef.Sumscore, SE.Sumscore, Coef.Component, SE.Component, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                               LR, df, p<span class="sc">-</span>value))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Make models:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. sumscore</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(data[,y] <span class="sc">~</span> data[,sumscore])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">1</span>,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fit1<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(fit1<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]), <span class="cn">NA</span>, <span class="cn">NA</span>, fit1<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. full model for overall comparison</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>fit.full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(data[,y] <span class="sc">~</span> <span class="fu">as.matrix</span>(data[,components]), <span class="at">x=</span>T)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># compare model fits</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>p.anova.comparison <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(fit.full<span class="sc">$</span>stats[<span class="dv">3</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">3</span>], </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">df=</span> fit.full<span class="sc">$</span>stats[<span class="dv">4</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">4</span>], <span class="at">lower.tail =</span> F )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">2</span>,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, fit.full<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>], p.anova.comparison)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. fit incremenal differences to sumscore</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(components)) {</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>fiti <span class="ot">&lt;-</span> <span class="fu">update</span>(fit1, .<span class="sc">~</span>.<span class="sc">+</span> fit.full<span class="sc">$</span>x[,i])</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># compare model fits</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>p.anova.comparison <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(fiti<span class="sc">$</span>stats[<span class="dv">3</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">3</span>], </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                             <span class="at">df=</span> fiti<span class="sc">$</span>stats[<span class="dv">4</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">4</span>], <span class="at">lower.tail =</span> F )</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">2</span><span class="sc">+</span>i,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fiti<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(fiti<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]), fiti<span class="sc">$</span>coef[<span class="dv">3</span>], <span class="fu">sqrt</span>(fiti<span class="sc">$</span>var[<span class="dv">3</span>,<span class="dv">3</span>]),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                          fiti<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>], p.anova.comparison) } <span class="co"># end loop</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(matrix.coefs)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">test.equal.weights</span>(<span class="at">data=</span>Surgery, <span class="at">y=</span><span class="st">"D30"</span>, <span class="at">sumscore=</span><span class="st">"COMORBI"</span>, </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                  <span class="at">components=</span><span class="fu">Cs</span>(CPD, Cardio, Diabetes, Liver, Renal)), </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                  <span class="at">caption=</span><span class="st">"**Table 10.2**: Testing deviations for each condition in a sum score. Data from esophageal cancer patients who underwent surgery (2041 patients from SEER-Medicare data, 221 died by 30 days). The overall test for deviations from a simple sum score had a p-value of 0.46 (overall LR test, 4 *df*)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>c("CPD", "Cardio", "Diabetes", "Liver", "Renal")</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption><strong>Table 10.2</strong>: Testing deviations for each condition in a sum score. Data from esophageal cancer patients who underwent surgery (2041 patients from SEER-Medicare data, 221 died by 30 days). The overall test for deviations from a simple sum score had a p-value of 0.46 (overall LR test, 4 <em>df</em>)</caption>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Coef.Sumscore</th>
+<th style="text-align: right;">SE.Sumscore</th>
+<th style="text-align: right;">Coef.Component</th>
+<th style="text-align: right;">SE.Component</th>
+<th style="text-align: right;">LR</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">p - value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sumscore</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ALL</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CPD</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">-0.22</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cardio</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">-0.13</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diabetes</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Liver</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Renal</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">-1.09</td>
+<td style="text-align: right;">1.11</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.26</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="discussion" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="discussion">Discussion</h3>
+<p>In the SEER data case study, <strong>we stick to our assumption of a similar effect for all comorbities</strong>. The apparently most deviant effects of liver disease and renal disease were unreliable. We hence may assume similar effects for <code>Liver</code> and <code>Renal</code> as for the other comorbidities.</p>
+<p>An extension of the component-wise testing might be to apply a <strong>LASSO regression model</strong> where the sumscore effect is taken as an offset, with shrinkage of deviations from this offset. In the case study, the overall test was far from statistically significant, and hence we expect shrinkage of most or all of these deviations to zero. This idea is similar to <strong>updating</strong> of a prediction model, with shrinkage of deviating coefficients to values of a prior model: <code>y~predictor, offset=linear.predictor</code> <a href="https://pubmed.ncbi.nlm.nih.gov/15287085/" title="Validation and updating of predictive logistic regression models: a study on sample size and shrinkage">Stat Med 2004</a>.</p>
+<p>Further discussions on robust modeling were motivated by a case study on <strong>prediction of mutations based on family history</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/17003395/" title="Prediction of MLH1 and MSH2 mutations in Lynch syndrome">JAMA 2006</a>. A simple weighting of second degree relatives as half the effect of first degree relatives worked well in this case. And the effect for age of diagnosis in a relative could be assumed identical for the index patient (proband) and the first and second degree relatives. This simplification saved degrees of freedom in the modeling process at the expense of potentially missing specific patterns in the data <a href="https://pubmed.ncbi.nlm.nih.gov/17948867/" title="Data reduction for prediction: a case study on robust coding of age and family history for the risk of having a genetic mutation">Stat Med 2007</a>.<br>
+A robust approach is especially attractive in relatively small data set. Indeed, a major study attempted to model family history for different cancers (<em>colon, endometrial, other</em>) separately for first and second degree relatives, with dichotomization of age as below or above 50 years in 870 patients with only 38 mutations identified <a href="https://pubmed.ncbi.nlm.nih.gov/16807412/" title="Identification and survival of carriers of mutations in DNA mismatch-repair genes in colon cancer">NEJM 2006</a>. Simulations confirmed that attempting such modeling was a bad idea <a href="https://pubmed.ncbi.nlm.nih.gov/29174118/" title="Poor performance of clinical prediction models: the harm of commonly applied methods">JCE 2018</a>, both because of severe overfitting (38 events) and <a href="https://twitter.com/MaartenvSmeden/status/1504422652215185413" title="Dichotomania - dichotomizing variables is often a very bad idea">dichotomania</a>. In contrast, the robust modeling strategy was applied in various versions of prediction models for mutation status <a href="https://pubmed.ncbi.nlm.nih.gov/20727894/" title="The PREMM(1,2,6) model predicts risk of MLH1, MSH2, and MSH6 germline mutations based on cancer history">Gastroenterology 2011</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/28489507/" title="Development and Validation of the PREMM5 Model for Comprehensive Risk Assessment of Lynch Syndrome">JCO 2017</a>, with satisfactory performance in a large-scale international validation study <a href="https://pubmed.ncbi.nlm.nih.gov/26582061/" title="Comparison of Prediction Models for Lynch Syndrome Among Individuals With Colorectal Cancer">JNCI 2015</a>.</p>
+</section>
+<section id="literature" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="literature">Literature</h3>
+<p><strong>SEER data case study</strong>:</p>
+<ul>
+<li>Steyerberg EW, Neville BA, Koppert LB, Lemmens VE, Tilanus HW, Coebergh JW, Weeks JC, Earle CC. <a href="https://pubmed.ncbi.nlm.nih.gov/16963730/">Surgical mortality in patients with esophageal cancer: development and validation of a simple risk score.</a> J Clin Oncol. 2006 Sep 10;24(26):4277-84. doi: 10.1200/JCO.2005.05.0658. PMID: 16963730</li>
+</ul>
+<p><strong>Methods papers:</strong></p>
+<ul>
+<li><p>Steyerberg EW, Borsboom GJ, van Houwelingen HC, Eijkemans MJ, Habbema JD. <a href="https://pubmed.ncbi.nlm.nih.gov/15287085/">Validation and updating of predictive logistic regression models: a study on sample size and shrinkage.</a> Stat Med. 2004 Aug 30;23(16):2567-86. doi: 10.1002/sim.1844. PMID: 15287085</p></li>
+<li><p>Steyerberg EW, Uno H, Ioannidis JPA, van Calster B; Collaborators. <a href="https://pubmed.ncbi.nlm.nih.gov/29174118/">Poor performance of clinical prediction models: the harm of commonly applied methods.</a> J Clin Epidemiol. 2018 Jun;98:133-143. doi: 10.1016/j.jclinepi.2017.11.013. Epub 2017 Nov 24. PMID: 29174118</p></li>
+<li><p>Steyerberg EW, Balmaña J, Stockwell DH, Syngal S. <a href="https://pubmed.ncbi.nlm.nih.gov/17948867/">Data reduction for prediction: a case study on robust coding of age and family history for the risk of having a genetic mutation.</a> Stat Med. 2007 Dec 30;26(30):5545-56. doi: 10.1002/sim.3119. PMID: 17948867</p></li>
+</ul>
+<p><strong>Mutation status prediction:</strong></p>
+<ul>
+<li><p>Balmaña J, Stockwell DH, Steyerberg EW, …, Burbidge LA, Syngal S. <a href="https://pubmed.ncbi.nlm.nih.gov/17003395/">Prediction of MLH1 and MSH2 mutations in Lynch syndrome.</a> JAMA. 2006 Sep 27;296(12):1469-78. doi: 10.1001/jama.296.12.1469. PMID: 17003395</p></li>
+<li><p>Barnetson RA, Tenesa A, Farrington SM, Nicholl ID, Cetnarskyj R, Porteous ME, Campbell H, Dunlop MG. <a href="https://pubmed.ncbi.nlm.nih.gov/16807412/">Identification and survival of carriers of mutations in DNA mismatch-repair genes in colon cancer.</a> N Engl J Med. 2006 Jun 29;354(26):2751-63. doi: 10.1056/NEJMoa053493</p></li>
+<li><p>Kastrinos F, Uno H, Ukaegbu C, …, Steyerberg EW, Syngal S. <a href="https://pubmed.ncbi.nlm.nih.gov/28489507/">Development and Validation of the PREMM<sub>5</sub> Model for Comprehensive Risk Assessment of Lynch Syndrome.</a> J Clin Oncol. 2017 Jul 1;35(19):2165-2172. doi: 10.1200/JCO.2016.69.6120. Epub 2017 May 10. PMID: 28489507</p></li>
+<li><p>Kastrinos F, Steyerberg EW, Mercado R, …, Wenstrup RJ, Syngal S. <a href="https://pubmed.ncbi.nlm.nih.gov/20727894/">The PREMM(1,2,6) model predicts risk of MLH1, MSH2, and MSH6 germline mutations based on cancer history.</a> Gastroenterology. 2011 Jan;140(1):73-81. doi: 10.1053/j.gastro.2010.08.021. Epub 2010 Aug 19. PMID: 20727894</p></li>
+<li><p>Kastrinos F, Ojha RP, Leenen C, …, Syngal S, Steyerberg EW; Lynch Syndrome prediction model validation study group. <a href="https://pubmed.ncbi.nlm.nih.gov/26582061/">Comparison of Prediction Models for Lynch Syndrome Among Individuals With Colorectal Cancer.</a> <u>J</u> Natl Cancer Inst. 2015 Nov 18;108(2):djv308. doi: 10.1093/jnci/djv308. Print 2016 Feb.PMID: 26582061</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/09-coding-categ-contin.html" class="pagination-link" aria-label="Coding of Categorical and Continuous Predictors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coding of Categorical and Continuous Predictors</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/11-main-effects-select.html" class="pagination-link" aria-label="Selection of Main Effects">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Selection of Main Effects</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Clinical Prediction Models</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
