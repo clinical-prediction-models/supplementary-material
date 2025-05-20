@@ -9,6 +9,200 @@ knitr::opts_knit$set(
 knitr::opts_chunk$set(
   fig.path = "fig/"
 )
+
+library(rms)
+library(mice)
+library(foreign)
+options(width = 100)
 ```
 
-Chapter 8 additional material upcoming.
+## Read and describe data file
+
+```{r describe_data, warnings = FALSE }
+TBI1 <- read.csv("data/TBI1.csv", row.names = 1)
+TBI1$study <- as.factor(TBI1$study)
+TBI1$pupil <- as.factor(TBI1$pupil)
+TBI1$ctclass <- as.factor(TBI1$ctclass)
+describe(TBI1)
+```
+
+## Missing value analysis 
+
+### Start with rms functions
+
+```{r message = FALSE }
+na.patterns <- naclus(TBI1)
+plot(na.patterns, ylab = "Fraction of NAs in common", col = "red")
+par(mfrow = c(1, 2))
+naplot(na.patterns, col = "red", cex = 1.1, cex.main = 0.9)
+```
+
+### Other visualization: VIM package
+
+```{r message = FALSE }
+library(VIM)
+par(mfrow = c(1, 1))
+aggr(TBI1, sortVars = T, col = c("green", "red"))
+```
+
+## 9 separate plots
+
+```{r message = FALSE,fig.height=12}
+par(mar = c(4, 4, 3, 1) + 0.1,mfrow = c(3, 3))
+
+plot(summary(is.na(ctclass) ~ study + age + unfav, data = TBI1), main = "CT classification", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(cisterns) ~ study + age + unfav, data = TBI1), main = "CT: compressed cisterns", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(shift) ~ study + age + unfav, data = TBI1), main = "CT: shift", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(tsah) ~ study + age + unfav, data = TBI1), main = "CT: tSAH", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(hb) ~ study + age + unfav, data = TBI1), main = "Lab: hb", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(glucose) ~ study + age + unfav, data = TBI1), main = "Lab: glucose", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(hypoxia) ~ study + age + unfav, data = TBI1), main = "Presentation: hypoxia", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(hypotens) ~ study + age + unfav, data = TBI1), main = "Presentation: hypotension", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+
+plot(summary(is.na(pupil) ~ study + age + unfav, data = TBI1), main = "Pupillary reactivity", pch = 19, cex.main = 0.6, cex.axis = 0.8, cex.lab = .6, cex.sub = 0.3, col = "red",reset.par = FALSE)
+# End plot missing patterns
+```
+
+
+## Imputation
+
+### mice in action
+
+We define the matrix pmat for mice predictorMatrix.  
+A value of '1' means that the column variable is used as a predictor for the target variable (in the rows). The diagonal of 'predictorMatrix' must be zero. In our matrix we don't want 'study', 'age', 'motor', 'unfav' and 'mort' to be imputed.
+
+```{r warning=FALSE }
+p <- 16
+pmat <- matrix(rep(1, p * p), nrow = p, ncol = p)
+diag(pmat) <- rep(0, p)
+pmat[, c(1:2, 10, 15:16)] <- 0 # set some columns to zero
+pmat[c(1:2, 10, 15:16), ] <- 0 # set the rows for the same variables to zero
+
+## defines data to be used and the imputation method for each column, seed=1
+gm <- mice(TBI1,
+  m = 10,
+  imputationMethod = c(
+    "polyreg", "pmm", "logreg", "logreg", "logreg", "logreg", "logreg", "logreg", "polyreg",
+    "polyreg", "polyreg", "pmm", "pmm", "pmm", "logreg", "logreg"
+  ), predictorMatrix = pmat, seed = 1
+)
+gm
+
+densityplot(gm) # Nice check for imputed vs original distributions
+```
+
+### Univariate, CC analyses for age and motor
+
+```{r message = FALSE }
+lrm(unfav ~ study + age, data = TBI1)
+lrm(unfav ~ study + motor, data = TBI1)
+```
+
+## Prediction model analyses
+
+```{r message = FALSE,eval=FALSE}
+## CC, n = 2428
+lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI1)
+## SI, n = 8530
+lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = complete(gm, action = 1))
+## MI, n = 8530
+fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm, data = TBI1)
+```
+
+## Make adjusted analyses per complete predictor 
+
+```{r message = FALSE,eval=FALSE}
+names.uni <- Cs(pupil, hypoxia, hypotens, ctclass, tsah) # 5 names
+TBIc <- complete(gm, action = "long", include = TRUE) # completed data set
+
+###################################################
+# pupils
+TBI2 <- TBIc[!TBIc$.id %in% TBIc$.id[is.na(TBIc$pupil)], ]
+gm2 <- as.mids(TBI2)
+fit.CC <- lrm(unfav ~ study + pupil, data = TBI2[TBI2$.imp == 0, ])
+fit.SI <- lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI2[TBI2$.imp == 1, ])
+fit.MI <- fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm2)
+```
+
+```{r message = FALSE,eval=FALSE}
+options(digits = 2)
+i <- 1 # indicates index for the predictor we are studying
+print(coef(fit.CC)[startsWith(names(coef(fit.CC)), names.uni[i])]) # CC
+print(sqrt(diag(fit.CC$var))[startsWith(names(coef(fit.CC)), names.uni[i])])
+print(coef(fit.SI)[startsWith(names(coef(fit.SI)), names.uni[i])]) # SI
+print(sqrt(diag(fit.SI$var))[startsWith(names(coef(fit.SI)), names.uni[i])])
+print(coef(fit.MI)[startsWith(names(coef(fit.MI)), names.uni[i])]) # MI
+print(sqrt(diag(fit.MI$var))[startsWith(names(coef(fit.MI)), names.uni[i])])
+```
+
+```{r message = FALSE,eval=FALSE}
+# hypoxia
+TBI2 <- TBIc[!TBIc$.id %in% TBIc$.id[is.na(TBIc$hypoxia)], ]
+gm2 <- as.mids(TBI2)
+fit.CC <- lrm(unfav ~ study + hypoxia, data = TBI2[TBI2$.imp == 0, ])
+fit.SI <- lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI2[TBI2$.imp == 1, ])
+fit.MI <- fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm2)
+
+i <- 2 # index 2
+print(coef(fit.CC)[startsWith(names(coef(fit.CC)), names.uni[i])]) # CC
+print(sqrt(diag(fit.CC$var))[startsWith(names(coef(fit.CC)), names.uni[i])])
+print(coef(fit.SI)[startsWith(names(coef(fit.SI)), names.uni[i])]) # SI
+print(sqrt(diag(fit.SI$var))[startsWith(names(coef(fit.SI)), names.uni[i])])
+print(coef(fit.MI)[startsWith(names(coef(fit.MI)), names.uni[i])]) # MI
+print(sqrt(diag(fit.MI$var))[startsWith(names(coef(fit.MI)), names.uni[i])])
+
+# hypotens
+TBI2 <- TBIc[!TBIc$.id %in% TBIc$.id[is.na(TBIc$hypotens)], ]
+gm2 <- as.mids(TBI2)
+fit.CC <- lrm(unfav ~ study + hypotens, data = TBI2[TBI2$.imp == 0, ])
+fit.SI <- lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI2[TBI2$.imp == 1, ])
+fit.MI <- fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm2)
+
+i <- 3
+print(coef(fit.CC)[startsWith(names(coef(fit.CC)), names.uni[i])]) # CC
+print(sqrt(diag(fit.CC$var))[startsWith(names(coef(fit.CC)), names.uni[i])])
+print(coef(fit.SI)[startsWith(names(coef(fit.SI)), names.uni[i])]) # SI
+print(sqrt(diag(fit.SI$var))[startsWith(names(coef(fit.SI)), names.uni[i])])
+print(coef(fit.MI)[startsWith(names(coef(fit.MI)), names.uni[i])]) # MI
+print(sqrt(diag(fit.MI$var))[startsWith(names(coef(fit.MI)), names.uni[i])])
+
+# ctclass
+TBI2 <- TBIc[!TBIc$.id %in% TBIc$.id[is.na(TBIc$ctclass)], ]
+gm2 <- as.mids(TBI2)
+fit.CC <- lrm(unfav ~ study + ctclass, data = TBI2[TBI2$.imp == 0, ])
+fit.SI <- lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI2[TBI2$.imp == 1, ])
+fit.MI <- fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm2)
+
+i <- 4
+print(coef(fit.CC)[startsWith(names(coef(fit.CC)), names.uni[i])]) # CC
+print(sqrt(diag(fit.CC$var))[startsWith(names(coef(fit.CC)), names.uni[i])])
+print(coef(fit.SI)[startsWith(names(coef(fit.SI)), names.uni[i])]) # SI
+print(sqrt(diag(fit.SI$var))[startsWith(names(coef(fit.SI)), names.uni[i])])
+print(coef(fit.MI)[startsWith(names(coef(fit.MI)), names.uni[i])]) # MI
+print(sqrt(diag(fit.MI$var))[startsWith(names(coef(fit.MI)), names.uni[i])])
+
+# tsah
+TBI2 <- TBIc[!TBIc$.id %in% TBIc$.id[is.na(TBIc$tsah)], ]
+gm2 <- as.mids(TBI2)
+fit.CC <- lrm(unfav ~ study + tsah, data = TBI2[TBI2$.imp == 0, ])
+fit.SI <- lrm(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, data = TBI2[TBI2$.imp == 1, ])
+fit.MI <- fit.mult.impute(unfav ~ study + age + motor + pupil + hypoxia + hypotens + ctclass + tsah, lrm, xtrans = gm2)
+
+i <- 5
+print(coef(fit.CC)[startsWith(names(coef(fit.CC)), names.uni[i])]) # CC
+print(sqrt(diag(fit.CC$var))[startsWith(names(coef(fit.CC)), names.uni[i])])
+print(coef(fit.SI)[startsWith(names(coef(fit.SI)), names.uni[i])]) # SI
+print(sqrt(diag(fit.SI$var))[startsWith(names(coef(fit.SI)), names.uni[i])])
+print(coef(fit.MI)[startsWith(names(coef(fit.MI)), names.uni[i])]) # MI
+print(sqrt(diag(fit.MI$var))[startsWith(names(coef(fit.MI)), names.uni[i])])
+
+## End C, SI, and MI analyses ##
+################################
+```
