@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -313,15 +348,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#read-and-describe-data-file" id="toc-read-and-describe-data-file" class="nav-link active" data-scroll-target="#read-and-describe-data-file">Read and describe data file</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis">Missing value analysis</a>
+  <ul>
+  <li><a href="#start-with-rms-functions" id="toc-start-with-rms-functions" class="nav-link" data-scroll-target="#start-with-rms-functions">Start with rms functions</a></li>
+  <li><a href="#other-visualization-vim-package" id="toc-other-visualization-vim-package" class="nav-link" data-scroll-target="#other-visualization-vim-package">Other visualization: VIM package</a></li>
+  </ul></li>
+  <li><a href="#separate-plots" id="toc-separate-plots" class="nav-link" data-scroll-target="#separate-plots">9 separate plots</a></li>
+  <li><a href="#imputation" id="toc-imputation" class="nav-link" data-scroll-target="#imputation">Imputation</a>
+  <ul>
+  <li><a href="#mice-in-action" id="toc-mice-in-action" class="nav-link" data-scroll-target="#mice-in-action">mice in action</a></li>
+  <li><a href="#univariate-cc-analyses-for-age-and-motor" id="toc-univariate-cc-analyses-for-age-and-motor" class="nav-link" data-scroll-target="#univariate-cc-analyses-for-age-and-motor">Univariate, CC analyses for age and motor</a></li>
+  </ul></li>
+  <li><a href="#prediction-model-analyses" id="toc-prediction-model-analyses" class="nav-link" data-scroll-target="#prediction-model-analyses">Prediction model analyses</a></li>
+  <li><a href="#make-adjusted-analyses-per-complete-predictor" id="toc-make-adjusted-analyses-per-complete-predictor" class="nav-link" data-scroll-target="#make-adjusted-analyses-per-complete-predictor">Make adjusted analyses per complete predictor</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-missing.html">Part II: Developing Valid Prediction Models</a></li><li class="breadcrumb-item"><a href="../chapters/08-case-study-missing.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="missing-case" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="missing-case" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study on Dealing with Missing Values</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Show/hide all code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -338,9 +392,547 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Chapter 8 additional material upcoming.</p>
+<section id="read-and-describe-data-file" class="level2">
+<h2 class="anchored" data-anchor-id="read-and-describe-data-file">Read and describe data file</h2>
+<div class="cell" data-warnings="false">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>TBI1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI1.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>study <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>study)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>pupil <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>pupil)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>ctclass <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>ctclass)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TBI1 
+
+ 16  Variables      8530  Observations
+----------------------------------------------------------------------------------------------------
+study 
+       n  missing distinct 
+    8530        0       11 
+                                                                            
+Value          1     2     3     4     5     6     7     8     9    10    11
+Frequency   1118  1041   409   919  1510   350   812   604   126   822   819
+Proportion 0.131 0.122 0.048 0.108 0.177 0.041 0.095 0.071 0.015 0.096 0.096
+----------------------------------------------------------------------------------------------------
+age 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
+    8530        0       80    0.999     34.7    17.59       17       18       21       30       45 
+     .90      .95 
+      59       65 
+
+lowest : 14 15 16 17 18, highest: 89 90 91 92 93
+----------------------------------------------------------------------------------------------------
+hypoxia 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    5473     3057        2    0.489     1122    0.205    0.326 
+
+----------------------------------------------------------------------------------------------------
+hypotens 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    6440     2090        2    0.447     1173   0.1821    0.298 
+
+----------------------------------------------------------------------------------------------------
+cisterns 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    3857     4673        2    0.736     1661   0.4306   0.4905 
+
+----------------------------------------------------------------------------------------------------
+shift 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    6209     2321        2    0.658     2020   0.3253   0.4391 
+
+----------------------------------------------------------------------------------------------------
+tsah 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    7393     1137        2    0.742     3313   0.4481   0.4947 
+
+----------------------------------------------------------------------------------------------------
+edh 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    7425     1105        2     0.35     1001   0.1348   0.2333 
+
+----------------------------------------------------------------------------------------------------
+pupil 
+       n  missing distinct 
+    7143     1387        3 
+                            
+Value          1     2     3
+Frequency   4498   887  1758
+Proportion 0.630 0.124 0.246
+----------------------------------------------------------------------------------------------------
+motor 
+       n  missing distinct 
+    8530        0        5 
+                                        
+Value        1/2     3     4   5/6     9
+Frequency   2439  1085  1941  2602   463
+Proportion 0.286 0.127 0.228 0.305 0.054
+----------------------------------------------------------------------------------------------------
+ctclass 
+       n  missing distinct 
+    5192     3338        3 
+                            
+Value          1     2     3
+Frequency   2198  1050  1944
+Proportion 0.423 0.202 0.374
+----------------------------------------------------------------------------------------------------
+sysbp 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
+    6797     1733     1653    0.999    134.3     25.3      100      108      120      132      148 
+     .90      .95 
+     162      175 
+
+lowest : 60    62    64    64.19 65.6 , highest: 219   220   222   226   230  
+----------------------------------------------------------------------------------------------------
+hb 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
+    3871     4659      195        1    12.39    2.685      8.1      9.1     10.8     12.6     14.2 
+     .90      .95 
+    15.2     15.8 
+
+lowest : 6       6.1     6.12311 6.2     6.28424, highest: 16.7    16.79   16.8    16.9    17     
+----------------------------------------------------------------------------------------------------
+glucose 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
+    4830     3700      706        1    8.894    3.393    5.100    5.611    6.700    8.200   10.400 
+     .90      .95 
+  13.091   15.500 
+
+lowest : 3       3.03    3.05556 3.2     3.3    , highest: 19.7778 19.8    19.855  19.9    20     
+----------------------------------------------------------------------------------------------------
+unfav 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    8530        0        2    0.749     4082   0.4785   0.4991 
+
+----------------------------------------------------------------------------------------------------
+mort 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    8530        0        2    0.606     2396   0.2809    0.404 
+
+----------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-value-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="missing-value-analysis">Missing value analysis</h2>
+<section id="start-with-rms-functions" class="level3">
+<h3 class="anchored" data-anchor-id="start-with-rms-functions">Start with rms functions</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>na.patterns <span class="ot">&lt;-</span> <span class="fu">naclus</span>(TBI1)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(na.patterns, <span class="at">ylab =</span> <span class="st">"Fraction of NAs in common"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">naplot</span>(na.patterns, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">cex =</span> <span class="fl">1.1</span>, <span class="at">cex.main =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="other-visualization-vim-package" class="level3">
+<h3 class="anchored" data-anchor-id="other-visualization-vim-package">Other visualization: VIM package</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(TBI1, <span class="at">sortVars =</span> T, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Variables sorted by number of missings: 
+ Variable     Count
+ cisterns 0.5478312
+       hb 0.5461899
+  glucose 0.4337632
+  ctclass 0.3913247
+  hypoxia 0.3583822
+    shift 0.2720985
+ hypotens 0.2450176
+    sysbp 0.2031653
+    pupil 0.1626026
+     tsah 0.1332943
+      edh 0.1295428
+    study 0.0000000
+      age 0.0000000
+    motor 0.0000000
+    unfav 0.0000000
+     mort 0.0000000</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="separate-plots" class="level2">
+<h2 class="anchored" data-anchor-id="separate-plots">9 separate plots</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.1</span>,<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(ctclass) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"CT classification"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(cisterns) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"CT: compressed cisterns"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(shift) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"CT: shift"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(tsah) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"CT: tSAH"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(hb) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Lab: hb"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(glucose) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Lab: glucose"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(hypoxia) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Presentation: hypoxia"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(hypotens) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Presentation: hypotension"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(pupil) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Pupillary reactivity"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># End plot missing patterns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="imputation" class="level2">
+<h2 class="anchored" data-anchor-id="imputation">Imputation</h2>
+<section id="mice-in-action" class="level3">
+<h3 class="anchored" data-anchor-id="mice-in-action">mice in action</h3>
+<p>We define the matrix pmat for mice predictorMatrix.<br>
+A value of ‘1’ means that the column variable is used as a predictor for the target variable (in the rows). The diagonal of ‘predictorMatrix’ must be zero. In our matrix we don’t want ‘study’, ‘age’, ‘motor’, ‘unfav’ and ‘mort’ to be imputed.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, p <span class="sc">*</span> p), <span class="at">nrow =</span> p, <span class="at">ncol =</span> p)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(pmat) <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, p)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pmat[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">15</span><span class="sc">:</span><span class="dv">16</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set some columns to zero</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pmat[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">15</span><span class="sc">:</span><span class="dv">16</span>), ] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set the rows for the same variables to zero</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">## defines data to be used and the imputation method for each column, seed=1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> <span class="fu">mice</span>(TBI1,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">10</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">imputationMethod =</span> <span class="fu">c</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">predictorMatrix =</span> pmat, <span class="at">seed =</span> <span class="dv">1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ iter imp variable
+  1   1  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   2  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   3  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   4  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   5  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   6  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   7  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   8  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   9  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  1   10  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   1  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   2  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   3  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   4  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   5  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   6  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   7  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   8  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   9  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  2   10  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   1  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   2  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   3  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   4  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   5  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   6  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   7  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   8  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   9  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  3   10  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   1  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   2  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   3  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   4  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   5  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   6  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   7  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   8  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   9  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  4   10  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   1  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   2  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   3  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   4  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   5  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   6  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   7  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   8  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   9  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose
+  5   10  hypoxia  hypotens  cisterns  shift  tsah  edh  pupil  ctclass  sysbp  hb  glucose</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Class: mids
+Number of multiple imputations:  10 
+Imputation methods:
+    study       age   hypoxia  hypotens  cisterns     shift      tsah       edh     pupil     motor 
+       ""        ""     "pmm"     "pmm"     "pmm"     "pmm"     "pmm"     "pmm" "polyreg"        "" 
+  ctclass     sysbp        hb   glucose     unfav      mort 
+"polyreg"     "pmm"     "pmm"     "pmm"        ""        "" 
+PredictorMatrix:
+         study age hypoxia hypotens cisterns shift tsah edh pupil motor ctclass sysbp hb glucose
+study        0   0       0        0        0     0    0   0     0     0       0     0  0       0
+age          0   0       0        0        0     0    0   0     0     0       0     0  0       0
+hypoxia      0   0       0        1        1     1    1   1     1     0       1     1  1       1
+hypotens     0   0       1        0        1     1    1   1     1     0       1     1  1       1
+cisterns     0   0       1        1        0     1    1   1     1     0       1     1  1       1
+shift        0   0       1        1        1     0    1   1     1     0       1     1  1       1
+         unfav mort
+study        0    0
+age          0    0
+hypoxia      0    0
+hypotens     0    0
+cisterns     0    0
+shift        0    0</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(gm) <span class="co"># Nice check for imputed vs original distributions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fig/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1122"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="univariate-cc-analyses-for-age-and-motor" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-cc-analyses-for-age-and-motor">Univariate, CC analyses for age and motor</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic Regression Model
+
+lrm(formula = unfav ~ study + age, data = TBI1)
+
+                       Model Likelihood        Discrimination    Rank Discrim.    
+                             Ratio Test               Indexes          Indexes    
+Obs          8530    LR chi2     746.50        R2       0.112    C       0.660    
+ 0           4448    d.f.            11      R2(11,8530)0.083    Dxy     0.320    
+ 1           4082    Pr(&gt; chi2) &lt;0.0001    R2(11,6385.7)0.109    gamma   0.321    
+max |deriv| 3e-09                              Brier    0.229    tau-a   0.160    
+
+          Coef    S.E.   Wald Z Pr(&gt;|Z|)
+Intercept -1.4648 0.0817 -17.93 &lt;0.0001 
+study=2   -0.0930 0.0902  -1.03 0.3028  
+study=3    0.1502 0.1197   1.26 0.2094  
+study=4   -0.0521 0.0932  -0.56 0.5757  
+study=5    0.5481 0.0819   6.69 &lt;0.0001 
+study=6    0.2838 0.1266   2.24 0.0249  
+study=7    0.8219 0.0983   8.36 &lt;0.0001 
+study=8    1.0808 0.1076  10.04 &lt;0.0001 
+study=9    0.7223 0.1934   3.73 0.0002  
+study=10   0.1961 0.0967   2.03 0.0425  
+study=11  -0.1226 0.0966  -1.27 0.2043  
+age        0.0320 0.0015  20.91 &lt;0.0001 </code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> motor, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic Regression Model
+
+lrm(formula = unfav ~ study + motor, data = TBI1)
+
+                       Model Likelihood        Discrimination    Rank Discrim.    
+                             Ratio Test               Indexes          Indexes    
+Obs          8530    LR chi2    1259.58        R2       0.183    C       0.715    
+ 0           4448    d.f.            14      R2(14,8530)0.136    Dxy     0.429    
+ 1           4082    Pr(&gt; chi2) &lt;0.0001    R2(14,6385.7)0.177    gamma   0.441    
+max |deriv| 1e-09                              Brier    0.214    tau-a   0.214    
+
+          Coef    S.E.   Wald Z Pr(&gt;|Z|)
+Intercept  0.7308 0.0802   9.11 &lt;0.0001 
+study=2   -0.0444 0.0933  -0.48 0.6339  
+study=3    0.0694 0.1231   0.56 0.5728  
+study=4   -0.1932 0.0966  -2.00 0.0455  
+study=5    0.0684 0.0863   0.79 0.4279  
+study=6   -0.1149 0.1325  -0.87 0.3856  
+study=7    0.9001 0.1048   8.59 &lt;0.0001 
+study=8    0.7259 0.1120   6.48 &lt;0.0001 
+study=9    0.1781 0.2024   0.88 0.3788  
+study=10   0.3329 0.1015   3.28 0.0010  
+study=11  -0.3365 0.1008  -3.34 0.0008  
+motor=3   -0.4900 0.0781  -6.27 &lt;0.0001 
+motor=4   -1.1764 0.0662 -17.77 &lt;0.0001 
+motor=5/6 -1.8656 0.0653 -28.57 &lt;0.0001 
+motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="prediction-model-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-model-analyses">Prediction model analyses</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## CC, n = 2428</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI1)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## SI, n = 8530</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> <span class="fu">complete</span>(gm, <span class="at">action =</span> <span class="dv">1</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## MI, n = 8530</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="make-adjusted-analyses-per-complete-predictor" class="level2">
+<h2 class="anchored" data-anchor-id="make-adjusted-analyses-per-complete-predictor">Make adjusted analyses per complete predictor</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>names.uni <span class="ot">&lt;-</span> <span class="fu">Cs</span>(pupil, hypoxia, hypotens, ctclass, tsah) <span class="co"># 5 names</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>TBIc <span class="ot">&lt;-</span> <span class="fu">complete</span>(gm, <span class="at">action =</span> <span class="st">"long"</span>, <span class="at">include =</span> <span class="cn">TRUE</span>) <span class="co"># completed data set</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">###################################################</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pupils</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>pupil)], ]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> pupil, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># indicates index for the predictor we are studying</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code show/hide</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hypoxia</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>hypoxia)], ]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> hypoxia, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># index 2</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># hypotens</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>hypotens)], ]</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> hypotens, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ctclass</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>ctclass)], ]</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> ctclass, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="co"># tsah</span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>tsah)], ]</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a><span class="do">## End C, SI, and MI analyses ##</span></span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -813,7 +1405,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/clinical-prediction-models/supplementary-material/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Built with <a href="https://quarto.org/">Quarto</a> and <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p>
 </div>
