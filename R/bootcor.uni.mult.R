@@ -5,7 +5,7 @@
 #
 # Author: Ewout Steyerberg, July-Dec 1997
 
-bootcor.uni.mult <- function(fit, B=40, maxit=25, group=fit$y, trim=0.1, save.indices=F,...)
+bootcor.uni.mult <- function(fit, B=40, max_it=25, group=fit$y, trim=0.1, save.indices=F,...)
 {if(is.null(X <- fit$x) | is.null(Y <- fit$y))
   stop("you did not specify x=T and y=T in the fit")
   
@@ -25,14 +25,14 @@ bootcor.uni.mult <- function(fit, B=40, maxit=25, group=fit$y, trim=0.1, save.in
    { j <- c(sample(1:(n-cases-1), replace=T),sample( (n-cases):n, replace=T) )
   ## take bootstrap samples rownumbers
   for (m in 1:p)			## p predictors	
-  { f <- lrm.fit(X[j,m,drop=F], Y[j,,drop=F], maxit=maxit) ## univariable coef
+  { f <- lrm.fit(X[j,m,drop=F], Y[j,,drop=F], maxit=max_it) ## univariable coef
   if (!f$fail) 	{bootsamp[i,m] <- f$coefficients[2]}
   else		{bootsamp[i,m] <- NA} }
   
-  f <- lrm.fit(X[j,,drop=F], Y[j,,drop=F], maxit=maxit)  ## multivariable coef
+  f <- lrm.fit(X[j,,drop=F], Y[j,,drop=F], maxit=max_it)  ## multivariable coef
   if (!f$fail)	{bootsamp[i,(p+1):(2*p)] <- f$coefficients[2:(p+1)]
   lp		<-  X %*% f$coefficients[2:(p+1)]
-  f 		<- lrm.fit(lp, Y, maxit=maxit)
+  f 		<- lrm.fit(lp, Y, maxit=max_it)
   bootsamp[i,(2*p+1)] <- f$coefficients[2]} ## shrinkage
   else	      { bootsamp[i,(p+1):(2*p+1)] <- NA }
   if (i %% 10==0) cat(i,"", fill=) 

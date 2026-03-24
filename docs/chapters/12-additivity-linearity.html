@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -394,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto, gustoB, and sample4 data sets</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto, gustoB, and sample4 data sets</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gusto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/gusto1.csv"</span>) <span class="co"># GUSTO sample with 40830 patients</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gustoB <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/gustoB.csv"</span>) <span class="co"># GUSTO part B sample with 20318 patients</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gustos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/sample4.csv"</span>) <span class="co"># GUSTO sample4 with 785 patients</span></span>
@@ -405,17 +407,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># levels(gustos$HRT) &lt;- c("No tachycardia", "Tachycardia")</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">datadist</span>(gustos)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">"dd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">"dd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Evaluate interactions with age in a full model, which includes 8 predictors in total. The data set is small (sample4, n=785, 52 events)</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Full model and age interactions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Full model and age interactions</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fullint <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">*</span> (KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX), <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullint)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                Wald Statistics          Response: DAY30 
@@ -449,9 +451,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Select only interaction AGE * HRT</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Select only interaction AGE * HRT</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fullints <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX <span class="sc">+</span> AGE <span class="sc">*</span> HRT, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> T)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullints)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fullints)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                Wald Statistics          Response: DAY30 
@@ -533,11 +535,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smart coding of age effect: separate for no HRT (HRT==0) and for HRT (HRT==1)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE0 <span class="ot">&lt;-</span> gustos<span class="sc">$</span>AGE <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> gustos<span class="sc">$</span>HRT)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE1 <span class="ot">&lt;-</span> gustos<span class="sc">$</span>AGE <span class="sc">*</span> gustos<span class="sc">$</span>HRT</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX <span class="sc">+</span> AGE <span class="sc">*</span> HRT, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> HRT <span class="sc">+</span> TTR <span class="sc">+</span> SEX <span class="sc">+</span> AGE <span class="sc">*</span> HRT, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -566,8 +568,8 @@ AGE * HRT  0.0655 0.0399  1.64  0.1004  </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smart coding</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smart coding</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -596,12 +598,12 @@ SEX       -0.1534 0.3490 -0.44  0.6602  </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identical fit, easier interpretation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identical fit, easier interpretation</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Age 55 as reference for HRT effect</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE0 <span class="ot">&lt;-</span> (gustos<span class="sc">$</span>AGE <span class="sc">-</span> <span class="dv">55</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> gustos<span class="sc">$</span>HRT)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>gustos<span class="sc">$</span>AGE1 <span class="ot">&lt;-</span> (gustos<span class="sc">$</span>AGE <span class="sc">-</span> <span class="dv">55</span>) <span class="sc">*</span> gustos<span class="sc">$</span>HRT</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE0 <span class="sc">+</span> AGE1 <span class="sc">+</span> HRT <span class="sc">+</span> KILLIP <span class="sc">+</span> HIG <span class="sc">+</span> DIA <span class="sc">+</span> HYP <span class="sc">+</span> TTR <span class="sc">+</span> SEX, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -614,7 +616,7 @@ lrm(formula = DAY30 ~ AGE0 + AGE1 + HRT + KILLIP + HIG + DIA +
 Obs           785    LR chi2      86.28      R2       0.270    C       0.831    
  0            733    d.f.             9      R2(9,785)0.094    Dxy     0.662    
  1             52    Pr(&gt; chi2) &lt;0.0001    R2(9,145.7)0.412    gamma   0.662    
-max |deriv| 4e-11                            Brier    0.051    tau-a   0.082    
+max |deriv| 3e-05                            Brier    0.051    tau-a   0.082    
 
           Coef    S.E.   Wald Z Pr(&gt;|Z|)
 Intercept -5.5703 0.5746 -9.69  &lt;0.0001 
@@ -630,7 +632,7 @@ SEX       -0.1534 0.3490 -0.44  0.6602  </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Even nicer interpretation, HRT effect for age=55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Even nicer interpretation, HRT effect for age=55</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The fit of each of the models is identical (always LR chi2=86.28); each model allows for linear interaction between AGE and HRT. The interpretation of the model is easier if the age effects are estimated for HRT==1 and for HRT==0. Scaling is easier by subtracting 55 from AGE (AGE-55); this implies the HRT effect relates to age 55.</p>
@@ -642,7 +644,7 @@ Plots created with a modification of Frank Harrell’s val.prob() function:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate in independent part, named gustoB</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate in independent part, named gustoB</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># main effects</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>lrm.val.full <span class="ot">&lt;-</span> <span class="fu">predict</span>(full, <span class="at">newdata =</span> gustoB, <span class="at">type =</span> <span class="st">"lp"</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simple interaction</span></span>
@@ -654,7 +656,7 @@ Plots created with a modification of Frank Harrell’s val.prob() function:</p>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">smooth =</span> <span class="st">"rcs"</span>, <span class="at">nr.knots =</span> <span class="dv">3</span>, <span class="at">g =</span> <span class="dv">8</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>),</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">legendloc =</span> <span class="fu">c</span>(<span class="fl">0.18</span>, <span class="fl">0.15</span>), <span class="at">statloc =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">roundstats =</span> <span class="dv">3</span>,</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Predicted probability from n=785"</span>, <span class="at">ylab =</span> <span class="st">"Observed proportion in n=20318"</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -735,13 +737,14 @@ Plots created with a modification of Frank Harrell’s val.prob() function:</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

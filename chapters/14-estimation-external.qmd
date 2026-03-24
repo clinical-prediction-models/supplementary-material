@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Estimation with External Information {#estimation-external}
 
 ```{r setup-ch14, include=FALSE}
@@ -122,13 +127,14 @@ dimnames(coef.matrix) <- dimnames(se.matrix) <-
 # naive merged model
 fit0 <- lrm(mort~age10+motor.lin+pupil.lin, data=impact)
 coef.matrix[16,] <- coef(fit0)  
-se.matrix[16,] <- diag(se(fit0))
+se.matrix[16,] <- se(fit0)# diag(se(fit0))
 
 for (i in 1:15) {
 # fit stratified models
 fit.lin <-lrm(mort~age10+motor.lin+pupil.lin, data=impact, subset=impact$study==i)
 coef.matrix[i,] <- coef(fit.lin)  
-se.matrix[i,] <- diag(se(fit.lin)) }
+se.matrix[i,] <- se(fit.lin) #diag(se(fit.lin)) 
+}
 
 # global model with stratification; intercept is for Study==1
 fit.stratified <- lrm(mort~age10+motor.lin+pupil.lin +name, data=impact)
@@ -248,7 +254,7 @@ local.coef <- local.se <- rep(NA, 7)
 for (i in 1:7) {
 fit.ind.x		<- lrm.fit(y=full$y,x=full$x[,i],maxit=25)
 local.coef[i] <- fit.ind.x$coef[2]
-local.se[i]   <- sqrt(fit.ind.x$var[2,2]) }
+local.se[i]   <- sqrt(vcov(fit.ind.x)[2,2]) }
 
 # Table 14.4
 tab14 <- cbind(local.coef, local.se, 
@@ -327,8 +333,8 @@ Adaptation method 2 is a bit more complex: beta m\|(I+L) = beta m\|I + *c* \* (b
 ```{r adaptation.1}
 set.seed(1)
 # we need the user written function
-full.uni.mult.cor	<- bootcor.uni.mult(full, group=full$y, B=500, maxit=10, 
-                                      trim=.1,save.indices = T)
+full.uni.mult.cor	<- bootcor.uni.mult(full, group=full$y, B=5, maxit=10, 
+                                      trim=.1,save.indices = TRUE)
 
 # outliers are removed by 'outliers' package
 # full.uni.mult.cor[4]  # matrix with results per bootstrap
@@ -342,21 +348,21 @@ for (i in 1:7) {
 fit.ind.x		<- lrm.fit(y=full$y,x=full$x[,i],maxit=25)
 adapt.coef.Gr[i] <- full$coefficients[i+1] + 
                 1 * (lit.coefficients[i] - fit.ind.x$coefficients[2])
-adapt.var.Gr[i]	<- full$var[i+1,i+1] - fit.ind.x$var[2,2] + lit.se[i]^2	
+adapt.var.Gr[i]	<- vcov(full)[i+1,i+1] - vcov(fit.ind.x)[2,2] + lit.se[i]^2	
  } # end adaptation 1
 
 # Adaptation method 2: optimal adaptation factors
 for (i in 1:7) {
 fit.ind.x		<- lrm.fit(y=full$y,x=full$x[,i],maxit=25)
 adapt.factors[i]	<- (full.uni.mult.cor$r[i] * 
-                       sqrt(full$var[i+1,i+1]) * sqrt(fit.ind.x$var[2,2]) ) / 
-                      (lit.se[i]^2 + fit.ind.x$var[2,2])
+                       sqrt(vcov(full)[i+1,i+1]) * sqrt(vcov(fit.ind.x)[2,2]) ) / 
+                      (lit.se[i]^2 + vcov(fit.ind.x)[2,2])
 
 adapt.coefficients[i]	<- full$coefficients[i+1] + 
                     adapt.factors[i] * (lit.coefficients[i] - fit.ind.x$coefficients[2])
 
-adapt.var[i]		<- full$var[i+1,i+1] * (1-(full.uni.mult.cor$r[i]^2 * fit.ind.x$var[2,2] / 
-				(lit.se[i]^2 + fit.ind.x$var[2,2]))) } # end adaptation 2
+adapt.var[i]		<- vcov(full)[i+1,i+1] * (1-(full.uni.mult.cor$r[i]^2 * vcov(fit.ind.x)[2,2] / 
+				(lit.se[i]^2 + vcov(fit.ind.x)[2,2]))) } # end adaptation 2
 
 
 # Store all coefficients and related measures in a nice matrix
@@ -382,11 +388,11 @@ The empirically estimated correlation *r* between local univariate and multivari
 
 ```{r adaptation.se}
 # Store all standard error estimates in a nice matrix
-tab14 <- cbind(lit.se, local.se, sqrt(diag(full$var)[-1]),
+tab14 <- cbind(lit.se, local.se, sqrt(diag(vcov(full))[-1]),
                sqrt(adapt.var.Gr), sqrt(adapt.var), 
-              sqrt(diag(full.penalized$var)[-1] ))
+              sqrt(diag(vcov(full.penalized))[-1] ))
 # Reduction in variance
-reduct.var <- 100 - round(100*adapt.var / diag(full$var)[-1])
+reduct.var <- 100 - round(100*adapt.var / diag(vcov(full))[-1])
 tab14 <- cbind(tab14, reduct.var)
 
 rownames(tab14) <- names(full$coefficients[-1])

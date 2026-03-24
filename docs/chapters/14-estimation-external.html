@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -455,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># impact data come with metamisc package Debray; read here</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># impact data come with metamisc package Debray; read here</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"impact"</span>, <span class="at">package =</span> <span class="st">"metamisc"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>name         <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>name)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>impact<span class="sc">$</span>ct           <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(impact<span class="sc">$</span>ct)</span>
@@ -483,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">ifelse</span>(impact<span class="sc">$</span>name<span class="sc">==</span><span class="st">"APOE"</span>, <span class="dv">15</span>,<span class="cn">NA</span>))))))))))))))))</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">levels</span>(impact[,<span class="dv">1</span>])</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>AAA  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AAA.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>AAA  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AAA.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -495,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(impact), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(impact), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="width: 100ex; overflow: auto; height: 25ex;">
@@ -534,22 +536,22 @@ bottom: -1ex;
 <span style="font-weight:bold">name</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lEQVQokbWQUQoAIAhDZ/c/dNjILIX8UYbYfBoICQFEz3ojBBLPeh24WWWcLjxiWQs/dXDe4cla+APRWsJvO99b8F/V8UfXbAueCZIqdyfiIAK5Me79nQAAAABJRU5ErkJggg==" alt="image"></div>
 <style>
- .hmisctable123264 {
+ .hmisctable277709 {
  border: none;
  font-size: 85%;
  }
- .hmisctable123264 td {
+ .hmisctable277709 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable123264 th {
+ .hmisctable277709 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable123264">
+ <table data-quarto-disable-processing="true" class="hmisctable277709">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>15</td></tr>
  </tbody></table>
@@ -565,22 +567,22 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lE
 <hr class="thinhr">
 <span style="font-weight:bold">type</span>
 <style>
- .hmisctable333001 {
+ .hmisctable387704 {
  border: none;
  font-size: 85%;
  }
- .hmisctable333001 td {
+ .hmisctable387704 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable333001 th {
+ .hmisctable387704 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable333001">
+ <table data-quarto-disable-processing="true" class="hmisctable387704">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>2</td></tr>
  </tbody></table>
@@ -593,24 +595,24 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lE
 <span style="font-weight:bold">age</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlEQVQ4jc3TUQrAIAwD0MT7H3qbcwVHdaxU2whF/PERKCgBwDRBkeBOSRFhAMld1RbO013xtbX/36pwWVtBzXWt5zO2b+qkL62/bS3+cI21q1x2VafzZDq5vsgW11KVFYjRLvqH56mju6hv5AFLoAmXsSf0pQAAAABJRU5ErkJggg==" alt="image"></div>
 <style>
- .hmisctable433967 {
+ .hmisctable206699 {
  border: none;
  font-size: 85%;
  }
- .hmisctable433967 td {
+ .hmisctable206699 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable433967 th {
+ .hmisctable206699 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable433967">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>34.93</td><td>17.58</td><td>17</td><td>18</td><td>22</td><td>31</td><td>46</td><td>59</td><td>65</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable206699">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>34.93</td><td>33.5</td><td>17.58</td><td>17</td><td>18</td><td>22</td><td>31</td><td>46</td><td>59</td><td>65</td></tr>
  </tbody></table>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 14 15 16 17 18 ,  <font color="MidnightBlue">highest</font>: 89 90 91 92 93</span>
@@ -618,22 +620,22 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlE
 <span style="font-weight:bold">motor_score</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQImWNgRAAGBgYmBGBA4SJ4IBrCQ2B0HsgsGMavkngespkAQpAApng6CAMAAAAASUVORK5CYII=" alt="image"></div>
 <style>
- .hmisctable759013 {
+ .hmisctable857032 {
  border: none;
  font-size: 85%;
  }
- .hmisctable759013 td {
+ .hmisctable857032 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable759013 th {
+ .hmisctable857032 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable759013">
+ <table data-quarto-disable-processing="true" class="hmisctable857032">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>4</td></tr>
  </tbody></table>
@@ -646,22 +648,22 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAADMzMz////1iUV5AAAAJklE
 <span style="font-weight:bold">pupil</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAIUlEQVQImWNgYIQBBgYmGCCNicsEKBcbk4EBhQnSCtYPADc4ALRqtyaiAAAAAElFTkSuQmCC" alt="image"></div>
 <style>
- .hmisctable248809 {
+ .hmisctable173196 {
  border: none;
  font-size: 85%;
  }
- .hmisctable248809 td {
+ .hmisctable173196 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable248809 th {
+ .hmisctable173196 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable248809">
+ <table data-quarto-disable-processing="true" class="hmisctable173196">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>3</td></tr>
  </tbody></table>
@@ -674,22 +676,22 @@ iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAIUlE
 <span style="font-weight:bold">ct</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAHklEQVQImWNgYIQABiBgggBSmSDNcBPAMqQy4SYAACojAIpx1DUiAAAAAElFTkSuQmCC" alt="image"></div>
 <style>
- .hmisctable772697 {
+ .hmisctable862805 {
  border: none;
  font-size: 85%;
  }
- .hmisctable772697 td {
+ .hmisctable862805 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable772697 th {
+ .hmisctable862805 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable772697">
+ <table data-quarto-disable-processing="true" class="hmisctable862805">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>3</td></tr>
  </tbody></table>
@@ -701,140 +703,140 @@ iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAHklE
 <hr class="thinhr">
 <span style="font-weight:bold">hypox</span>
 <style>
- .hmisctable565977 {
+ .hmisctable974315 {
  border: none;
  font-size: 85%;
  }
- .hmisctable565977 td {
+ .hmisctable974315 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable565977 th {
+ .hmisctable974315 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable565977">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>2</td><td>0.507</td><td>2375</td><td>0.2155</td><td>0.3381</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable974315">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.507</td><td>2375</td><td>0.2155</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">hypots</span>
 <style>
- .hmisctable443683 {
+ .hmisctable821151 {
  border: none;
  font-size: 85%;
  }
- .hmisctable443683 td {
+ .hmisctable821151 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable443683 th {
+ .hmisctable821151 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable443683">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>2</td><td>0.424</td><td>1875</td><td>0.1701</td><td>0.2824</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable821151">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.424</td><td>1875</td><td>0.1701</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">tsah</span>
 <style>
- .hmisctable705218 {
+ .hmisctable106000 {
  border: none;
  font-size: 85%;
  }
- .hmisctable705218 td {
+ .hmisctable106000 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable705218 th {
+ .hmisctable106000 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable705218">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>2</td><td>0.744</td><td>5012</td><td>0.4547</td><td>0.4959</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable106000">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.744</td><td>5012</td><td>0.4547</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">edh</span>
 <style>
- .hmisctable178401 {
+ .hmisctable968731 {
  border: none;
  font-size: 85%;
  }
- .hmisctable178401 td {
+ .hmisctable968731 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable178401 th {
+ .hmisctable968731 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable178401">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>2</td><td>0.346</td><td>1464</td><td>0.1328</td><td>0.2304</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable968731">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.346</td><td>1464</td><td>0.1328</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">mort</span>
 <style>
- .hmisctable889212 {
+ .hmisctable224477 {
  border: none;
  font-size: 85%;
  }
- .hmisctable889212 td {
+ .hmisctable224477 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable889212 th {
+ .hmisctable224477 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable889212">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>2</td><td>0.578</td><td>2874</td><td>0.2608</td><td>0.3856</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable224477">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>11022</td><td>0</td><td>2</td><td>0.578</td><td>2874</td><td>0.2608</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">age10</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlEQVQ4jc3TUQrAIAwD0MT7H3qbcwVHdaxU2whF/PERKCgBwDRBkeBOSRFhAMld1RbO013xtbX/36pwWVtBzXWt5zO2b+qkL62/bS3+cI21q1x2VafzZDq5vsgW11KVFYjRLvqH56mju6hv5AFLoAmXsSf0pQAAAABJRU5ErkJggg==" alt="image"></div>
 <style>
- .hmisctable294372 {
+ .hmisctable123769 {
  border: none;
- font-size: 85%;
+ font-size: 74%;
  }
- .hmisctable294372 td {
+ .hmisctable123769 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable294372 th {
+ .hmisctable123769 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable294372">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>-0.006959</td><td>1.758</td><td>-1.8</td><td>-1.7</td><td>-1.3</td><td>-0.4</td><td> 1.1</td><td> 2.4</td><td> 3.0</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable123769">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>11022</td><td>0</td><td>80</td><td>0.999</td><td>-0.006959</td><td>-0.15</td><td>1.758</td><td>-1.8</td><td>-1.7</td><td>-1.3</td><td>-0.4</td><td> 1.1</td><td> 2.4</td><td> 3.0</td></tr>
  </tbody></table>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: -2.1 -2   -1.9 -1.8 -1.7 ,  <font color="MidnightBlue">highest</font>: 5.4  5.5  5.6  5.7  5.8 </span>
@@ -842,82 +844,78 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbUlE
 <span style="font-weight:bold">motor.lin</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQImWNgRAAGBgYmBGBA4SJ4IBrCQ2B0HsgsGMavkngespkAQpAApng6CAMAAAAASUVORK5CYII=" alt="image"></div>
 <style>
- .hmisctable927480 {
+ .hmisctable525021 {
  border: none;
  font-size: 85%;
  }
- .hmisctable927480 td {
+ .hmisctable525021 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable927480 th {
+ .hmisctable525021 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable927480">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>4</td><td>0.932</td><td>2.588</td><td>1.311</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable525021">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>4</td><td>0.932</td><td>2.588</td><td>2.5</td><td>1.311</td></tr>
  </tbody></table>
 
 <pre style="font-size:85%;"> Value          1     2     3     4
  Frequency   2850  2285  2438  3449
  Proportion 0.259 0.207 0.221 0.313 </pre>
 
-
-For the frequency table, variable is rounded to the nearest 0
 <hr class="thinhr">
 <span style="font-weight:bold">pupil.lin</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAIUlEQVQImWNgYIQBBgYmGCCNicsEKBcbk4EBhQnSCtYPADc4ALRqtyaiAAAAAElFTkSuQmCC" alt="image"></div>
 <style>
- .hmisctable738148 {
+ .hmisctable927689 {
  border: none;
  font-size: 85%;
  }
- .hmisctable738148 td {
+ .hmisctable927689 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable738148 th {
+ .hmisctable927689 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable738148">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>11022</td><td>0</td><td>3</td><td>0.695</td><td>1.463</td><td>0.6678</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable927689">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th></tr>
+ <tr><td>11022</td><td>0</td><td>3</td><td>0.695</td><td>1.463</td><td>1.5</td><td>0.6678</td></tr>
  </tbody></table>
 
 <pre style="font-size:85%;"> Value          1     2     3
  Frequency   7325  2296  1401
  Proportion 0.665 0.208 0.127 </pre>
 
-
-For the frequency table, variable is rounded to the nearest 0
 <hr class="thinhr">
 <span style="font-weight:bold">study</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAUUlEQVQoka2QSQ4AIAgDi/9/tEZFKmLUxKYHlqEHICRADkIiYeoiveKM3OGDesH5zs5dVMH7Q7iwT42m1UG6Zbr06htcWcVXO+o3vllAQsfTDN7sArkaM43RAAAAAElFTkSuQmCC" alt="image"></div>
 <style>
- .hmisctable544483 {
+ .hmisctable929388 {
  border: none;
  font-size: 85%;
  }
- .hmisctable544483 td {
+ .hmisctable929388 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable544483 th {
+ .hmisctable929388 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable544483">
+ <table data-quarto-disable-processing="true" class="hmisctable929388">
  <tbody><tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>11022</td><td>0</td><td>15</td></tr>
  </tbody></table>
@@ -935,7 +933,7 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAUUlE
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(impact<span class="sc">$</span>name, impact<span class="sc">$</span>mort), <span class="at">row.names =</span> T, <span class="at">caption =</span> <span class="st">"Mortality by study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(impact<span class="sc">$</span>name, impact<span class="sc">$</span>mort), <span class="at">row.names =</span> T, <span class="at">caption =</span> <span class="st">"Mortality by study"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1048,7 +1046,7 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAUUlE
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in 2 matrices to produce something close to Table 14.2</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in 2 matrices to produce something close to Table 14.2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>coef.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">23</span>, <span class="at">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>se.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">23</span>, <span class="at">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(coef.matrix) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(se.matrix) <span class="ot">&lt;-</span> </span>
@@ -1059,38 +1057,39 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAMAAADhX6ydAAAACVBMVEUAAADMzMz////1iUV5AAAAUUlE
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># naive merged model</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fit0 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin, <span class="at">data=</span>impact)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">16</span>,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit0)  </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">16</span>,] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit0))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">16</span>,] <span class="ot">&lt;-</span> <span class="fu">se</span>(fit0)<span class="co"># diag(se(fit0))</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>) {</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fit stratified models</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>fit.lin <span class="ot">&lt;-</span><span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin, <span class="at">data=</span>impact, <span class="at">subset=</span>impact<span class="sc">$</span>study<span class="sc">==</span>i)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>coef.matrix[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit.lin)  </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>se.matrix[i,] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit.lin)) }</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># global model with stratification; intercept is for Study==1</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>fit.stratified <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin <span class="sc">+</span>name, <span class="at">data=</span>impact)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit.stratified)[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]  </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit.stratified))[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 1 step, global model for covariate effects</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>fit.lin.meta <span class="ot">&lt;-</span> <span class="fu">glmer</span>(mort<span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> name) <span class="sc">+</span> age10  <span class="sc">+</span> motor.lin<span class="sc">+</span>pupil.lin, </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span><span class="fu">binomial</span>(), <span class="at">data =</span> impact)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">18</span>,]  <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>beta</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">18</span>,]    <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(fit.lin.meta)))</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">19</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>theta</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 2 step model</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>impact.meta <span class="ot">&lt;-</span> <span class="fu">uvmeta</span>( <span class="at">r=</span>coef.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i], <span class="at">r.se=</span>se.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i])</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">20</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>est</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">20</span>,i]   <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>se</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">21</span>,i] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(impact.meta<span class="sc">$</span>tau)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">22</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.lb</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">23</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.ub</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop over 4 columns of per study estimates</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Made Tabe 14.2; SE estimates separate</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"Coefficients and heterogeneity by study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>se.matrix[i,] <span class="ot">&lt;-</span> <span class="fu">se</span>(fit.lin) <span class="co">#diag(se(fit.lin)) </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># global model with stratification; intercept is for Study==1</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>fit.stratified <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin <span class="sc">+</span>name, <span class="at">data=</span>impact)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit.stratified)[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]  </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">17</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">se</span>(fit.stratified))[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 1 step, global model for covariate effects</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>fit.lin.meta <span class="ot">&lt;-</span> <span class="fu">glmer</span>(mort<span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> name) <span class="sc">+</span> age10  <span class="sc">+</span> motor.lin<span class="sc">+</span>pupil.lin, </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span><span class="fu">binomial</span>(), <span class="at">data =</span> impact)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">18</span>,]  <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>beta</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">18</span>,]    <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(fit.lin.meta)))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">19</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.lin.meta<span class="sc">@</span>theta</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate heterogeneity in 2 step model</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>impact.meta <span class="ot">&lt;-</span> <span class="fu">uvmeta</span>( <span class="at">r=</span>coef.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i], <span class="at">r.se=</span>se.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,i])</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">20</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>est</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>se.matrix[<span class="dv">20</span>,i]   <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>se</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">21</span>,i] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(impact.meta<span class="sc">$</span>tau)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">22</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.lb</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>coef.matrix[<span class="dv">23</span>,i] <span class="ot">&lt;-</span> impact.meta<span class="sc">$</span>pi.ub</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop over 4 columns of per study estimates</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Made Tabe 14.2; SE estimates separate</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"Coefficients and heterogeneity by study"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1289,7 +1288,7 @@ The prediction interval (from <code>metamisc::uvmeta</code>) was quite wide: [-1
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(se.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"SE estimates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(se.matrix, <span class="at">row.names =</span> T, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">caption =</span> <span class="st">"SE estimates"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1419,9 +1418,9 @@ The prediction interval (from <code>metamisc::uvmeta</code>) was quite wide: [-1
 <tr class="odd">
 <td style="text-align: left;">stratified</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">0.015</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">one-stage</td>
@@ -1477,21 +1476,21 @@ The prediction interval (from <code>metamisc::uvmeta</code>) was quite wide: [-1
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratified model, fixed effects</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratified model, fixed effects</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit.stratified <span class="ot">&lt;-</span> <span class="fu">lrm</span>(mort<span class="sc">~</span>age10<span class="sc">+</span>motor.lin<span class="sc">+</span>pupil.lin <span class="sc">+</span>name, <span class="at">data=</span>impact)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>study14 <span class="ot">&lt;-</span> impact[impact<span class="sc">$</span>study<span class="sc">==</span><span class="dv">14</span>, ] <span class="co"># selected reference set</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fit<span class="fl">.14</span> <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>study14<span class="sc">$</span>mort, </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">offset=</span><span class="fu">as.matrix</span>(study14[,<span class="fu">c</span>(<span class="st">"age10"</span>,  <span class="st">"motor.lin"</span>, <span class="st">"pupil.lin"</span>)]) <span class="sc">%*%</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                    fit.stratified<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] )</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fixed effect estimates for study 14, Tirilazad US (TIUS)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fixed effect estimates for study 14, Tirilazad US (TIUS)</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fixed effect estimates for study 14, Tirilazad US (TIUS)</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">coef</span>(fit<span class="fl">.14</span>), fit.stratified<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">coef</span>(fit<span class="fl">.14</span>), fit.stratified<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Intercept     age10 motor.lin pupil.lin 
@@ -1509,7 +1508,7 @@ The prediction interval (from <code>metamisc::uvmeta</code>) was quite wide: [-1
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(AAA), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(AAA), <span class="at">scroll=</span><span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="width: 100ex; overflow: auto; height: 25ex;">
@@ -1547,187 +1546,187 @@ bottom: -1ex;
 <hr class="thinhr">
 <span style="font-weight:bold">SEX</span>
 <style>
- .hmisctable107020 {
+ .hmisctable963090 {
  border: none;
  font-size: 85%;
  }
- .hmisctable107020 td {
+ .hmisctable963090 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable107020 th {
+ .hmisctable963090 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable107020">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.241</td><td>21</td><td>0.08824</td><td>0.1616</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable963090">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.241</td><td>21</td><td>0.08824</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">AGE10</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lEQVQ4jc2T2xKAIAhEt/7/o1OJEHUMpJp8yAu2HBkWW3wAlqOpwh4f6EWAweFE4WkK2vyMwgazRNFIl2368PwhBctX2QMUq6ZgF6S5LPWcKRxm8dfifLSuRXl7VRNVCw5NNM2JuzR3FKiAa4qRsV+kgKZoO8lC0dCHKeCn6Gs4pJCqc1I/Bf2UO5T6VJsAEuGmz30PMQEZQTzRhMFhuZ71cImTfFkeC+cJRmGwHGEAAAAASUVORK5CYII=" alt="image"></div>
 <style>
- .hmisctable537116 {
+ .hmisctable923036 {
  border: none;
  font-size: 74%;
  }
- .hmisctable537116 td {
+ .hmisctable923036 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable537116 th {
+ .hmisctable923036 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable537116">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>238</td><td>0</td><td>55</td><td>0.999</td><td>6.635</td><td>0.8432</td><td>5.400</td><td>5.600</td><td>6.100</td><td>6.700</td><td>7.100</td><td>7.500</td><td>7.815</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable923036">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>238</td><td>0</td><td>55</td><td>0.999</td><td>6.635</td><td>6.65</td><td>0.8432</td><td>5.400</td><td>5.600</td><td>6.100</td><td>6.700</td><td>7.100</td><td>7.500</td><td>7.815</td></tr>
  </tbody></table>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 4.3 4.5 4.9 4.9 5   ,  <font color="MidnightBlue">highest</font>: 7.9 7.9 8   8.2 8.4</span>
 <hr class="thinhr">
 <span style="font-weight:bold">MI</span>
 <style>
- .hmisctable836067 {
+ .hmisctable568627 {
  border: none;
  font-size: 85%;
  }
- .hmisctable836067 td {
+ .hmisctable568627 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable836067 th {
+ .hmisctable568627 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable836067">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.553</td><td>58</td><td>0.2437</td><td>0.3702</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable568627">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.553</td><td>58</td><td>0.2437</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">CHF</span>
 <style>
- .hmisctable515038 {
+ .hmisctable407187 {
  border: none;
  font-size: 85%;
  }
- .hmisctable515038 td {
+ .hmisctable407187 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable515038 th {
+ .hmisctable407187 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable515038">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.669</td><td>80</td><td>0.3361</td><td>0.4482</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable407187">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.669</td><td>80</td><td>0.3361</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">ISCHEMIA</span>
 <style>
- .hmisctable507044 {
+ .hmisctable347016 {
  border: none;
  font-size: 85%;
  }
- .hmisctable507044 td {
+ .hmisctable347016 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable507044 th {
+ .hmisctable347016 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable507044">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.681</td><td>83</td><td>0.3487</td><td>0.4562</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable347016">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.681</td><td>83</td><td>0.3487</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">LUNG</span>
 <style>
- .hmisctable268990 {
+ .hmisctable802866 {
  border: none;
  font-size: 85%;
  }
- .hmisctable268990 td {
+ .hmisctable802866 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable268990 th {
+ .hmisctable802866 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable268990">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.46</td><td>45</td><td>0.1891</td><td>0.3079</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable802866">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.46</td><td>45</td><td>0.1891</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">RENAL</span>
 <style>
- .hmisctable118591 {
+ .hmisctable590015 {
  border: none;
  font-size: 85%;
  }
- .hmisctable118591 td {
+ .hmisctable590015 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable118591 th {
+ .hmisctable590015 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable118591">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.177</td><td>15</td><td>0.06303</td><td>0.1186</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable590015">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.177</td><td>15</td><td>0.06303</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">STATUS</span>
 <style>
- .hmisctable262639 {
+ .hmisctable201879 {
  border: none;
  font-size: 85%;
  }
- .hmisctable262639 td {
+ .hmisctable201879 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable262639 th {
+ .hmisctable201879 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable262639">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>238</td><td>0</td><td>2</td><td>0.21</td><td>18</td><td>0.07563</td><td>0.1404</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable201879">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>238</td><td>0</td><td>2</td><td>0.21</td><td>18</td><td>0.07563</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
@@ -1749,7 +1748,7 @@ iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lE
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following estimates come from a univariable logistic regression analysis</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following estimates come from a univariable logistic regression analysis</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed effects, better random effect estimates</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lit.coefficients.f  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">log</span>(<span class="fl">1.44</span>),<span class="fu">log</span>(<span class="fl">2.20</span>),<span class="fu">log</span>(<span class="fl">2.80</span>),<span class="fu">log</span>(<span class="fl">4.89</span>),<span class="fu">log</span>(<span class="fl">4.58</span>),</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">log</span>(<span class="fl">3.75</span>),<span class="fu">log</span>(<span class="fl">2.43</span>))</span>
@@ -1766,7 +1765,7 @@ iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lE
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>local.coef[i] <span class="ot">&lt;-</span> fit.ind.x<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>local.se[i]   <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]) }</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>local.se[i]   <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>]) }</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 14.4</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(local.coef, local.se, </span>
@@ -1776,7 +1775,7 @@ iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lE
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"local.coef"</span>, <span class="st">"local.se"</span>, </span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"fixed.coef"</span>, <span class="st">"fixed.se"</span>, </span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"random.coef"</span>, <span class="st">"random.se"</span>)</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Univariate coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Univariate coefficients"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1881,28 +1880,21 @@ iVBORw0KGgoAAAANSUhEUgAAAIUAAAANCAMAAACw5127AAAACVBMVEUAAADMzMz////1iUV5AAAAp0lE
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(STATUS<span class="sc">~</span>SEX<span class="sc">+</span>AGE10<span class="sc">+</span>MI<span class="sc">+</span>CHF<span class="sc">+</span>ISCHEMIA<span class="sc">+</span>RENAL<span class="sc">+</span>LUNG,<span class="at">data=</span>AAA,<span class="at">x=</span>T,<span class="at">y=</span>T)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(STATUS<span class="sc">~</span>SEX<span class="sc">+</span>AGE10<span class="sc">+</span>MI<span class="sc">+</span>CHF<span class="sc">+</span>ISCHEMIA<span class="sc">+</span>RENAL<span class="sc">+</span>LUNG,<span class="at">data=</span>AAA,<span class="at">x=</span>T,<span class="at">y=</span>T)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate shrinkage factor</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>full.validate <span class="ot">&lt;-</span> <span class="fu">validate</span>(full, <span class="at">B=</span><span class="dv">500</span>, <span class="at">maxit=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Divergence or singularity in 3 samples</code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply shrinkage factor on model coefficients</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients    <span class="ot">&lt;-</span> full.validate[<span class="st">"Slope"</span>,<span class="st">"index.corrected"</span>] <span class="sc">*</span> full<span class="sc">$</span>coefficients</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust intercept with lp as offset variable</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>lp.AAA  <span class="ot">&lt;-</span> full<span class="sc">$</span>x <span class="sc">%*%</span> full.shrunk.coefficients[<span class="dv">2</span><span class="sc">:</span>(<span class="fu">ncol</span>(full<span class="sc">$</span>x)<span class="sc">+</span><span class="dv">1</span>)]</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>lp.AAA)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients[<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model, penalized estimation</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>penalty <span class="ot">&lt;-</span> <span class="fu">pentrace</span>(full,<span class="at">penalty=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">48</span>),<span class="at">maxit=</span><span class="dv">25</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penalty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>full.validate <span class="ot">&lt;-</span> <span class="fu">validate</span>(full, <span class="at">B=</span><span class="dv">500</span>, <span class="at">maxit=</span><span class="dv">10</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply shrinkage factor on model coefficients</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients    <span class="ot">&lt;-</span> full.validate[<span class="st">"Slope"</span>,<span class="st">"index.corrected"</span>] <span class="sc">*</span> full<span class="sc">$</span>coefficients</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust intercept with lp as offset variable</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>lp.AAA  <span class="ot">&lt;-</span> full<span class="sc">$</span>x <span class="sc">%*%</span> full.shrunk.coefficients[<span class="dv">2</span><span class="sc">:</span>(<span class="fu">ncol</span>(full<span class="sc">$</span>x)<span class="sc">+</span><span class="dv">1</span>)]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>lp.AAA)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>full.shrunk.coefficients[<span class="dv">1</span>] <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model, penalized estimation</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>penalty <span class="ot">&lt;-</span> <span class="fu">pentrace</span>(full,<span class="at">penalty=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">48</span>),<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penalty)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1920,21 +1912,21 @@ Divergence or singularity in 3 samples</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The optimal penalty was"</span>, penalty<span class="sc">$</span>penalty, <span class="st">"for effective df around 3.5 rather than 7 df</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The optimal penalty was"</span>, penalty<span class="sc">$</span>penalty, <span class="st">"for effective df around 3.5 rather than 7 df</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>The optimal penalty was 16 for effective df around 3.5 rather than 7 df</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>full.penalized <span class="ot">&lt;-</span> <span class="fu">update</span>(full, <span class="at">penalty=</span>penalty<span class="sc">$</span>penalty)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the 3 sets of coefs</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>coef.mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coef, full.shrunk.coefficients, full.penalized<span class="sc">$</span>coef )</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coef.mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Full, ML"</span>, <span class="st">"Shrinkage"</span>, <span class="st">"Penalized"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.mat, <span class="at">digits=</span><span class="dv">2</span>, </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Estimated local multivariable regression coefficients in IPD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>full.penalized <span class="ot">&lt;-</span> <span class="fu">update</span>(full, <span class="at">penalty=</span>penalty<span class="sc">$</span>penalty)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the 3 sets of coefs</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>coef.mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coef, full.shrunk.coefficients, full.penalized<span class="sc">$</span>coef )</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coef.mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Full, ML"</span>, <span class="st">"Shrinkage"</span>, <span class="st">"Penalized"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coef.mat, <span class="at">digits=</span><span class="dv">2</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Estimated local multivariable regression coefficients in IPD"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1951,49 +1943,49 @@ Divergence or singularity in 3 samples</code></pre>
 <tr class="odd">
 <td style="text-align: left;">Intercept</td>
 <td style="text-align: right;">-8.10</td>
-<td style="text-align: right;">-6.04</td>
+<td style="text-align: right;">-6.43</td>
 <td style="text-align: right;">-5.60</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SEX</td>
 <td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.21</td>
 <td style="text-align: right;">0.16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">AGE10</td>
 <td style="text-align: right;">0.58</td>
-<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.42</td>
 <td style="text-align: right;">0.32</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">MI</td>
 <td style="text-align: right;">0.74</td>
-<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.53</td>
 <td style="text-align: right;">0.55</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CHF</td>
 <td style="text-align: right;">1.04</td>
-<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: right;">0.64</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ISCHEMIA</td>
 <td style="text-align: right;">0.99</td>
-<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.72</td>
 <td style="text-align: right;">0.60</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">RENAL</td>
 <td style="text-align: right;">1.12</td>
-<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.81</td>
 <td style="text-align: right;">0.71</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">LUNG</td>
 <td style="text-align: right;">0.61</td>
-<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.44</td>
 <td style="text-align: right;">0.37</td>
 </tr>
 </tbody>
@@ -2001,26 +1993,28 @@ Divergence or singularity in 3 samples</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shrinkage factor: slope of lp</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cstat <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cstat[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="co"># c = D/2 + 0.5</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cstat[<span class="dv">4</span>] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="dv">4</span>] <span class="sc">*</span> <span class="fl">0.5</span> <span class="co"># optimism in c</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show key performance measures, including c statistic, R2, and estimated shrinkage factor</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">rbind</span>(cstat, full.validate[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]), <span class="at">digits =</span> <span class="dv">2</span>, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Internally validated performance"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shrinkage factor: slope of lp</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cstat <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cstat[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)] <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="co"># c = D/2 + 0.5</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>cstat[<span class="dv">4</span>] <span class="ot">&lt;-</span> full.validate[<span class="dv">1</span>,<span class="dv">4</span>] <span class="sc">*</span> <span class="fl">0.5</span> <span class="co"># optimism in c</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show key performance measures, including c statistic, R2, and estimated shrinkage factor</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">rbind</span>(cstat, full.validate[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]), <span class="at">digits =</span> <span class="dv">2</span>, </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Internally validated performance"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Internally validated performance</caption>
 <colgroup>
-<col style="width: 15%">
-<col style="width: 16%">
-<col style="width: 13%">
-<col style="width: 9%">
-<col style="width: 13%">
-<col style="width: 24%">
-<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 20%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2030,6 +2024,8 @@ Divergence or singularity in 3 samples</code></pre>
 <th style="text-align: right;">test</th>
 <th style="text-align: right;">optimism</th>
 <th style="text-align: right;">index.corrected</th>
+<th style="text-align: right;">Lower</th>
+<th style="text-align: right;">Upper</th>
 <th style="text-align: right;">n</th>
 </tr>
 </thead>
@@ -2038,46 +2034,56 @@ Divergence or singularity in 3 samples</code></pre>
 <td style="text-align: left;">cstat</td>
 <td style="text-align: right;">0.83</td>
 <td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.79</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.76</td>
-<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">414</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Dxy</td>
 <td style="text-align: right;">0.66</td>
 <td style="text-align: right;">0.72</td>
-<td style="text-align: right;">0.57</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">414</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">R2</td>
 <td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">0.10</td>
-<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">414</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Intercept</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">-0.69</td>
-<td style="text-align: right;">0.69</td>
-<td style="text-align: right;">-0.69</td>
-<td style="text-align: right;">497</td>
+<td style="text-align: right;">-0.54</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">-0.54</td>
+<td style="text-align: right;">-1.30</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">414</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Slope</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.66</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">0.66</td>
-<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">1.11</td>
+<td style="text-align: right;">414</td>
 </tr>
 </tbody>
 </table>
@@ -2099,67 +2105,67 @@ beta m|(I+L) = beta m|I + beta u|L - beta u|I.</p></li>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we need the user written function</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>full.uni.mult.cor   <span class="ot">&lt;-</span> <span class="fu">bootcor.uni.mult</span>(full, <span class="at">group=</span>full<span class="sc">$</span>y, <span class="at">B=</span><span class="dv">500</span>, <span class="at">maxit=</span><span class="dv">10</span>, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">trim=</span>.<span class="dv">1</span>,<span class="at">save.indices =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we need the user written function</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>full.uni.mult.cor   <span class="ot">&lt;-</span> <span class="fu">bootcor.uni.mult</span>(full, <span class="at">group=</span>full<span class="sc">$</span>y, <span class="at">B=</span><span class="dv">5</span>, <span class="at">maxit=</span><span class="dv">10</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">trim=</span>.<span class="dv">1</span>,<span class="at">save.indices =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Bootsample: 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270 280 290 300 310 320 330 340 350 360 370 380 390 400 410 420 430 440 450 460 470 480 490 500 
-Number of valid bootstraps for correlation and shrinkage:  484
-Correlation coefficients: 0.36 0.84 0.91 0.9 0.89 0.97 0.91 
-Shrinkage: 0.72 </code></pre>
+<pre><code>Bootsample: 
+Number of valid bootstraps for correlation and shrinkage:  2
+Correlation coefficients: 1 1 1 -1 1 1 1 
+Shrinkage: 0.76 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># outliers are removed by 'outliers' package</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full.uni.mult.cor[4]  # matrix with results per bootstrap</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now do adaptation method approach</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>adapt.factors   <span class="ot">&lt;-</span> adapt.coefficients   <span class="ot">&lt;-</span> adapt.var <span class="ot">&lt;-</span> adapt.coef.Gr   <span class="ot">&lt;-</span> adapt.var.Gr <span class="ot">&lt;-</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">7</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 1, simple, just take the difference in own data between m and u estimates for coefficients</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>adapt.coef.Gr[i] <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                <span class="dv">1</span> <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>adapt.var.Gr[i] <span class="ot">&lt;-</span> full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> lit.se[i]<span class="sc">^</span><span class="dv">2</span> </span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a> } <span class="co"># end adaptation 1</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 2: optimal adaptation factors</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>adapt.factors[i]    <span class="ot">&lt;-</span> (full.uni.mult.cor<span class="sc">$</span>r[i] <span class="sc">*</span> </span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sqrt</span>(full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>]) <span class="sc">*</span> <span class="fu">sqrt</span>(fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]) ) <span class="sc">/</span> </span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                      (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>])</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>adapt.coefficients[i]   <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>                    adapt.factors[i] <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>adapt.var[i]        <span class="ot">&lt;-</span> full<span class="sc">$</span>var[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>(full.uni.mult.cor<span class="sc">$</span>r[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">/</span> </span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>                (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> fit.ind.x<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]))) } <span class="co"># end adaptation 2</span></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all coefficients and related measures in a nice matrix</span></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.coefficients, local.coef, full<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>], full.uni.mult.cor<span class="sc">$</span>r,</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>               adapt.factors, adapt.coef.Gr, adapt.coefficients, </span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>               full.shrunk.coefficients[<span class="sc">-</span><span class="dv">1</span>], full.penalized<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>] )</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.coef.u"</span>, <span class="st">"local.coef.u"</span>, <span class="st">"local.coef.m"</span>, <span class="st">"r"</span>,</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapt.opt"</span>, <span class="st">"adapted.1.m"</span>, <span class="st">"adapted.2.m"</span>,</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"shrunk.m"</span>, <span class="st">"penalized.m"</span>)</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Coefficients for AAA modeling"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># outliers are removed by 'outliers' package</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full.uni.mult.cor[4]  # matrix with results per bootstrap</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now do adaptation method approach</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>adapt.factors   <span class="ot">&lt;-</span> adapt.coefficients   <span class="ot">&lt;-</span> adapt.var <span class="ot">&lt;-</span> adapt.coef.Gr   <span class="ot">&lt;-</span> adapt.var.Gr <span class="ot">&lt;-</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">7</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 1, simple, just take the difference in own data between m and u estimates for coefficients</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>adapt.coef.Gr[i] <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                <span class="dv">1</span> <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>adapt.var.Gr[i] <span class="ot">&lt;-</span> <span class="fu">vcov</span>(full)[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">-</span> <span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> lit.se[i]<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a> } <span class="co"># end adaptation 1</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptation method 2: optimal adaptation factors</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>fit.ind.x       <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y,<span class="at">x=</span>full<span class="sc">$</span>x[,i],<span class="at">maxit=</span><span class="dv">25</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>adapt.factors[i]    <span class="ot">&lt;-</span> (full.uni.mult.cor<span class="sc">$</span>r[i] <span class="sc">*</span> </span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sqrt</span>(<span class="fu">vcov</span>(full)[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>]) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>]) ) <span class="sc">/</span> </span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                      (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>adapt.coefficients[i]   <span class="ot">&lt;-</span> full<span class="sc">$</span>coefficients[i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                    adapt.factors[i] <span class="sc">*</span> (lit.coefficients[i] <span class="sc">-</span> fit.ind.x<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>adapt.var[i]        <span class="ot">&lt;-</span> <span class="fu">vcov</span>(full)[i<span class="sc">+</span><span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>(full.uni.mult.cor<span class="sc">$</span>r[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">/</span> </span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>                (lit.se[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">vcov</span>(fit.ind.x)[<span class="dv">2</span>,<span class="dv">2</span>]))) } <span class="co"># end adaptation 2</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all coefficients and related measures in a nice matrix</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.coefficients, local.coef, full<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>], full.uni.mult.cor<span class="sc">$</span>r,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>               adapt.factors, adapt.coef.Gr, adapt.coefficients, </span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>               full.shrunk.coefficients[<span class="sc">-</span><span class="dv">1</span>], full.penalized<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>] )</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.coef.u"</span>, <span class="st">"local.coef.u"</span>, <span class="st">"local.coef.m"</span>, <span class="st">"r"</span>,</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapt.opt"</span>, <span class="st">"adapted.1.m"</span>, <span class="st">"adapted.2.m"</span>,</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"shrunk.m"</span>, <span class="st">"penalized.m"</span>)</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Coefficients for AAA modeling"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Coefficients for AAA modeling</caption>
 <colgroup>
 <col style="width: 8%">
+<col style="width: 13%">
 <col style="width: 12%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 4%">
+<col style="width: 12%">
+<col style="width: 2%">
 <col style="width: 9%">
 <col style="width: 11%">
 <col style="width: 11%">
@@ -2186,11 +2192,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.36</td>
 <td style="text-align: right;">0.28</td>
 <td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.04</td>
 <td style="text-align: right;">0.38</td>
 <td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.33</td>
-<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.21</td>
 <td style="text-align: right;">0.16</td>
 </tr>
 <tr class="even">
@@ -2198,11 +2204,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.79</td>
 <td style="text-align: right;">0.98</td>
 <td style="text-align: right;">0.58</td>
-<td style="text-align: right;">0.84</td>
-<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.95</td>
 <td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.39</td>
 <td style="text-align: right;">0.42</td>
-<td style="text-align: right;">0.38</td>
 <td style="text-align: right;">0.32</td>
 </tr>
 <tr class="odd">
@@ -2210,11 +2216,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">1.03</td>
 <td style="text-align: right;">1.50</td>
 <td style="text-align: right;">0.74</td>
-<td style="text-align: right;">0.91</td>
-<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.81</td>
 <td style="text-align: right;">0.27</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.53</td>
 <td style="text-align: right;">0.55</td>
 </tr>
 <tr class="even">
@@ -2222,11 +2228,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">1.59</td>
 <td style="text-align: right;">1.78</td>
 <td style="text-align: right;">1.04</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-0.69</td>
 <td style="text-align: right;">0.85</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: right;">0.64</td>
 </tr>
 <tr class="odd">
@@ -2234,11 +2240,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">1.51</td>
 <td style="text-align: right;">1.72</td>
 <td style="text-align: right;">0.99</td>
-<td style="text-align: right;">0.89</td>
-<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.77</td>
 <td style="text-align: right;">0.79</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.72</td>
 <td style="text-align: right;">0.60</td>
 </tr>
 <tr class="even">
@@ -2246,11 +2252,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">1.30</td>
 <td style="text-align: right;">1.24</td>
 <td style="text-align: right;">1.12</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0.97</td>
-<td style="text-align: right;">0.94</td>
 <td style="text-align: right;">1.18</td>
 <td style="text-align: right;">1.18</td>
-<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.81</td>
 <td style="text-align: right;">0.71</td>
 </tr>
 <tr class="odd">
@@ -2258,11 +2264,11 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.85</td>
 <td style="text-align: right;">0.84</td>
 <td style="text-align: right;">0.61</td>
-<td style="text-align: right;">0.91</td>
-<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.92</td>
 <td style="text-align: right;">0.62</td>
 <td style="text-align: right;">0.62</td>
-<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.44</td>
 <td style="text-align: right;">0.37</td>
 </tr>
 </tbody>
@@ -2281,19 +2287,19 @@ Shrinkage: 0.72 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all standard error estimates in a nice matrix</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.se, local.se, <span class="fu">sqrt</span>(<span class="fu">diag</span>(full<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>]),</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(adapt.var.Gr), <span class="fu">sqrt</span>(adapt.var), </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sqrt</span>(<span class="fu">diag</span>(full.penalized<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>] ))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduction in variance</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>reduct.var <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">-</span> <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>adapt.var <span class="sc">/</span> <span class="fu">diag</span>(full<span class="sc">$</span>var)[<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tab14, reduct.var)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.u"</span>, <span class="st">"local.u"</span>, <span class="st">"local.m"</span>,</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapted.1"</span>, <span class="st">"adapted.2"</span>,</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"penalized.m"</span>, <span class="st">"% reduction variance adapt 2"</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"SE estimates and reduction in variance by adaptation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store all standard error estimates in a nice matrix</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lit.se, local.se, <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(full))[<span class="sc">-</span><span class="dv">1</span>]),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(adapt.var.Gr), <span class="fu">sqrt</span>(adapt.var), </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(full.penalized))[<span class="sc">-</span><span class="dv">1</span>] ))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduction in variance</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>reduct.var <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">-</span> <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>adapt.var <span class="sc">/</span> <span class="fu">diag</span>(<span class="fu">vcov</span>(full))[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tab14, reduct.var)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"random.u"</span>, <span class="st">"local.u"</span>, <span class="st">"local.m"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"adapted.1"</span>, <span class="st">"adapted.2"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"penalized.m"</span>, <span class="st">"% reduction variance adapt 2"</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"SE estimates and reduction in variance by adaptation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2327,9 +2333,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.79</td>
 <td style="text-align: right;">0.86</td>
 <td style="text-align: right;">0.40</td>
-<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">0.19</td>
 <td style="text-align: right;">0.61</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">95</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">AGE10</td>
@@ -2337,9 +2343,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.38</td>
 <td style="text-align: right;">0.39</td>
 <td style="text-align: right;">0.14</td>
-<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.11</td>
 <td style="text-align: right;">0.24</td>
-<td style="text-align: right;">65</td>
+<td style="text-align: right;">92</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MI</td>
@@ -2347,9 +2353,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.50</td>
 <td style="text-align: right;">0.57</td>
 <td style="text-align: right;">0.41</td>
-<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.30</td>
 <td style="text-align: right;">0.39</td>
-<td style="text-align: right;">60</td>
+<td style="text-align: right;">71</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CHF</td>
@@ -2357,9 +2363,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.55</td>
 <td style="text-align: right;">0.59</td>
 <td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.36</td>
 <td style="text-align: right;">0.38</td>
-<td style="text-align: right;">52</td>
+<td style="text-align: right;">64</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ISCHEMIA</td>
@@ -2367,9 +2373,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.55</td>
 <td style="text-align: right;">0.62</td>
 <td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.35</td>
 <td style="text-align: right;">0.38</td>
-<td style="text-align: right;">54</td>
+<td style="text-align: right;">68</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">RENAL</td>
@@ -2377,9 +2383,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.70</td>
 <td style="text-align: right;">0.77</td>
 <td style="text-align: right;">0.41</td>
-<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.27</td>
 <td style="text-align: right;">0.62</td>
-<td style="text-align: right;">83</td>
+<td style="text-align: right;">88</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LUNG</td>
@@ -2387,9 +2393,9 @@ Shrinkage: 0.72 </code></pre>
 <td style="text-align: right;">0.53</td>
 <td style="text-align: right;">0.59</td>
 <td style="text-align: right;">0.34</td>
-<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.24</td>
 <td style="text-align: right;">0.43</td>
-<td style="text-align: right;">69</td>
+<td style="text-align: right;">83</td>
 </tr>
 </tbody>
 </table>
@@ -2403,25 +2409,25 @@ Shrinkage: 0.72 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Round the coefficients after shrinkage 0.9</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rounded.coef <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.9</span><span class="sc">*</span>adapt.coefficients,<span class="dv">1</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we estimate the intercept</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(full<span class="sc">$</span>x)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>X[,<span class="dv">2</span>] <span class="ot">&lt;-</span> X[,<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">7</span> <span class="co"># center around age=7 decades (70 years)</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as offset in lrm.fit</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>offset.AAA  <span class="ot">&lt;-</span> X <span class="sc">%*%</span> rounded.coef</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>offset.AAA)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate baseline risk to 5% (odds(0.05.0.95)); observed was 18/238, or odds 18/220</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>recal.intercept <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="do">###################################################################</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative, crude naive Bayes approach </span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate literature coefficients with one calibration factor </span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as the only x variable in lrm.fit</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>lit.score   <span class="ot">&lt;-</span> X <span class="sc">%*%</span> lit.coefficients</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>fit.lit  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>lit.score)</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit.lit, <span class="at">digits=</span><span class="dv">2</span>) <span class="co"># uni coefs model fit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Round the coefficients after shrinkage 0.9</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rounded.coef <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.9</span><span class="sc">*</span>adapt.coefficients,<span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we estimate the intercept</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(full<span class="sc">$</span>x)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>X[,<span class="dv">2</span>] <span class="ot">&lt;-</span> X[,<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">7</span> <span class="co"># center around age=7 decades (70 years)</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as offset in lrm.fit</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>offset.AAA  <span class="ot">&lt;-</span> X <span class="sc">%*%</span> rounded.coef</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>fit.offset  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">offset=</span>offset.AAA)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate baseline risk to 5% (odds(0.05.0.95)); observed was 18/238, or odds 18/220</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>recal.intercept <span class="ot">&lt;-</span> fit.offset<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="do">###################################################################</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative, crude naive Bayes approach </span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalibrate literature coefficients with one calibration factor </span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate linear predictor, used as the only x variable in lrm.fit</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>lit.score   <span class="ot">&lt;-</span> X <span class="sc">%*%</span> lit.coefficients</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>fit.lit  <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>lit.score)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit.lit, <span class="at">digits=</span><span class="dv">2</span>) <span class="co"># uni coefs model fit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -2441,19 +2447,19 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 formulas for risk calculation</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>recal.intercept.lit <span class="ot">&lt;-</span> fit.lit<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coefficients, </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>               full.penalized<span class="sc">$</span>coefficients, </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept, rounded.coef),</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(<span class="cn">NA</span>, lit.coefficients),</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept.lit, fit.lit<span class="sc">$</span>coef[<span class="dv">2</span>]<span class="sc">*</span>lit.coefficients))</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit coefs"</span>, <span class="st">"lit score"</span>)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">1</span>, </span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Rounded coefficients with IPD only, adaptation approach, or naive Bayes score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 formulas for risk calculation</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>recal.intercept.lit <span class="ot">&lt;-</span> fit.lit<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">log</span>((<span class="fl">0.05</span><span class="sc">/</span><span class="fl">0.95</span>)<span class="sc">/</span>(<span class="dv">18</span><span class="sc">/</span><span class="dv">220</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(full<span class="sc">$</span>coefficients, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>               full.penalized<span class="sc">$</span>coefficients, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept, rounded.coef),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(<span class="cn">NA</span>, lit.coefficients),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(recal.intercept.lit, fit.lit<span class="sc">$</span>coef[<span class="dv">2</span>]<span class="sc">*</span>lit.coefficients))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">names</span>(full<span class="sc">$</span>coefficients)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit coefs"</span>, <span class="st">"lit score"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">1</span>, </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Rounded coefficients with IPD only, adaptation approach, or naive Bayes score"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2473,7 +2479,7 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <td style="text-align: left;">Intercept</td>
 <td style="text-align: right;">-8.1</td>
 <td style="text-align: right;">-5.6</td>
-<td style="text-align: right;">-4.1</td>
+<td style="text-align: right;">-4.2</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">-4.5</td>
 </tr>
@@ -2497,7 +2503,7 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <td style="text-align: left;">MI</td>
 <td style="text-align: right;">0.7</td>
 <td style="text-align: right;">0.5</td>
-<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.3</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: right;">0.7</td>
 </tr>
@@ -2505,7 +2511,7 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <td style="text-align: left;">CHF</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: right;">0.6</td>
-<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1.1</td>
 <td style="text-align: right;">1.6</td>
 <td style="text-align: right;">1.1</td>
 </tr>
@@ -2549,12 +2555,12 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit with adapted coefficients in score to obtain c statistics</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>adapt.fit <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>offset.AAA)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(full<span class="sc">$</span>stats[<span class="dv">6</span>], full.penalized<span class="sc">$</span>stats[<span class="dv">6</span>], adapt.fit<span class="sc">$</span>stats[<span class="dv">6</span>], fit.lit<span class="sc">$</span>stats[<span class="dv">6</span>]), <span class="at">nrow=</span><span class="dv">1</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">"Apparent c statistic"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit score"</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"C stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit with adapted coefficients in score to obtain c statistics</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>adapt.fit <span class="ot">&lt;-</span> <span class="fu">lrm.fit</span>(<span class="at">y=</span>full<span class="sc">$</span>y, <span class="at">x=</span>offset.AAA)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(full<span class="sc">$</span>stats[<span class="dv">6</span>], full.penalized<span class="sc">$</span>stats[<span class="dv">6</span>], adapt.fit<span class="sc">$</span>stats[<span class="dv">6</span>], fit.lit<span class="sc">$</span>stats[<span class="dv">6</span>]), <span class="at">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">"Apparent c statistic"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"full.coef"</span>, <span class="st">"penalized.m"</span>, <span class="st">"adapted"</span>, <span class="st">"lit score"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"C stats"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2573,7 +2579,7 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <td style="text-align: left;">Apparent c statistic</td>
 <td style="text-align: right;">0.832</td>
 <td style="text-align: right;">0.833</td>
-<td style="text-align: right;">0.829</td>
+<td style="text-align: right;">0.825</td>
 <td style="text-align: right;">0.835</td>
 </tr>
 </tbody>
@@ -2581,11 +2587,11 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calibration</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="dv">1</span><span class="sc">/</span>adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>] ), <span class="at">nrow=</span><span class="dv">1</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"adapted coefficient"</span>, <span class="st">"adapted effective shrinkage"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Calibration insights"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calibration</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tab14 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="dv">1</span><span class="sc">/</span>adapt.fit<span class="sc">$</span>coef[<span class="dv">2</span>] ), <span class="at">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab14) <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab14) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"adapted coefficient"</span>, <span class="st">"adapted effective shrinkage"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab14, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Calibration insights"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2600,8 +2606,8 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: right;">1.29</td>
-<td style="text-align: right;">0.778</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">0.851</td>
 </tr>
 </tbody>
 </table>
@@ -2683,13 +2689,14 @@ x[1]       0.69 0.16  4.44  &lt;0.0001 </code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

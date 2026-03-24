@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Restrictions on Candidate Predictors {#restrictions}
 
 ```{r setup-ch10, include=FALSE}
@@ -71,7 +76,7 @@ dimnames(matrix.coefs) <- list(c("sumscore", "ALL", dput(as.character(components
 # Make models:
 # 1. sumscore
 fit1 <- lrm(data[,y] ~ data[,sumscore])
-matrix.coefs[1,]  <- c(fit1$coef[2], sqrt(fit1$var[2,2]), NA, NA, fit1$stats[3:5])
+matrix.coefs[1,]  <- c(fit1$coef[2], sqrt(vcov(fit1)[2,2]), NA, NA, fit1$stats[3:5])
 
 # 2. full model for overall comparison
 fit.full <- lrm(data[,y] ~ as.matrix(data[,components]), x=T)
@@ -86,7 +91,7 @@ fiti <- update(fit1, .~.+ fit.full$x[,i])
 # compare model fits
 p.anova.comparison <- pchisq(fiti$stats[3] - fit1$stats[3], 
                              df= fiti$stats[4] - fit1$stats[4], lower.tail = F )
-matrix.coefs[2+i,]  <- c(fiti$coef[2], sqrt(fiti$var[2,2]), fiti$coef[3], sqrt(fiti$var[3,3]),
+matrix.coefs[2+i,]  <- c(fiti$coef[2], sqrt(vcov(fiti)[2,2]), fiti$coef[3], sqrt(vcov(fiti)[3,3]),
                           fiti$stats[3:4], p.anova.comparison) } # end loop
 return(matrix.coefs)
 } # end function

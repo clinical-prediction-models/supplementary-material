@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -393,14 +395,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-warnings="false">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import gusto</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gusto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/gusto_age_STE.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import sample4; n=785</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gustos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Gustos4Age.csv"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Import TBI data; n=2159</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>TBI <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI2vars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>TBI <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI2vars.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="fig-9.1-age-linear-add-square-rcs-in-gusto-i" class="level3 unnumbered">
@@ -408,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>agegusto.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>agegusto.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>agegusto.square <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">pol</span>(AGE, <span class="dv">2</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>agegusto.rcs <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(AGE, <span class="dv">5</span>), <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dichotomize</span></span>
@@ -439,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"linear"</span>, <span class="st">"&lt;65 vs &gt;=65"</span>, <span class="st">"&lt;60, 60-69, 70+"</span>),</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -455,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># winsorize at STE 10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># winsorize at STE 10</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gusto<span class="sc">$</span>STE <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(gusto<span class="sc">$</span>STE <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="dv">10</span>, gusto<span class="sc">$</span>STE)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gusto<span class="sc">$</span>STE.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(gusto<span class="sc">$</span>STE)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>STE.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> STE, <span class="at">data =</span> gusto, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
@@ -491,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"data"</span>, <span class="st">"linear"</span>, <span class="st">".. +square"</span>, <span class="st">"rcs"</span>, <span class="st">"&lt;=4, vs &gt;4"</span>),</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">col =</span> mycolors[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -507,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine non-linearities in gustos sample</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine non-linearities in gustos sample</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Age</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>age.linear <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> AGE, <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>age.rcs1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(DAY30 <span class="sc">~</span> <span class="fu">rcs</span>(AGE, <span class="dv">5</span>), <span class="at">data =</span> gustos, <span class="at">x =</span> T, <span class="at">y =</span> T, <span class="at">linear.predictors =</span> F)</span>
@@ -568,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
 <span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> age.mat<span class="fl">.2</span>[, <span class="dv">1</span>], <span class="at">y =</span> age.mat<span class="fl">.2</span>[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">5</span>])</span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> gusto<span class="sc">$</span>AGE, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">frac =</span> .<span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"GUSTO-I, n=40,830"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"GUSTO-I, n=40,830"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -585,8 +587,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># glucose</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>glucose, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># glucose</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>glucose, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> 0.5%    1%    2%   98%   99% 99.5% 
@@ -594,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  1.57  2.26  4.28 18.34 20.92 23.39</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># So, winsorize / truncate at 3 and 20</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use simple function to do the winsorizing:</span></span>
@@ -607,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>TBI<span class="sc">$</span>glucoset <span class="ot">&lt;-</span> <span class="fu">winsorize</span>(TBI<span class="sc">$</span>glucose, <span class="dv">3</span>, <span class="dv">20</span>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># systolic bp</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>hb, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>hb, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">005</span>, .<span class="dv">01</span>, .<span class="dv">02</span>, .<span class="dv">98</span>, .<span class="dv">99</span>, .<span class="dv">995</span>), <span class="at">na.rm =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> 0.5%    1%    2%   98%   99% 99.5% 
@@ -615,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  0.5%    1%    2%   98%   99% 99.5%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  4.87  5.40  6.30 16.50 16.80 17.00</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># So, winsorize / truncate at 6 and 17</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>TBI<span class="sc">$</span>hbt <span class="ot">&lt;-</span> <span class="fu">winsorize</span>(TBI<span class="sc">$</span>hb, <span class="dv">6</span>, <span class="dv">17</span>)</span>
@@ -627,7 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Glucose"</span>)</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="at">x =</span> <span class="fu">cbind</span>(TBI<span class="sc">$</span>hb, TBI<span class="sc">$</span>hbt), <span class="at">outcol =</span> <span class="fu">c</span>(<span class="st">"red"</span>, mycolors[<span class="dv">4</span>]), <span class="at">border =</span> mycolors[<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)], <span class="at">xaxt =</span> <span class="st">"n"</span>, <span class="at">ylab =</span> <span class="st">"hb (mmol/L)"</span>)</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"before "</span>, <span class="st">"after winsorizing"</span>))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Hemoglobin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Hemoglobin"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -656,7 +658,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>d.sysbpt, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">25</span>, .<span class="dv">75</span>, .<span class="dv">99</span>), <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(TBI<span class="sc">$</span>d.sysbpt, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">25</span>, .<span class="dv">75</span>, .<span class="dv">99</span>), <span class="at">na.rm =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1%   25%   75%   99% 
@@ -664,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>TBIs <span class="ot">&lt;-</span> TBI[<span class="sc">!</span><span class="fu">is.na</span>(TBI<span class="sc">$</span>d.sysbpt), ]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>TBIs <span class="ot">&lt;-</span> TBI[<span class="sc">!</span><span class="fu">is.na</span>(TBI<span class="sc">$</span>d.sysbpt), ]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   1%   25%   75%   99%</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 92.9 121.1 142.1 171.8</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -684,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">datadist</span>(TBIs)</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">"dd"</span>)</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Odds ratios</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(g1t)) <span class="co"># OR 2.78 for low BP and 1.25 for high BP</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(g1t)) <span class="co"># OR 2.78 for low BP and 1.25 for high BP</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Intercept d.sysbpt.c=1 d.sysbpt.c=2 
@@ -692,20 +694,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI<span class="sc">$</span>d.sysbpt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI<span class="sc">$</span>d.sysbpt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>TBI$d.sysbpt 
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
-    2159        0     1566        1    131.4    17.61    107.0    112.2    121.1    131.3    142.1 
-     .90      .95 
-   151.1    156.2 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10      .25      .50 
+    2159        0     1566        1    131.4    131.4    17.61    107.0    112.2    121.1    131.3 
+     .75      .90      .95 
+   142.1    151.1    156.2 
 
 lowest : 60     64.19  65.6   71.33  73.71 , highest: 182.92 184.16 184.7  188.29 207.4 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBIs<span class="sc">$</span>d.sysbpt.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBIs<span class="sc">$</span>d.sysbpt.c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>TBIs$d.sysbpt.c 
@@ -718,7 +720,7 @@ Proportion 0.665 0.220 0.116</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data in matrix for plot</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data in matrix for plot</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d.sysbpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">60</span>, <span class="dv">210</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># 151 elements</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>g.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">151</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(g.mat) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">Cs</span>(d.sysbpt, g1, g2, g3, g4))</span>
@@ -768,7 +770,7 @@ Proportion 0.665 0.220 0.116</code></pre>
 <span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">4</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">3</span>])</span>
 <span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> g.mat2[, <span class="dv">1</span>], <span class="at">y =</span> g.mat2[, <span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> mycolors[<span class="dv">4</span>])</span>
 <span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="fu">histSpike</span>(<span class="at">x =</span> TBI<span class="sc">$</span>d.sysbpt, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">frac =</span> .<span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">add =</span> T)</span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"3 categories"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"3 categories"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -835,13 +837,14 @@ Proportion 0.665 0.220 0.116</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

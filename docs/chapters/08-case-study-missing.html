@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -397,11 +399,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-warnings="false">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>TBI1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI1.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>TBI1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TBI1.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>study <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>study)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>pupil <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>pupil)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>TBI1<span class="sc">$</span>ctclass <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(TBI1<span class="sc">$</span>ctclass)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(TBI1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>TBI1 
@@ -417,41 +419,41 @@ Frequency   1118  1041   409   919  1510   350   812   604   126   822   819
 Proportion 0.131 0.122 0.048 0.108 0.177 0.041 0.095 0.071 0.015 0.096 0.096
 ----------------------------------------------------------------------------------------------------
 age 
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
-    8530        0       80    0.999     34.7    17.59       17       18       21       30       45 
-     .90      .95 
-      59       65 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10      .25      .50 
+    8530        0       80    0.999     34.7     33.5    17.59       17       18       21       30 
+     .75      .90      .95 
+      45       59       65 
 
 lowest : 14 15 16 17 18, highest: 89 90 91 92 93
 ----------------------------------------------------------------------------------------------------
 hypoxia 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    5473     3057        2    0.489     1122    0.205    0.326 
+       n  missing distinct     Info      Sum     Mean 
+    5473     3057        2    0.489     1122    0.205 
 
 ----------------------------------------------------------------------------------------------------
 hypotens 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    6440     2090        2    0.447     1173   0.1821    0.298 
+       n  missing distinct     Info      Sum     Mean 
+    6440     2090        2    0.447     1173   0.1821 
 
 ----------------------------------------------------------------------------------------------------
 cisterns 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    3857     4673        2    0.736     1661   0.4306   0.4905 
+       n  missing distinct     Info      Sum     Mean 
+    3857     4673        2    0.736     1661   0.4306 
 
 ----------------------------------------------------------------------------------------------------
 shift 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    6209     2321        2    0.658     2020   0.3253   0.4391 
+       n  missing distinct     Info      Sum     Mean 
+    6209     2321        2    0.658     2020   0.3253 
 
 ----------------------------------------------------------------------------------------------------
 tsah 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    7393     1137        2    0.742     3313   0.4481   0.4947 
+       n  missing distinct     Info      Sum     Mean 
+    7393     1137        2    0.742     3313   0.4481 
 
 ----------------------------------------------------------------------------------------------------
 edh 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    7425     1105        2     0.35     1001   0.1348   0.2333 
+       n  missing distinct     Info      Sum     Mean 
+    7425     1105        2     0.35     1001   0.1348 
 
 ----------------------------------------------------------------------------------------------------
 pupil 
@@ -479,37 +481,37 @@ Frequency   2198  1050  1944
 Proportion 0.423 0.202 0.374
 ----------------------------------------------------------------------------------------------------
 sysbp 
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
-    6797     1733     1653    0.999    134.3     25.3      100      108      120      132      148 
-     .90      .95 
-     162      175 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10      .25      .50 
+    6797     1733     1653    0.999    134.3    133.5     25.3      100      108      120      132 
+     .75      .90      .95 
+     148      162      175 
 
 lowest : 60    62    64    64.19 65.6 , highest: 219   220   222   226   230  
 ----------------------------------------------------------------------------------------------------
 hb 
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
-    3871     4659      195        1    12.39    2.685      8.1      9.1     10.8     12.6     14.2 
-     .90      .95 
-    15.2     15.8 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10      .25      .50 
+    3871     4659      195        1    12.39     12.5    2.685      8.1      9.1     10.8     12.6 
+     .75      .90      .95 
+    14.2     15.2     15.8 
 
 lowest : 6       6.1     6.12311 6.2     6.28424, highest: 16.7    16.79   16.8    16.9    17     
 ----------------------------------------------------------------------------------------------------
 glucose 
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75 
-    4830     3700      706        1    8.894    3.393    5.100    5.611    6.700    8.200   10.400 
-     .90      .95 
-  13.091   15.500 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10      .25      .50 
+    4830     3700      706        1    8.894    8.508    3.393    5.100    5.611    6.700    8.200 
+     .75      .90      .95 
+  10.400   13.091   15.500 
 
 lowest : 3       3.03    3.05556 3.2     3.3    , highest: 19.7778 19.8    19.855  19.9    20     
 ----------------------------------------------------------------------------------------------------
 unfav 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    8530        0        2    0.749     4082   0.4785   0.4991 
+       n  missing distinct     Info      Sum     Mean 
+    8530        0        2    0.749     4082   0.4785 
 
 ----------------------------------------------------------------------------------------------------
 mort 
-       n  missing distinct     Info      Sum     Mean      Gmd 
-    8530        0        2    0.606     2396   0.2809    0.404 
+       n  missing distinct     Info      Sum     Mean 
+    8530        0        2    0.606     2396   0.2809 
 
 ----------------------------------------------------------------------------------------------------</code></pre>
 </div>
@@ -522,8 +524,8 @@ mort
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>na.patterns <span class="ot">&lt;-</span> <span class="fu">naclus</span>(TBI1)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(na.patterns, <span class="at">ylab =</span> <span class="st">"Fraction of NAs in common"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>na.patterns <span class="ot">&lt;-</span> <span class="fu">naclus</span>(TBI1)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(na.patterns, <span class="at">ylab =</span> <span class="st">"Fraction of NAs in common"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -534,8 +536,8 @@ mort
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">naplot</span>(na.patterns, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">cex =</span> <span class="fl">1.1</span>, <span class="at">cex.main =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">naplot</span>(na.patterns, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">cex =</span> <span class="fl">1.1</span>, <span class="at">cex.main =</span> <span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -558,9 +560,9 @@ mort
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(TBI1, <span class="at">sortVars =</span> T, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(TBI1, <span class="at">sortVars =</span> T, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -598,7 +600,7 @@ mort
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.1</span>,<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.1</span>,<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(ctclass) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"CT classification"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -616,7 +618,7 @@ mort
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(hypotens) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Presentation: hypotension"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(pupil) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Pupillary reactivity"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(<span class="fu">is.na</span>(pupil) <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> unfav, <span class="at">data =</span> TBI1), <span class="at">main =</span> <span class="st">"Pupillary reactivity"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.main =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> .<span class="dv">6</span>, <span class="at">cex.sub =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="st">"red"</span>,<span class="at">reset.par =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -627,7 +629,7 @@ mort
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># End plot missing patterns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># End plot missing patterns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -640,7 +642,7 @@ A value of ‘1’ means that the column variable is used as a predictor for the
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">16</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, p <span class="sc">*</span> p), <span class="at">nrow =</span> p, <span class="at">ncol =</span> p)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(pmat) <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, p)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pmat[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">15</span><span class="sc">:</span><span class="dv">16</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># set some columns to zero</span></span>
@@ -653,7 +655,7 @@ A value of ‘1’ means that the column variable is used as a predictor for the
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>,</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">predictorMatrix =</span> pmat, <span class="at">seed =</span> <span class="dv">1</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -711,7 +713,7 @@ A value of ‘1’ means that the column variable is used as a predictor for the
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Class: mids
@@ -739,7 +741,7 @@ shift        0    0</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(gm) <span class="co"># Nice check for imputed vs original distributions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(gm) <span class="co"># Nice check for imputed vs original distributions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -755,7 +757,7 @@ shift        0    0</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age, <span class="at">data =</span> TBI1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -767,7 +769,7 @@ lrm(formula = unfav ~ study + age, data = TBI1)
 Obs          8530    LR chi2     746.50        R2       0.112    C       0.660    
  0           4448    d.f.            11      R2(11,8530)0.083    Dxy     0.320    
  1           4082    Pr(&gt; chi2) &lt;0.0001    R2(11,6385.7)0.109    gamma   0.321    
-max |deriv| 3e-09                              Brier    0.229    tau-a   0.160    
+max |deriv| 4e-09                              Brier    0.229    tau-a   0.160    
 
           Coef    S.E.   Wald Z Pr(&gt;|Z|)
 Intercept -1.4648 0.0817 -17.93 &lt;0.0001 
@@ -785,7 +787,7 @@ age        0.0320 0.0015  20.91 &lt;0.0001 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> motor, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> motor, <span class="at">data =</span> TBI1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Logistic Regression Model
@@ -797,7 +799,7 @@ lrm(formula = unfav ~ study + motor, data = TBI1)
 Obs          8530    LR chi2    1259.58        R2       0.183    C       0.715    
  0           4448    d.f.            14      R2(14,8530)0.136    Dxy     0.429    
  1           4082    Pr(&gt; chi2) &lt;0.0001    R2(14,6385.7)0.177    gamma   0.441    
-max |deriv| 1e-09                              Brier    0.214    tau-a   0.214    
+max |deriv| 0.001                              Brier    0.214    tau-a   0.214    
 
           Coef    S.E.   Wald Z Pr(&gt;|Z|)
 Intercept  0.7308 0.0802   9.11 &lt;0.0001 
@@ -824,12 +826,12 @@ motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## CC, n = 2428</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## CC, n = 2428</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI1)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## SI, n = 8530</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> <span class="fu">complete</span>(gm, <span class="at">action =</span> <span class="dv">1</span>))</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## MI, n = 8530</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm, <span class="at">data =</span> TBI1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm, <span class="at">data =</span> TBI1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -838,7 +840,7 @@ motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>names.uni <span class="ot">&lt;-</span> <span class="fu">Cs</span>(pupil, hypoxia, hypotens, ctclass, tsah) <span class="co"># 5 names</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>names.uni <span class="ot">&lt;-</span> <span class="fu">Cs</span>(pupil, hypoxia, hypotens, ctclass, tsah) <span class="co"># 5 names</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>TBIc <span class="ot">&lt;-</span> <span class="fu">complete</span>(gm, <span class="at">action =</span> <span class="st">"long"</span>, <span class="at">include =</span> <span class="cn">TRUE</span>) <span class="co"># completed data set</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">###################################################</span></span>
@@ -847,26 +849,26 @@ motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> pupil, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>fit.SI <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">1</span>, ])</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fit.MI <span class="ot">&lt;-</span> <span class="fu">fit.mult.impute</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> age <span class="sc">+</span> motor <span class="sc">+</span> pupil <span class="sc">+</span> hypoxia <span class="sc">+</span> hypotens <span class="sc">+</span> ctclass <span class="sc">+</span> tsah, lrm, <span class="at">xtrans =</span> gm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># indicates index for the predictor we are studying</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.CC)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])]) <span class="co"># CC</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.CC<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.CC)), names.uni[i])])</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.SI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])]) <span class="co"># SI</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.SI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.SI)), names.uni[i])])</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coef</span>(fit.MI)[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])]) <span class="co"># MI</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hypoxia</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hypoxia</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>TBI2 <span class="ot">&lt;-</span> TBIc[<span class="sc">!</span>TBIc<span class="sc">$</span>.id <span class="sc">%in%</span> TBIc<span class="sc">$</span>.id[<span class="fu">is.na</span>(TBIc<span class="sc">$</span>hypoxia)], ]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">as.mids</span>(TBI2)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fit.CC <span class="ot">&lt;-</span> <span class="fu">lrm</span>(unfav <span class="sc">~</span> study <span class="sc">+</span> hypoxia, <span class="at">data =</span> TBI2[TBI2<span class="sc">$</span>.imp <span class="sc">==</span> <span class="dv">0</span>, ])</span>
@@ -927,7 +929,7 @@ motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
 <span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(fit.MI<span class="sc">$</span>var))[<span class="fu">startsWith</span>(<span class="fu">names</span>(<span class="fu">coef</span>(fit.MI)), names.uni[i])])</span>
 <span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a><span class="do">## End C, SI, and MI analyses ##</span></span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -986,13 +988,14 @@ motor=9   -0.9513 0.1137  -8.36 &lt;0.0001 </code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

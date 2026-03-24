@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -430,10 +432,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import SEER data set, n=2041</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import SEER data set, n=2041</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Surgery <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/EsoSurgery.csv"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">prType=</span><span class="st">'html'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(Surgery), <span class="at">scroll=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(Surgery), <span class="at">scroll=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="width: 100ex; overflow: auto; height: 25ex;">
@@ -471,67 +473,67 @@ bottom: -1ex;
 <hr class="thinhr">
 <span style="font-weight:bold">D30</span>
 <style>
- .hmisctable952327 {
+ .hmisctable741144 {
  border: none;
  font-size: 85%;
  }
- .hmisctable952327 td {
+ .hmisctable741144 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable952327 th {
+ .hmisctable741144 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable952327">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>2041</td><td>0</td><td>2</td><td>0.29</td><td>221</td><td>0.1083</td><td>0.1932</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable741144">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>2041</td><td>0</td><td>2</td><td>0.29</td><td>221</td><td>0.1083</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">AGE</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAjElEQVQ4jc2VgQ6AIAgFn/3/RzcEFMktV0jdLIPcurleoQhAP/fWUGeCgwBo8EUD2rXNLDAYdMEfeTFWEHpDRcd5sxc8k45Kfup1xS9K8KLY3eLXpORxwWu6gXv365mX2AHtO/MnL+cYKRjmZeQi/GK9IG+eKHJtHrZuu5bH9xTOdP3h1qOYULt8U3kCBnYI6l9Y/pkAAAAASUVORK5CYII=" alt="image"></div>
 <style>
- .hmisctable717753 {
+ .hmisctable585614 {
  border: none;
- font-size: 85%;
+ font-size: 74%;
  }
- .hmisctable717753 td {
+ .hmisctable585614 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable717753 th {
+ .hmisctable585614 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable717753">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>2041</td><td>0</td><td>801</td><td>1</td><td>73.5</td><td>6.723</td><td>65.83</td><td>66.42</td><td>68.58</td><td>72.42</td><td>77.25</td><td>81.91</td><td>85.17</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable585614">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>2041</td><td>0</td><td>801</td><td>1</td><td>73.5</td><td>73.04</td><td>6.723</td><td>65.83</td><td>66.42</td><td>68.58</td><td>72.42</td><td>77.25</td><td>81.91</td><td>85.17</td></tr>
  </tbody></table>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 65.0021 65.076  65.0815 65.0842 65.1608 ,  <font color="MidnightBlue">highest</font>: 94.6639 94.6667 95.0856 97.9986 101.744</span>
 <hr class="thinhr">
 <span style="font-weight:bold">COMORBI</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAFIAAAANCAMAAAANKsmLAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlEQVQ4jWNgZGBgpC5gYGJgYKIuGDWSikaOxjhdjCTTMloYCY5xEAnH8EQAYSEJICIVIoktuhkZARiBBw6g/yoLAAAAAElFTkSuQmCC" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      393    0.737   0.2983   0.4589   0.0000   0.0000   0.0000 
-      .50      .75      .90      .95 
-   0.0000   0.3756   1.0000   1.1968  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      393    0.737   0.2983   0.1567   0.4589   0.0000   0.0000 
+      .25      .50      .75      .90      .95 
+   0.0000   0.0000   0.3756   1.0000   1.1968  </pre>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 0        0.179426 0.182296 0.189824 0.193299 ,  <font color="MidnightBlue">highest</font>: 2.14073  2.15795  2.15974  2.21896  3       </span>
 <hr class="thinhr">
 <span style="font-weight:bold">CPD</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQokWNgYGAkHzAwMDCRD0aw7tEwp6duoE5ImDPAAUkBzggAU34FPoS8LCkAAAAASUVORK5CYII=" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      376    0.591  0.09873   0.1718  0.00000  0.00000  0.00000 
-      .50      .75      .90      .95 
-  0.00000  0.07714  0.16931  1.00000  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      376    0.591  0.09873        0   0.1718  0.00000  0.00000 
+      .25      .50      .75      .90      .95 
+  0.00000  0.00000  0.07714  0.16931  1.00000  </pre>
 
 <pre style="font-size:85%;"> Value       0.00  0.06  0.07  0.08  0.09  0.10  0.11  0.12  0.13  0.14  0.15  0.16
  Frequency   1514     5    17    32    29    35    28    56    40    30    29    25
@@ -546,28 +548,28 @@ For the frequency table, variable is rounded to the nearest 0.01
 <hr class="thinhr">
 <span style="font-weight:bold">Cardio</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAFIAAAANCAMAAAANKsmLAAAACVBMVEUAAADMzMz////1iUV5AAAAMUlEQVQ4jWNgZGBgpC5gYGJgYKIuGDWSikaOxvgIMhJkGCTGGdABUIgRlBJITQ0gnQAdIgcX0zj6mAAAAABJRU5ErkJggg==" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      374    0.593  0.09677   0.1702   0.0000   0.0000   0.0000 
-      .50      .75      .90      .95 
-   0.0000   0.0536   0.1692   1.0000  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      374    0.593  0.09677        0   0.1702   0.0000   0.0000 
+      .25      .50      .75      .90      .95 
+   0.0000   0.0000   0.0536   0.1692   1.0000  </pre>
 
 <style>
- .hmisctable174135 {
+ .hmisctable529030 {
  border: none;
  font-size: 85%;
  }
- .hmisctable174135 td {
+ .hmisctable529030 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable174135 th {
+ .hmisctable529030 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable174135">
+ <table data-quarto-disable-processing="true" class="hmisctable529030">
  <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0        </td><td>0.0425048</td><td>0.0433258</td><td>0.0447525</td><td>0.0448201</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.296846 </td><td>0.299705 </td><td>0.325783 </td><td>0.36526  </td><td>1        </td></tr>
  </tbody></table>
@@ -575,10 +577,10 @@ iVBORw0KGgoAAAANSUhEUgAAAFIAAAANCAMAAAANKsmLAAAACVBMVEUAAADMzMz////1iUV5AAAAMUlE
 <hr class="thinhr">
 <span style="font-weight:bold">Diabetes</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADoAAAANCAMAAADPGo0PAAAACVBMVEUAAADMzMz////1iUV5AAAAJklEQVQokWNgYGAkEzAwMDCRCUaY1tEQpp1WoDZQCDPAASnBywgAhOgE+eiEfCoAAAAASUVORK5CYII=" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      378    0.594  0.09295   0.1641   0.0000   0.0000   0.0000 
-      .50      .75      .90      .95 
-   0.0000   0.0566   0.1304   1.0000  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      378    0.594  0.09295        0   0.1641   0.0000   0.0000 
+      .25      .50      .75      .90      .95 
+   0.0000   0.0000   0.0566   0.1304   1.0000  </pre>
 
 <pre style="font-size:85%;"> Value       0.00  0.04  0.05  0.06  0.07  0.08  0.09  0.10  0.11  0.12  0.13  0.14
  Frequency   1511     5    33    59    54    47    35    33    24    32    19    12
@@ -593,28 +595,28 @@ For the frequency table, variable is rounded to the nearest 0.01
 <hr class="thinhr">
 <span style="font-weight:bold">Liver</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAN0lEQVQ4je3TIRIAMAwCwSP/f3TbmGhUI9gZ/BmQQPtQxd066fKky0P+aEmXJ12e/mP7/cDxUg6k6Q1e+bJHDQAAAABJRU5ErkJggg==" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      391    0.474 0.002736 0.005334 0.000000 0.000000 0.000000 
-      .50      .75      .90      .95 
- 0.000000 0.000000 0.001706 0.005047  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      391    0.474 0.002736        0 0.005334 0.000000 0.000000 
+      .25      .50      .75      .90      .95 
+ 0.000000 0.000000 0.000000 0.001706 0.005047  </pre>
 
 <style>
- .hmisctable298810 {
+ .hmisctable230974 {
  border: none;
  font-size: 85%;
  }
- .hmisctable298810 td {
+ .hmisctable230974 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable298810 th {
+ .hmisctable230974 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable298810">
+ <table data-quarto-disable-processing="true" class="hmisctable230974">
  <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0          </td><td>0.000277464</td><td>0.000284278</td><td>0.000291895</td><td>0.000293725</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.024005   </td><td>0.0259095  </td><td>0.0290324  </td><td>0.0364262  </td><td>1          </td></tr>
  </tbody></table>
@@ -622,28 +624,28 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAN0lE
 <hr class="thinhr">
 <span style="font-weight:bold">Renal</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlEQVQ4je3TsQ0AMAwCwcf7D53YmYAqLjiJ/huQQPtQxd066fKky0P+aEmXJ12e+eMzN/j9w9YRB6PSDVx1FUCKAAAAAElFTkSuQmCC" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     2041        0      391     0.48 0.007155  0.01381 0.000000 0.000000 0.000000 
-      .50      .75      .90      .95 
- 0.000000 0.000000 0.007221 0.012013  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+     2041        0      391     0.48 0.007155        0  0.01381 0.000000 0.000000 
+      .25      .50      .75      .90      .95 
+ 0.000000 0.000000 0.000000 0.007221 0.012013  </pre>
 
 <style>
- .hmisctable666624 {
+ .hmisctable420327 {
  border: none;
  font-size: 85%;
  }
- .hmisctable666624 td {
+ .hmisctable420327 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable666624 th {
+ .hmisctable420327 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable666624">
+ <table data-quarto-disable-processing="true" class="hmisctable420327">
  <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>0          </td><td>0.000242474</td><td>0.000406405</td><td>0.000550073</td><td>0.00060003 </td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>0.0391617  </td><td>0.0409958  </td><td>0.0413482  </td><td>0.0746603  </td><td>1          </td></tr>
  </tbody></table>
@@ -653,8 +655,8 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlE
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(D30<span class="sc">~</span>COMORBI, <span class="at">data=</span>Surgery)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(D30<span class="sc">~</span>COMORBI, <span class="at">data=</span>Surgery)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <p><strong>Logistic Regression Model</strong></p>
@@ -663,7 +665,7 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAOUlE
 </pre>
 
 
-<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gmisc_table caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -701,7 +703,7 @@ Indexes</th>
 <td style="text-align: center; min-width: 9em; border-right: 1px solid black;">γ 0.162</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black;">max |∂log <em>L</em>/∂β| 3×10<sup>-9</sup></td>
+<td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black;">max |∂log <em>L</em>/∂β| 0.0008</td>
 <td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;"></td>
 <td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;">Brier 0.096</td>
 <td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-right: 1px solid black;">τ<sub>a</sub> 0.019</td>
@@ -712,7 +714,7 @@ Indexes</th>
 
 
 
-<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gmisc_table caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1px solid grey; border-top: 2px solid grey;"></th>
@@ -756,7 +758,7 @@ We note that the deviations from the common effect are relatively small, except 
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make function that that a score plus its components</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make function that that a score plus its components</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome and data specified as well</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>test.equal.weights <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">data=</span>Surgery, <span class="at">y=</span><span class="st">"D30"</span>, <span class="at">sumscore=</span><span class="st">"COMORBI"</span>, </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">components=</span><span class="fu">Cs</span>(CPD, Cardio, Diabetes, Liver, Renal)) {</span>
@@ -769,7 +771,7 @@ We note that the deviations from the common effect are relatively small, except 
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Make models:</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. sumscore</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(data[,y] <span class="sc">~</span> data[,sumscore])</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">1</span>,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fit1<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(fit1<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]), <span class="cn">NA</span>, <span class="cn">NA</span>, fit1<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">1</span>,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fit1<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(<span class="fu">vcov</span>(fit1)[<span class="dv">2</span>,<span class="dv">2</span>]), <span class="cn">NA</span>, <span class="cn">NA</span>, fit1<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>])</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. full model for overall comparison</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>fit.full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(data[,y] <span class="sc">~</span> <span class="fu">as.matrix</span>(data[,components]), <span class="at">x=</span>T)</span>
@@ -784,14 +786,14 @@ We note that the deviations from the common effect are relatively small, except 
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># compare model fits</span></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>p.anova.comparison <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(fiti<span class="sc">$</span>stats[<span class="dv">3</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">3</span>], </span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                             <span class="at">df=</span> fiti<span class="sc">$</span>stats[<span class="dv">4</span>] <span class="sc">-</span> fit1<span class="sc">$</span>stats[<span class="dv">4</span>], <span class="at">lower.tail =</span> F )</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">2</span><span class="sc">+</span>i,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fiti<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(fiti<span class="sc">$</span>var[<span class="dv">2</span>,<span class="dv">2</span>]), fiti<span class="sc">$</span>coef[<span class="dv">3</span>], <span class="fu">sqrt</span>(fiti<span class="sc">$</span>var[<span class="dv">3</span>,<span class="dv">3</span>]),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>matrix.coefs[<span class="dv">2</span><span class="sc">+</span>i,]  <span class="ot">&lt;-</span> <span class="fu">c</span>(fiti<span class="sc">$</span>coef[<span class="dv">2</span>], <span class="fu">sqrt</span>(<span class="fu">vcov</span>(fiti)[<span class="dv">2</span>,<span class="dv">2</span>]), fiti<span class="sc">$</span>coef[<span class="dv">3</span>], <span class="fu">sqrt</span>(<span class="fu">vcov</span>(fiti)[<span class="dv">3</span>,<span class="dv">3</span>]),</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                          fiti<span class="sc">$</span>stats[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>], p.anova.comparison) } <span class="co"># end loop</span></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(matrix.coefs)</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end function</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">test.equal.weights</span>(<span class="at">data=</span>Surgery, <span class="at">y=</span><span class="st">"D30"</span>, <span class="at">sumscore=</span><span class="st">"COMORBI"</span>, </span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                  <span class="at">components=</span><span class="fu">Cs</span>(CPD, Cardio, Diabetes, Liver, Renal)), </span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                  <span class="at">caption=</span><span class="st">"**Table 10.2**: Testing deviations for each condition in a sum score. Data from esophageal cancer patients who underwent surgery (2041 patients from SEER-Medicare data, 221 died by 30 days). The overall test for deviations from a simple sum score had a p-value of 0.46 (overall LR test, 4 *df*)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                  <span class="at">caption=</span><span class="st">"**Table 10.2**: Testing deviations for each condition in a sum score. Data from esophageal cancer patients who underwent surgery (2041 patients from SEER-Medicare data, 221 died by 30 days). The overall test for deviations from a simple sum score had a p-value of 0.46 (overall LR test, 4 *df*)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>c("CPD", "Cardio", "Diabetes", "Liver", "Renal")</code></pre>
@@ -981,13 +983,14 @@ A robust approach is especially attractive in relatively small data set. Indeed,
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

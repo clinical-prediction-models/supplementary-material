@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover-snippet.PNG" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-22f1e9abd69a6835ab4f2e41b1700194.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76e1424de4531578fc1469f3f335bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +138,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../cover-snippet.PNG" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../"></a> 
@@ -446,9 +448,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a full 6 predictor model in n544</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a full 6 predictor model in n544</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">prType=</span><span class="st">'html'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(n544), <span class="at">scroll=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">describe</span>(n544), <span class="at">scroll=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="width: 100ex; overflow: auto; height: 25ex;">
@@ -486,97 +488,97 @@ bottom: -1ex;
 <hr class="thinhr">
 <span style="font-weight:bold">Teratoma</span>
 <style>
- .hmisctable354146 {
+ .hmisctable315536 {
  border: none;
  font-size: 85%;
  }
- .hmisctable354146 td {
+ .hmisctable315536 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable354146 th {
+ .hmisctable315536 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable354146">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>544</td><td>0</td><td>2</td><td>0.746</td><td>252</td><td>0.4632</td><td>0.4982</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable315536">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>544</td><td>0</td><td>2</td><td>0.746</td><td>252</td><td>0.4632</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">Pre.AFP</span>
 <style>
- .hmisctable156894 {
+ .hmisctable299930 {
  border: none;
  font-size: 85%;
  }
- .hmisctable156894 td {
+ .hmisctable299930 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable156894 th {
+ .hmisctable299930 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable156894">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>544</td><td>0</td><td>2</td><td>0.675</td><td>186</td><td>0.3419</td><td>0.4508</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable299930">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>544</td><td>0</td><td>2</td><td>0.675</td><td>186</td><td>0.3419</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">Pre.HCG</span>
 <style>
- .hmisctable948428 {
+ .hmisctable374468 {
  border: none;
  font-size: 85%;
  }
- .hmisctable948428 td {
+ .hmisctable374468 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable948428 th {
+ .hmisctable374468 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable948428">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>544</td><td>0</td><td>2</td><td>0.704</td><td>205</td><td>0.3768</td><td>0.4705</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable374468">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>544</td><td>0</td><td>2</td><td>0.704</td><td>205</td><td>0.3768</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">Pre.lnLDH</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAlklEQVQ4jc2TCw6AIAxDB/c/tMIYjEhGkY82UZzM9DlScrjo1kD7lMjjClwD7VOCjBLOL7mIlSGRb/ZyCY7m6rt+ydX2tvZwLjuAHMKy6oL3H+3p7WR0zb8qc8rzahZqRCTh2HSO+bQI00EukKga3HBsz3A1R+jfYK7jQphrSIs1pIaTwymSIuZqmZx+iFe0KsYk9nK/AF6VChag76rRAAAAAElFTkSuQmCC" alt="image"></div>
-<pre style="font-size:85%;">        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-      544        0      472        1   0.4582   0.7327 -0.38735 -0.26645 -0.03266 
-      .50      .75      .90      .95 
-  0.31299  0.92886  1.33528  1.65328  </pre>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+      544        0      472        1   0.4582   0.4191   0.7327 -0.38735 -0.26645 
+      .25      .50      .75      .90      .95 
+ -0.03266  0.31299  0.92886  1.33528  1.65328  </pre>
 
 <style>
- .hmisctable959513 {
+ .hmisctable914418 {
  border: none;
  font-size: 85%;
  }
- .hmisctable959513 td {
+ .hmisctable914418 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable959513 th {
+ .hmisctable914418 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable959513">
+ <table data-quarto-disable-processing="true" class="hmisctable914418">
  <tbody><tr><td><font color="MidnightBlue">lowest</font>&nbsp;:</td><td>-1.06582 </td><td>-0.948039</td><td>-0.766913</td><td>-0.731368</td><td>-0.564972</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>2.42812  </td><td>2.44938  </td><td>2.48708  </td><td>2.6237   </td><td>2.76577  </td></tr>
  </tbody></table>
@@ -584,172 +586,108 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAlklE
 <hr class="thinhr">
 <span style="font-weight:bold">sqpost</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAgElEQVQ4je2TbQuAIAyEb/3/H501y+nOMJLhhw72Ig59FA7iBPA+VNicAN6HamGu9u5vXJNe8nO9PKZ4rq1Vzza5keY42PxXXW12mwH/NcAFMhTNldIA18PlC3A1IwFchi63jqt+wHwuddBZcIQmIiErKYt8gPrxittdrPS9mGIHtHsMDJxFbRkAAAAASUVORK5CYII=" alt="image"></div>
-<style>
- .hmisctable907358 {
- border: none;
- font-size: 74%;
- }
- .hmisctable907358 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable907358 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table data-quarto-disable-processing="true" class="hmisctable907358">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>544</td><td>0</td><td>93</td><td>0.996</td><td>5.133</td><td>2.922</td><td> 1.414</td><td> 2.236</td><td> 3.162</td><td> 4.472</td><td> 6.652</td><td> 9.669</td><td>10.000</td></tr>
- </tbody></table>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+      544        0       93    0.996    5.133    4.935    2.922    1.414    2.236 
+      .25      .50      .75      .90      .95 
+    3.162    4.472    6.652    9.669   10.000  </pre>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 1.41421 1.73205 2       2.05477 2.23607 ,  <font color="MidnightBlue">highest</font>: 10.9545 12.2474 13.0384 13.784  17.3205</span>
 <hr class="thinhr">
 <span style="font-weight:bold">reduc10</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4je2T3Q6AIAiFj73/Qxdp8jNomdO6kDmHB6RPDaQhBvQW2IYYeusurrbo4mqL9vZN1E63dR9Ev70vN23yOwopu8d8Dpv7Jy6ZP4ur+IoLhYi5DPVrLi5kz6s1CAjJoqzqzEX/ftQYQQPRCqg7yc1S2UVL35KYff362A74CgwjAQ4HMgAAAABJRU5ErkJggg==" alt="image"></div>
-<style>
- .hmisctable182406 {
- border: none;
- font-size: 74%;
- }
- .hmisctable182406 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable182406 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table data-quarto-disable-processing="true" class="hmisctable182406">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>544</td><td>0</td><td>200</td><td>0.998</td><td>4.482</td><td>4.307</td><td>-2.500</td><td> 0.000</td><td> 2.000</td><td> 5.167</td><td> 7.337</td><td> 8.785</td><td>10.000</td></tr>
- </tbody></table>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+      544        0      200    0.998    4.482    4.833    4.307   -2.500    0.000 
+      .25      .50      .75      .90      .95 
+    2.000    5.167    7.337    8.785   10.000  </pre>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: -13.8095 -10      -8.33333 -8.10811 -6       ,  <font color="MidnightBlue">highest</font>: 9.125    9.16667  9.28571  9.33333  10      </span>
 <hr class="thinhr">
 <span style="font-weight:bold">Necrosis</span>
 <style>
- .hmisctable543952 {
+ .hmisctable702653 {
  border: none;
  font-size: 85%;
  }
- .hmisctable543952 td {
+ .hmisctable702653 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable543952 th {
+ .hmisctable702653 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable543952">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>544</td><td>0</td><td>2</td><td>0.743</td><td>245</td><td>0.4504</td><td>0.496</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable702653">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>544</td><td>0</td><td>2</td><td>0.743</td><td>245</td><td>0.4504</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">Tumor</span>
 <style>
- .hmisctable128601 {
+ .hmisctable439134 {
  border: none;
  font-size: 85%;
  }
- .hmisctable128601 td {
+ .hmisctable439134 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable128601 th {
+ .hmisctable439134 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable128601">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>544</td><td>0</td><td>2</td><td>0.743</td><td>299</td><td>0.5496</td><td>0.496</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable439134">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th></tr>
+ <tr><td>544</td><td>0</td><td>2</td><td>0.743</td><td>299</td><td>0.5496</td></tr>
  </tbody></table>
 
 <hr class="thinhr">
 <span style="font-weight:bold">Reduction</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4je2T3Q6AIAiFj73/Qxdp8jNomdO6kDmHB6RPDaQhBvQW2IYYeusurrbo4mqL9vZN1E63dR9Ev70vN23yOwopu8d8Dpv7Jy6ZP4ur+IoLhYi5DPVrLi5kz6s1CAjJoqzqzEX/ftQYQQPRCqg7yc1S2UVL35KYff362A74CgwjAQ4HMgAAAABJRU5ErkJggg==" alt="image"></div>
-<style>
- .hmisctable186540 {
- border: none;
- font-size: 74%;
- }
- .hmisctable186540 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable186540 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table data-quarto-disable-processing="true" class="hmisctable186540">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>544</td><td>0</td><td>200</td><td>0.998</td><td>44.82</td><td>43.07</td><td>-25.00</td><td>  0.00</td><td> 20.00</td><td> 51.67</td><td> 73.37</td><td> 87.85</td><td>100.00</td></tr>
- </tbody></table>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+      544        0      200    0.998    44.82    48.33    43.07   -25.00     0.00 
+      .25      .50      .75      .90      .95 
+    20.00    51.67    73.37    87.85   100.00  </pre>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: -138.095 -100     -83.3333 -81.0811 -60      ,  <font color="MidnightBlue">highest</font>: 91.25    91.6667  92.8571  93.3333  100     </span>
 <hr class="thinhr">
 <span style="font-weight:bold">LDHst</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAcklEQVQ4jc2V4QrAIAgGz73/Q49qarX1d34XgVnBIUmYAyYEl0OGAoQMml5oeoGYmKzXeP1OcRcmo0bhVVylZPOSEdu98ITvF5m+vbpaKJZ6ceKa5P41bB141JqwPv1ou9SH5b/6dLatXc0UsSbsYxm5G9LRDGryBqR6AAAAAElFTkSuQmCC" alt="image"></div>
 <style>
- .hmisctable933632 {
+ .hmisctable352483 {
  border: none;
  font-size: 74%;
  }
- .hmisctable933632 td {
+ .hmisctable352483 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable933632 th {
+ .hmisctable352483 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table data-quarto-disable-processing="true" class="hmisctable933632">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>544</td><td>0</td><td>472</td><td>1</td><td>2.03</td><td>1.605</td><td>0.6789</td><td>0.7661</td><td>0.9679</td><td>1.3675</td><td>2.5317</td><td>3.8014</td><td>5.2242</td></tr>
+ <table data-quarto-disable-processing="true" class="hmisctable352483">
+ <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>pMedian</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>544</td><td>0</td><td>472</td><td>1</td><td>2.03</td><td>1.693</td><td>1.605</td><td>0.6789</td><td>0.7661</td><td>0.9679</td><td>1.3675</td><td>2.5317</td><td>3.8014</td><td>5.2242</td></tr>
  </tbody></table>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 0.344444 0.3875   0.464444 0.48125  0.568376 ,  <font color="MidnightBlue">highest</font>: 11.3375  11.5812  12.0261  13.7867  15.8913 </span>
 <hr class="thinhr">
 <span style="font-weight:bold">Post.size</span><div style="float: right; text-align: right;"><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbklEQVQ4je2TQQrAIAwEN/7/0TULSrCx6GXJoQsmCoKDOjAGGKVI0BhglCIpzAVccWnof667wDX0WJTyy0yNtbwrD1s7uDnhO04utuJcu/NLcCVPK+ZCwpV+ObGPu1icGZf0ZZbg0Guy7jh0sY8Hv6cMM8S7zDkAAAAASUVORK5CYII=" alt="image"></div>
-<style>
- .hmisctable910781 {
- border: none;
- font-size: 74%;
- }
- .hmisctable910781 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable910781 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table data-quarto-disable-processing="true" class="hmisctable910781">
- <tbody><tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>544</td><td>0</td><td>93</td><td>0.996</td><td>33.26</td><td>33.37</td><td>  2.00</td><td>  5.00</td><td> 10.00</td><td> 20.00</td><td> 44.25</td><td> 93.50</td><td>100.00</td></tr>
- </tbody></table>
+<pre style="font-size:85%;">        n  missing distinct     Info     Mean  pMedian      Gmd      .05      .10 
+      544        0       93    0.996    33.26    26.74    33.37     2.00     5.00 
+      .25      .50      .75      .90      .95 
+    10.00    20.00    44.25    93.50   100.00  </pre>
 
 <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&nbsp;: 2       3       4       4.22209 5       ,  <font color="MidnightBlue">highest</font>: 120     150     170     190     300    </span>
 <hr class="thinhr">
@@ -757,11 +695,11 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbklE
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the fitting of 3 models</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the fitting of 3 models</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span><span class="fu">log</span>(LDHst)<span class="sc">+</span><span class="fu">sqrt</span>(Post.size)<span class="sc">+</span>Reduction,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>n544,<span class="at">x=</span>T,<span class="at">y=</span>T,<span class="at">linear.predictors=</span>T)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <p><strong>Logistic Regression Model</strong></p>
@@ -771,7 +709,7 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAbklE
 </pre>
 
 
-<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gmisc_table caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -806,7 +744,7 @@ Indexes</th>
 <td style="text-align: center; min-width: 9em; border-left: 1px solid black; border-right: 1px solid black;">1 245</td>
 <td style="text-align: center; min-width: 9em; border-right: 1px solid black;">Pr(&gt;χ<sup>2</sup>) &lt;0.0001</td>
 <td style="text-align: center; min-width: 9em; border-right: 1px solid black;"><em>R</em><sup><span style="font-size: 70%;">2</span></sup><sub><span style="font-size: 70%;">6,404</span></sub> 0.399</td>
-<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">γ 0.678</td>
+<td style="text-align: center; min-width: 9em; border-right: 1px solid black;">γ 0.677</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; min-width: 9em; border-bottom: 2px solid grey; border-left: 1px solid black; border-right: 1px solid black;">max |∂log <em>L</em>/∂β| 1×10<sup>-7</sup></td>
@@ -820,7 +758,7 @@ Indexes</th>
 
 
 
-<table class="gmisc_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gmisc_table caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1px solid grey; border-top: 2px solid grey;"></th>
@@ -889,16 +827,16 @@ Indexes</th>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Validate model with bootstrapping</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Validate model with bootstrapping</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>val.full  <span class="ot">&lt;-</span> <span class="fu">validate</span>(full, <span class="at">B=</span><span class="dv">100</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>val.full[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>) ] <span class="ot">&lt;-</span> val.full[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>) ]<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="co"># transform Dxy to C</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>val.full[<span class="dv">1</span>,<span class="dv">4</span> ] <span class="ot">&lt;-</span> val.full[<span class="dv">1</span>,<span class="dv">4</span>]<span class="sc">/</span><span class="dv">2</span>  <span class="co"># optimism in c</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(val.full)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"C"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(val.full[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]), <span class="at">digits=</span><span class="dv">3</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(val.full[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]), <span class="at">digits=</span><span class="dv">3</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -907,6 +845,8 @@ Indexes</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">test</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">optimism</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">index.corrected</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lower</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Upper</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
 </tr>
 </thead>
@@ -918,6 +858,8 @@ Indexes</th>
 <td style="text-align: right;">0.835</td>
 <td style="text-align: right;">0.004</td>
 <td style="text-align: right;">0.835</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">0.750</td>
 <td style="text-align: right;">100</td>
 </tr>
 <tr class="even">
@@ -927,6 +869,8 @@ Indexes</th>
 <td style="text-align: right;">0.423</td>
 <td style="text-align: right;">0.011</td>
 <td style="text-align: right;">0.420</td>
+<td style="text-align: right;">0.332</td>
+<td style="text-align: right;">0.511</td>
 <td style="text-align: right;">100</td>
 </tr>
 <tr class="odd">
@@ -936,6 +880,8 @@ Indexes</th>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
+<td style="text-align: right;">-0.238</td>
+<td style="text-align: right;">0.244</td>
 <td style="text-align: right;">100</td>
 </tr>
 <tr class="even">
@@ -945,6 +891,8 @@ Indexes</th>
 <td style="text-align: right;">0.978</td>
 <td style="text-align: right;">0.022</td>
 <td style="text-align: right;">0.978</td>
+<td style="text-align: right;">0.739</td>
+<td style="text-align: right;">1.255</td>
 <td style="text-align: right;">100</td>
 </tr>
 </tbody>
@@ -962,7 +910,7 @@ For illustration, we consider 2 shrinkage approaches:<br>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply linear shrinkage</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply linear shrinkage</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>full.shrunk <span class="ot">&lt;-</span> full</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>full.shrunk<span class="sc">$</span>coef <span class="ot">&lt;-</span> val.full[<span class="dv">4</span>,<span class="dv">5</span>] <span class="sc">*</span> full.shrunk<span class="sc">$</span>coef  <span class="co"># use result from bootstrapping</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># val.full[4,5] is shrinkage factor; heuristic estimate (LR - df) / LR = (211-6)/211=0.97</span></span>
@@ -973,7 +921,7 @@ For illustration, we consider 2 shrinkage approaches:<br>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a penalized model with pentrace function</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>p   <span class="ot">&lt;-</span> <span class="fu">pentrace</span>(full, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">20</span>))</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, <span class="at">which=</span><span class="st">'aic.c'</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">196</span>,<span class="dv">201</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="dv">196</span>, <span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="dv">196</span>, <span class="dv">1000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -990,14 +938,14 @@ For illustration, we consider 2 shrinkage approaches:<br>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>full.pen    <span class="ot">&lt;-</span> <span class="fu">update</span>(full, <span class="at">penalty=</span>p<span class="sc">$</span>penalty) </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>full.pen    <span class="ot">&lt;-</span> <span class="fu">update</span>(full, <span class="at">penalty=</span>p<span class="sc">$</span>penalty) </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## compare coefs of 3 model variants</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fit.coefs <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">full=</span>full<span class="sc">$</span>coefficients, <span class="at">shrunk=</span>full.shrunk<span class="sc">$</span>coef, <span class="at">penalized=</span>full.pen<span class="sc">$</span>coefficients)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(fit.coefs, <span class="at">digits=</span><span class="dv">3</span>))  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(fit.coefs, <span class="at">digits=</span><span class="dv">3</span>))  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1062,7 +1010,7 @@ For illustration, we consider 2 shrinkage approaches:<br>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,.<span class="dv">5</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,.<span class="dv">5</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Need some stats for the data to plot nomogram</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dd  <span class="ot">&lt;-</span> <span class="fu">datadist</span>(n544)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist=</span><span class="st">"dd"</span>)</span>
@@ -1071,7 +1019,7 @@ For illustration, we consider 2 shrinkage approaches:<br>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">fun.at=</span><span class="fu">c</span>(<span class="fu">seq</span>(.<span class="dv">1</span>,.<span class="dv">9</span>,<span class="at">by=</span>.<span class="dv">1</span>),<span class="fl">0.95</span>), </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">funlabel=</span><span class="fu">c</span>(<span class="st">"p(residual tumor)"</span>, <span class="st">"p(necrosis)"</span>),  <span class="at">vnames=</span><span class="st">"lab"</span>, <span class="at">maxscale=</span><span class="dv">10</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nom)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Testicular cancer prediction model: risk of residual tumor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Testicular cancer prediction model: risk of residual tumor"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1101,15 +1049,15 @@ We then continue with searching for a similarly nice scoring for continuous pred
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">10</span>, <span class="at">ncol=</span><span class="fu">length</span>(full.pen<span class="sc">$</span>coefficients), </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">10</span>, <span class="at">ncol=</span><span class="fu">length</span>(full.pen<span class="sc">$</span>coefficients), </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">"Multiplier"</span>, <span class="fu">names</span>(full.pen<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>]))))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  scores[i,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span><span class="sc">/</span>i, <span class="fu">round</span>(full.pen<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">*</span> <span class="dv">10</span> <span class="sc">/</span> i)) }</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># consider a range of multipliers</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(scores, <span class="at">digits=</span><span class="dv">3</span>))  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(scores, <span class="at">digits=</span><span class="dv">3</span>))  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Multiplier</th>
@@ -1217,12 +1165,12 @@ We then continue with searching for a similarly nice scoring for continuous pred
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rounded scores</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rounded scores</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(<span class="at">mult10=</span><span class="fu">round</span>(<span class="dv">10</span><span class="sc">*</span>full.pen<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mult1.25 =</span><span class="fu">round</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>full.pen<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]))), <span class="at">digits=</span><span class="dv">3</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mult1.25 =</span><span class="fu">round</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>full.pen<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]))), <span class="at">digits=</span><span class="dv">3</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1268,7 +1216,7 @@ We then continue with searching for a similarly nice scoring for continuous pred
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use score of 10/8 for LDH, plot score by LDHst</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>LDHplot <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(n544<span class="sc">$</span>LDHst, <span class="fu">round</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>full.pen<span class="sc">$</span>coef[<span class="dv">5</span>]<span class="sc">*</span>n544<span class="sc">$</span>Pre.lnLDH,<span class="dv">1</span>)))</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>LDHplot[,<span class="dv">1</span>], <span class="at">y=</span>LDHplot[,<span class="dv">2</span>], <span class="at">xlab=</span><span class="st">"LDHst (LDH / upper limit of normal LDH)"</span>, <span class="at">ylab=</span><span class="st">"Rounded score"</span>, </span>
@@ -1283,7 +1231,7 @@ We then continue with searching for a similarly nice scoring for continuous pred
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># vertical reference lines</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, .<span class="dv">5</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="fl">1.5</span>))</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="fl">2.5</span><span class="sc">^</span><span class="dv">2</span>,<span class="fl">2.5</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="fl">2.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="fl">2.5</span><span class="sc">^</span><span class="dv">2</span>,<span class="fl">2.5</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="fl">2.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1301,7 +1249,7 @@ Continue with post.size.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate score by sequence 2 to 100mm; </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate score by sequence 2 to 100mm; </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 is minimum for analysis; set 10 to zero in sequence (sqrt(seq(2,50,by=1))-sqrt(10))</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We use 10mm as a reference, set to zero</span></span>
@@ -1325,7 +1273,7 @@ Continue with post.size.</p>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">10</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="fl">0.25</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">20</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="sc">-</span>.<span class="dv">1</span>))</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">40</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="sc">-</span><span class="fl">0.6</span>))</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">100</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="sc">-</span><span class="fl">1.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">100</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="sc">-</span><span class="fl">1.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1343,7 +1291,7 @@ Continue with post.size.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Redplot <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(n544<span class="sc">$</span>Reduction, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Redplot <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(n544<span class="sc">$</span>Reduction, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>full.pen<span class="sc">$</span>coef[<span class="dv">7</span>]<span class="sc">*</span>n544<span class="sc">$</span>Reduction,<span class="dv">1</span>)))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>Redplot[,<span class="dv">1</span>], <span class="at">y=</span>Redplot[,<span class="dv">2</span>], <span class="at">xlab=</span><span class="st">"Reduction in size (%)"</span>, <span class="at">ylab=</span><span class="st">"Rounded score"</span>, </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes=</span>F, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>,<span class="fl">2.1</span>), <span class="at">cex.lab=</span><span class="fl">1.2</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main =</span> <span class="st">"Reduction in size"</span>)</span>
@@ -1359,7 +1307,7 @@ Continue with post.size.</p>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># vertical reference lines</span></span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">0.1</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">50</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">1.25</span>))</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">100</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">2.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">100</span>), <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">2.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1374,7 +1322,7 @@ Continue with post.size.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A score of 1 corresponds to 2.5 times larger LDH</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A score of 1 corresponds to 2.5 times larger LDH</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># rescale such that exp(l) does get more than 1 point; 1 point at 2.5 times normal LDH</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>LDHr  <span class="ot">&lt;-</span> <span class="fu">round</span>(n544<span class="sc">$</span>Pre.lnLDH<span class="sc">*</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">/</span><span class="fl">2.5</span>,<span class="dv">1</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1387,7 +1335,7 @@ Continue with post.size.</p>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Rescale reduction such that effect 1 point</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 50% reduction 1 point; i.e. 0% = 0; 50%=1; 100%=2</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>REDUC5  <span class="ot">&lt;-</span> <span class="fu">round</span>(n544<span class="sc">$</span>reduc10 <span class="sc">/</span> <span class="dv">5</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>REDUC5  <span class="ot">&lt;-</span> <span class="fu">round</span>(n544<span class="sc">$</span>reduc10 <span class="sc">/</span> <span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1401,13 +1349,13 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>score.fit <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>LDHr<span class="sc">+</span>SQPOSTr<span class="sc">+</span>REDUC5,<span class="at">data=</span>n544, <span class="at">x=</span>T,<span class="at">y=</span>T)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>score.fit <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>LDHr<span class="sc">+</span>SQPOSTr<span class="sc">+</span>REDUC5,<span class="at">data=</span>n544, <span class="at">x=</span>T,<span class="at">y=</span>T)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># scores &lt;- as.data.frame(round(10/8*full.pen$coef[-1]))</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>score.fit<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>score.fit<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1444,13 +1392,13 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Continuous scores</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>LDHvalues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">1.6</span>, <span class="fl">2.5</span>, <span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(<span class="at">LDH=</span>LDHvalues, <span class="at">LDHscores=</span><span class="fu">log</span>(LDHvalues)<span class="sc">*</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">/</span><span class="fl">2.5</span>)), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(<span class="at">LDH=</span>LDHvalues, <span class="at">LDHscores=</span><span class="fu">log</span>(LDHvalues)<span class="sc">*</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">/</span><span class="fl">2.5</span>)), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1486,13 +1434,13 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Postvalues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">70</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Postvalues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">70</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(<span class="at">Postsize=</span>Postvalues, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Postscores=</span>(<span class="fu">sqrt</span>(Postvalues) <span class="sc">-</span> <span class="fu">sqrt</span>(<span class="dv">10</span>)) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">sqrt</span>(<span class="dv">40</span>)))), </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1525,13 +1473,13 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Redvalues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Redvalues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(<span class="at">Reduction=</span>Redvalues, </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Redscores=</span>Redvalues <span class="sc">/</span> <span class="dv">5</span>)), </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1568,7 +1516,7 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">##'# Function to relate scores to predictions in graph </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">##'# Function to relate scores to predictions in graph </span><span class="al">###</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>make.score.matrix <span class="ot">&lt;-</span><span class="cf">function</span>(fit, scores, <span class="at">shrinkage=</span><span class="dv">1</span>, <span class="at">limits.scores=</span><span class="cn">NULL</span>) {   </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lpscore for score chart + graph</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  fit         <span class="ot">&lt;-</span> <span class="fu">update</span>(fit, <span class="at">x=</span>T,<span class="at">y=</span>T, <span class="at">se.fit=</span>T)   <span class="co"># SE of predictions from original model</span></span>
@@ -1609,7 +1557,7 @@ Could also have kept life simpler by multiplying coefs by 10 and rounding.</p>
 <span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>score.fit <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>LDHr<span class="sc">+</span>SQPOSTr<span class="sc">+</span>REDUC5,<span class="at">data=</span>n544, <span class="at">x=</span>T,<span class="at">y=</span>T)</span>
 <span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>scores  <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">6</span>)  <span class="co"># All scores a weight of 1</span></span>
 <span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>lp.n544 <span class="ot">&lt;-</span> <span class="fu">make.score.matrix</span>(<span class="at">fit=</span>score.fit, <span class="at">scores=</span>scores, <span class="at">shrinkage=</span><span class="fl">0.95</span>, <span class="at">limits.scores=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>lp.n544 <span class="ot">&lt;-</span> <span class="fu">make.score.matrix</span>(<span class="at">fit=</span>score.fit, <span class="at">scores=</span>scores, <span class="at">shrinkage=</span><span class="fl">0.95</span>, <span class="at">limits.scores=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1619,11 +1567,11 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(lp.n544), </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(lp.n544), </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1722,7 +1670,7 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>lp.n544[,<span class="dv">1</span>], <span class="at">y=</span><span class="dv">100</span><span class="sc">*</span>lp.n544[,<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">las=</span><span class="dv">1</span>, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">cex.lab=</span><span class="fl">1.2</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Predicted probability of necrosis (%)"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">100</span>), </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Sum score"</span>, <span class="at">cex=</span><span class="fu">sqrt</span>(lp.n544<span class="sc">$</span>total)<span class="sc">/</span><span class="dv">5</span>, <span class="at">xaxt=</span><span class="st">"n"</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
@@ -1732,7 +1680,7 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(lp.n544)) <span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(lp.n544[i,<span class="dv">1</span>], lp.n544[i,<span class="dv">1</span>]), <span class="at">y=</span><span class="fu">c</span>(<span class="dv">100</span><span class="sc">*</span>lp.n544[i,<span class="dv">3</span>], <span class="dv">100</span><span class="sc">*</span>lp.n544[i,<span class="dv">4</span>]), <span class="at">type=</span><span class="st">"l"</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add N= ...</span></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"N="</span>, <span class="at">side =</span> <span class="dv">2</span>, <span class="at">outer =</span> <span class="cn">FALSE</span>, <span class="at">line=</span><span class="fl">1.5</span>, <span class="at">at =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">adj =</span> <span class="dv">0</span>, <span class="at">las=</span><span class="dv">1</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>lp.n544[,<span class="dv">1</span>],<span class="at">y=</span><span class="sc">-</span><span class="dv">10</span>,<span class="at">labels=</span>lp.n544<span class="sc">$</span>total, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>lp.n544[,<span class="dv">1</span>],<span class="at">y=</span><span class="sc">-</span><span class="dv">10</span>,<span class="at">labels=</span>lp.n544<span class="sc">$</span>total, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1752,7 +1700,7 @@ restricted range of scores -2 5 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDH</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDH</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>PRELDH <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>Pre.lnLDH<span class="sc">&lt;</span><span class="fu">log</span>(<span class="dv">1</span>),<span class="dv">0</span>,<span class="dv">1</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PostSize simple coding: 0,1,2</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>POST2 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>sqpost<span class="sc">&lt;</span><span class="fu">sqrt</span>(<span class="dv">20</span>),<span class="dv">2</span>,</span>
@@ -1761,10 +1709,10 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>REDUCr  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>Reduction<span class="sc">&lt;</span><span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>, <span class="fu">ifelse</span>(n544<span class="sc">$</span>Reduction<span class="sc">&gt;=</span><span class="dv">50</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Everything coded in categories</span></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>score.fit2 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>PRELDH<span class="sc">+</span>POST2<span class="sc">+</span>REDUCr,<span class="at">data=</span>n544, <span class="at">x=</span>T,<span class="at">y=</span>T)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="at">x=</span><span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>score.fit2<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="at">x=</span><span class="dv">10</span><span class="sc">/</span><span class="dv">8</span><span class="sc">*</span>score.fit2<span class="sc">$</span>coef[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1814,7 +1762,7 @@ restricted range of scores -2 5 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>score5  <span class="ot">&lt;-</span> n544<span class="sc">$</span>Teratoma<span class="sc">+</span>n544<span class="sc">$</span>Pre.AFP<span class="sc">+</span>n544<span class="sc">$</span>Pre.HCG<span class="sc">+</span>n544<span class="sc">$</span>PRELDH<span class="sc">+</span>n544<span class="sc">$</span>REDUCr</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>score5  <span class="ot">&lt;-</span> n544<span class="sc">$</span>Teratoma<span class="sc">+</span>n544<span class="sc">$</span>Pre.AFP<span class="sc">+</span>n544<span class="sc">$</span>Pre.HCG<span class="sc">+</span>n544<span class="sc">$</span>PRELDH<span class="sc">+</span>n544<span class="sc">$</span>REDUCr</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>score5  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>REDUCr<span class="sc">&lt;</span><span class="dv">0</span>,<span class="dv">0</span>,score5)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>score5 <span class="ot">&lt;-</span> score5</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1829,10 +1777,10 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>pred.simple2  <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">with</span>(pred.simple2,<span class="fu">tapply</span>(x,<span class="fu">list</span>(Group<span class="fl">.1</span>,Group<span class="fl">.2</span>),mean)))</span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(pred.simple2), <span class="at">digits =</span> <span class="dv">2</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(pred.simple2), <span class="at">digits =</span> <span class="dv">2</span>)  <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1895,7 +1843,7 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>POST5 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(n544<span class="sc">$</span>POST5)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>POST5 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(n544<span class="sc">$</span>POST5)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make simple risk scores per category</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>simple.cat  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>POST5<span class="sc">==</span><span class="dv">3</span> <span class="sc">&amp;</span> score5<span class="sc">==</span><span class="dv">4</span>,<span class="dv">70</span>,</span>
@@ -1929,10 +1877,10 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>                           <span class="at">background=</span><span class="fu">ifelse</span>(score<span class="fl">.5</span> <span class="sc">==</span> <span class="dv">90</span>, <span class="st">"darkgreen"</span>,</span>
 <span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">ifelse</span>(score<span class="fl">.5</span> <span class="sc">==</span> <span class="dv">80</span>, <span class="st">"green"</span>,<span class="st">"white"</span> )))</span>
 <span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>, <span class="at">escape =</span> F, <span class="at">row.names =</span> T) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>, <span class="at">escape =</span> F, <span class="at">row.names =</span> T) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1995,7 +1943,7 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(simple.tab, digits = 2) %&gt;% kable_styling(full_width=F, position = "left") </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(simple.tab, digits = 2) %&gt;% kable_styling(full_width=F, position = "left") </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>In this way we created a very simple table, with probability of necrosis according to post-chemotherapy mass size (rows) and a simple, categorized score of the other 5 predictors.</p>
@@ -2009,14 +1957,14 @@ restricted range of scores -2 5 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Radiology paper: could graph pre - post with lines for score 1 - 4</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Radiology paper: could graph pre - post with lines for score 1 - 4</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>score4  <span class="ot">&lt;-</span> n544<span class="sc">$</span>Teratoma<span class="sc">+</span>n544<span class="sc">$</span>Pre.AFP<span class="sc">+</span>n544<span class="sc">$</span>Pre.HCG<span class="sc">+</span>n544<span class="sc">$</span>Pre.lnLDH</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>full.simple3 <span class="ot">&lt;-</span> <span class="fu">lrm</span>(Necrosis <span class="sc">~</span> score4 <span class="sc">+</span> sqpost <span class="sc">+</span> reduc10, <span class="at">data=</span>n544, <span class="at">x=</span>T, <span class="at">y=</span>T)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(full.simple3<span class="sc">$</span>coef), <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(full.simple3<span class="sc">$</span>coef), <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2045,7 +1993,7 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a presize variable, based on reduction and postsize</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a presize variable, based on reduction and postsize</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reduc = (pre-post) / pre; reduc = 1 - post/pre; reduc-1 = -post/pre; pre = -post/(reduc-1)</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>presize <span class="ot">&lt;-</span> <span class="sc">-</span> n544<span class="sc">$</span>sqpost<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">ifelse</span>((n544<span class="sc">$</span>reduc10<span class="sc">/</span><span class="dv">10</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">!=</span> <span class="dv">0</span>,(n544<span class="sc">$</span>reduc10<span class="sc">/</span><span class="dv">10</span> <span class="sc">-</span> <span class="dv">1</span>),<span class="sc">-</span>.<span class="dv">04</span>)  </span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now calculate iso probability lines: e.g. prob -70%, </span></span>
@@ -2107,7 +2055,7 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>xp <span class="ot">=</span> x[x<span class="sc">$</span>score4<span class="sc">==</span>i <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(x<span class="sc">$</span>presize90), ]</span>
 <span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>xp <span class="ot">=</span> xp[<span class="fu">sort</span>(xp<span class="sc">$</span>presize90),]</span>
 <span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">y=</span>xp<span class="sc">$</span>postsize,<span class="at">x=</span>xp<span class="sc">$</span>presize90, <span class="at">pch=</span><span class="st">"9"</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">col=</span>mycolors[<span class="dv">6</span>], <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop over score 1 - 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>} <span class="co"># end loop over score 1 - 4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2128,7 +2076,7 @@ restricted range of scores -2 5 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Start with dichotomizing predictions from full as &lt;70% vs &gt;=70%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Start with dichotomizing predictions from full as &lt;70% vs &gt;=70%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>predhigh <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">plogis</span>(full<span class="sc">$</span>linear.predictor)<span class="sc">&lt;</span>.<span class="dv">7</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Try to make tree model for this outcome</span></span>
@@ -2137,7 +2085,7 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>n544)</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree.orig)</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree.orig, <span class="at">use.n=</span>F)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Meta-model for original predictions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Meta-model for original predictions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2148,11 +2096,11 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tree.meta <span class="ot">&lt;-</span> <span class="fu">rpart</span>(predhigh <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>LDHst<span class="sc">+</span>Post.size<span class="sc">+</span>Reduction,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tree.meta <span class="ot">&lt;-</span> <span class="fu">rpart</span>(predhigh <span class="sc">~</span> Teratoma<span class="sc">+</span>Pre.AFP<span class="sc">+</span>Pre.HCG<span class="sc">+</span>LDHst<span class="sc">+</span>Post.size<span class="sc">+</span>Reduction,</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>n544)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree.meta)</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree.meta, <span class="at">use.n=</span>F)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Meta-model for probability &gt; 70%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Meta-model for probability &gt; 70%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2163,15 +2111,15 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make smooth tree presentation; classification with reduction, teratoma, AFP</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make smooth tree presentation; classification with reduction, teratoma, AFP</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>score3  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(n544<span class="sc">$</span>Reduction<span class="sc">&gt;</span><span class="dv">70</span>)<span class="sc">+</span><span class="fu">as.numeric</span>(n544<span class="sc">$</span>Teratoma<span class="sc">==</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">as.numeric</span>(n544<span class="sc">$</span>Pre.AFP<span class="sc">==</span><span class="dv">1</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>n544<span class="sc">$</span>tree.cat  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n544<span class="sc">$</span>Reduction<span class="sc">&gt;</span><span class="dv">50</span> <span class="sc">&amp;</span> score3<span class="sc">&gt;=</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>tree.results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(n544<span class="sc">$</span>tree.cat, n544<span class="sc">$</span>Necrosis))</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tree.results) <span class="ot">&lt;-</span> <span class="fu">Cs</span>(<span class="st">"Risk group"</span>, Necrosis, N)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tree.results, <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tree.results, <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Risk group</th>
@@ -2213,7 +2161,7 @@ restricted range of scores -2 5 </code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 variants of full model fit</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 variants of full model fit</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>cstats <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rcorr.cens</span>(full<span class="sc">$</span>linear.predictor, n544<span class="sc">$</span>Necrosis)[<span class="dv">1</span>],</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rcorr.cens</span>(full.shrunk<span class="sc">$</span>linear.predictor, n544<span class="sc">$</span>Necrosis)[<span class="dv">1</span>],</span>
@@ -2228,7 +2176,7 @@ restricted range of scores -2 5 </code></pre>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rcorr.cens</span>(n544<span class="sc">$</span>tree.cat, n544<span class="sc">$</span>Necrosis)[<span class="dv">1</span>])</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cstats) <span class="ot">&lt;-</span> <span class="fu">Cs</span>(full, shrunk, penalized, scores, table, radiology, tree)</span>
 <span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cstats) <span class="ot">&lt;-</span> <span class="st">"C"</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(cstats, <span class="at">xlab=</span><span class="st">"C statistic"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.6</span>,.<span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(cstats, <span class="at">xlab=</span><span class="st">"C statistic"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.6</span>,.<span class="dv">9</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2239,10 +2187,10 @@ restricted range of scores -2 5 </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code show/hide</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(cstats), <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(cstats), <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span>F, <span class="at">position =</span> <span class="st">"left"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2338,13 +2286,14 @@ restricted range of scores -2 5 </code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
